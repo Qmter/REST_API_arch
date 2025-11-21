@@ -1,0 +1,24 @@
+{
+    "/vrf": {
+        "TESTS": {
+            "ADD": {
+                "endpoint": "/vrf",
+                "method": "POST",
+                "parameters": {
+                    "action": "add",
+                    "vrf_name": "random"
+                },
+                "expected": {"errCode": 0, "httpCode": 200}
+            },
+            "DELETE": {
+                "endpoint": "/vrf",
+                "method": "POST",
+                "parameters": {
+                    "action": "delete",
+                    "vrf_name": "random"
+                },
+                "expected": {"errCode": 0, "httpCode": 200}
+            }
+        }
+    }
+}

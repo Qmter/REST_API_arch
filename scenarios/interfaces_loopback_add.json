@@ -1,0 +1,37 @@
+{
+    "/interfaces/loopback/add": {
+        "PRESET": {
+            "steps": {
+                "1": {
+                    "template": "#TEMPLATES./vrf.TESTS.ADD"
+                }
+            }
+        },
+        "TESTS": {
+            "1": {
+                "description": "Add loopback with VRF",
+                "steps": {
+                    "1": {
+                        "endpoint": "/interfaces/loopback/add",
+                        "method": "POST",
+                        "parameters": {
+                            "ifname": "random",
+                            "vrf_name": {"ref": "#PRESET.1.vrf_name"}
+                        },
+                        "expected": {"errCode": 0, "httpCode": 200}
+                    }
+                }
+            }
+        },
+        "AFTER-TEST": {
+            "steps": {
+                "1": {
+                    "template": "#TEMPLATES./vrf.TESTS.DELETE",
+                    "parameters": {
+                        "vrf_name": {"ref": "#PRESET.1.vrf_name"}
+                    }
+                }
+            }
+        }
+    }
+}
