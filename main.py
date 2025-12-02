@@ -38,7 +38,7 @@ if __name__ == "__main__":
         scenario = scenario_parser.parse_scenario("_interfaces_tunnel_multicast")
         print("=" * 50)
         print("Сценарий успешно загружен!")
-        # print(json.dumps(scenario, indent=2))
+        print(json.dumps(scenario, indent=2))
         print("=" * 50)
 
 
@@ -59,6 +59,10 @@ if __name__ == "__main__":
         for endpoint, method in all_endpoints.items():
             # Разрешение схемы эндпоинта сценария
             resolved_scheme = ResolveScheme.resolve_endpoint(openapi_file=OPENAPI_PATH, endpoint_path=endpoint, method=method)
+            print("=" * 50)
+            print(f"Разрешенная схема для {endpoint} {method}:")
+            print("=" * 50)
+            print(json.dumps(resolved_scheme, indent=2))
             dict_endpoint_scheme[f"{endpoint}"] = resolved_scheme
 
 
@@ -69,7 +73,7 @@ if __name__ == "__main__":
 
         print("=" * 50)
         print("Разрешены ссылки для ендпоинтов:")
-        # print(json.dumps(dict_endpoint_scheme, indent=2))
+        print(json.dumps(dict_endpoint_scheme, indent=2))
         print("=" * 50)
 
         print("=" * 50)
@@ -83,7 +87,7 @@ if __name__ == "__main__":
 
         rt = GenerateValues.read_scenario(resolved_scenario=scenario, arguments_patterns=arguments_patterns)
 
-        # print(json.dumps(rt, indent=2))
+        print(json.dumps(rt, indent=2))
 
 
         # # Извлечение параметров сценария

@@ -1,9 +1,8 @@
 import rstr
 import re
 from jsonpath_ng import parse
+import random
 import json
-
-
 
 class GenerateValues:
 
@@ -49,23 +48,69 @@ class GenerateValues:
             #     cur_path = path + '.' + param
             #     obj.update(resolved_scenario, '12321321321312321313112321')
 
-            endpoint = obj['endpoint']
+            endpoint = obj['endpoint'] # Текущий endpoint
+
             # Проходимс по всем параметрам шага
             for key, value in obj['parameters'].items():
+                # Полный путь до аргумента 
+                current_path = "#" + '.'.join(str(path).split('.')[1:]) + ".parameters" +  f".{key}" 
+
                 print(f'key = {key} \t value = {value}')
+                print(GenerateValues.context)
+
                 if value == 'random': # Если рандом то генерим по regex
 
-                    # Генерируем значение по шаблону
-                    arg_value = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["pattern"]
-                    print(f"key = {key}, arg_value = {rstr.xeger(arg_value)}")
+                    if "pattern" in GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"].keys():
+                        # Генерируем значение по шаблону
+                        arg_patterns = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["pattern"]
+
+                        # Если паттернов несколько то выбираем на рандом один из
+                        selected_pattern = random.choice(arg_patterns)
+
+                        arg_value = rstr.xeger(selected_pattern)
+
+                        # Сохраняем значение в контексте для дальнейшнего использования
+                        GenerateValues.context[f"{current_path}"] = arg_value
+
+                    elif "minimum" in GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"].keys() and 'maximum' in GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"].keys():
+                        # Определяем минимальные и максимальные значения 
+                        arg_min = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["minimum"]
+                        arg_max = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["maximum"]
+
+                        # Генерируем рандомное значение от [arg_min, arg_max]
+                        arg_value = random.randint(arg_min, arg_max)
+
+                        # Сохраняем значение в контексте для дальнейшнего использования
+                        GenerateValues.context[f"{current_path}"] = arg_value
+
+
+                    print(f"key = {key}, arg_value = {arg_value}")
 
 
                 elif value == 'minimum': # Если минимум, то присваиваем минимально возможное значение из схемы
-                    ...
+                    
+                    # Устанавливаем минимальное значение из arguments_pattern
+                    arg_value = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["minimum"]
+                    
+                    # Сохраняем значение в контексте для дальнейшнего использования
+                    GenerateValues.context[f"{current_path}"] = arg_value
+
+                    print(f"key = {key}, arg_value = {arg_value}")
+
                 elif value == 'maximum': # Если максимум, то присваиваем максимально возможное значение  из схемы
-                    ...
-                elif isinstance(value, dict): # Если это словарь и если там есть ref то мы берем значение из context
-                    ...
+
+                    # Устанавливаем максимальное значение из arguments_pattern
+                    arg_value = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["maximum"]
+
+                    # Сохраняем значение в контексте для дальнейшнего использования
+                    GenerateValues.context[f"{current_path}"] = arg_value
+
+                    print(f"key = {key}, arg_value = {arg_value}")                
+
+                elif isinstance(value, dict) and "ref" in value.keys(): # Если это словарь и если там есть ref то мы берем значение из context
+                    ref_arg = value['ref']
+                    print(f'ref_link = {GenerateValues.context[f'{ref_arg}']}')
+
                 else: # Если ничего из этого не проходит то мы просто оставляем значение которое мы указали в сценарии
                     ...
                 

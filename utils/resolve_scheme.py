@@ -30,7 +30,9 @@ class ResolveScheme:
     @staticmethod
     def find_all_patterns_min_max(schema):
         """
-        Находит ВСЕ pattern, minimum, maximum в УЖЕ РАЗРЕШЕННОЙ схеме
+        Находит ВСЕ pattern, minimum, maximum в УЖЕ РАЗРЕШЕННОЙ схеме.
+        Если anyOf содержит несколько паттернов, возвращает их как массив.
+        Если паттерн один, возвращает его как строку.
         """
         results = {}
         
@@ -38,13 +40,32 @@ class ResolveScheme:
             if isinstance(obj, dict):
                 # Проверяем текущий объект на наличие pattern, min, max
                 current_rules = {}
+
+                # Обработка pattern
                 if 'pattern' in obj:
-                    current_rules['pattern'] = obj['pattern']
+                    current_rules.setdefault('pattern', []).append(obj['pattern'])
+                
+                # Обработка minimum и maximum
                 if 'minimum' in obj:
                     current_rules['minimum'] = obj['minimum']
                 if 'maximum' in obj:
                     current_rules['maximum'] = obj['maximum']
-                
+
+                # Обработка anyOf
+                if 'anyOf' in obj:
+                    patterns_from_anyof = []
+                    for item in obj['anyOf']:
+                        if isinstance(item, dict) and 'pattern' in item:
+                            patterns_from_anyof.append(item['pattern'])
+                    
+                    if patterns_from_anyof:
+                        # Если паттернов несколько, сохраняем как массив
+                        if len(patterns_from_anyof) > 1:
+                            current_rules['pattern'] = patterns_from_anyof
+                        else:
+                            # Если паттерн один, сохраняем как строку
+                            current_rules['pattern'] = patterns_from_anyof[0]
+
                 # Сохраняем если нашли правила И есть имя поля
                 if current_rules and field_name:
                     results[field_name] = current_rules
@@ -56,7 +77,7 @@ class ResolveScheme:
                 
                 # Рекурсивно обходим остальные значения без изменения имени поля
                 for key, value in obj.items():
-                    if key != 'properties':  # properties уже обработали
+                    if key not in ['properties', 'anyOf']:  # properties и anyOf уже обработали
                         _deep_search(value, field_name)
                         
             elif isinstance(obj, list):

@@ -9,7 +9,9 @@
             "method": "POST",
             "parameters": {
               "ifname": "random",
-              "source": "random"
+              "source": "random",
+              "tos": "maximum",
+              "key": "maximum"
             },
             "expected": {
               "errCode": 0,
@@ -21,7 +23,7 @@
             "method": "POST",
             "parameters": {
               "ifname": {
-                "ref": "#TESTS/1/steps/1/parameters/ifname"
+                "ref": "#TESTS.1.steps.1.parameters.ifname"
               },
               "action": "on"
             },
@@ -35,15 +37,15 @@
             "method": "GET",
             "parameters": {
               "ifname": {
-                "ref": "#TESTS/1/steps/1/parameters/ifname"
+                "ref": "#TESTS.1.steps.1.parameters.ifname"
               }
             },
             "validation": {
               "ifname": {
-                "ref": "#TESTS/1/steps/1/parameters/ifname"
+                "ref": "#TESTS.1.steps.1.parameters.ifname"
               },
               "source": {
-                "ref": "#TESTS/1/steps/1/parameters/source"
+                "ref": "#TESTS.1.steps.1.parameters.source"
               },
               "multicast": "on"
             },
@@ -74,7 +76,7 @@
             "method": "POST",
             "parameters": {
               "ifname": {
-                "ref": "#TESTS/2/steps/1/parameters/ifname"
+                "ref": "#TESTS.2.steps.1.parameters.ifname"
               },
               "action": "off"
             },
@@ -88,15 +90,15 @@
             "method": "GET",
             "parameters": {
               "ifname": {
-                "ref": "#TESTS/2/steps/1/parameters/ifname"
+                "ref": "#TESTS.2.steps.1.parameters.ifname"
               }
             },
             "validation": {
               "ifname": {
-                "ref": "#TESTS/2/steps/1/parameters/ifname"
+                "ref": "#TESTS.2.steps.1.parameters.ifname"
               },
               "source": {
-                "ref": "#TESTS/2/steps/1/parameters/source"
+                "ref": "#TESTS.2.steps.1.parameters.source"
               },
               "multicast": "off"
             },
@@ -115,7 +117,7 @@
           "method": "POST",
           "parameters": {
             "ifname": {
-              "ref": "#TESTS/1/steps/1/parameters/ifname"
+              "ref": "#TESTS.1.steps.1.parameters.ifname"
             }
           },
           "expected": {
@@ -128,7 +130,7 @@
           "method": "POST",
           "parameters": {
             "ifname": {
-              "ref": "#TESTS/2/steps/1/parameters/ifname"
+              "ref": "#TESTS.2.steps.1.parameters.ifname"
             }
           },
           "expected": {
