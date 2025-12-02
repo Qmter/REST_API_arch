@@ -15,6 +15,7 @@ class ScenarioParser:
         self.templates_dir = templates_dir
         self.openapi_file = openapi_file
         self.context = {}  # Контекст для хранения данных между шагами
+        self.endpoints_in_scenario = {}
 
     def parse_scenario(self, scenario_name):
         """
@@ -44,17 +45,23 @@ class ScenarioParser:
 
     def _resolve_templates(self, node):
         """
-        Рекурсивное разворачивание шаблонов.
-
-        :param node: Текущий узел JSON-структуры.
+        Рекурсивное разворачивание шаблонов с сохранением параметров.
         """
-
         if isinstance(node, dict):
             for key, value in list(node.items()):
                 if isinstance(value, dict) and "template" in value:
                     # Загружаем шаблон
                     template_ref = value["template"]
                     resolved_template = self._load_template(template_ref)
+                    print(f"Шаблон: {template_ref} успешно загружен!")  # Отладочная информация
+                    
+                    # Если в исходном узле есть дополнительные параметры, объединяем их
+                    if "parameters" in value and "parameters" in resolved_template:
+                        # Объединяем параметры (параметры из шаблона имеют приоритет)
+                        resolved_template["parameters"] = {
+                            **resolved_template["parameters"],
+                            **value["parameters"]
+                        }
                     
                     # Заменяем узел на развернутый шаблон
                     node[key] = resolved_template
@@ -104,3 +111,20 @@ class ScenarioParser:
                 raise KeyError(f"Ключ '{part}' не найден в шаблоне '{template_name}'.")
 
         return current
+    
+
+    def find_all_endpoints(self, resolved_scenario) -> set:
+
+        for key, value in resolved_scenario.items():
+            if '/' in key:
+                self.endpoints_in_scenario[f'{key}'] = {}
+                self.endpoints_in_scenario[f'{key}'] = 'post'
+            if key == 'endpoint':
+                self.endpoints_in_scenario[f'{value}'] = {}
+                self.endpoints_in_scenario[f'{value}'] = resolved_scenario['method']
+
+            
+            if isinstance(value, dict):
+                self.find_all_endpoints(value)
+        
+        return self.endpoints_in_scenario

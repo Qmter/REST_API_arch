@@ -1,0 +1,142 @@
+{
+  "/interfaces/tunnel/multicast": {
+    "TESTS": {
+      "1": {
+        "description": "Set on multicast",
+        "steps": {
+          "1": {
+            "endpoint": "/interfaces/tunnel/add",
+            "method": "POST",
+            "parameters": {
+              "ifname": "random",
+              "source": "random"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 200
+            }
+          },
+          "2": {
+            "endpoint": "/interfaces/tunnel/multicast",
+            "method": "POST",
+            "parameters": {
+              "ifname": {
+                "ref": "#TESTS/1/steps/1/parameters/ifname"
+              },
+              "action": "on"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 200
+            }
+          },
+          "3": {
+            "endpoint": "/interfaces/tunnel/capability",
+            "method": "GET",
+            "parameters": {
+              "ifname": {
+                "ref": "#TESTS/1/steps/1/parameters/ifname"
+              }
+            },
+            "validation": {
+              "ifname": {
+                "ref": "#TESTS/1/steps/1/parameters/ifname"
+              },
+              "source": {
+                "ref": "#TESTS/1/steps/1/parameters/source"
+              },
+              "multicast": "on"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 200
+            }
+          }
+        }
+      },
+      "2": {
+        "description": "Set off multicast",
+        "steps": {
+          "1": {
+            "endpoint": "/interfaces/tunnel/add",
+            "method": "POST",
+            "parameters": {
+              "ifname": "random",
+              "source": "random"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 200
+            }
+          },
+          "2": {
+            "endpoint": "/interfaces/tunnel/multicast",
+            "method": "POST",
+            "parameters": {
+              "ifname": {
+                "ref": "#TESTS/2/steps/1/parameters/ifname"
+              },
+              "action": "off"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 200
+            }
+          },
+          "3": {
+            "endpoint": "/interfaces/tunnel/capability",
+            "method": "GET",
+            "parameters": {
+              "ifname": {
+                "ref": "#TESTS/2/steps/1/parameters/ifname"
+              }
+            },
+            "validation": {
+              "ifname": {
+                "ref": "#TESTS/2/steps/1/parameters/ifname"
+              },
+              "source": {
+                "ref": "#TESTS/2/steps/1/parameters/source"
+              },
+              "multicast": "off"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 200
+            }
+          }
+        }
+      }
+    },
+    "AFTER-TEST": {
+      "steps": {
+        "1": {
+          "endpoint": "/interfaces/tunnel/delete",
+          "method": "POST",
+          "parameters": {
+            "ifname": {
+              "ref": "#TESTS/1/steps/1/parameters/ifname"
+            }
+          },
+          "expected": {
+            "errCode": 0,
+            "httpCode": 200
+          }
+        },
+        "2": {
+          "endpoint": "/interfaces/tunnel/delete",
+          "method": "POST",
+          "parameters": {
+            "ifname": {
+              "ref": "#TESTS/2/steps/1/parameters/ifname"
+            }
+          },
+          "expected": {
+            "errCode": 0,
+            "httpCode": 200
+          }
+        }
+      }
+    }
+  }
+}

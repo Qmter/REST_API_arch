@@ -4,6 +4,15 @@
             "steps": {
                 "1": {
                     "template": "#TEMPLATES./vrf.TESTS.ADD"
+                },
+                "2": {
+                    "endpoint": "/interfaces/loopback/add",
+                    "method": "POST",
+                    "parameters": {
+                        "ifname": "random",
+                        "vrf_name": {"ref": "#PRESET.steps.1.parameters.vrf_name"}
+                    },
+                    "expected": {"errCode": 0, "httpCode": 200}
                 }
             }
         },
@@ -16,7 +25,7 @@
                         "method": "POST",
                         "parameters": {
                             "ifname": "random",
-                            "vrf_name": {"ref": "#PRESET.1.vrf_name"}
+                            "vrf_name": {"ref": "#PRESET.steps.1.parameters.vrf_name"}
                         },
                         "expected": {"errCode": 0, "httpCode": 200}
                     }
@@ -28,7 +37,7 @@
                 "1": {
                     "template": "#TEMPLATES./vrf.TESTS.DELETE",
                     "parameters": {
-                        "vrf_name": {"ref": "#PRESET.1.vrf_name"}
+                        "vrf_name": {"ref": "#PRESET.steps.1.parameters.vrf_name"}
                     }
                 }
             }
