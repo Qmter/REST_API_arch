@@ -1,3 +1,9 @@
-.__pycache__
-./openapi.json
-.vscode
+# Игнорировать все папки __pycache__ и их содержимое
+__pycache__/
+**/__pycache__/
+
+# Игнорировать папку .vscode
+.vscode/
+
+# Игнорировать файл openapi.json
+openapi.json
