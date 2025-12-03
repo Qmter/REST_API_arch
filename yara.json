@@ -438,7 +438,7 @@ Parameters: {'action': 'add', 'vrf_name': 'random'}
 Validation: {}
 Expected: {'errCode': 0, 'httpCode': 200}
 ----------------------------------------
-key = vrf_name, arg_value = 2lbJr
+key = vrf_name, arg_value = DHTzXm2xAFw
 ----------------------------------------
 Путь: /interfaces/loopback/add.PRESET.steps.2
 Endpoint: /interfaces/loopback/add
@@ -447,8 +447,8 @@ Parameters: {'ifname': 'random', 'vrf_name': {'ref': '#PRESET.steps.1.parameters
 Validation: {}
 Expected: {'errCode': 0, 'httpCode': 200}
 ----------------------------------------
-key = ifname, arg_value = lo0
-ref_link = 2lbJr
+key = ifname, arg_value = lo978
+ref_link = DHTzXm2xAFw
 ----------------------------------------
 Путь: /interfaces/loopback/add.TESTS.1.steps.1
 Endpoint: /interfaces/loopback/add
@@ -457,8 +457,8 @@ Parameters: {'ifname': 'random', 'vrf_name': {'ref': '#PRESET.steps.1.parameters
 Validation: {}
 Expected: {'errCode': 0, 'httpCode': 200}
 ----------------------------------------
-key = ifname, arg_value = lo0
-ref_link = 2lbJr
+key = ifname, arg_value = lo504
+ref_link = DHTzXm2xAFw
 ----------------------------------------
 Путь: /interfaces/loopback/add.AFTER-TEST.steps.1
 Endpoint: /vrf
@@ -467,7 +467,7 @@ Parameters: {'action': 'delete', 'vrf_name': {'ref': '#PRESET.steps.1.parameters
 Validation: {}
 Expected: {'errCode': 0, 'httpCode': 200}
 ----------------------------------------
-ref_link = 2lbJr
+ref_link = DHTzXm2xAFw
 {
   "/interfaces/loopback/add": {
     "PRESET": {
@@ -477,7 +477,7 @@ ref_link = 2lbJr
           "method": "POST",
           "parameters": {
             "action": "add",
-            "vrf_name": "2lbJr"
+            "vrf_name": "DHTzXm2xAFw"
           },
           "expected": {
             "errCode": 0,
@@ -488,8 +488,8 @@ ref_link = 2lbJr
           "endpoint": "/interfaces/loopback/add",
           "method": "POST",
           "parameters": {
-            "ifname": "lo0",
-            "vrf_name": "2lbJr"
+            "ifname": "lo978",
+            "vrf_name": "DHTzXm2xAFw"
           },
           "expected": {
             "errCode": 0,
@@ -506,8 +506,8 @@ ref_link = 2lbJr
             "endpoint": "/interfaces/loopback/add",
             "method": "POST",
             "parameters": {
-              "ifname": "lo0",
-              "vrf_name": "2lbJr"
+              "ifname": "lo504",
+              "vrf_name": "DHTzXm2xAFw"
             },
             "expected": {
               "errCode": 0,
@@ -524,7 +524,7 @@ ref_link = 2lbJr
           "method": "POST",
           "parameters": {
             "action": "delete",
-            "vrf_name": "2lbJr"
+            "vrf_name": "DHTzXm2xAFw"
           },
           "expected": {
             "errCode": 0,

@@ -11,11 +11,11 @@ class ScenarioParser:
         :param templates_dir: Путь к папке с шаблонами.
         :param openapi_file: Путь к файлу OpenAPI-спецификации.
         """
-        self.scenarios_dir = scenarios_dir
-        self.templates_dir = templates_dir
-        self.openapi_file = openapi_file
+        self.scenarios_dir = scenarios_dir # Путь к папке с JSON-сценариями
+        self.templates_dir = templates_dir # Путь к папке с шаблонами
+        self.openapi_file = openapi_file # Путь к файлу OpenAPI-спецификации
         self.context = {}  # Контекст для хранения данных между шагами
-        self.endpoints_in_scenario = {}
+        self.endpoints_in_scenario = {}  # Словарь для хранения всех endpoint в сценарии
 
     def parse_scenario(self, scenario_name):
         """
@@ -41,18 +41,18 @@ class ScenarioParser:
         # Обрабатываем ссылки
         # self._resolve_references(scenario)
 
-        return scenario
+        return scenario # Возвращаем содержимое сценария в виде словаря
 
     def _resolve_templates(self, node):
         """
         Рекурсивное разворачивание шаблонов с сохранением параметров.
         """
-        if isinstance(node, dict):
-            for key, value in list(node.items()):
-                if isinstance(value, dict) and "template" in value:
+        if isinstance(node, dict): 
+            for key, value in list(node.items()): # Пропускаем ключи, которые уже были обработаны
+                if isinstance(value, dict) and "template" in value: # Если значение - словарь и есть ключ "template"
                     # Загружаем шаблон
                     template_ref = value["template"]
-                    resolved_template = self._load_template(template_ref)
+                    resolved_template = self._load_template(template_ref) # Загружаем шаблон
                     print(f"Шаблон: {template_ref} успешно загружен!")  # Отладочная информация
                     
                     # Если в исходном узле есть дополнительные параметры, объединяем их
@@ -64,7 +64,7 @@ class ScenarioParser:
                         }
                     
                     # Заменяем узел на развернутый шаблон
-                    node[key] = resolved_template
+                    node[key] = resolved_template 
 
                     # Рекурсивно обрабатываем развернутый шаблон
                     self._resolve_templates(node[key])
@@ -73,9 +73,9 @@ class ScenarioParser:
                     # Продолжаем обработку других узлов
                     self._resolve_templates(value)
         
-        elif isinstance(node, list):
-            for item in node:
-                self._resolve_templates(item)
+        elif isinstance(node, list): # Обработка списков
+            for item in node: # Обходим каждый элемент списка
+                self._resolve_templates(item) # Рекурсивно обрабатываем элемент списка
 
 
 
@@ -87,7 +87,7 @@ class ScenarioParser:
         :return: Содержимое шаблона.
         """
         parts = template_ref.split(".")[1:]  # Пропускаем "#TEMPLATES"
-        template_name = parts[0]
+        template_name = parts[0] # Имя шаблона
 
         # Формируем путь к файлу шаблона
         template_path = os.path.join(self.templates_dir, f"{template_name.replace('/', '_')}_templates.json")
@@ -104,27 +104,27 @@ class ScenarioParser:
 
         # Извлекаем нужную часть шаблона
         current = template
-        for part in parts:
+        for part in parts: 
             if isinstance(current, dict) and part in current:
-                current = current[part]
+                current = current[part]  # Переходим к следующему уровню в словаре
             else:
                 raise KeyError(f"Ключ '{part}' не найден в шаблоне '{template_name}'.")
 
-        return current
+        return current # Возвращаем содержимое шаблона
     
 
     def find_all_endpoints(self, resolved_scenario) -> set:
-
-        for key, value in resolved_scenario.items():
-            if '/' in key:
-                self.endpoints_in_scenario[f'{key}'] = {}
-                self.endpoints_in_scenario[f'{key}'] = 'post'
+        """Получение всех endpoint в сценарии"""
+        for key, value in resolved_scenario.items(): 
+            if '/' in key:  # Если ключ содержит слэш, это endpoint
+                self.endpoints_in_scenario[f'{key}'] = {}  # Сохраняем endpoint в словарь
+                self.endpoints_in_scenario[f'{key}'] = 'post' # Сохраняем метод в словарь
             if key == 'endpoint':
-                self.endpoints_in_scenario[f'{value}'] = {}
-                self.endpoints_in_scenario[f'{value}'] = resolved_scenario['method']
+                self.endpoints_in_scenario[f'{value}'] = {}  # Сохраняем endpoint в словарь
+                self.endpoints_in_scenario[f'{value}'] = resolved_scenario['method'] # Сохраняем метод в словарь
 
             
             if isinstance(value, dict):
-                self.find_all_endpoints(value)
+                self.find_all_endpoints(value) # Рекурсивно обрабатываем вложенные словари
         
-        return self.endpoints_in_scenario
+        return self.endpoints_in_scenario # Возвразаем все endpoint в сценарии
