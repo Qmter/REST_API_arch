@@ -22,9 +22,7 @@
             "endpoint": "/interfaces/tunnel/multicast",
             "method": "POST",
             "parameters": {
-              "ifname": {
-                "ref": "#TESTS.1.steps.1.parameters.ifname"
-              },
+              "ifname": "random",
               "action": "on"
             },
             "expected": {

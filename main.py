@@ -35,7 +35,7 @@ if __name__ == "__main__":
         # print(endpoint)
 
         # Загрузка сценария
-        scenario = scenario_parser.parse_scenario("_interfaces_tunnel_multicast")
+        scenario = scenario_parser.parse_scenario("_interfaces_loopback_add")
         print("=" * 50)
         print("Сценарий успешно загружен!")
         print(json.dumps(scenario, indent=2))

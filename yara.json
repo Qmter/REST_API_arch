@@ -1,108 +1,53 @@
+Пытаемся загрузить шаблон из: templates/_vrf_templates.json
+Шаблон: #TEMPLATES./vrf.TESTS.ADD успешно загружен!
+Пытаемся загрузить шаблон из: templates/_vrf_templates.json
+Шаблон: #TEMPLATES./vrf.TESTS.DELETE успешно загружен!
 ==================================================
 Сценарий успешно загружен!
 {
-  "/interfaces/tunnel/multicast": {
-    "TESTS": {
-      "1": {
-        "description": "Set on multicast",
-        "steps": {
-          "1": {
-            "endpoint": "/interfaces/tunnel/add",
-            "method": "POST",
-            "parameters": {
-              "ifname": "vlan123",
-              "source": "random",
-              "tos": "maximum",
-              "key": "maximum"
-            },
-            "expected": {
-              "errCode": 0,
-              "httpCode": 200
+  "/interfaces/loopback/add": {
+    "PRESET": {
+      "steps": {
+        "1": {
+          "endpoint": "/vrf",
+          "method": "POST",
+          "parameters": {
+            "action": "add",
+            "vrf_name": "random"
+          },
+          "expected": {
+            "errCode": 0,
+            "httpCode": 200
+          }
+        },
+        "2": {
+          "endpoint": "/interfaces/loopback/add",
+          "method": "POST",
+          "parameters": {
+            "ifname": "random",
+            "vrf_name": {
+              "ref": "#PRESET.steps.1.parameters.vrf_name"
             }
           },
-          "2": {
-            "endpoint": "/interfaces/tunnel/multicast",
-            "method": "POST",
-            "parameters": {
-              "ifname": {
-                "ref": "#TESTS.1.steps.1.parameters.ifname"
-              },
-              "action": "on"
-            },
-            "expected": {
-              "errCode": 0,
-              "httpCode": 200
-            }
-          },
-          "3": {
-            "endpoint": "/interfaces/tunnel/capability",
-            "method": "GET",
-            "parameters": {
-              "ifname": {
-                "ref": "#TESTS.1.steps.1.parameters.ifname"
-              }
-            },
-            "validation": {
-              "ifname": {
-                "ref": "#TESTS.1.steps.1.parameters.ifname"
-              },
-              "source": {
-                "ref": "#TESTS.1.steps.1.parameters.source"
-              },
-              "multicast": "on"
-            },
-            "expected": {
-              "errCode": 0,
-              "httpCode": 200
-            }
+          "expected": {
+            "errCode": 0,
+            "httpCode": 200
           }
         }
-      },
-      "2": {
-        "description": "Set off multicast",
+      }
+    },
+    "TESTS": {
+      "1": {
+        "description": "Add loopback with VRF",
         "steps": {
           "1": {
-            "endpoint": "/interfaces/tunnel/add",
+            "endpoint": "/interfaces/loopback/add",
             "method": "POST",
             "parameters": {
               "ifname": "random",
-              "source": "random"
-            },
-            "expected": {
-              "errCode": 0,
-              "httpCode": 200
-            }
-          },
-          "2": {
-            "endpoint": "/interfaces/tunnel/multicast",
-            "method": "POST",
-            "parameters": {
-              "ifname": {
-                "ref": "#TESTS.2.steps.1.parameters.ifname"
-              },
-              "action": "off"
-            },
-            "expected": {
-              "errCode": 0,
-              "httpCode": 200
-            }
-          },
-          "3": {
-            "endpoint": "/interfaces/tunnel/capability",
-            "method": "GET",
-            "parameters": {
-              "ifname": {
-                "ref": "#TESTS.2.steps.1.parameters.ifname"
+              "vrf_name": {
+                "ref": "#PRESET.steps.1.parameters.vrf_name"
               }
-            },
-            "validation": {
-              "ifname": {
-                "ref": "#TESTS.2.steps.1.parameters.ifname"
-              },
-              "source": {
-                "ref": "#TESTS.2.steps.1.parameters.source"
-              },
-              "multicast": "off"
             },
             "expected": {
               "errCode": 0,
@@ -115,24 +60,12 @@
     "AFTER-TEST": {
       "steps": {
         "1": {
-          "endpoint": "/interfaces/tunnel/delete",
+          "endpoint": "/vrf",
           "method": "POST",
           "parameters": {
-            "ifname": {
-              "ref": "#TESTS.1.steps.1.parameters.ifname"
-            }
-          },
-          "expected": {
-            "errCode": 0,
-            "httpCode": 200
-          }
-        },
-        "2": {
-          "endpoint": "/interfaces/tunnel/delete",
-          "method": "POST",
-          "parameters": {
-            "ifname": {
-              "ref": "#TESTS.2.steps.1.parameters.ifname"
+            "action": "delete",
+            "vrf_name": {
+              "ref": "#PRESET.steps.1.parameters.vrf_name"
             }
           },
           "expected": {
@@ -147,177 +80,38 @@
 ==================================================
 ==================================================
 Все ендпоинты, присутствующие в сценирии:
-{'/interfaces/tunnel/multicast': 'POST', '/interfaces/tunnel/add': 'POST', '/interfaces/tunnel/capability': 'GET', '/interfaces/tunnel/delete': 'POST'}
+{'/interfaces/loopback/add': 'POST', '/vrf': 'POST'}
 ==================================================
 ==================================================
-Разрешенная схема для /interfaces/tunnel/multicast POST:
+Разрешенная схема для /interfaces/loopback/add POST:
 ==================================================
 {
   "tags": [
-    "interfaces/tunnel"
+    "interfaces/loopback"
   ],
-  "summary": "Turn multicast on/off",
-  "description": "Turn multicast on/off for a tunnel. Multicast is turned `off` by default.\n\nCLI commands: `[no] ip multicast`",
+  "summary": "Add loopback interface",
+  "description": "Add loopback interface\n\nCLI command: `interface lo`",
   "requestBody": {
     "required": true,
     "content": {
       "application/json": {
         "schema": {
+          "description": "Add loopback interface",
           "required": [
-            "ifname",
-            "action"
+            "ifname"
           ],
           "type": "object",
           "additionalProperties": false,
           "properties": {
             "ifname": {
-              "description": "Tunnel interface name",
+              "description": "loopback interface name",
               "type": "string",
-              "pattern": "^tunnel(0|[1-9][0-9]{0,3})$"
-            },
-            "action": {
-              "type": "string",
-              "enum": [
-                "on",
-                "off"
-              ],
-              "description": "on|off"
-            }
-          }
-        }
-      }
-    }
-  },
-  "responses": {
-    "200": {
-      "description": "Multicast set successfully",
-      "content": {
-        "application/json": {
-          "schema": {
-            "title": "generic output PDUs",
-            "description": "JSON format of response PDU for the communication between web backend and mprdaemon. Objects cannot contain properties other than ['errCode', 'result', 'request']",
-            "required": [
-              "errCode",
-              "result",
-              "request"
-            ],
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "errCode": {
-                "title": "error code",
-                "description": "error code of operation, nonzero means error, string describes details of error",
-                "type": "array",
-                "prefixItems": [
-                  {
-                    "type": "integer"
-                  },
-                  {
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  }
-                ],
-                "maxItems": 2,
-                "minItems": 2
-              },
-              "result": {},
-              "request": {}
-            }
-          }
-        }
-      }
-    }
-  }
-}
-==================================================
-Разрешенная схема для /interfaces/tunnel/add POST:
-==================================================
-{
-  "tags": [
-    "interfaces/tunnel"
-  ],
-  "summary": "Add tunnel interface",
-  "description": "Add tunnel interface\n\nCLI commands: `interface tunnel`, `tunnel source ... [destination] ...`",
-  "requestBody": {
-    "required": true,
-    "content": {
-      "application/json": {
-        "schema": {
-          "description": "Add tunnel interface",
-          "additionalProperties": false,
-          "required": [
-            "ifname",
-            "settings"
-          ],
-          "type": "object",
-          "properties": {
-            "ifname": {
-              "description": "Tunnel interface name",
-              "type": "string",
-              "pattern": "^tunnel(0|[1-9][0-9]{0,3})$"
+              "pattern": "^lo(0|[1-9][0-9]{0,3})$"
             },
             "vrf_name": {
               "type": "string",
               "pattern": "^[A-Za-z0-9_-]{1,12}$",
               "description": "VRF NAME (Only letters and numbers, 12 characters max)"
-            },
-            "settings": {
-              "type": "object",
-              "description": "Settings needed for tunnel creation",
-              "properties": {
-                "mode": {
-                  "description": "Tunnel mode. `gre` by default if omitted",
-                  "type": "string",
-                  "enum": [
-                    "gre",
-                    "ipip",
-                    "gretap",
-                    "vti"
-                  ]
-                },
-                "source": {
-                  "description": "Source for a tunnel. Either ip address or a local interface name.",
-                  "anyOf": [
-                    {
-                      "type": "string",
-                      "pattern": "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$",
-                      "description": "A.B.C.D"
-                    },
-                    {
-                      "type": "string",
-                      "pattern": "^((eth(0|[1-9][0-9]{0,3})\\.(0|[1-9][0-9]{0,3}))|(vlan([0-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|40[0-8][0-9]|409[0-5]))|([A-Za-uw-z][A-Za-z0-9_\\-]{0,30}[A-Za-z](0|[1-9][0-9]{0,3})))$",
-                      "description": "IFNAME"
-                    }
-                  ]
-                },
-                "dst_address": {
-                  "type": "string",
-                  "pattern": "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$",
-                  "description": "A.B.C.D"
-                },
-                "key": {
-                  "type": "integer",
-                  "minimum": 1,
-                  "maximum": 4294967295,
-                  "description": "<1-4294967295>"
-                },
-                "tos": {
-                  "oneOf": [
-                    {
-                      "type": "string",
-                      "const": "inherit"
-                    },
-                    {
-                      "type": "integer",
-                      "minimum": 2,
-                      "maximum": 255,
-                      "description": "<2-255>"
-                    }
-                  ]
-                }
-              }
             }
           }
         }
@@ -368,95 +162,38 @@
   }
 }
 ==================================================
-Разрешенная схема для /interfaces/tunnel/capability GET:
+Разрешенная схема для /vrf POST:
 ==================================================
 {
   "tags": [
-    "interfaces/tunnel"
+    "vrf"
   ],
-  "summary": "Get tunnel capabilities",
-  "description": "Get tunnel capabilities (unique properties of tunnel interfaces)\n\nCLI commands: part of `show interfaces tunnel`",
-  "parameters": [
-    {
-      "name": "ifname",
-      "description": "tunnel name",
-      "in": "query",
-      "required": true,
-      "schema": {
-        "description": "Tunnel interface name",
-        "type": "string",
-        "pattern": "^tunnel(0|[1-9][0-9]{0,3})$"
-      }
-    }
-  ],
-  "responses": {
-    "200": {
-      "description": "Successfully read",
-      "content": {
-        "application/json": {
-          "schema": {
-            "title": "generic output PDUs",
-            "description": "JSON format of response PDU for the communication between web backend and mprdaemon. Objects cannot contain properties other than ['errCode', 'result', 'request']",
-            "required": [
-              "errCode",
-              "result",
-              "request"
-            ],
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "errCode": {
-                "title": "error code",
-                "description": "error code of operation, nonzero means error, string describes details of error",
-                "type": "array",
-                "prefixItems": [
-                  {
-                    "type": "integer"
-                  },
-                  {
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  }
-                ],
-                "maxItems": 2,
-                "minItems": 2
-              },
-              "result": {},
-              "request": {}
-            }
-          }
-        }
-      }
-    }
-  }
-}
-==================================================
-Разрешенная схема для /interfaces/tunnel/delete POST:
-==================================================
-{
-  "tags": [
-    "interfaces/tunnel"
-  ],
-  "summary": "Delete tunnel interface",
-  "description": "Delete tunnel interface\n\nCLI command: `no interface tunnel`",
+  "summary": "add/delete VRF",
+  "description": "add/delete VRF\n\nCLI commands: `[no] ip vrf`",
   "requestBody": {
     "required": true,
     "content": {
       "application/json": {
         "schema": {
-          "description": "Delete tunnel interface",
-          "required": [
-            "ifname"
-          ],
+          "description": "Add/delete VRF",
           "type": "object",
+          "required": [
+            "vrf_name",
+            "action"
+          ],
           "additionalProperties": false,
           "properties": {
-            "ifname": {
-              "description": "Tunnel interface name",
+            "vrf_name": {
               "type": "string",
-              "pattern": "^tunnel(0|[1-9][0-9]{0,3})$"
+              "pattern": "^[A-Za-z0-9_-]{1,12}$",
+              "description": "VRF NAME (Only letters and numbers, 12 characters max)"
+            },
+            "action": {
+              "type": "string",
+              "enum": [
+                "add",
+                "delete"
+              ]
             }
           }
         }
@@ -465,7 +202,7 @@
   },
   "responses": {
     "200": {
-      "description": "Interface deleted successfully",
+      "description": "done",
       "content": {
         "application/json": {
           "schema": {
@@ -509,169 +246,33 @@
 ==================================================
 Разрешены ссылки для ендпоинтов:
 {
-  "/interfaces/tunnel/multicast": {
+  "/interfaces/loopback/add": {
     "tags": [
-      "interfaces/tunnel"
+      "interfaces/loopback"
     ],
-    "summary": "Turn multicast on/off",
-    "description": "Turn multicast on/off for a tunnel. Multicast is turned `off` by default.\n\nCLI commands: `[no] ip multicast`",
+    "summary": "Add loopback interface",
+    "description": "Add loopback interface\n\nCLI command: `interface lo`",
     "requestBody": {
       "required": true,
       "content": {
         "application/json": {
           "schema": {
+            "description": "Add loopback interface",
             "required": [
-              "ifname",
-              "action"
+              "ifname"
             ],
             "type": "object",
             "additionalProperties": false,
             "properties": {
               "ifname": {
-                "description": "Tunnel interface name",
+                "description": "loopback interface name",
                 "type": "string",
-                "pattern": "^tunnel(0|[1-9][0-9]{0,3})$"
-              },
-              "action": {
-                "type": "string",
-                "enum": [
-                  "on",
-                  "off"
-                ],
-                "description": "on|off"
-              }
-            }
-          }
-        }
-      }
-    },
-    "responses": {
-      "200": {
-        "description": "Multicast set successfully",
-        "content": {
-          "application/json": {
-            "schema": {
-              "title": "generic output PDUs",
-              "description": "JSON format of response PDU for the communication between web backend and mprdaemon. Objects cannot contain properties other than ['errCode', 'result', 'request']",
-              "required": [
-                "errCode",
-                "result",
-                "request"
-              ],
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "errCode": {
-                  "title": "error code",
-                  "description": "error code of operation, nonzero means error, string describes details of error",
-                  "type": "array",
-                  "prefixItems": [
-                    {
-                      "type": "integer"
-                    },
-                    {
-                      "type": [
-                        "string",
-                        "null"
-                      ]
-                    }
-                  ],
-                  "maxItems": 2,
-                  "minItems": 2
-                },
-                "result": {},
-                "request": {}
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "/interfaces/tunnel/add": {
-    "tags": [
-      "interfaces/tunnel"
-    ],
-    "summary": "Add tunnel interface",
-    "description": "Add tunnel interface\n\nCLI commands: `interface tunnel`, `tunnel source ... [destination] ...`",
-    "requestBody": {
-      "required": true,
-      "content": {
-        "application/json": {
-          "schema": {
-            "description": "Add tunnel interface",
-            "additionalProperties": false,
-            "required": [
-              "ifname",
-              "settings"
-            ],
-            "type": "object",
-            "properties": {
-              "ifname": {
-                "description": "Tunnel interface name",
-                "type": "string",
-                "pattern": "^tunnel(0|[1-9][0-9]{0,3})$"
+                "pattern": "^lo(0|[1-9][0-9]{0,3})$"
               },
               "vrf_name": {
                 "type": "string",
                 "pattern": "^[A-Za-z0-9_-]{1,12}$",
                 "description": "VRF NAME (Only letters and numbers, 12 characters max)"
-              },
-              "settings": {
-                "type": "object",
-                "description": "Settings needed for tunnel creation",
-                "properties": {
-                  "mode": {
-                    "description": "Tunnel mode. `gre` by default if omitted",
-                    "type": "string",
-                    "enum": [
-                      "gre",
-                      "ipip",
-                      "gretap",
-                      "vti"
-                    ]
-                  },
-                  "source": {
-                    "description": "Source for a tunnel. Either ip address or a local interface name.",
-                    "anyOf": [
-                      {
-                        "type": "string",
-                        "pattern": "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$",
-                        "description": "A.B.C.D"
-                      },
-                      {
-                        "type": "string",
-                        "pattern": "^((eth(0|[1-9][0-9]{0,3})\\.(0|[1-9][0-9]{0,3}))|(vlan([0-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|40[0-8][0-9]|409[0-5]))|([A-Za-uw-z][A-Za-z0-9_\\-]{0,30}[A-Za-z](0|[1-9][0-9]{0,3})))$",
-                        "description": "IFNAME"
-                      }
-                    ]
-                  },
-                  "dst_address": {
-                    "type": "string",
-                    "pattern": "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$",
-                    "description": "A.B.C.D"
-                  },
-                  "key": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "maximum": 4294967295,
-                    "description": "<1-4294967295>"
-                  },
-                  "tos": {
-                    "oneOf": [
-                      {
-                        "type": "string",
-                        "const": "inherit"
-                      },
-                      {
-                        "type": "integer",
-                        "minimum": 2,
-                        "maximum": 255,
-                        "description": "<2-255>"
-                      }
-                    ]
-                  }
-                }
               }
             }
           }
@@ -721,90 +322,36 @@
       }
     }
   },
-  "/interfaces/tunnel/capability": {
+  "/vrf": {
     "tags": [
-      "interfaces/tunnel"
+      "vrf"
     ],
-    "summary": "Get tunnel capabilities",
-    "description": "Get tunnel capabilities (unique properties of tunnel interfaces)\n\nCLI commands: part of `show interfaces tunnel`",
-    "parameters": [
-      {
-        "name": "ifname",
-        "description": "tunnel name",
-        "in": "query",
-        "required": true,
-        "schema": {
-          "description": "Tunnel interface name",
-          "type": "string",
-          "pattern": "^tunnel(0|[1-9][0-9]{0,3})$"
-        }
-      }
-    ],
-    "responses": {
-      "200": {
-        "description": "Successfully read",
-        "content": {
-          "application/json": {
-            "schema": {
-              "title": "generic output PDUs",
-              "description": "JSON format of response PDU for the communication between web backend and mprdaemon. Objects cannot contain properties other than ['errCode', 'result', 'request']",
-              "required": [
-                "errCode",
-                "result",
-                "request"
-              ],
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "errCode": {
-                  "title": "error code",
-                  "description": "error code of operation, nonzero means error, string describes details of error",
-                  "type": "array",
-                  "prefixItems": [
-                    {
-                      "type": "integer"
-                    },
-                    {
-                      "type": [
-                        "string",
-                        "null"
-                      ]
-                    }
-                  ],
-                  "maxItems": 2,
-                  "minItems": 2
-                },
-                "result": {},
-                "request": {}
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "/interfaces/tunnel/delete": {
-    "tags": [
-      "interfaces/tunnel"
-    ],
-    "summary": "Delete tunnel interface",
-    "description": "Delete tunnel interface\n\nCLI command: `no interface tunnel`",
+    "summary": "add/delete VRF",
+    "description": "add/delete VRF\n\nCLI commands: `[no] ip vrf`",
     "requestBody": {
       "required": true,
       "content": {
         "application/json": {
           "schema": {
-            "description": "Delete tunnel interface",
-            "required": [
-              "ifname"
-            ],
+            "description": "Add/delete VRF",
             "type": "object",
+            "required": [
+              "vrf_name",
+              "action"
+            ],
             "additionalProperties": false,
             "properties": {
-              "ifname": {
-                "description": "Tunnel interface name",
+              "vrf_name": {
                 "type": "string",
-                "pattern": "^tunnel(0|[1-9][0-9]{0,3})$"
+                "pattern": "^[A-Za-z0-9_-]{1,12}$",
+                "description": "VRF NAME (Only letters and numbers, 12 characters max)"
+              },
+              "action": {
+                "type": "string",
+                "enum": [
+                  "add",
+                  "delete"
+                ]
               }
             }
           }
@@ -813,7 +360,7 @@
     },
     "responses": {
       "200": {
-        "description": "Interface deleted successfully",
+        "description": "done",
         "content": {
           "application/json": {
             "schema": {
@@ -860,55 +407,22 @@
 Аргументы ендпоинта и его паттерны:
 ==================================================
 {
-  "/interfaces/tunnel/multicast": {
+  "/interfaces/loopback/add": {
     "ifname": {
       "pattern": [
-        "^tunnel(0|[1-9][0-9]{0,3})$"
-      ]
-    }
-  },
-  "/interfaces/tunnel/add": {
-    "ifname": {
-      "pattern": [
-        "^tunnel(0|[1-9][0-9]{0,3})$"
+        "^lo(0|[1-9][0-9]{0,3})$"
       ]
     },
     "vrf_name": {
       "pattern": [
         "^[A-Za-z0-9_-]{1,12}$"
       ]
-    },
-    "source": {
-      "pattern": [
-        "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$",
-        "^((eth(0|[1-9][0-9]{0,3})\\.(0|[1-9][0-9]{0,3}))|(vlan([0-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|40[0-8][0-9]|409[0-5]))|([A-Za-uw-z][A-Za-z0-9_\\-]{0,30}[A-Za-z](0|[1-9][0-9]{0,3})))$"
-      ]
-    },
-    "dst_address": {
-      "pattern": [
-        "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$"
-      ]
-    },
-    "key": {
-      "minimum": 1,
-      "maximum": 4294967295
-    },
-    "tos": {
-      "minimum": 2,
-      "maximum": 255
     }
   },
-  "/interfaces/tunnel/capability": {
-    "ifname": {
+  "/vrf": {
+    "vrf_name": {
       "pattern": [
-        "^tunnel(0|[1-9][0-9]{0,3})$"
-      ]
-    }
-  },
-  "/interfaces/tunnel/delete": {
-    "ifname": {
-      "pattern": [
-        "^tunnel(0|[1-9][0-9]{0,3})$"
+        "^[A-Za-z0-9_-]{1,12}$"
       ]
     }
   }
@@ -917,33 +431,107 @@
 ==================================================
 ==================================================
 ----------------------------------------
-{'endpoint': '/interfaces/tunnel/add', 'method': 'POST', 'parameters': {'ifname': 'vlan123', 'source': 'random', 'tos': 'maximum', 'key': 'maximum'}, 'expected': {'errCode': 0, 'httpCode': 200}}
-----------------------------------------
-Путь: /interfaces/tunnel/multicast.TESTS.1.steps.1
-Endpoint: /interfaces/tunnel/add
+Путь: /interfaces/loopback/add.PRESET.steps.1
+Endpoint: /vrf
 Method: POST
-Parameters: {'ifname': 'vlan123', 'source': 'random', 'tos': 'maximum', 'key': 'maximum'}
+Parameters: {'action': 'add', 'vrf_name': 'random'}
+Validation: {}
 Expected: {'errCode': 0, 'httpCode': 200}
 ----------------------------------------
-key = ifname 	 value = vlan123
-{}
-key = source 	 value = random
-{}
-key = source, arg_value = 251.202.87.251
-key = tos 	 value = maximum
-{'#TESTS.1.steps.1.parameters.source': '251.202.87.251'}
-key = tos, arg_value = 255
-key = key 	 value = maximum
-{'#TESTS.1.steps.1.parameters.source': '251.202.87.251', '#TESTS.1.steps.1.parameters.tos': 255}
-key = key, arg_value = 4294967295
+key = vrf_name, arg_value = 2lbJr
 ----------------------------------------
-{'endpoint': '/interfaces/tunnel/multicast', 'method': 'POST', 'parameters': {'ifname': {'ref': '#TESTS.1.steps.1.parameters.ifname'}, 'action': 'on'}, 'expected': {'errCode': 0, 'httpCode': 200}}
-----------------------------------------
-Путь: /interfaces/tunnel/multicast.TESTS.1.steps.2
-Endpoint: /interfaces/tunnel/multicast
+Путь: /interfaces/loopback/add.PRESET.steps.2
+Endpoint: /interfaces/loopback/add
 Method: POST
-Parameters: {'ifname': {'ref': '#TESTS.1.steps.1.parameters.ifname'}, 'action': 'on'}
+Parameters: {'ifname': 'random', 'vrf_name': {'ref': '#PRESET.steps.1.parameters.vrf_name'}}
+Validation: {}
 Expected: {'errCode': 0, 'httpCode': 200}
 ----------------------------------------
-key = ifname 	 value = {'ref': '#TESTS.1.steps.1.parameters.ifname'}
-{'#TESTS.1.steps.1.parameters.source': '251.202.87.251', '#TESTS.1.steps.1.parameters.tos': 255, '#TESTS.1.steps.1.parameters.key': 4294967295}
+key = ifname, arg_value = lo0
+ref_link = 2lbJr
+----------------------------------------
+Путь: /interfaces/loopback/add.TESTS.1.steps.1
+Endpoint: /interfaces/loopback/add
+Method: POST
+Parameters: {'ifname': 'random', 'vrf_name': {'ref': '#PRESET.steps.1.parameters.vrf_name'}}
+Validation: {}
+Expected: {'errCode': 0, 'httpCode': 200}
+----------------------------------------
+key = ifname, arg_value = lo0
+ref_link = 2lbJr
+----------------------------------------
+Путь: /interfaces/loopback/add.AFTER-TEST.steps.1
+Endpoint: /vrf
+Method: POST
+Parameters: {'action': 'delete', 'vrf_name': {'ref': '#PRESET.steps.1.parameters.vrf_name'}}
+Validation: {}
+Expected: {'errCode': 0, 'httpCode': 200}
+----------------------------------------
+ref_link = 2lbJr
+{
+  "/interfaces/loopback/add": {
+    "PRESET": {
+      "steps": {
+        "1": {
+          "endpoint": "/vrf",
+          "method": "POST",
+          "parameters": {
+            "action": "add",
+            "vrf_name": "2lbJr"
+          },
+          "expected": {
+            "errCode": 0,
+            "httpCode": 200
+          }
+        },
+        "2": {
+          "endpoint": "/interfaces/loopback/add",
+          "method": "POST",
+          "parameters": {
+            "ifname": "lo0",
+            "vrf_name": "2lbJr"
+          },
+          "expected": {
+            "errCode": 0,
+            "httpCode": 200
+          }
+        }
+      }
+    },
+    "TESTS": {
+      "1": {
+        "description": "Add loopback with VRF",
+        "steps": {
+          "1": {
+            "endpoint": "/interfaces/loopback/add",
+            "method": "POST",
+            "parameters": {
+              "ifname": "lo0",
+              "vrf_name": "2lbJr"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 200
+            }
+          }
+        }
+      }
+    },
+    "AFTER-TEST": {
+      "steps": {
+        "1": {
+          "endpoint": "/vrf",
+          "method": "POST",
+          "parameters": {
+            "action": "delete",
+            "vrf_name": "2lbJr"
+          },
+          "expected": {
+            "errCode": 0,
+            "httpCode": 200
+          }
+        }
+      }
+    }
+  }
+}

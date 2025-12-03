@@ -3,365 +3,195 @@ import re
 from jsonpath_ng import parse
 import random
 import json
+import datetime
+
+# random.seed(datetime.datetime.now().timestamp())      #TODO для дальнейшей реализации random
 
 class GenerateValues:
+    """Класс для генерации значений для аргументов сценария."""
 
-    arguments_pattern = {}
-    context = {}
+    arguments_pattern = {} # Словарь для хранения всех паттернов для каждого endpoint
+    context = {} # Контекст для хранения значений аргументов
 
     @staticmethod
     def read_scenario(resolved_scenario: dict, arguments_patterns: dict):
+        """Функция для чтения сценария и сопостовления аргументов по паттернам"""
+        
+        GenerateValues.context = {} # Очищаем контекст
 
         # Сохраняем аргументы и их паттерны
         GenerateValues.arguments_pattern = arguments_patterns
 
         # Найти все объекты на определенной глубине
-        # Глубина 6 обычно соответствует объектам step
-        jsonpath_expr = parse('$..*')
-        all_matches = jsonpath_expr.find(resolved_scenario)
+        jsonpath_expr = parse('$..*') # Создаем JSONPath-выражение для поиска всех объектов в JSON-структуре
+        all_matches = jsonpath_expr.find(resolved_scenario) # Находим все объекты в JSON-структуре
         
-        step_objects = []
+        step_objects = [] # Список объектов, которые содержат параметры (parameters) или валидацию (validation)
         
-        for match in all_matches:
-            if isinstance(match.value, dict):
+        for match in all_matches: # Получаем все объекты в JSON-структуре
+            if isinstance(match.value, dict): # Если это словарь, то это объект
                 # Проверяем, содержит ли объект нужные поля
-                if 'endpoint' in match.value and 'parameters' in match.value:
-                    step_objects.append(match)
+                if 'endpoint' in match.value and ('parameters' in match.value or 'validation' in match.value):
+                    step_objects.append(match) # Добавляем объект в список
         
-        for match in step_objects:
-            obj = match.value
-            path = match.full_path
+        for match in step_objects:  # Обходим все объекты в списке
+            obj = match.value # Получаем объект
+            path = match.full_path # Получаем путь к объекту
 
-            # GenerateValues.current_endpoint = obj[и'endpoint']
-            # GenerateValues.current_name_path = path
-            print("-" * 40)
-            print(match.value)
             print("-" * 40)
             print(f"Путь: {path}")
             print(f"Endpoint: {obj['endpoint']}")
             print(f"Method: {obj.get('method', 'N/A')}")
-            print(f"Parameters: {obj['parameters']}")
+            print(f"Parameters: {obj.get('parameters', {})}")
+            print(f"Validation: {obj.get('validation', {})}")
             print(f"Expected: {obj.get('expected', {})}")
             print("-" * 40)
 
-            # for param, value in obj['parameters'].items():
-            #     cur_path = path + '.' + param
-            #     obj.update(resolved_scenario, '12321321321312321313112321')
+            endpoint = obj['endpoint']  # Текущий endpoint
 
-            endpoint = obj['endpoint'] # Текущий endpoint
+            # Обрабатываем параметры (parameters)
+            if 'parameters' in obj:
+                GenerateValues.process_fields(
+                    resolved_scenario=resolved_scenario,
+                    fields=obj['parameters'],
+                    path=path,
+                    field_type="parameters",
+                    endpoint=endpoint
+                )
 
-            # Проходимс по всем параметрам шага
-            for key, value in obj['parameters'].items():
-                # Полный путь до аргумента 
-                current_path = "#" + '.'.join(str(path).split('.')[1:]) + ".parameters" +  f".{key}" 
-
-                print(f'key = {key} \t value = {value}')
-                print(GenerateValues.context)
-
-                if value == 'random': # Если рандом то генерим по regex
-
-                    if "pattern" in GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"].keys():
-                        # Генерируем значение по шаблону
-                        arg_patterns = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["pattern"]
-
-                        # Если паттернов несколько то выбираем на рандом один из
-                        selected_pattern = random.choice(arg_patterns)
-
-                        arg_value = rstr.xeger(selected_pattern)
-
-                        # Сохраняем значение в контексте для дальнейшнего использования
-                        GenerateValues.context[f"{current_path}"] = arg_value
-
-                    elif "minimum" in GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"].keys() and 'maximum' in GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"].keys():
-                        # Определяем минимальные и максимальные значения 
-                        arg_min = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["minimum"]
-                        arg_max = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["maximum"]
-
-                        # Генерируем рандомное значение от [arg_min, arg_max]
-                        arg_value = random.randint(arg_min, arg_max)
-
-                        # Сохраняем значение в контексте для дальнейшнего использования
-                        GenerateValues.context[f"{current_path}"] = arg_value
+            # Обрабатываем валидацию (validation)
+            if 'validation' in obj:
+                GenerateValues.process_fields(
+                    resolved_scenario=resolved_scenario,
+                    fields=obj['validation'],
+                    path=path,
+                    field_type="validation",
+                    endpoint=endpoint
+                )
+        
+        return resolved_scenario # Возвращаем обработанный сценарий
 
 
-                    print(f"key = {key}, arg_value = {arg_value}")
+    @staticmethod
+    def process_fields(resolved_scenario: dict, fields: dict, path, field_type: str, endpoint: str):
+        """
+        Обрабатывает поля parameters или validation.
+        
+        -resolved_scenario: Исходная JSON-структура.
+        -fields: Словарь с параметрами (parameters или validation).
+        -path: Путь к текущему объекту.
+        -field_type: Тип полей ("parameters" или "validation").
+        -endpoint: Текущий endpoint.
+        """
+        for key, value in fields.items():
 
+            path_for_func = str(path) + f".{field_type}.{key}" # Чистый путь до аргумента для функции setup_values
+            current_path = "#" + '.'.join(str(path).split('.')[1:]) + f".{field_type}.{key}" # Текущий путь да аргумента для сохранения его в контексте для дальнейшего использования
 
-                elif value == 'minimum': # Если минимум, то присваиваем минимально возможное значение из схемы
-                    
-                    # Устанавливаем минимальное значение из arguments_pattern
-                    arg_value = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["minimum"]
-                    
-                    # Сохраняем значение в контексте для дальнейшнего использования
-                    GenerateValues.context[f"{current_path}"] = arg_value
+            if value == 'random':  # Если рандом, то генерим по regex
+                keys_patterns_arguments = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"].keys() # Получаем все паттерны для этого аргумента (Либо pattern, либо minimum, либо maximum)
 
-                    print(f"key = {key}, arg_value = {arg_value}")
+                if "pattern" in keys_patterns_arguments: # Проверяем, есть ли паттерны для этого аргумента
+                    arg_patterns = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["pattern"] # Получаем список паттернов для аргумента(может быть 1 или больше)
+                    selected_pattern = random.choice(arg_patterns) if len(arg_patterns) > 1 else arg_patterns[0] # Если есть несколько паттернов, выбираем случайный
+                    arg_value = rstr.xeger(selected_pattern) # Генерируем значение по регулярному выражению
 
-                elif value == 'maximum': # Если максимум, то присваиваем максимально возможное значение  из схемы
+                elif "minimum" in keys_patterns_arguments and "maximum" in keys_patterns_arguments:  # Если есть минимальное и максимальное значение, генерируем случайное значение в этом диапазоне
+                    arg_min = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["minimum"] # Получаем минимальное значение
+                    arg_max = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["maximum"] # Получаем максимальное значение
+                    arg_value = random.randint(arg_min, arg_max)  # Генерируем случайное значение в этом диапазоне
 
-                    # Устанавливаем максимальное значение из arguments_pattern
-                    arg_value = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["maximum"]
+                else:
+                    arg_value = None  # Если нет конфигурации, оставляем как есть
 
-                    # Сохраняем значение в контексте для дальнейшнего использования
-                    GenerateValues.context[f"{current_path}"] = arg_value
+                if arg_value is not None:  # Если значение не None, то устанавливаем его
+                    # Устанавливаем значение
+                    GenerateValues.setup_values(
+                        scenario_scheme=resolved_scenario,
+                        path_to_arg=path_for_func,
+                        value=arg_value
+                    )
+                    GenerateValues.context[f"{current_path}"] = arg_value # Сохраняем значение в контексте для дальнейшего использования
+                    print(f"key = {key}, arg_value = {arg_value}") 
 
-                    print(f"key = {key}, arg_value = {arg_value}")                
+            elif value == 'minimum':  # Минимальное значение
+                arg_value = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["minimum"] # Получаем минимальное значение
 
-                elif isinstance(value, dict) and "ref" in value.keys(): # Если это словарь и если там есть ref то мы берем значение из context
-                    ref_arg = value['ref']
-                    print(f'ref_link = {GenerateValues.context[f'{ref_arg}']}')
+                # Устанавливаем значение
+                GenerateValues.setup_values(
+                    scenario_scheme=resolved_scenario,
+                    path_to_arg=path_for_func,
+                    value=arg_value
+                )
 
-                else: # Если ничего из этого не проходит то мы просто оставляем значение которое мы указали в сценарии
-                    ...
+                GenerateValues.context[f"{current_path}"] = arg_value # Сохраняем значение в контексте для дальнейшего использования
+                print(f"key = {key}, arg_value = {arg_value}")
+
+            elif value == 'maximum':  # Максимальное значение
+                arg_value = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["maximum"] # Получаем максимальное значение
+
+                # Устанавливаем значение
+                GenerateValues.setup_values(
+                    scenario_scheme=resolved_scenario,
+                    path_to_arg=path_for_func,
+                    value=arg_value
+                )
+
+                GenerateValues.context[f"{current_path}"] = arg_value # Сохраняем значение в контексте для дальнейшего использования
+                print(f"key = {key}, arg_value = {arg_value}")
+
+            elif isinstance(value, dict) and "ref" in value.keys():  # Ссылка (ref):
+                ref_arg = value['ref']  # Получаем ссылку в формате "TESTS.1.steps.1.parameters.ifname"
+                arg_value = GenerateValues.context[f"{ref_arg}"] # Получаем значение из контекста по ссылке
                 
-        return resolved_scenario
+                # Устанавливаем значение
+                GenerateValues.setup_values(
+                    scenario_scheme=resolved_scenario,
+                    path_to_arg=path_for_func,
+                    value=arg_value
+                )
+                GenerateValues.context[f"{current_path}"] = arg_value # Сохраняем значение в контексте для дальнейшего использования
+                print(f'ref_link = {GenerateValues.context[f'{ref_arg}']}') 
 
+            else:  # Константа: если задали конкретное значение, то его и остваляем
+                GenerateValues.context[f"{current_path}"] = value # Устанавливаем значение в контексте для дальнейшего использования
+
+
+    @staticmethod
+    def setup_values(scenario_scheme: dict, path_to_arg: str, value) -> dict:
+        """
+        Рекурсивно устанавливает значение в указанном пути JSON-структуры.
+        
+        -scenario_scheme: Исходная JSON-структура (словарь).
+        -path_to_arg: Путь к параметру в формате "TESTS.1.steps.1.parameters.ifname".
+        -value: Значение, которое нужно установить.
+        -return: Обновленная JSON-структура.
+        """
+        # Разбиваем путь на части
+        parts_of_path = path_to_arg.split('.')
+        
+        def _set_value_recursive(current_level, path_parts):
+            """
+            Вспомогательная рекурсивная функция для установки значения.
             
-
-
-
-    # @staticmethod
-    # def generate_value(parameters: dict, endpoint: str, path_name: str):
-    #     for key, value in parameters.items():
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# class GenerateValues:
-
-#     context = {}
-
-#     @staticmethod
-#     def generate_values(scenario_scheme, arguments_pattern=None):
-#         """
-#         Извлекает parameters с полными путями к каждому полю
-#         """
-#         parameters_with_paths = {}
-        
-#         def _extract_parameters(obj, current_path=""):
-#             if isinstance(obj, dict):
-#                 if 'parameters' in obj and isinstance(obj['parameters'], dict):
-#                     for param_name, param_value in obj['parameters'].items():
-#                         full_path = f"{current_path}.parameters.{param_name}"
-#                         parameters_with_paths[full_path] = param_value
-                
-#                 for key, value in obj.items():
-#                     new_path = f"{current_path}.{key}" if current_path else key
-#                     _extract_parameters(value, new_path)
-                    
-#             elif isinstance(obj, list):
-#                 for i, item in enumerate(obj):
-#                     new_path = f"{current_path}[{i}]" if current_path else f"[{i}]"
-#                     _extract_parameters(item, new_path)
-        
-#         _extract_parameters(scenario_scheme)
-#         return parameters_with_paths
-
-#     @staticmethod
-#     def process_scenario_sequentially(scenario, arguments_pattern):
-#         """
-#         Обрабатывает сценарий последовательно: PRESET -> TESTS -> AFTER-TEST
-#         """
-#         # Создаем копию сценария
-#         processed_scenario = json.loads(json.dumps(scenario))
-        
-#         # Обрабатываем каждый endpoint в сценарии
-#         for endpoint, endpoint_config in processed_scenario.items():
-#             # 1. Обрабатываем PRESET (генерируем значения и сохраняем в контекст)
-#             if 'PRESET' in endpoint_config and 'steps' in endpoint_config['PRESET']:
-#                 for step_num, step_config in endpoint_config['PRESET']['steps'].items():
-#                     if 'parameters' in step_config:
-#                         GenerateValues._generate_step_parameters(step_config, arguments_pattern)
+            -current_level: Текущий уровень JSON-структуры.
+            -path_parts: Оставшиеся части пути.
+            """
+            part = path_parts[0]  # Получаем текущий элемент пути
             
-#             # 2. Обрабатываем TESTS (используем значения из контекста для ref)
-#             if 'TESTS' in endpoint_config:
-#                 for test_num, test_config in endpoint_config['TESTS'].items():
-#                     if 'steps' in test_config:
-#                         for step_num, step_config in test_config['steps'].items():
-#                             if 'parameters' in step_config:
-#                                 GenerateValues._generate_step_parameters(step_config, arguments_pattern)
+            # Если это последний элемент пути, устанавливаем значение
+            if len(path_parts) == 1: 
+                current_level[part] = value 
+                return
             
-#             # 3. Обрабатываем AFTER-TEST (используем значения из контекста)
-#             if 'AFTER-TEST' in endpoint_config and 'steps' in endpoint_config['AFTER-TEST']:
-#                 for step_num, step_config in endpoint_config['AFTER-TEST']['steps'].items():
-#                     if 'parameters' in step_config:
-#                         GenerateValues._generate_step_parameters(step_config, arguments_pattern)
-        
-#         return processed_scenario
-
-#     @staticmethod
-#     def _generate_step_parameters(step_config, arguments_pattern):
-#         """
-#         Генерирует параметры для конкретного шага
-#         """
-#         if 'parameters' not in step_config:
-#             return
-        
-#         for param_name, param_value in step_config['parameters'].items():
-#             # Если это ссылка ref - заменяем на значение из контекста
-#             if isinstance(param_value, dict) and 'ref' in param_value:
-#                 ref_path = param_value['ref']
-#                 # Извлекаем путь к значению из ссылки
-#                 context_key = GenerateValues._extract_context_key_from_ref(ref_path)
-#                 if context_key in GenerateValues.context:
-#                     step_config['parameters'][param_name] = GenerateValues.context[context_key]
-#                 continue
+            # Если текущий уровень еще не содержит нужный ключ, создаем его
+            if part not in current_level:
+                current_level[part] = {}
             
-#             # Если значение "random" - генерируем по паттерну
-#             if param_value == "random" and param_name in arguments_pattern:
-#                 pattern_info = arguments_pattern[param_name]
-#                 if 'pattern' in pattern_info:
-#                     generated_value = rstr.xeger(pattern_info['pattern'])
-#                     step_config['parameters'][param_name] = generated_value
-#                     # Сохраняем в контекст для последующего использования
-#                     GenerateValues.context[param_name] = generated_value
-                
-#                 elif 'minimum' in pattern_info and 'maximum' in pattern_info:
-#                     import random
-#                     min_val = pattern_info['minimum']
-#                     max_val = pattern_info['maximum']
-#                     generated_value = random.randint(min_val, max_val)
-#                     step_config['parameters'][param_name] = generated_value
-#                     GenerateValues.context[param_name] = generated_value
-            
-#             # Если значение уже задано (не "random"), сохраняем его в контекст
-#             elif param_value != "random":
-#                 GenerateValues.context[param_name] = param_value
-
-#     @staticmethod
-#     def _extract_context_key_from_ref(ref_path):
-#         """
-#         Извлекает ключ контекста из ссылки ref
-#         Пример: "#PRESET.steps.1.parameters.vrf_name" -> "vrf_name"
-#         """
-#         # Разбираем путь ref
-#         parts = ref_path.split('.')
+            # Рекурсивно углубляемся в структуру
+            _set_value_recursive(current_level[part], path_parts[1:])
         
-#         # Ищем часть с parameters и берем следующую за ней (имя параметра)
-#         for i, part in enumerate(parts):
-#             if part == 'parameters' and i + 1 < len(parts):
-#                 return parts[i + 1]
+        # Вызываем рекурсивную функцию
+        _set_value_recursive(scenario_scheme, parts_of_path)
         
-#         # Если не нашли, берем последнюю часть
-#         return parts[-1] if parts else ref_path
-
-
-
-
+        return scenario_scheme # Возвращаем обновленную JSON-структуру
