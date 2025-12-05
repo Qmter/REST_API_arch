@@ -17,6 +17,32 @@ class ScenarioParser:
         self.context = {}  # Контекст для хранения данных между шагами
         self.endpoints_in_scenario = {}  # Словарь для хранения всех endpoint в сценарии
 
+
+    def find_scenario_by_name(self, scenarios_dir, target_name):
+        """
+        Рекурсивно перебирает все файлы в папке scenarios и ищет сценарий по имени.
+        
+        :param scenarios_dir: Путь к папке со сценариями.
+        :param target_name: Имя сценария (без расширения .json).
+        :return: Содержимое найденного файла или None, если файл не найден.
+        """
+        for root, _, files in os.walk(scenarios_dir):
+            for file in files:
+                # Проверяем, что файл имеет расширение .json
+                if file.endswith(".json"):
+                    # Удаляем расширение .json для сравнения
+                    file_name_without_ext = os.path.splitext(file)[0]
+                    
+                    # Если имя файла совпадает с целевым именем
+                    if file_name_without_ext == target_name:
+                        file_path = os.path.join(root, file)
+
+                        print(f"Найден сценарий: {file_path}")
+                        return file_path
+        
+        print(f"Сценарий с именем '{target_name}' не найден.")
+        return None
+
     def parse_scenario(self, scenario_name):
         """
         Парсинг JSON-сценария.
@@ -25,7 +51,7 @@ class ScenarioParser:
         :return: Содержимое сценария в виде словаря.
         """
         # Формируем полный путь к файлу сценария
-        scenario_path = os.path.join(self.scenarios_dir, f"{scenario_name}.json")
+        scenario_path = self.find_scenario_by_name(scenarios_dir=self.scenarios_dir, target_name=scenario_name)
 
         # Проверяем существование файла
         if not os.path.exists(scenario_path):

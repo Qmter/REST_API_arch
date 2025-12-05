@@ -1,0 +1,76 @@
+{
+    "/interfaces/loopback/add": {
+        "TESTS": {
+            "1": {
+                "description": "Add loopback without VRF",
+                "steps": {
+                    "1": {
+                        "endpoint": "/interfaces/loopback/add",
+                        "method": "POST",
+                        "parameters": {"ifname": "random"},
+                        "expected": {"errCode": 0, "httpCode": 200}
+                    },
+                    "2": {
+                        "endpoint": "/interfaces/state",
+                        "method": "GET",
+                        "parameters": {"ifname" : {"ref": "#TESTS.1.steps.1.parameters.ifname"}},
+                        "validation": {"ifname" : {"ref": "#TESTS.1.steps.1.parameters.ifname"}},
+                        "expected": {"errCode": 0, "httpCode": 200}
+                    },
+                    "3": {
+                        "endpoint": "/interfaces/loopback/delete",
+                        "method": "POST",
+                        "parameters": {"ifname" : {"ref": "#TESTS.1.steps.1.parameters.ifname"}},
+                        "expected": {"errCode": 0, "httpCode": 200 }
+                    }
+                }
+            },
+            "2": {
+                "description": "Add loopback with VRF",
+                "steps": {
+                    "1": {
+                        "template": "#TEMPLATES./vrf.TESTS.ADD"
+                    },
+                    "2": {  
+                        "endpoint": "/interfaces/loopback/add", 
+                        "method": "POST", 
+                        "parameters": { 
+                            "ifname": "random", 
+                            "vrf_name": {"ref": "#TESTS.2.steps.1.parameters.vrf_name"}},
+                        "expected": {"errCode": 0, "httpCode": 200} 
+                    },
+                    "3": {
+                        "endpoint": "/interfaces/loopback/delete",
+                        "method": "POST",
+                        "parameters": {"ifname" : {"ref": "#TESTS.2.steps.2.parameters.ifname"}},
+                        "expected": {"errCode": 0, "httpCode": 200 }
+                    },
+                    "4": {
+                        "template": "#TEMPLATES./vrf.TESTS.DELETE",
+                        "parameters": {"vrf_name": {"ref": "#TESTS.2.steps.1.parameters.vrf_name"}}         
+                    }
+                }
+            }
+        },
+        "AFTER-TEST": {
+            "steps":{
+                "1": {
+                    "endpoint": "/interfaces/loopback/delete",
+                    "method": "POST",
+                    "parameters": {"ifname" : {"ref": "#TESTS.1.steps.1.parameters.ifname"}},
+                    "expected": {"errCode": 0, "httpCode": 200 }
+                },
+                "2": {
+                    "endpoint": "/interfaces/loopback/delete",
+                    "method": "POST",
+                    "parameters": {"ifname" : {"ref": "#TESTS.2.steps.2.parameters.ifname"}},
+                    "expected": {"errCode": 0, "httpCode": 200 }
+                },
+                "4": {
+                    "template": "#TEMPLATES./vrf.TESTS.DELETE",
+                    "parameters": {"vrf_name": {"ref": "#TESTS.2.steps.1.parameters.vrf_name"}}         
+                }
+            }       
+        }
+    }
+}
