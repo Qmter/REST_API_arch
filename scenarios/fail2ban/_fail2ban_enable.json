@@ -1,0 +1,54 @@
+{
+    "/fail2ban/enable": {
+        "TESTS": {
+            "1": {
+                "description": "Enable fail2ban",
+                "steps": {
+                    "1": {
+                        "endpoint": "/fail2ban/enable",
+                        "method": "POST",
+                        "parameters": {"action": "start"},
+                        "expected": {"errCode": 0, "httpCode": 200}
+                    },
+                    "2": {
+                        "endpoint": "/fail2ban/status",
+                        "method": "GET",
+                        "parameters": {},
+                        "validation": {
+                            "admin_status": true,
+                            "real_status": true
+                        },
+                        "expected": {"errCode": 0, "httpCode": 200}
+                    },
+                    "3": {
+                        "endpoint": "/fail2ban/enable",
+                        "method": "POST",
+                        "parameters": {"action": "stop"},
+                        "expected": {"errCode": 0, "httpCode": 200}
+                    }
+                }
+            },
+            "2": {
+                "description": "Disable fail2ban",
+                "steps": {
+                    "1": {
+                        "endpoint": "/fail2ban/enable",
+                        "method": "POST",
+                        "parameters": {"action": "stop"},
+                        "expected": {"errCode": 0, "httpCode": 200}
+                    },
+                    "2": {
+                        "endpoint": "/fail2ban/status",
+                        "method": "GET",
+                        "parameters": {},
+                        "validation": {
+                            "admin_status": false,
+                            "real_status": false
+                        },
+                        "expected": {"errCode": 0, "httpCode": 200}
+                    }
+                }
+            }
+        }
+    }
+}

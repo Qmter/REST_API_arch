@@ -50,24 +50,26 @@ if __name__ == "__main__":
     scenario_parser = ScenarioParser(SCENARIOS_DIR, TEMPLATES_DIR, OPENAPI_PATH) # Создаем объект для парсинга сценариев
 
     try:
-        endpoint_arg = parser_args.endpoints[0] # Получаем первый аргумент, который указывает на конкретный ендпоинт
+        endpoint_arg = parser_args.endpoints[0].replace("/", "_") # Получаем первый аргумент, который указывает на конкретный ендпоинт и 
         # print(endpoint)
 
         # Загрузка сценария
-        scenario = scenario_parser.parse_scenario(endpoint_arg) # Парсим сценарий
+        scenario = scenario_parser.parse_scenario(scenario_name=endpoint_arg) # Парсим сценарий
 
         print("=" * 50)
         print("Сценарий успешно загружен!")
+        print("=" * 50)
         print(json.dumps(scenario, indent=2))
         print("=" * 50)
-
 
         # Извлечение всех эндпоинтов которые присутствуют в сценарии
         all_endpoints = scenario_parser.find_all_endpoints(scenario) # Извлекаем все ендпоинты из сценария
         print("=" * 50)
-        print("Все ендпоинты, присутствующие в сценирии:")
-        print(all_endpoints)
+        print(f"Все ендпоинты, присутствующие в сценирии:")
         print("=" * 50)
+        [print(f'endpoint: {key}, method: {value}') for key, value in all_endpoints.items()]
+        print("=" * 50)
+
 
         # Словаь структуры {endpoint: scheme}
         dict_endpoint_scheme = {}
@@ -84,6 +86,7 @@ if __name__ == "__main__":
             print("=" * 50)
             print(json.dumps(resolved_scheme, indent=2))
             dict_endpoint_scheme[f"{endpoint}"] = resolved_scheme
+            print("=" * 50)
 
 
 
@@ -91,15 +94,12 @@ if __name__ == "__main__":
             arguments_patterns[f"{endpoint}"] = ResolveScheme.find_all_patterns_min_max(schema=resolved_scheme)
 
 
-        print("=" * 50)
-        print("Разрешены ссылки для ендпоинтов:")
-        print(json.dumps(dict_endpoint_scheme, indent=2))
-        print("=" * 50)
 
         print("=" * 50)
         print("Аргументы ендпоинта и его паттерны:")
         print("=" * 50)
         print(json.dumps(arguments_patterns, indent=2))
+        print("=" * 50)
 
         print("=" * 50)
         print("=" * 50)
@@ -107,22 +107,35 @@ if __name__ == "__main__":
 
         # Генерация значений для аргументов
         ready_scenario = GenerateValues.read_scenario(resolved_scenario=scenario, arguments_patterns=arguments_patterns)
-
+        
+        print("=" * 50)
+        print("Сценарий с подставленными значениями:")
+        print("=" * 50)
         print(json.dumps(ready_scenario, indent=2))
+        print("=" * 50)
 
         # ==Генерация тестов==
+        print("=" * 50)
+        print("Путь до сценария:")
+        print("=" * 50)
         scenario_path = scenario_parser.find_scenario_by_name(scenarios_dir=SCENARIOS_DIR, target_name=endpoint_arg) # Получаем путь к сценарию
-        
-        scenario_name = scenario_path.split("/")[-1] # Получаем имя сценария
+        print("=" * 50)
+
 
         StructureGenerator.generate(base_dir=TESTS_DIR, openapi_path=OPENAPI_PATH) # Генерируем структуру тестов
 
+        print("=" * 50)
+        print("Сгенерированный тест:")
+        print("=" * 50)
         GenerateTests.generate_test(scenatio=ready_scenario, 
-                                    scenario_name=scenario_name, 
                                     scenario_path=scenario_path,
                                     scenatio_folder=SCENARIOS_DIR,
                                     test_folder=TESTS_DIR) # Генерируем тесты
+        print("=" * 50)
         
+        print("=" * 50)
+        print("Отчистка пустых папок")
+        print("=" * 50)
         StructureGenerator.cleanup_empty_test_dirs(TESTS_DIR) # Очищаем пустые папки
 
 
