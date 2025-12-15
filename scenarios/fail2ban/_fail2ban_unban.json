@@ -1,0 +1,15 @@
+{
+    "/fail2ban/unban": {
+        "TESTS": {
+            "1": {
+                "steps": {
+                    "1": {
+                        "endpoint": "/fail2ban/unban",
+                        "method": "POST",
+                        "parameters": {"ip_address": "random"}
+                    }
+                } 
+            }
+        }
+    }
+}

@@ -5,7 +5,7 @@
       "type": "POST",
       "endpoint": "/fail2ban/jail/add",
       "schema": {
-        "jail_name": "lgXZSZB8"
+        "jail_name": "Ecxr"
       },
       "errCode": 0,
       "httpCode": 200
@@ -17,14 +17,14 @@
       "errCode": 0,
       "httpCode": 200,
       "validation": {
-        "jail_name": "lgXZSZB8"
+        "jail_name": "Ecxr"
       }
     },
     "1.3": {
       "type": "POST",
       "endpoint": "/fail2ban/jail/delete",
       "schema": {
-        "jail_name": "lgXZSZB8"
+        "jail_name": "Ecxr"
       },
       "errCode": 0,
       "httpCode": 200
@@ -36,7 +36,7 @@
       "type": "POST",
       "endpoint": "/fail2ban/jail/add",
       "schema": {
-        "jail_name": "MFJ21BaN6yubBme"
+        "jail_name": "E2"
       },
       "errCode": 0,
       "httpCode": 200
@@ -48,14 +48,14 @@
       "errCode": 0,
       "httpCode": 200,
       "validation": {
-        "jail_name": "MFJ21BaN6yubBme"
+        "jail_name": "E2"
       }
     },
     "2.3": {
       "type": "POST",
       "endpoint": "/fail2ban/jail/add",
       "schema": {
-        "jail_name": "MFJ21BaN6yubBme"
+        "jail_name": "E2"
       },
       "errCode": 15,
       "httpCode": 400
@@ -64,7 +64,7 @@
       "type": "POST",
       "endpoint": "/fail2ban/jail/delete",
       "schema": {
-        "jail_name": "MFJ21BaN6yubBme"
+        "jail_name": "E2"
       },
       "errCode": 0,
       "httpCode": 200
@@ -75,7 +75,7 @@
       "type": "POST",
       "endpoint": "/fail2ban/jail/delete",
       "schema": {
-        "jail_name": "lgXZSZB8"
+        "jail_name": "Ecxr"
       },
       "errCode": 0,
       "httpCode": 200
@@ -84,7 +84,7 @@
       "type": "POST",
       "endpoint": "/fail2ban/jail/delete",
       "schema": {
-        "jail_name": "MFJ21BaN6yubBme"
+        "jail_name": "E2"
       },
       "errCode": 0,
       "httpCode": 200

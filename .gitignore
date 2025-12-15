@@ -7,3 +7,6 @@ __pycache__/
 
 # Игнорировать файл openapi.json
 openapi.json
+
+# Игнорировать файл конифга
+config.ini

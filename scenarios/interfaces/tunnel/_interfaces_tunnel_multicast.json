@@ -9,13 +9,11 @@
             "method": "POST",
             "parameters": {
               "ifname": "random",
-              "source": "random",
-              "tos": "maximum",
-              "key": "maximum"
+              "source": "random"
             },
             "expected": {
               "errCode": 0,
-              "httpCode": 200
+              "httpCode": 20
             }
           },
           "2": {

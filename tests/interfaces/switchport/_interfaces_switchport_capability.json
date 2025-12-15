@@ -1,0 +1,24 @@
+{
+  "PRESET": {
+    "1": {
+      "endpoint": "/interfaces/list",
+      "type": "GET",
+      "errCode": 0,
+      "httpCode": 200,
+      "arguments": {
+        "category": "switchport"
+      }
+    }
+  },
+  "1": {
+    "description": "Test 1",
+    "1.1": {
+      "endpoint": "/interfaces/switchport/capability",
+      "type": "POST",
+      "schema": {
+        "ifname": "switchport1",
+        "igmp_snooping": true
+      }
+    }
+  }
+}

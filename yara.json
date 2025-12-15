@@ -1,0 +1,1018 @@
+Найден сценарий: scenarios/interfaces/tunnel/_interfaces_tunnel_multicast.json
+==================================================
+Сценарий успешно загружен!
+==================================================
+{
+  "/interfaces/tunnel/multicast": {
+    "TESTS": {
+      "1": {
+        "description": "Set on multicast",
+        "steps": {
+          "1": {
+            "endpoint": "/interfaces/tunnel/add",
+            "method": "POST",
+            "parameters": {
+              "ifname": "random",
+              "source": "random"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 20
+            }
+          },
+          "2": {
+            "endpoint": "/interfaces/tunnel/multicast",
+            "method": "POST",
+            "parameters": {
+              "ifname": "random",
+              "action": "on"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 200
+            }
+          },
+          "3": {
+            "endpoint": "/interfaces/tunnel/capability",
+            "method": "GET",
+            "parameters": {
+              "ifname": {
+                "ref": "#TESTS.1.steps.1.parameters.ifname"
+              }
+            },
+            "validation": {
+              "ifname": {
+                "ref": "#TESTS.1.steps.1.parameters.ifname"
+              },
+              "source": {
+                "ref": "#TESTS.1.steps.1.parameters.source"
+              },
+              "multicast": "on"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 200
+            }
+          }
+        }
+      },
+      "2": {
+        "description": "Set off multicast",
+        "steps": {
+          "1": {
+            "endpoint": "/interfaces/tunnel/add",
+            "method": "POST",
+            "parameters": {
+              "ifname": "random",
+              "source": "random"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 200
+            }
+          },
+          "2": {
+            "endpoint": "/interfaces/tunnel/multicast",
+            "method": "POST",
+            "parameters": {
+              "ifname": {
+                "ref": "#TESTS.2.steps.1.parameters.ifname"
+              },
+              "action": "off"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 200
+            }
+          },
+          "3": {
+            "endpoint": "/interfaces/tunnel/capability",
+            "method": "GET",
+            "parameters": {
+              "ifname": {
+                "ref": "#TESTS.2.steps.1.parameters.ifname"
+              }
+            },
+            "validation": {
+              "ifname": {
+                "ref": "#TESTS.2.steps.1.parameters.ifname"
+              },
+              "source": {
+                "ref": "#TESTS.2.steps.1.parameters.source"
+              },
+              "multicast": "off"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 200
+            }
+          }
+        }
+      }
+    },
+    "AFTER-TEST": {
+      "steps": {
+        "1": {
+          "endpoint": "/interfaces/tunnel/delete",
+          "method": "POST",
+          "parameters": {
+            "ifname": {
+              "ref": "#TESTS.1.steps.1.parameters.ifname"
+            }
+          },
+          "expected": {
+            "errCode": 0,
+            "httpCode": 200
+          }
+        },
+        "2": {
+          "endpoint": "/interfaces/tunnel/delete",
+          "method": "POST",
+          "parameters": {
+            "ifname": {
+              "ref": "#TESTS.2.steps.1.parameters.ifname"
+            }
+          },
+          "expected": {
+            "errCode": 0,
+            "httpCode": 200
+          }
+        }
+      }
+    }
+  }
+}
+==================================================
+==================================================
+Все ендпоинты, присутствующие в сценирии:
+==================================================
+endpoint: /interfaces/tunnel/multicast, method: POST
+endpoint: /interfaces/tunnel/add, method: POST
+endpoint: /interfaces/tunnel/capability, method: GET
+endpoint: /interfaces/tunnel/delete, method: POST
+==================================================
+==================================================
+Разрешенная схема для /interfaces/tunnel/multicast POST:
+==================================================
+{
+  "tags": [
+    "interfaces/tunnel"
+  ],
+  "summary": "Turn multicast on/off",
+  "description": "Turn multicast on/off for a tunnel. Multicast is turned `off` by default.\n\nCLI commands: `[no] ip multicast`",
+  "requestBody": {
+    "required": true,
+    "content": {
+      "application/json": {
+        "schema": {
+          "required": [
+            "ifname",
+            "action"
+          ],
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "ifname": {
+              "description": "Tunnel interface name",
+              "type": "string",
+              "pattern": "^tunnel(0|[1-9][0-9]{0,3})$"
+            },
+            "action": {
+              "type": "string",
+              "enum": [
+                "on",
+                "off"
+              ],
+              "description": "on|off"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "Multicast set successfully",
+      "content": {
+        "application/json": {
+          "schema": {
+            "title": "generic output PDUs",
+            "description": "JSON format of response PDU for the communication between web backend and mprdaemon. Objects cannot contain properties other than ['errCode', 'result', 'request']",
+            "required": [
+              "errCode",
+              "result",
+              "request"
+            ],
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "errCode": {
+                "title": "error code",
+                "description": "error code of operation, nonzero means error, string describes details of error",
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                ],
+                "maxItems": 2,
+                "minItems": 2
+              },
+              "result": {},
+              "request": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
+==================================================
+==================================================
+Разрешенная схема для /interfaces/tunnel/add POST:
+==================================================
+{
+  "tags": [
+    "interfaces/tunnel"
+  ],
+  "summary": "Add tunnel interface",
+  "description": "Add tunnel interface\n\nCLI commands: `interface tunnel`, `tunnel source ... [destination] ...`",
+  "requestBody": {
+    "required": true,
+    "content": {
+      "application/json": {
+        "schema": {
+          "description": "Add tunnel interface",
+          "additionalProperties": false,
+          "required": [
+            "ifname",
+            "settings"
+          ],
+          "type": "object",
+          "properties": {
+            "ifname": {
+              "description": "Tunnel interface name",
+              "type": "string",
+              "pattern": "^tunnel(0|[1-9][0-9]{0,3})$"
+            },
+            "vrf_name": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{1,12}$",
+              "description": "VRF NAME (Only letters and numbers, 12 characters max)"
+            },
+            "settings": {
+              "type": "object",
+              "description": "Settings needed for tunnel creation",
+              "properties": {
+                "mode": {
+                  "description": "Tunnel mode. `gre` by default if omitted",
+                  "type": "string",
+                  "enum": [
+                    "gre",
+                    "ipip",
+                    "gretap",
+                    "vti"
+                  ]
+                },
+                "source": {
+                  "description": "Source for a tunnel. Either ip address or a local interface name.",
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$",
+                      "description": "A.B.C.D"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^((eth(0|[1-9][0-9]{0,3})\\.(0|[1-9][0-9]{0,3}))|(vlan([0-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|40[0-8][0-9]|409[0-5]))|([A-Za-uw-z][A-Za-z0-9_\\-]{0,30}[A-Za-z](0|[1-9][0-9]{0,3})))$",
+                      "description": "IFNAME"
+                    }
+                  ]
+                },
+                "dst_address": {
+                  "type": "string",
+                  "pattern": "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$",
+                  "description": "A.B.C.D"
+                },
+                "key": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 4294967295,
+                  "description": "<1-4294967295>"
+                },
+                "tos": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "const": "inherit"
+                    },
+                    {
+                      "type": "integer",
+                      "minimum": 2,
+                      "maximum": 255,
+                      "description": "<2-255>"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "Interface added successfully",
+      "content": {
+        "application/json": {
+          "schema": {
+            "title": "generic output PDUs",
+            "description": "JSON format of response PDU for the communication between web backend and mprdaemon. Objects cannot contain properties other than ['errCode', 'result', 'request']",
+            "required": [
+              "errCode",
+              "result",
+              "request"
+            ],
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "errCode": {
+                "title": "error code",
+                "description": "error code of operation, nonzero means error, string describes details of error",
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                ],
+                "maxItems": 2,
+                "minItems": 2
+              },
+              "result": {},
+              "request": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
+==================================================
+==================================================
+Разрешенная схема для /interfaces/tunnel/capability GET:
+==================================================
+{
+  "tags": [
+    "interfaces/tunnel"
+  ],
+  "summary": "Get tunnel capabilities",
+  "description": "Get tunnel capabilities (unique properties of tunnel interfaces)\n\nCLI commands: part of `show interfaces tunnel`",
+  "parameters": [
+    {
+      "name": "ifname",
+      "description": "tunnel name",
+      "in": "query",
+      "required": true,
+      "schema": {
+        "description": "Tunnel interface name",
+        "type": "string",
+        "pattern": "^tunnel(0|[1-9][0-9]{0,3})$"
+      }
+    }
+  ],
+  "responses": {
+    "200": {
+      "description": "Successfully read",
+      "content": {
+        "application/json": {
+          "schema": {
+            "title": "generic output PDUs",
+            "description": "JSON format of response PDU for the communication between web backend and mprdaemon. Objects cannot contain properties other than ['errCode', 'result', 'request']",
+            "required": [
+              "errCode",
+              "result",
+              "request"
+            ],
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "errCode": {
+                "title": "error code",
+                "description": "error code of operation, nonzero means error, string describes details of error",
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                ],
+                "maxItems": 2,
+                "minItems": 2
+              },
+              "result": {},
+              "request": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
+==================================================
+==================================================
+Разрешенная схема для /interfaces/tunnel/delete POST:
+==================================================
+{
+  "tags": [
+    "interfaces/tunnel"
+  ],
+  "summary": "Delete tunnel interface",
+  "description": "Delete tunnel interface\n\nCLI command: `no interface tunnel`",
+  "requestBody": {
+    "required": true,
+    "content": {
+      "application/json": {
+        "schema": {
+          "description": "Delete tunnel interface",
+          "required": [
+            "ifname"
+          ],
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "ifname": {
+              "description": "Tunnel interface name",
+              "type": "string",
+              "pattern": "^tunnel(0|[1-9][0-9]{0,3})$"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "Interface deleted successfully",
+      "content": {
+        "application/json": {
+          "schema": {
+            "title": "generic output PDUs",
+            "description": "JSON format of response PDU for the communication between web backend and mprdaemon. Objects cannot contain properties other than ['errCode', 'result', 'request']",
+            "required": [
+              "errCode",
+              "result",
+              "request"
+            ],
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "errCode": {
+                "title": "error code",
+                "description": "error code of operation, nonzero means error, string describes details of error",
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                ],
+                "maxItems": 2,
+                "minItems": 2
+              },
+              "result": {},
+              "request": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
+==================================================
+==================================================
+Аргументы ендпоинта и его паттерны:
+==================================================
+{
+  "/interfaces/tunnel/multicast": {
+    "ifname": {
+      "pattern": [
+        "^tunnel(0|[1-9][0-9]{0,3})$"
+      ]
+    }
+  },
+  "/interfaces/tunnel/add": {
+    "ifname": {
+      "pattern": [
+        "^tunnel(0|[1-9][0-9]{0,3})$"
+      ]
+    },
+    "vrf_name": {
+      "pattern": [
+        "^[A-Za-z0-9_-]{1,12}$"
+      ]
+    },
+    "source": {
+      "pattern": [
+        "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$",
+        "^((eth(0|[1-9][0-9]{0,3})\\.(0|[1-9][0-9]{0,3}))|(vlan([0-9]|[1-9][0-9]{1,2}|[1-3][0-9]{3}|40[0-8][0-9]|409[0-5]))|([A-Za-uw-z][A-Za-z0-9_\\-]{0,30}[A-Za-z](0|[1-9][0-9]{0,3})))$"
+      ]
+    },
+    "dst_address": {
+      "pattern": [
+        "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$"
+      ]
+    },
+    "key": {
+      "minimum": 1,
+      "maximum": 4294967295
+    },
+    "tos": {
+      "minimum": 2,
+      "maximum": 255
+    }
+  },
+  "/interfaces/tunnel/capability": {
+    "ifname": {
+      "pattern": [
+        "^tunnel(0|[1-9][0-9]{0,3})$"
+      ]
+    }
+  },
+  "/interfaces/tunnel/delete": {
+    "ifname": {
+      "pattern": [
+        "^tunnel(0|[1-9][0-9]{0,3})$"
+      ]
+    }
+  }
+}
+==================================================
+==================================================
+==================================================
+==================================================
+----------------------------------------
+Путь: /interfaces/tunnel/multicast.TESTS.1.steps.1
+Endpoint: /interfaces/tunnel/add
+Method: POST
+Parameters: {'ifname': 'random', 'source': 'random'}
+Validation: {}
+Expected: {'errCode': 0, 'httpCode': 20}
+----------------------------------------
+key = ifname, arg_value = tunnel0
+key = source, arg_value = UnJXHEHYb1TXTZ4UtljYkS3yk547
+----------------------------------------
+Путь: /interfaces/tunnel/multicast.TESTS.1.steps.2
+Endpoint: /interfaces/tunnel/multicast
+Method: POST
+Parameters: {'ifname': 'random', 'action': 'on'}
+Validation: {}
+Expected: {'errCode': 0, 'httpCode': 200}
+----------------------------------------
+key = ifname, arg_value = tunnel0
+----------------------------------------
+Путь: /interfaces/tunnel/multicast.TESTS.1.steps.3
+Endpoint: /interfaces/tunnel/capability
+Method: GET
+Parameters: {'ifname': {'ref': '#TESTS.1.steps.1.parameters.ifname'}}
+Validation: {'ifname': {'ref': '#TESTS.1.steps.1.parameters.ifname'}, 'source': {'ref': '#TESTS.1.steps.1.parameters.source'}, 'multicast': 'on'}
+Expected: {'errCode': 0, 'httpCode': 200}
+----------------------------------------
+ref_link = tunnel0
+ref_link = tunnel0
+ref_link = UnJXHEHYb1TXTZ4UtljYkS3yk547
+----------------------------------------
+Путь: /interfaces/tunnel/multicast.TESTS.2.steps.1
+Endpoint: /interfaces/tunnel/add
+Method: POST
+Parameters: {'ifname': 'random', 'source': 'random'}
+Validation: {}
+Expected: {'errCode': 0, 'httpCode': 200}
+----------------------------------------
+key = ifname, arg_value = tunnel0
+key = source, arg_value = vlan3081
+----------------------------------------
+Путь: /interfaces/tunnel/multicast.TESTS.2.steps.2
+Endpoint: /interfaces/tunnel/multicast
+Method: POST
+Parameters: {'ifname': {'ref': '#TESTS.2.steps.1.parameters.ifname'}, 'action': 'off'}
+Validation: {}
+Expected: {'errCode': 0, 'httpCode': 200}
+----------------------------------------
+ref_link = tunnel0
+----------------------------------------
+Путь: /interfaces/tunnel/multicast.TESTS.2.steps.3
+Endpoint: /interfaces/tunnel/capability
+Method: GET
+Parameters: {'ifname': {'ref': '#TESTS.2.steps.1.parameters.ifname'}}
+Validation: {'ifname': {'ref': '#TESTS.2.steps.1.parameters.ifname'}, 'source': {'ref': '#TESTS.2.steps.1.parameters.source'}, 'multicast': 'off'}
+Expected: {'errCode': 0, 'httpCode': 200}
+----------------------------------------
+ref_link = tunnel0
+ref_link = tunnel0
+ref_link = vlan3081
+----------------------------------------
+Путь: /interfaces/tunnel/multicast.AFTER-TEST.steps.1
+Endpoint: /interfaces/tunnel/delete
+Method: POST
+Parameters: {'ifname': {'ref': '#TESTS.1.steps.1.parameters.ifname'}}
+Validation: {}
+Expected: {'errCode': 0, 'httpCode': 200}
+----------------------------------------
+ref_link = tunnel0
+----------------------------------------
+Путь: /interfaces/tunnel/multicast.AFTER-TEST.steps.2
+Endpoint: /interfaces/tunnel/delete
+Method: POST
+Parameters: {'ifname': {'ref': '#TESTS.2.steps.1.parameters.ifname'}}
+Validation: {}
+Expected: {'errCode': 0, 'httpCode': 200}
+----------------------------------------
+ref_link = tunnel0
+==================================================
+Сценарий с подставленными значениями:
+==================================================
+{
+  "/interfaces/tunnel/multicast": {
+    "TESTS": {
+      "1": {
+        "description": "Set on multicast",
+        "steps": {
+          "1": {
+            "endpoint": "/interfaces/tunnel/add",
+            "method": "POST",
+            "parameters": {
+              "ifname": "tunnel0",
+              "source": "UnJXHEHYb1TXTZ4UtljYkS3yk547"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 20
+            }
+          },
+          "2": {
+            "endpoint": "/interfaces/tunnel/multicast",
+            "method": "POST",
+            "parameters": {
+              "ifname": "tunnel0",
+              "action": "on"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 200
+            }
+          },
+          "3": {
+            "endpoint": "/interfaces/tunnel/capability",
+            "method": "GET",
+            "parameters": {
+              "ifname": "tunnel0"
+            },
+            "validation": {
+              "ifname": "tunnel0",
+              "source": "UnJXHEHYb1TXTZ4UtljYkS3yk547",
+              "multicast": "on"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 200
+            }
+          }
+        }
+      },
+      "2": {
+        "description": "Set off multicast",
+        "steps": {
+          "1": {
+            "endpoint": "/interfaces/tunnel/add",
+            "method": "POST",
+            "parameters": {
+              "ifname": "tunnel0",
+              "source": "vlan3081"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 200
+            }
+          },
+          "2": {
+            "endpoint": "/interfaces/tunnel/multicast",
+            "method": "POST",
+            "parameters": {
+              "ifname": "tunnel0",
+              "action": "off"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 200
+            }
+          },
+          "3": {
+            "endpoint": "/interfaces/tunnel/capability",
+            "method": "GET",
+            "parameters": {
+              "ifname": "tunnel0"
+            },
+            "validation": {
+              "ifname": "tunnel0",
+              "source": "vlan3081",
+              "multicast": "off"
+            },
+            "expected": {
+              "errCode": 0,
+              "httpCode": 200
+            }
+          }
+        }
+      }
+    },
+    "AFTER-TEST": {
+      "steps": {
+        "1": {
+          "endpoint": "/interfaces/tunnel/delete",
+          "method": "POST",
+          "parameters": {
+            "ifname": "tunnel0"
+          },
+          "expected": {
+            "errCode": 0,
+            "httpCode": 200
+          }
+        },
+        "2": {
+          "endpoint": "/interfaces/tunnel/delete",
+          "method": "POST",
+          "parameters": {
+            "ifname": "tunnel0"
+          },
+          "expected": {
+            "errCode": 0,
+            "httpCode": 200
+          }
+        }
+      }
+    }
+  }
+}
+==================================================
+==================================================
+Путь до сценария:
+==================================================
+Найден сценарий: scenarios/interfaces/tunnel/_interfaces_tunnel_multicast.json
+==================================================
+openapi_path: config/openapi.json
+Создана директория: tests/aaa;
+Создана директория: tests/acl;
+Создана директория: tests/acl/filter;
+Создана директория: tests/acl/mangle;
+Создана директория: tests/acl/nat;
+Создана директория: tests/acl/pbr;
+Создана директория: tests/acl/time_range;
+Создана директория: tests/arp;
+Создана директория: tests/arp/show;
+Создана директория: tests/arp/table;
+Создана директория: tests/bgp;
+Создана директория: tests/bgp/address_family;
+Создана директория: tests/bgp/vrf;
+Создана директория: tests/carp;
+Создана директория: tests/datetime;
+Создана директория: tests/dhcp;
+Создана директория: tests/dhcp/client;
+Создана директория: tests/dhcp/client/config;
+Создана директория: tests/dhcp/ipv4;
+Создана директория: tests/dhcp/ipv4/pools;
+Создана директория: tests/dhcp/ipv4/pools/groups;
+Создана директория: tests/dhcp/ipv4/pools/hosts;
+Создана директория: tests/dhcp/ipv4/pools/options;
+Создана директория: tests/dhcp/ipv4/pools/range;
+Создана директория: tests/dhcp/ipv4/relay;
+Создана директория: tests/dhcp/ipv4/relay/interfaces;
+Создана директория: tests/dhcp/ipv4/relay/servers;
+Создана директория: tests/dhcp/ipv4/server;
+Создана директория: tests/dhcp/ipv6;
+Создана директория: tests/dhcp/ipv6/pools;
+Создана директория: tests/dhcp/ipv6/pools/groups;
+Создана директория: tests/dhcp/ipv6/pools/hosts;
+Создана директория: tests/dhcp/ipv6/pools/options;
+Создана директория: tests/dhcp/ipv6/pools/range;
+Создана директория: tests/dhcp/ipv6/relay;
+Создана директория: tests/dhcp/ipv6/relay/clients;
+Создана директория: tests/dhcp/ipv6/relay/servers;
+Создана директория: tests/dhcp/ipv6/server;
+Создана директория: tests/dns;
+Создана директория: tests/dns/proxy;
+Создана директория: tests/dns/server;
+Создана директория: tests/dns/server/zone;
+Создана директория: tests/dns/server/zone/master;
+Создана директория: tests/dns/server/zone/master/entry;
+Создана директория: tests/dns/server/zone/slave;
+Создана директория: tests/emon;
+Создана директория: tests/fail2ban;
+Создана директория: tests/fail2ban/jail;
+Создана директория: tests/interfaces;
+Создана директория: tests/interfaces/bonding;
+Создана директория: tests/interfaces/bridge;
+Создана директория: tests/interfaces/bridge/stp;
+Создана директория: tests/interfaces/common;
+Создана директория: tests/interfaces/eth_vlan;
+Создана директория: tests/interfaces/ethernet;
+Создана директория: tests/interfaces/loopback;
+Создана директория: tests/interfaces/switchport;
+Создана директория: tests/interfaces/switchport/stp;
+Создана директория: tests/interfaces/tunnel;
+Создана директория: tests/interfaces/vlan;
+Создана директория: tests/interfaces/vlan_common;
+Создана директория: tests/interfaces/wifi;
+Создана директория: tests/interfaces/wifi/access-point;
+Создана директория: tests/interfaces/wifi/client;
+Создана директория: tests/interfaces/wifi/client/network;
+Создана директория: tests/ipv6_nd;
+Создана директория: tests/isis;
+Создана директория: tests/keychain;
+Создана директория: tests/l2;
+Создана директория: tests/l2/filter;
+Создана директория: tests/l2/mangle;
+Создана директория: tests/ldp;
+Создана директория: tests/lldp;
+Создана директория: tests/log;
+Создана директория: tests/mpls;
+Создана директория: tests/mpls/filter;
+Создана директория: tests/mpls/mangle;
+Создана директория: tests/nsm;
+Создана директория: tests/ntp;
+Создана директория: tests/openvpn;
+Создана директория: tests/openvpn/client;
+Создана директория: tests/openvpn/server;
+Создана директория: tests/openvpn/server/keys;
+Создана директория: tests/ospf;
+Создана директория: tests/poe;
+Создана директория: tests/poe/config;
+Создана директория: tests/profiles;
+Создана директория: tests/profiles/profile;
+Создана директория: tests/profiles/rollback;
+Создана директория: tests/qos;
+Создана директория: tests/qos/cbq;
+Создана директория: tests/qos/filter;
+Создана директория: tests/qos/gred;
+Создана директория: tests/qos/hfsc;
+Создана директория: tests/qos/htb;
+Создана директория: tests/qos/rio;
+Создана директория: tests/qos/statistics;
+Создана директория: tests/qos/wred;
+Создана директория: tests/radius;
+Создана директория: tests/radius/attributes;
+Создана директория: tests/radius/servers;
+Создана директория: tests/rip;
+Создана директория: tests/ripng;
+Создана директория: tests/routing;
+Создана директория: tests/routing/static;
+Создана директория: tests/routing/static/ipv4;
+Создана директория: tests/routing/static/table;
+Создана директория: tests/samba;
+Создана директория: tests/samba/server;
+Создана директория: tests/samba/share;
+Создана директория: tests/serial_port;
+Создана директория: tests/snmp;
+Создана директория: tests/snmp/traps;
+Создана директория: tests/snort;
+Создана директория: tests/ssh;
+Создана директория: tests/ssh/client;
+Создана директория: tests/ssh/client/key;
+Создана директория: tests/ssh/server;
+Создана директория: tests/system;
+Создана директория: tests/tacacs;
+Создана директория: tests/tacacs/servers;
+Создана директория: tests/telnet;
+Создана директория: tests/tftp;
+Создана директория: tests/usb;
+Создана директория: tests/usb/media;
+Создана директория: tests/usergroups;
+Создана директория: tests/usergroups/groups;
+Создана директория: tests/usergroups/users;
+Создана директория: tests/vrf;
+Создана директория: tests/vrrp;
+==================================================
+Сгенерированный тест:
+==================================================
+{
+  "1": {
+    "description": "Set on multicast",
+    "1.1": {
+      "endpoint": "/interfaces/tunnel/add",
+      "type": "POST",
+      "schema": {
+        "ifname": "tunnel0",
+        "source": "UnJXHEHYb1TXTZ4UtljYkS3yk547"
+      },
+      "errCode": 0,
+      "httpCode": 20
+    },
+    "1.2": {
+      "endpoint": "/interfaces/tunnel/multicast",
+      "type": "POST",
+      "schema": {
+        "ifname": "tunnel0",
+        "action": "on"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.3": {
+      "endpoint": "/interfaces/tunnel/capability",
+      "type": "GET",
+      "arguments": {
+        "ifname": "tunnel0"
+      },
+      "errCode": 0,
+      "httpCode": 200,
+      "validation": {
+        "ifname": "tunnel0",
+        "source": "UnJXHEHYb1TXTZ4UtljYkS3yk547",
+        "multicast": "on"
+      }
+    }
+  },
+  "2": {
+    "description": "Set off multicast",
+    "2.1": {
+      "endpoint": "/interfaces/tunnel/add",
+      "type": "POST",
+      "schema": {
+        "ifname": "tunnel0",
+        "source": "vlan3081"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "endpoint": "/interfaces/tunnel/multicast",
+      "type": "POST",
+      "schema": {
+        "ifname": "tunnel0",
+        "action": "off"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "endpoint": "/interfaces/tunnel/capability",
+      "type": "GET",
+      "arguments": {
+        "ifname": "tunnel0"
+      },
+      "errCode": 0,
+      "httpCode": 200,
+      "validation": {
+        "ifname": "tunnel0",
+        "source": "vlan3081",
+        "multicast": "off"
+      }
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "endpoint": "/interfaces/tunnel/delete",
+      "type": "POST",
+      "schema": {
+        "ifname": "tunnel0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2": {
+      "endpoint": "/interfaces/tunnel/delete",
+      "type": "POST",
+      "schema": {
+        "ifname": "tunnel0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  }
+}
+==================================================
+==================================================
+Отчистка пустых папок
+==================================================

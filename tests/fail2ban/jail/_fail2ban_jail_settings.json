@@ -1,0 +1,36 @@
+{
+  "PRESET": {
+    "1": {
+      "endpoint": "/fail2ban/jail/add",
+      "type": "POST",
+      "schema": {
+        "jail_name": "LI0u-hMPvW"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "1": {
+    "description": "Testing with the required parameter only",
+    "1.1": {
+      "endpoint": "/fail2ban/jail/settings",
+      "type": "POST",
+      "schema": {
+        "jail_name": "LI0u-hMPvW"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "endpoint": "/fail2ban/jail/delete",
+      "type": "POST",
+      "schema": {
+        "jail_name": "LI0u-hMPvW"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+    "/fail2ban/jail/settings": {
+        "PRESET": {
+            "steps": {
+                "1": {
+                    "endpoint": "/fail2ban/jail/add",
+                    "method": "POST",
+                    "parameters": {"jail_name": "random"},
+                    "expected": {"errCode": 0, "httpCode": 200}
+                }
+            }
+        },
+        "AFTER-TEST": {
+            "steps": {
+                "1": {
+                    "endpoint": "/fail2ban/jail/delete",
+                    "method": "POST",
+                    "parameters": {"jail_name": {"ref": "#PRESET.steps.1.parameters.jail_name"}},
+                    "expected": {"errCode": 0, "httpCode": 200}
+                }
+            }
+        },
+        "TESTS": {
+            "1": {
+                "description": "Testing with the required parameter only",
+                "steps": {
+                    "1": {
+                        "endpoint": "/fail2ban/jail/settings",
+                        "method": "POST",
+                        "parameters": {"jail_name": {"ref": "#PRESET.steps.1.parameters.jail_name"}},
+                        "expected": {"errCode": 0, "httpCode": 200}
+                    },
+                    "2": {
+                        "endpoint": "/fail2ban/jail/settings",
+                        "method": "GET",
+                        "parameters": {"jail_name": {"ref": "#PRESET.steps.1.parameters.jail_name"}},
+                        "validation": {"jail_name": {"ref": "#PRESET.steps.1.parameters.jail_name"}},
+                        "expected": {"errCode": 0, "httpCode": 200}
+                    }
+                }
+            },
+            "2": {
+                "description": "Testing with the required parameter and the optional parameter",
+                "steps": {
+                    "1": {
+                        "endpoint": "/fail2ban/jail/settings",
+                        "method": "POST",
+                        ""
+                       
+            }
+        }
+    }
+}

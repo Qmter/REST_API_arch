@@ -1,0 +1,11 @@
+{
+  "1": {
+    "1.1": {
+      "endpoint": "/fail2ban/unban",
+      "type": "POST",
+      "schema": {
+        "ip_address": "141.131.106.253"
+      }
+    }
+  }
+}
