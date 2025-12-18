@@ -38,15 +38,6 @@
                         "expected": {"errCode": 0, "httpCode": 200}
                     }
                 }
-            },
-            "2": {
-                "description": "Testing with the required parameter and the optional parameter",
-                "steps": {
-                    "1": {
-                        "endpoint": "/fail2ban/jail/settings",
-                        "method": "POST",
-                        ""
-                       
             }
         }
     }

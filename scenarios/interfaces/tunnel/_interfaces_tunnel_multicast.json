@@ -13,7 +13,7 @@
             },
             "expected": {
               "errCode": 0,
-              "httpCode": 20
+              "httpCode": 200
             }
           },
           "2": {

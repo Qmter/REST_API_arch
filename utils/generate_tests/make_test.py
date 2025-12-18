@@ -31,6 +31,7 @@ class GenerateTests:
             try:
                 with open(test_path, 'w', encoding='utf-8') as test: # запись теста в файл
                     json.dump(json_test, test, indent=2, ensure_ascii=False) # запись в файл
+                logging.debug(f"=" * 68)
                 logging.debug(f"Тест успешно сохранен: {test_path}")
             except IOError as e:
                 logging.debug(f"Ошибка записи в файл {test_path}: {e}")
@@ -64,6 +65,13 @@ class GenerateTests:
                     raise KeyError(f"Отсутствует обязательное поле 'endpoint' в шаге")
                 if "method" not in step_data:
                     raise KeyError(f"Отсутствует обязательное поле 'method' в шаге для endpoint {step_data.get('endpoint', 'unknown')}")
+                
+                # Дополнительная проверка: POST методы должны иметь parameters
+                if step_data["method"] == "POST":
+                    if "parameters" not in step_data:
+                        raise ValueError(f"POST метод '{step_data['endpoint']}' не имеет параметров (parameters)")
+                    elif not step_data["parameters"]:
+                        raise ValueError(f"POST метод '{step_data['endpoint']}' имеет пустые параметры")
                 
                 if has_expected:
                     if "expected" not in step_data:

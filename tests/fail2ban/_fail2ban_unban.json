@@ -4,7 +4,7 @@
       "endpoint": "/fail2ban/unban",
       "type": "POST",
       "schema": {
-        "ip_address": "141.131.106.253"
+        "ip_address": "14.7.57.193"
       }
     }
   }

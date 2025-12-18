@@ -5,6 +5,9 @@ import os
 from datetime import datetime
 import sys
 import ast   # Для безопасного преобразования строки в словарь
+import subprocess
+from pathlib import Path
+
 
 
 from utils.log import logging, initialize_log
@@ -15,6 +18,8 @@ from utils.generate_tests.make_test import GenerateTests # Импортируе�
 from utils.generate_tests.generate_structure import StructureGenerator # Импортируем класс для генерации структуры тестов
 from utils.check_auth_method import CheckAuthMethod
 from utils.http_methods import Http_methods
+from utils.generate_tests.validate_schema import SchemaValidator
+
 
 config = configparser.ConfigParser() # Создаем объект для чтения конфигурационного файла
 root_to_conf_con = os.path.join(os.path.join(os.getcwd(), "config"), "config.ini") # Путь к конфигурационному файлу
@@ -48,6 +53,35 @@ FAIL_SIMBOL = '| FAIL |'
 # Объявляем переменную для сохранения итоговых логов
 LOGS_EXECUTION_LIST = []
 
+
+# Обработчик ошибок при генерации теста
+def handle_generation_error(correct_name_endpoint, e, endpoint_name=""):
+    """
+    Обрабатывает ошибки при генерации теста.
+    Возвращает сообщение об ошибке для вывода.
+    """
+    if isinstance(e, FileNotFoundError):
+        error_msg = f"{correct_name_endpoint.ljust(50, '.')}{FAIL_SIMBOL} File not found"
+        logging.debug(f"Файл не найден: {e}")
+        
+    elif isinstance(e, json.JSONDecodeError):
+        error_msg = f"{correct_name_endpoint.ljust(50, '.')}{FAIL_SIMBOL} Invalid JSON"
+        logging.debug(f"Ошибка формата JSON: {e}")
+        
+    elif isinstance(e, KeyError):
+        error_msg = f"{correct_name_endpoint.ljust(50, '.')}{FAIL_SIMBOL} Missing key"
+        logging.debug(f"Отсутствует ключ: {e}")
+        
+    elif isinstance(e, ValueError):
+        error_msg = f"{correct_name_endpoint.ljust(50, '.')}{FAIL_SIMBOL} Validation error"
+        logging.debug(f"Ошибка валидации для {endpoint_name or correct_name_endpoint}: {e}")
+        
+    else:
+        error_msg = f"{correct_name_endpoint.ljust(50, '.')}{FAIL_SIMBOL} Generator error"
+        logging.debug(f"Ошибка при генерации теста для {endpoint_name or correct_name_endpoint}: {e}")
+    
+    return error_msg
+
 # Обработчик некорректно переданных данных для [--dir, -d]
 class SingleValueAction(argparse.Action):
     def __call__(self, parser, namespace, values, option_string=None):
@@ -71,65 +105,138 @@ def gen_endpoints(endpoints_list):
         correct_name_endpoint = DICT_ENDPOINTS.get(f'{endpoint}'.replace('_', '/'), endpoint)
         
         try:
-            generate_test(endpoint_test=endpoint_processed)
-            
-            # Сообщение об успехе
-            execution_message_d = f"Generated:".ljust(30, ' ') + f"{correct_name_endpoint.ljust(50, '.')}{OK_SIMBOL}"
-            LOGS_EXECUTION_LIST.append(execution_message_d)    
-            print(execution_message_d)
+            logging.debug("=" * 68)
+            logging.debug(f"Генерация теста: {correct_name_endpoint}")
+            logging.debug("=" * 68)
 
-        except FileNotFoundError as e:
-            # Обработка ошибки файла не найден
-            error_msg = f"File not found for".ljust(30, ' ') + f"{correct_name_endpoint.ljust(50, '.')}{FAIL_SIMBOL}"
-            LOGS_EXECUTION_LIST.append(error_msg)
-            print(error_msg)
-            logging.debug(f"Файл не найден: {e}")
+            generate_test(endpoint_test=endpoint_processed)
+
+            # Сообщение об успехе
+            execution_message_e = f"{correct_name_endpoint.ljust(50, '.')}{OK_SIMBOL}"
+            LOGS_EXECUTION_LIST.append(execution_message_e)    
+            print(execution_message_e)
             
         except Exception as e:
-            # Обработка ошибки файла не найден
-            error_msg = f"Generated error:".ljust(30, ' ') + f"{correct_name_endpoint.ljust(50, '.')}{FAIL_SIMBOL}"
+            error_msg = handle_generation_error(correct_name_endpoint, e, endpoint)
             LOGS_EXECUTION_LIST.append(error_msg)
             print(error_msg)
-            logging.debug(f"Ф{e}")
 
     
 
 def gen_dir_endpoints():
-    ...
+    target_dir = parser_args.dir[0].strip('/')
+    
+    # Строим путь к директории
+    dir_path = os.path.join(SCENARIOS_DIR, target_dir.replace('/', os.sep))
+    
+    if not os.path.exists(dir_path):
+        print(f"Директория не найдена: {dir_path}")
+        return
+    
+    # Рекурсивно ищем все JSON файлы
+    for root, dirs, files in os.walk(dir_path):
+        for file in files:
+            if file.endswith('.json') and file.startswith('_'):
+                # Получаем относительный путь от SCENARIOS_DIR
+                rel_path = os.path.relpath(root, SCENARIOS_DIR)
+                
+                # Имя файла без _ и .json
+                file_base = file[:-5]  # Например: '_fail2ban_enable' -> 'fail2ban_enable'
+                
+                # ДЕБАГ: выводим информацию
+                logging.debug(f"Обработка файла: {file}")
+                logging.debug(f"rel_path: {rel_path}")
+                logging.debug(f"file_base: {file_base}")
+
+                correct_name_endpoint = DICT_ENDPOINTS.get(f'{file_base}'.replace('_', '/'), file_base.replace('_', '/'))
+                
+                try:
+                    generate_test(endpoint_test=file_base)
+                    
+                    # Сообщение об успехе
+                    execution_message = f"{correct_name_endpoint.ljust(50, '.')}{OK_SIMBOL}"
+                    LOGS_EXECUTION_LIST.append(execution_message)
+                    print(execution_message)
+                    
+                except Exception as e:
+                    error_msg = handle_generation_error(correct_name_endpoint, e, file_base)
+                    LOGS_EXECUTION_LIST.append(error_msg)
+                    print(error_msg)
+
 
 def gen_all_endpoints():
-    ...
+    # Строим путь к директории
+    dir_path = os.path.join(SCENARIOS_DIR)
+    
+    if not os.path.exists(dir_path):
+        print(f"Директория не найдена: {dir_path}")
+        return
+    
+    # Рекурсивно ищем все JSON файлы
+    for root, dirs, files in os.walk(dir_path):
+        for file in files:
+            if file.endswith('.json') and file.startswith('_'):
+                # Получаем относительный путь от SCENARIOS_DIR
+                rel_path = os.path.relpath(root, SCENARIOS_DIR)
+                
+                # Имя файла без _ и .json
+                file_base = file[:-5]  # Например: '_fail2ban_enable' -> 'fail2ban_enable'
+                
+                # ДЕБАГ: выводим информацию
+                logging.debug(f"Обработка файла: {file}")
+                logging.debug(f"rel_path: {rel_path}")
+                logging.debug(f"file_base: {file_base}")
+
+                correct_name_endpoint = DICT_ENDPOINTS.get(f'{file_base}'.replace('_', '/'), file_base.replace('_', '/'))
+                
+                try:
+                    generate_test(endpoint_test=file_base)
+                    
+                    # Сообщение об успехе
+                    execution_message = f"{correct_name_endpoint.ljust(50, '.')}{OK_SIMBOL}"
+                    LOGS_EXECUTION_LIST.append(execution_message)
+                    print(execution_message)
+                    
+                except Exception as e:
+                    error_msg = handle_generation_error(correct_name_endpoint, e, file_base)
+                    LOGS_EXECUTION_LIST.append(error_msg)
+                    print(error_msg)
 
 def generate_test(endpoint_test):
-        scenario_parser = ScenarioParser(scenarios_dir=SCENARIOS_DIR, templates_dir=TEMPLATES_DIR, openapi_file=OPENAPI_PATH) # Создаем объект для парсинга сценариев 
-
-        # Загрузка сценария
-        scenario = scenario_parser.parse_scenario(scenario_name=endpoint_test) # Парсим сценарий
-
+    try:
+        scenario_parser = ScenarioParser(scenarios_dir=SCENARIOS_DIR, templates_dir=TEMPLATES_DIR, openapi_file=OPENAPI_PATH)
+        scenario = scenario_parser.parse_scenario(scenario_name=endpoint_test)
+        
         logging.debug("=" * 68)
         logging.debug("Сценарий успешно загружен!")
         logging.debug("=" * 68)
         logging.debug(json.dumps(scenario, indent=2))
         logging.debug("=" * 68)
 
+        # ВАЛИДАЦИЯ 1: Базовая структура сценария (без проверки существования ref)
+        is_valid, validation_errors = SchemaValidator.validate_scenario_complete(scenario)
+        if not is_valid:
+            error_msg = f"Ошибки валидации сценария '{endpoint_test}':\n" + "\n".join(validation_errors[:10])
+            logging.error(error_msg)
+            raise ValueError(f"Сценарий содержит ошибки: {len(validation_errors)} ошибок")
+        
         # Извлечение всех эндпоинтов которые присутствуют в сценарии
-        all_endpoints = scenario_parser.find_all_endpoints(scenario) # Извлекаем все ендпоинты из сценария
+        all_endpoints = scenario_parser.find_all_endpoints(resolved_scenario=scenario, dict_endpoints=DICT_ENDPOINTS)
         logging.debug("=" * 68)
-        logging.debug(f"Все ендпоинты, присутствующие в сценирии:")
+        logging.debug(f"Все endpoint'ы, присутствующие в сценарии:")
         logging.debug("=" * 68)
         [logging.debug(f'endpoint: {key}, method: {value}') for key, value in all_endpoints.items()]
         logging.debug("=" * 68)
 
-
-        # Словаь структуры {endpoint: scheme}
+        # Словарь структуры {endpoint: scheme}
         dict_endpoint_scheme = {}
 
-        # Массив со всеми паттернами ендпоинтов для теста. Пример {"endpoint": {patterns}}
+        # Массив со всеми паттернами endpoint'ов для теста. Пример {"endpoint": {patterns}}
         arguments_patterns = {}
 
-        # Проходимся по всем ендпоинтам, разрешшаем схему и собираем паттерны
+        # Проходимся по всем endpoint'ам, разрешаем схему и собираем паттерны
         for endpoint, method in all_endpoints.items():
-            # Разрешение схемы эндпоинта сценария
+            # Разрешение схемы endpoint'а сценария
             resolved_scheme = ResolveScheme.resolve_endpoint(openapi_file=OPENAPI_PATH, endpoint_path=endpoint, method=method)
             logging.debug("=" * 68)
             logging.debug(f"Разрешенная схема для {endpoint} {method}:")
@@ -138,18 +245,21 @@ def generate_test(endpoint_test):
             dict_endpoint_scheme[f"{endpoint}"] = resolved_scheme
             logging.debug("=" * 68)
 
-
-
             # Получение паттернов аргументов
             arguments_patterns[f"{endpoint}"] = ResolveScheme.find_all_patterns_min_max(schema=resolved_scheme)
 
-
-
         logging.debug("=" * 68)
-        logging.debug("Аргументы ендпоинта и его паттерны:")
+        logging.debug("Аргументы endpoint'а и его паттерны:")
         logging.debug("=" * 68)
         logging.debug(json.dumps(arguments_patterns, indent=2))
         logging.debug("=" * 68)
+
+        # ВАЛИДАЦИЯ 2: Совместимость с OpenAPI (проверяем POST методы без параметров)
+        is_openapi_valid, openapi_errors = SchemaValidator.validate_openapi_compatibility(scenario, arguments_patterns)
+        if not is_openapi_valid:
+            error_msg = f"Ошибки совместимости с OpenAPI '{endpoint_test}':\n" + "\n".join(openapi_errors[:10])
+            logging.error(error_msg)
+            raise ValueError(f"Сценарий не совместим с OpenAPI: {len(openapi_errors)} ошибок")
 
         # Генерация значений для аргументов
         ready_scenario = GenerateValues.read_scenario(resolved_scenario=scenario, arguments_patterns=arguments_patterns, seed=seed)
@@ -160,15 +270,21 @@ def generate_test(endpoint_test):
         logging.debug(json.dumps(ready_scenario, indent=2))
         logging.debug("=" * 68)
 
+        # ВАЛИДАЦИЯ 3: Проверяем, что все ref ссылки разрешились после генерации значений
+        is_resolved_valid, resolved_errors = SchemaValidator.validate_resolved_scenario(ready_scenario)
+        if not is_resolved_valid:
+            error_msg = f"Неразрешенные ссылки в сценарии '{endpoint_test}':\n" + "\n".join(resolved_errors[:10])
+            logging.error(error_msg)
+            raise ValueError(f"Неразрешенные ссылки: {len(resolved_errors)} ошибок")
+
         # ==Генерация тестов==
-        scenario_path = scenario_parser.find_scenario_by_name(scenarios_dir=SCENARIOS_DIR, target_name=endpoint_test) # Получаем путь к сценарию
+        scenario_path = scenario_parser.find_scenario_by_name(scenarios_dir=SCENARIOS_DIR, target_name=endpoint_test)
         logging.debug("=" * 68)
         logging.debug("=" * 68)
         logging.debug(f"Путь до сценария: {scenario_path}")
         logging.debug("=" * 68)
 
-
-        StructureGenerator.generate(base_dir=TESTS_DIR, openapi_path=OPENAPI_PATH) # Генерируем структуру тестов
+        StructureGenerator.generate(base_dir=TESTS_DIR, openapi_path=OPENAPI_PATH)
 
         logging.debug("=" * 68)
         logging.debug("Сгенерированный тест:")
@@ -176,8 +292,16 @@ def generate_test(endpoint_test):
         GenerateTests.generate_test(scenario=ready_scenario, 
                                     scenario_path=scenario_path,
                                     scenario_folder=SCENARIOS_DIR,
-                                    test_folder=TESTS_DIR) # Генерируем тесты
+                                    test_folder=TESTS_DIR)
         logging.debug("=" * 68)
+
+    except ValueError as e:
+        # Это ошибки валидации, пробрасываем их наверх
+        logging.error(f"Ошибка валидации для {endpoint_test}: {e}")
+        raise
+    except Exception as e:
+        logging.error(f"Критическая ошибка при генерации теста {endpoint_test}: {e}")
+        raise
 
 
 
@@ -247,7 +371,7 @@ if __name__ == "__main__":
         if flag == 'all': # Если запускаем все генераторы, то задаем имя лога равное "log_all"
             log_file_name = f"log_{flag}_{current_log_time.replace(' ', '__')}"
         if flag == 'dir': # Если запускаем директорию со сценариями, то задаем имя лога равное "log_dir"
-            log_file_name = f"log_{flag}{parser_args.dir[0].replace('/', '_')}_{current_log_time.replace(' ', '__')}"
+            log_file_name = f"log_{flag}_{parser_args.dir[0].replace('/', '_')}_{current_log_time.replace(' ', '__')}"
         if flag == 'endpoints': # Если запускаем сценарий, то задаем имя лога равное "log_endpoints"
             log_file_name = f"log_endpoints_{current_log_time.replace(' ', '__')}"
 
@@ -324,7 +448,7 @@ if __name__ == "__main__":
         print(e)
     finally:
         logging.debug("=" * 68)
-        logging.debug("Отчистка пустых папок")
+        logging.debug("Отчистка пустых папок:")
         logging.debug("=" * 68)
         StructureGenerator.cleanup_empty_test_dirs(TESTS_DIR) # Очищаем пустые папки
         

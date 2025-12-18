@@ -5,10 +5,10 @@
       "endpoint": "/interfaces/tunnel/add",
       "type": "POST",
       "errCode": 0,
-      "httpCode": 20,
+      "httpCode": 200,
       "schema": {
-        "ifname": "tunnel4",
-        "source": "vlan61"
+        "ifname": "tunnel7",
+        "source": "fm9tbRkRMgSnMu0"
       }
     },
     "1.2": {
@@ -17,7 +17,7 @@
       "errCode": 0,
       "httpCode": 200,
       "schema": {
-        "ifname": "tunnel18",
+        "ifname": "tunnel8",
         "action": "on"
       }
     },
@@ -27,11 +27,11 @@
       "errCode": 0,
       "httpCode": 200,
       "arguments": {
-        "ifname": "tunnel4"
+        "ifname": "tunnel7"
       },
       "validation": {
-        "ifname": "tunnel4",
-        "source": "vlan61",
+        "ifname": "tunnel7",
+        "source": "fm9tbRkRMgSnMu0",
         "multicast": "on"
       }
     }
@@ -44,8 +44,8 @@
       "errCode": 0,
       "httpCode": 200,
       "schema": {
-        "ifname": "tunnel0",
-        "source": "dyt_Fv20Txs9xftdI_uLBu-AReca4912"
+        "ifname": "tunnel793",
+        "source": "vlan4092"
       }
     },
     "2.2": {
@@ -54,7 +54,7 @@
       "errCode": 0,
       "httpCode": 200,
       "schema": {
-        "ifname": "tunnel0",
+        "ifname": "tunnel793",
         "action": "off"
       }
     },
@@ -64,11 +64,11 @@
       "errCode": 0,
       "httpCode": 200,
       "arguments": {
-        "ifname": "tunnel0"
+        "ifname": "tunnel793"
       },
       "validation": {
-        "ifname": "tunnel0",
-        "source": "dyt_Fv20Txs9xftdI_uLBu-AReca4912",
+        "ifname": "tunnel793",
+        "source": "vlan4092",
         "multicast": "off"
       }
     }
@@ -80,7 +80,7 @@
       "errCode": 0,
       "httpCode": 200,
       "schema": {
-        "ifname": "tunnel4"
+        "ifname": "tunnel7"
       }
     },
     "2": {
@@ -89,7 +89,7 @@
       "errCode": 0,
       "httpCode": 200,
       "schema": {
-        "ifname": "tunnel0"
+        "ifname": "tunnel793"
       }
     }
   }

@@ -224,7 +224,8 @@ class ResolveScheme:
             method = method.lower()
             if method not in ['get', 'post', 'put', 'patch', 'delete', 'head', 'options']:
                 logging.debug(f"Неподдерживаемый метод HTTP: {method}, используется 'post'")
-                method = 'post'
+                # method = 'post'
+                raise ValueError(f"Неподдерживаемый метод HTTP: {method}")
             
             # Проверяем существование файла
             import os

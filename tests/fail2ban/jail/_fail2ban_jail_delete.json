@@ -2,55 +2,55 @@
   "1": {
     "description": "Delete existing fail2ban service",
     "1.1": {
-      "type": "POST",
       "endpoint": "/fail2ban/jail/add",
-      "schema": {
-        "jail_name": "hmgG"
-      },
-      "errCode": 0,
-      "httpCode": 200
-    },
-    "1.2": {
-      "type": "GET",
-      "endpoint": "/fail2ban/jail/list",
-      "arguments": {},
+      "type": "POST",
       "errCode": 0,
       "httpCode": 200,
+      "schema": {
+        "jail_name": "1Fh_zm9tbRkRM"
+      }
+    },
+    "1.2": {
+      "endpoint": "/fail2ban/jail/list",
+      "type": "GET",
+      "errCode": 0,
+      "httpCode": 200,
+      "arguments": {},
       "validation": {
-        "jail_name": "hmgG"
+        "jail_name": "1Fh_zm9tbRkRM"
       }
     },
     "1.3": {
-      "type": "POST",
       "endpoint": "/fail2ban/jail/delete",
-      "schema": {
-        "jail_name": "hmgG"
-      },
+      "type": "POST",
       "errCode": 0,
-      "httpCode": 200
+      "httpCode": 200,
+      "schema": {
+        "jail_name": "1Fh_zm9tbRkRM"
+      }
     }
   },
   "2": {
     "description": "Delete non-existing fail2ban service",
     "2.1": {
-      "type": "POST",
       "endpoint": "/fail2ban/jail/delete",
-      "schema": {
-        "jail_name": "77"
-      },
+      "type": "POST",
       "errCode": -1,
-      "httpCode": 500
+      "httpCode": 500,
+      "schema": {
+        "jail_name": "SnMJq8Mt3"
+      }
     }
   },
   "AFTER-TEST": {
     "3": {
-      "type": "POST",
       "endpoint": "/fail2ban/jail/delete",
-      "schema": {
-        "jail_name": "hmgG"
-      },
+      "type": "POST",
       "errCode": 0,
-      "httpCode": 200
+      "httpCode": 200,
+      "schema": {
+        "jail_name": "1Fh_zm9tbRkRM"
+      }
     }
   }
 }

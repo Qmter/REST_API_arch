@@ -7,7 +7,7 @@
       "errCode": 0,
       "httpCode": 200,
       "schema": {
-        "ifname": "lo4"
+        "ifname": "lo7"
       }
     },
     "1.2": {
@@ -16,10 +16,10 @@
       "errCode": 0,
       "httpCode": 200,
       "arguments": {
-        "ifname": "lo4"
+        "ifname": "lo7"
       },
       "validation": {
-        "ifname": "lo4"
+        "ifname": "lo7"
       }
     },
     "1.3": {
@@ -28,7 +28,7 @@
       "errCode": 0,
       "httpCode": 200,
       "schema": {
-        "ifname": "lo4"
+        "ifname": "lo7"
       }
     }
   },
@@ -41,7 +41,7 @@
       "httpCode": 200,
       "schema": {
         "action": "add",
-        "vrf_name": "uZpRN9"
+        "vrf_name": "_zm9t"
       }
     },
     "2.2": {
@@ -51,7 +51,7 @@
       "httpCode": 200,
       "schema": {
         "ifname": "lo0",
-        "vrf_name": "uZpRN9"
+        "vrf_name": "_zm9t"
       }
     },
     "2.3": {
@@ -70,7 +70,7 @@
       "httpCode": 200,
       "schema": {
         "action": "delete",
-        "vrf_name": "uZpRN9"
+        "vrf_name": "_zm9t"
       }
     }
   },
@@ -81,7 +81,7 @@
       "errCode": 0,
       "httpCode": 200,
       "schema": {
-        "ifname": "lo4"
+        "ifname": "lo7"
       }
     },
     "2": {
@@ -100,7 +100,7 @@
       "httpCode": 200,
       "schema": {
         "action": "delete",
-        "vrf_name": "uZpRN9"
+        "vrf_name": "_zm9t"
       }
     }
   }

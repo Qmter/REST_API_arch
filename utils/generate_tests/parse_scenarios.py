@@ -1,7 +1,6 @@
 import os
 import json
 import logging
-
 class ScenarioParser:
     def __init__(self, scenarios_dir, templates_dir, openapi_file):
         """
@@ -224,7 +223,7 @@ class ScenarioParser:
             logging.debug(f"Ошибка при загрузке шаблона '{template_ref}': {e}")
             raise
 
-    def find_all_endpoints(self, resolved_scenario) -> dict:
+    def find_all_endpoints(self, resolved_scenario, dict_endpoints) -> dict:
         """Получение всех endpoint в сценарии"""
         try:
             def _find_endpoints_recursive(data):
@@ -232,7 +231,7 @@ class ScenarioParser:
                     if isinstance(data, dict):
                         for key, value in data.items():
                             try:
-                                if '/' in key:  # Если ключ содержит слэш, это endpoint
+                                if key in dict_endpoints.values():
                                     self.endpoints_in_scenario[key] = 'post'  # Сохраняем endpoint в словарь
                                 elif key == 'endpoint' and isinstance(value, str):
                                     # Получаем метод, если он есть
@@ -261,8 +260,27 @@ class ScenarioParser:
             # Запускаем рекурсивный поиск
             _find_endpoints_recursive(resolved_scenario)
             
+            # ВАЛИДАЦИЯ: проверяем, что все найденные endpoint'ы есть в словаре
+            validation_errors = []
+            for endpoint in self.endpoints_in_scenario.keys():
+                endpoint_found = False
+                # Ищем endpoint в dict_endpoints (как ключ или значение)
+                for dict_key, dict_value in dict_endpoints.items():
+                    if endpoint == dict_key or endpoint == dict_value:
+                        endpoint_found = True
+                        break
+                
+                if not endpoint_found:
+                    validation_errors.append(f"Endpoint '{endpoint}' не найден в словаре endpoints_dict")
+            
+            # Если есть ошибки валидации, выбрасываем исключение
+            if validation_errors:
+                error_msg = f"Ошибки валидации endpoints:\n" + "\n".join(validation_errors[:10])  # Показываем первые 10 ошибок
+                logging.error(error_msg)
+                raise ValueError(error_msg)
+            
             return self.endpoints_in_scenario  # Возвращаем все endpoint в сценарии
             
         except Exception as e:
             logging.debug(f"Ошибка при поиске endpoints: {e}")
-            return {}
+            raise  # Пробрасываем исключение наверх

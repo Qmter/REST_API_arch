@@ -3,11 +3,11 @@
     "1": {
       "endpoint": "/fail2ban/jail/add",
       "type": "POST",
-      "schema": {
-        "jail_name": "LI0u-hMPvW"
-      },
       "errCode": 0,
-      "httpCode": 200
+      "httpCode": 200,
+      "schema": {
+        "jail_name": "1Fh_zm9tbRkRM"
+      }
     }
   },
   "1": {
@@ -15,22 +15,34 @@
     "1.1": {
       "endpoint": "/fail2ban/jail/settings",
       "type": "POST",
-      "schema": {
-        "jail_name": "LI0u-hMPvW"
-      },
       "errCode": 0,
-      "httpCode": 200
+      "httpCode": 200,
+      "schema": {
+        "jail_name": "1Fh_zm9tbRkRM"
+      }
+    },
+    "1.2": {
+      "endpoint": "/fail2ban/jail/settings",
+      "type": "GET",
+      "errCode": 0,
+      "httpCode": 200,
+      "arguments": {
+        "jail_name": "1Fh_zm9tbRkRM"
+      },
+      "validation": {
+        "jail_name": "1Fh_zm9tbRkRM"
+      }
     }
   },
   "AFTER-TEST": {
     "1": {
       "endpoint": "/fail2ban/jail/delete",
       "type": "POST",
-      "schema": {
-        "jail_name": "LI0u-hMPvW"
-      },
       "errCode": 0,
-      "httpCode": 200
+      "httpCode": 200,
+      "schema": {
+        "jail_name": "1Fh_zm9tbRkRM"
+      }
     }
   }
 }
