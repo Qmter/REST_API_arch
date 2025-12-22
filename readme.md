@@ -98,11 +98,11 @@ pip install -r requirements.txt
 ```
 
 ### Базовая настройка
-Перед использованием проверьте файл конфигурации `config/read_confg.py`:
-- `SCENARIOS_DIR` - путь к директории сценариев
-- `TEMPLATES_DIR` - путь к шаблонам
-- `OPENAPI_PATH` - путь к OpenAPI спецификации
-- `TESTS_DIR` - директория для сгенерированных тестов
+Перед использованием проверьте файл конфигурации `config/config.ini`:
+- `scenarios_dir` -  папка сценариев
+- `templates_dir` - папка с шаблонами
+- `openapi_dir` - папка к OpenAPI спецификации
+- `tests_dir` - директория для сгенерированных тестов
 
 ### Примеры использования
 
@@ -228,7 +228,7 @@ python3 generate_test.py --help
 ### Основные параметры в `config/read_confg.py`:
 
 ```python
-# Пути к директориям
+# Пути/папки к директориям
 SCENARIOS_DIR = "scenarios"
 TEMPLATES_DIR = "templates"
 TESTS_DIR = "tests"
