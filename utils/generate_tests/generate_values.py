@@ -6,6 +6,15 @@ import json
 import datetime
 import logging
 
+from config.read_confg import (
+    NO_USE_SWITCHPORT,
+    NO_USE_VLAN,
+    NO_USE_ETH,
+    NO_USE_VLAN_ID
+)
+
+# Список интерфесов которые нельзя использовать
+NO_USE_LIST = [NO_USE_VLAN_ID, NO_USE_ETH, NO_USE_SWITCHPORT, NO_USE_VLAN]
 
 class GenerateValues:
     """Класс для генерации значений для аргументов сценария."""
@@ -113,12 +122,21 @@ class GenerateValues:
                         if "pattern" in keys_patterns_arguments:  # Проверяем, есть ли паттерны для этого аргумента
                             arg_patterns = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["pattern"]  # Получаем список паттернов для аргумента(может быть 1 или больше)
                             selected_pattern = random.choice(arg_patterns) if len(arg_patterns) > 1 else arg_patterns[0]  # Если есть несколько паттернов, выбираем случайный
-                            arg_value = rstr.xeger(selected_pattern)  # Генерируем значение по регулярному выражению
+                            while True:
+                                arg_value = rstr.xeger(selected_pattern)  # Генерируем значение по регулярному выражению
+                                if arg_value in NO_USE_LIST:
+                                    arg_value = rstr.xeger(selected_pattern)
+                                else:
+                                    break
 
                         elif "minimum" in keys_patterns_arguments and "maximum" in keys_patterns_arguments:  # Если есть минимальное и максимальное значение, генерируем случайное значение в этом диапазоне
                             arg_min = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["minimum"]  # Получаем минимальное значение
                             arg_max = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["maximum"]  # Получаем максимальное значение
-                            arg_value = random.randint(arg_min, arg_max)  # Генерируем случайное значение в этом диапазоне
+                            while True:
+                                if arg_value in NO_USE_LIST:
+                                    arg_value = random.randint(arg_min, arg_max)  # Генерируем случайное значение в этом диапазоне
+                                else:
+                                    break
 
                         else:
                             arg_value = None  # Если нет конфигурации, оставляем как есть

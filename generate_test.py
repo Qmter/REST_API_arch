@@ -1,49 +1,71 @@
-import argparse
-import json
-import configparser
-import os
-from datetime import datetime
-import sys
-import ast   # Для безопасного преобразования строки в словарь
-import subprocess
-from pathlib import Path
+import argparse # Импортируем модуль для обработки аргументов командной строки
+import json # Импортируем модуль для работы с JSON 
+import os # Импортируем модуль для работы с файлами
+from datetime import datetime # Импортируем модуль для работы с датой и временем
+import sys # Импортируем модуль для работы с аргументами командной строки
 
-
-
-from utils.log import logging, initialize_log
+from config.read_confg import ( # Импортируем конфигурацию
+    TESTS_DIR, # Путь к директории с тестами
+    SCENARIOS_DIR, # Путь к директории с сценариями
+    TEMPLATES_DIR, # Путь к директории с шаблонами 
+    OPENAPI_PATH, # Путь к файлу OpenAPI 
+    DICT_ENDPOINTS, # Словарь с endpoint'ами
+    config, # Конфигурация 
+    root_to_conf_con # Путь до файла конфигурации
+    )  
+ 
+from utils.log import logging, initialize_log, log_start_program # Импортируем класс для логирования
 from utils.generate_tests.parse_scenarios import ScenarioParser # Импортируем класс для парсинга сценариев
 from utils.generate_tests.resolve_scheme import ResolveScheme # Импортируем класс для разрешения схемы
 from utils.generate_tests.generate_values import GenerateValues # Импортируем класс для генерации значений для аргументов сценария
 from utils.generate_tests.make_test import GenerateTests # Импортируем класс для генерации тестов
 from utils.generate_tests.generate_structure import StructureGenerator # Импортируем класс для генерации структуры тестов
-from utils.check_auth_method import CheckAuthMethod
-from utils.http_methods import Http_methods
-from utils.generate_tests.validate_schema import SchemaValidator
+from utils.check_auth_method import CheckAuthMethod # Импортируем класс для проверки метода авторизации
+from utils.http_methods import Http_methods # Импортируем класс методов HTTP
+from utils.generate_tests.validate_schema import SchemaValidator # Импортируем класс для валидации схемы
 
+HELP_TEXT = '''Показать это сообщение и выйти.
 
-config = configparser.ConfigParser() # Создаем объект для чтения конфигурационного файла
-root_to_conf_con = os.path.join(os.path.join(os.getcwd(), "config"), "config.ini") # Путь к конфигурационному файлу
-config.read(root_to_conf_con) # Читаем конфигурационный файл
+СИНТАКСИС:
+  python generate_tests.py [ОПЦИИ]
 
-# PATHS
-TESTS_DIR= config["PATHS"]["tests_dir"] # Путь к папке с шаблонами
-SCENARIOS_DIR = config["PATHS"]["scenarios_dir"] # Путь к папке с сценариями
-TEMPLATES_DIR= config["PATHS"]["templates_dir"] # Путь к папке с шаблонами
-OPENAPI_PATH = os.path.join(config["PATHS"]["openapi_dir"], "openapi.json") # Путь к файлу с описанием API
+ОСНОВНЫЕ ОПЦИИ:
+  --verbose, -v          Включить подробный вывод (debug режим)
+  --seed, -s SEED        Установить seed для генератора случайных чисел
+  --logname, -ln LOG NAME    Указать имя файла лога
+  --route, -r DIR        Указать целевую директорию для тестов
 
-# AUTH
-URL = config["AUTH"]["url"] # URL для авторизации
-USERNAME = config["AUTH"]["username"] # Имя пользователя для авторизации
-PASSWORD = config["AUTH"]["password"] # Пароль для авторизации
-if config["AUTH"]["token"] == '':
-    TOKEN = ''
-else:
-    TOKEN = {"Authorization": config["AUTH"]["token"]} # Токен для авторизации
+РЕЖИМЫ ГЕНЕРАЦИИ (взаимоисключающие):
+  --endpoints, -e [ENDPOINTS...]
+                        Сгенерировать тесты для указанных endpoint'ов
+  --dir, -d DIR         Сгенерировать тесты для всех сценариев в указанной директории
+  (без аргументов)      Сгенерировать тесты для всех сценариев
 
-# LOGGIND
-LOG_LVL = config["LOGGING"]["log_level"]
+ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ:
+  1. Генерация всех тестов:
+     python generate_tests.py
+  
+  2. Генерация с подробным выводом и seed:
+     python generate_tests.py -v -s 12345
+  
+  3. Генерация конкретных endpoint'ов:
+     python generate_tests.py -e users_get users_post
+  
+  4. Генерация всех сценариев в директории:
+     python generate_tests.py -d api/v1
+  
+  5. Указание своей директории для тестов:
+     python generate_tests.py --route my_tests
+  
+  6. Создание лога с определенным именем:
+     python generate_tests.py -ln my_test_run
 
-DICT_ENDPOINTS = ast.literal_eval(config['ENDPOINTS']['endpoints_dict'])
+КОНФИГУРАЦИЯ:
+  Конфигурационный файл: config/read_confg.py
+  Директория сценариев:  {SCENARIOS_DIR}
+  Директория тестов:     {TESTS_DIR}
+  OpenAPI файл:          {OPENAPI_PATH}
+'''
 
 
 # ASCII-символы для консольных сообщений
@@ -308,29 +330,47 @@ def generate_test(endpoint_test):
 
 
 if __name__ == "__main__": 
-    parser = argparse.ArgumentParser() # Создаем парсер аргументов командной строки
-    exclusive_group = parser.add_mutually_exclusive_group() # Создаем группу аргументов, которые должны быть выбраны одновременно
+    parser = argparse.ArgumentParser(
+        description='Генератор тестов на основе OpenAPI спецификации и сценариев',
+        formatter_class=argparse.RawTextHelpFormatter,
+        add_help=False
+    )
+
+    parser.add_argument(
+        '--help', '-h',
+        action='help',
+        default=argparse.SUPPRESS,
+        help=HELP_TEXT.format(
+            SCENARIOS_DIR=SCENARIOS_DIR,
+            TESTS_DIR=TESTS_DIR,
+            OPENAPI_PATH=OPENAPI_PATH
+        )
+    )
 
     # Объявление допустимого аргумента [--verbose, -v]
     parser.add_argument('--verbose', '-v', action='store_true')
 
-    # Объявление допустимого аргумента [--dir, -d]
-    parser.add_argument("--dir", "-d", nargs="+", required=False, action=SingleValueAction)
-
     # Объявление допустимого аргумента [--seed, -s]
     parser.add_argument('--seed', '-s', required=False)
 
-    # Объявление допустимого аргумента [--endpoints, -e]
-    parser.add_argument('--endpoints', '-e', nargs="*", required=False)
+    # Объявление допустимого аргумента [--logname, -ln]
+    parser.add_argument('--logname', '-ln', required=False,
+                       help='Указать имя файла лога')
 
     # Объявление допустимого аргумента [--route, -r]
     parser.add_argument('--route', '-r', required=False)
 
-    # Объявление допустимого аргумента [--logname, -ln]
-    parser.add_argument('--logname', '-ln', required=False)
+    # Создаем группу аргументов, которые должны быть выбраны одновременно
+    exclusive_group = parser.add_mutually_exclusive_group()
+
+    # Добавляем аргументы в взаимно исключающую группу
+    exclusive_group.add_argument("--dir", "-d", nargs="+", required=False, 
+                                action=SingleValueAction)
+    
+    exclusive_group.add_argument('--endpoints', '-e', nargs="*", required=False)
 
     # Парсим аргументы командной строки
-    parser_args = parser.parse_args()  
+    parser_args = parser.parse_args()
 
     # Объявление переменной verbose по входному аргументу --verbose
     if parser_args.verbose:
@@ -353,6 +393,9 @@ if __name__ == "__main__":
     if parser_args.endpoints is not None:
         if len(parser_args.endpoints) > 0:
             flag = "endpoints"
+        else:
+            print("Не указаны endpoint\'ы для генерации тестов")
+            sys.exit()
 
     # Преобразуем seed в str, если передан
     seed = str(parser_args.seed) if parser_args.seed is not None else 0
@@ -398,36 +441,26 @@ if __name__ == "__main__":
         # Инициализация логирования и места записи логов
         initialize_log(verbose=verbose_arg, file_root=log_file_name)
 
-        # Запись в лог текущих времени и даты
-        logging.info(msg=f"{current_log_time}")
-
-        # Логирование командной строки
-        logging.info("Launch Command: " + " ".join(sys.argv))
-
-        # Логирование флага
-        logging.info(f"Flag: {flag}")
-
-        # Если seed не None, то логируем его
-        if seed != 0:
-            logging.info(f"Using seed: {seed}")
-        else:
-            logging.info(f"The default seed is used: {seed}")
+        # Логгируем заголовок файла-лога
+        log_start_program(seed=seed,
+                          flag=flag,
+                          launch_command=" ".join(sys.argv),
+                          current_log_time=current_log_time)
 
         # Проверяем, есть ли сохраненный метод аутентификации
-        saved_method = CheckAuthMethod.get_saved_auth_method(config=config)
+        saved_method = CheckAuthMethod.get_saved_auth_method()
         if saved_method: # Если есть сохраненный метод аутентификации, то используем его
             AUTH_METHOD =  saved_method 
         else:
             # Определяем метод аутентификации (basic или token)
-            AUTH_METHOD = CheckAuthMethod.check_auth_method(url=URL, username=USERNAME, password=PASSWORD, token=TOKEN)
+            AUTH_METHOD = CheckAuthMethod.check_auth_method()
 
             # Сохраняем метод аутентификации в конфиге
-            CheckAuthMethod.save_auth_method(method=AUTH_METHOD, path_config=root_to_conf_con, config=config)
+            CheckAuthMethod.save_auth_method(method=AUTH_METHOD)
         
         # Вызываем get_show_platform для запроса к /system/platform
-        Http_methods.get_show_platform(auth_method=AUTH_METHOD, url=URL, username=USERNAME, password=PASSWORD, token=TOKEN)
+        Http_methods.get_show_platform()
 
-        logging.debug("=" * 68)
 
         # Выполнение сценария запуска всех генераторов
         if flag == "all":
@@ -451,12 +484,14 @@ if __name__ == "__main__":
         logging.debug("Отчистка пустых папок:")
         logging.debug("=" * 68)
         StructureGenerator.cleanup_empty_test_dirs(TESTS_DIR) # Очищаем пустые папки
+        logging.debug("=" * 68)
+        logging.debug('\n')
         
-    
-    # Логируем суммарный отчет исполнения генераторов
-    logging.info("=" * 68)
-    logging.info("RESULT:")
-    logging.info("=" * 68)
-    for i in LOGS_EXECUTION_LIST:
-        logging.info(i)
-    logging.info("=" * 68)
+        # Логируем суммарный отчет исполнения генераторов
+        if len(LOGS_EXECUTION_LIST) > 0:
+            logging.info("=" * 68)
+            logging.info("RESULT:")
+            logging.info("=" * 68)
+            for log in LOGS_EXECUTION_LIST:
+                logging.info(log)
+            logging.info("=" * 68)

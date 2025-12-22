@@ -2,18 +2,19 @@ import logging
 import requests
 import sys
 import urllib3
+from config.read_confg import (
+    URL,
+    USERNAME,
+    PASSWORD,
+    TOKEN,
+    config,
+    root_to_conf_con)
 
 # Отключение предупреждений отсутствия сертификата для запроса
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 class CheckAuthMethod:
-
-    # Переменные аутентификации
-    URL = ''
-    USERNAME = ''
-    PASSWORD = ''
-    TOKEN = ''
-    CONFIG = ''
+    """Класс для проверки способа аутентификации"""
 
     @staticmethod
     def try_token():
@@ -32,8 +33,8 @@ class CheckAuthMethod:
         try:
             
             response = requests.get(
-                url=CheckAuthMethod.URL + '/system/platform',
-                headers=CheckAuthMethod.TOKEN,
+                url=URL + '/system/platform',
+                headers=TOKEN,
                 verify=False,
                 timeout=10
             )
@@ -46,8 +47,8 @@ class CheckAuthMethod:
                 return False
             
         except requests.exceptions.ConnectionError:
-            logging.info(f"Connection error: URL 'u{CheckAuthMethod.URL}' unavailable or incorrect.")
-            print(f"Connection error: URL '{CheckAuthMethod.TOKEN}' unavailable or incorrect.")
+            logging.info(f"Connection error: URL 'u{URL}' unavailable or incorrect.")
+            print(f"Connection error: URL '{TOKEN}' unavailable or incorrect.")
             logging.info('=' * 68)        
             sys.exit()
         finally:
@@ -71,8 +72,8 @@ class CheckAuthMethod:
         
         try:
             response = requests.get(
-                url=CheckAuthMethod.URL + '/system/platform',
-                auth=(CheckAuthMethod.USERNAME, CheckAuthMethod.PASSWORD),
+                url=URL + '/system/platform',
+                auth=(USERNAME, PASSWORD),
                 verify=False,
                 timeout=10
             )
@@ -84,8 +85,8 @@ class CheckAuthMethod:
                 logging.info("Basic Auth authentication error")
                 return False
         except requests.exceptions.ConnectionError:
-            logging.info(f"Connection error: URL '{CheckAuthMethod.URL}' unavailable or incorrect.")
-            print(f"Connection error: URL '{CheckAuthMethod.URL}' unavailable or incorrect.")
+            logging.info(f"Connection error: URL '{URL}' unavailable or incorrect.")
+            print(f"Connection error: URL '{URL}' unavailable or incorrect.")
             logging.info('=' * 68)
             sys.exit()        
         finally:
@@ -95,18 +96,18 @@ class CheckAuthMethod:
 
     
     @staticmethod
-    def save_auth_method(method, path_config, config):
+    def save_auth_method(method):
         """Сохраняем метод аутентификации в config файл"""
         try:
             config['AUTH']['auth_method'] = method
-            with open(path_config, 'w') as configfile:
+            with open(root_to_conf_con, 'w') as configfile:
                 config.write(configfile)
         except Exception as e:
             print(f"Error saving the authentication method:{e}")
     
 
     @staticmethod
-    def get_saved_auth_method(config):
+    def get_saved_auth_method():
         """Получаем сохраненный метод аутентификации из config файла"""
         try:
             return config['AUTH'].get('auth_method', None)
@@ -115,7 +116,7 @@ class CheckAuthMethod:
     
 
     @staticmethod
-    def reset_auth_method(config, path_config):
+    def reset_auth_method():
         """Сброс сохраненного метода аутентификации"""
         try:
             # Удаляем оба параметра, если они существуют
@@ -123,7 +124,7 @@ class CheckAuthMethod:
                 del config['AUTH']['auth_method']
 
                 
-            with open(path_config, 'w') as configfile:
+            with open(root_to_conf_con, 'w') as configfile:
                 config.write(configfile)
 
         except Exception as e:
@@ -132,29 +133,25 @@ class CheckAuthMethod:
 
     # Проверка способа аутентификации по конфигурационному файлу(basic/bearer token)
     @staticmethod
-    def check_auth_method(url, username, password, token) -> str:
+    def check_auth_method() -> str:
 
-        CheckAuthMethod.URL = url
-        CheckAuthMethod.USERNAME = username
-        CheckAuthMethod.PASSWORD = password
-        CheckAuthMethod.TOKEN = token
         
         # Если нет url, то пишем ошибку в лог       
-        if not CheckAuthMethod.URL:
+        if not URL:
             logging.info('Error: The authorization URL is missing in configs_auth.ini')
             print('Error: The authorization URL is missing in configs_auth.ini')
 
             sys.exit()
 
         # Если сохраненного метода нет, определяем его
-        if CheckAuthMethod.TOKEN:
+        if TOKEN:
 
             if CheckAuthMethod.try_token():
                 logging.info("Successful Bearer Token Authentication")
                 logging.info('=' * 68)
                 return 'token'
             
-            elif CheckAuthMethod.USERNAME and CheckAuthMethod.PASSWORD and CheckAuthMethod.try_basic():
+            elif USERNAME and PASSWORD and CheckAuthMethod.try_basic():
                 logging.info("Successful Basic Auth authentication")
                 logging.info('=' * 68)
                 return 'basic'
@@ -163,21 +160,21 @@ class CheckAuthMethod:
                 logging.info('=' * 68)
                 logging.info("Authentication error!")
                 print("Authentication error!")
-                logging.info(f"url: {'Installed' if CheckAuthMethod.URL else 'Absent'}")
-                logging.info(f"token: {'Installed' if CheckAuthMethod.TOKEN else 'Absent'}")
-                logging.info(f"username: {'Installed' if CheckAuthMethod.USERNAME else 'Absent'}")
-                logging.info(f"password: {'Installed' if CheckAuthMethod.PASSWORD else 'Absent'}")
+                logging.info(f"url: {'Installed' if URL else 'Absent'}")
+                logging.info(f"token: {'Installed' if TOKEN else 'Absent'}")
+                logging.info(f"username: {'Installed' if USERNAME else 'Absent'}")
+                logging.info(f"password: {'Installed' if PASSWORD else 'Absent'}")
                 logging.info('=' * 68)
                 sys.exit()
 
-        elif CheckAuthMethod.USERNAME and CheckAuthMethod.PASSWORD:
+        elif USERNAME and PASSWORD:
 
             if CheckAuthMethod.try_basic():
                 logging.info("Successful Basic Auth authentication")
                 logging.info('=' * 68)
                 return 'basic'
             
-            elif CheckAuthMethod.TOKEN and CheckAuthMethod.try_token():
+            elif TOKEN and CheckAuthMethod.try_token():
                 logging.info("Successful Bearer Token authentication")
                 logging.info('=' * 68)
                 return 'token'
@@ -186,10 +183,10 @@ class CheckAuthMethod:
                 logging.info('=' * 68)
                 logging.info("Authentication error!")
                 print("Authentication error!")
-                logging.info(f"url: {'Installed' if CheckAuthMethod.URL else 'Absent'}")
-                logging.info(f"token: {'Installed' if CheckAuthMethod.TOKEN else 'Absent'}")
-                logging.info(f"username: {'Installed' if CheckAuthMethod.USERNAME else 'Absent'}")
-                logging.info(f"password: {'Installed' if CheckAuthMethod.PASSWORD else 'Absent'}")
+                logging.info(f"url: {'Installed' if URL else 'Absent'}")
+                logging.info(f"token: {'Installed' if TOKEN else 'Absent'}")
+                logging.info(f"username: {'Installed' if USERNAME else 'Absent'}")
+                logging.info(f"password: {'Installed' if PASSWORD else 'Absent'}")
                 logging.info('=' * 68)
                 sys.exit()
 
