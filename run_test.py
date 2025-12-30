@@ -7,7 +7,7 @@ import json
 from utils.log import logging, initialize_log, log_start_program
 from utils.http_methods import Http_methods
 from utils.generate_utils.generate_structure import StructureGenerator
-from utils.run_utils.running_test import RunningTest
+from utils.running_test import RunningTest
 
 from config.read_confg import (
     TESTS_DIR,
@@ -273,6 +273,12 @@ if __name__ == '__main__':
     log_start_program(flag=flag,
                       launch_command=" ".join(sys.argv),
                       current_log_time=current_log_time)
+    
+    if URL == '':
+        print("Error: URL is empty")
+        logging.info("Error: URL is empty")
+        sys.exit()
+
     
     # Вызываем get_show_platform для запроса к /system/platform
     Http_methods.get_show_platform()
