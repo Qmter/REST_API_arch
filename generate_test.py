@@ -3,6 +3,7 @@ import json # Импортируем модуль для работы с JSON
 import os # Импортируем модуль для работы с файлами
 from datetime import datetime # Импортируем модуль для работы с датой и временем
 import sys # Импортируем модуль для работы с аргументами командной строки
+from pydantic import ValidationError
 
 from config.read_confg import ( # Импортируем конфигурацию
     TESTS_DIR, # Путь к директории с тестами
@@ -15,14 +16,14 @@ from config.read_confg import ( # Импортируем конфигураци�
     )  
  
 from utils.log import logging, initialize_log, log_start_program # Импортируем класс для логирования
-from utils.generate_tests.parse_scenarios import ScenarioParser # Импортируем класс для парсинга сценариев
-from utils.generate_tests.resolve_scheme import ResolveScheme # Импортируем класс для разрешения схемы
-from utils.generate_tests.generate_values import GenerateValues # Импортируем класс для генерации значений для аргументов сценария
-from utils.generate_tests.make_test import GenerateTests # Импортируем класс для генерации тестов
-from utils.generate_tests.generate_structure import StructureGenerator # Импортируем класс для генерации структуры тестов
+from utils.generate_utils.parse_scenarios import ScenarioParser # Импортируем класс для парсинга сценариев
+from utils.generate_utils.resolve_scheme import ResolveScheme # Импортируем класс для разрешения схемы
+from utils.generate_utils.generate_values import GenerateValues # Импортируем класс для генерации значений для аргументов сценария
+from utils.generate_utils.make_test import GenerateTests # Импортируем класс для генерации тестов
+from utils.generate_utils.generate_structure import StructureGenerator # Импортируем класс для генерации структуры тестов
 from utils.check_auth_method import CheckAuthMethod # Импортируем класс для проверки метода авторизации
 from utils.http_methods import Http_methods # Импортируем класс методов HTTP
-from utils.generate_tests.validate_schema import SchemaValidator # Импортируем класс для валидации схемы
+from utils.validation.scenario_models import Scenario
 
 HELP_TEXT = '''Показать это сообщение и выйти.
 
@@ -166,9 +167,12 @@ def gen_dir_endpoints():
                 file_base = file[:-5]  # Например: '_fail2ban_enable' -> 'fail2ban_enable'
                 
                 # ДЕБАГ: выводим информацию
+                logging.debug("=" * 68)
                 logging.debug(f"Обработка файла: {file}")
                 logging.debug(f"rel_path: {rel_path}")
                 logging.debug(f"file_base: {file_base}")
+                logging.debug("=" * 68)
+
 
                 correct_name_endpoint = DICT_ENDPOINTS.get(f'{file_base}'.replace('_', '/'), file_base.replace('_', '/'))
                 
@@ -205,9 +209,12 @@ def gen_all_endpoints():
                 file_base = file[:-5]  # Например: '_fail2ban_enable' -> 'fail2ban_enable'
                 
                 # ДЕБАГ: выводим информацию
+                logging.debug("=" * 68)
                 logging.debug(f"Обработка файла: {file}")
                 logging.debug(f"rel_path: {rel_path}")
                 logging.debug(f"file_base: {file_base}")
+                logging.debug("=" * 68)
+
 
                 correct_name_endpoint = DICT_ENDPOINTS.get(f'{file_base}'.replace('_', '/'), file_base.replace('_', '/'))
                 
@@ -229,18 +236,24 @@ def generate_test(endpoint_test):
         scenario_parser = ScenarioParser(scenarios_dir=SCENARIOS_DIR, templates_dir=TEMPLATES_DIR, openapi_file=OPENAPI_PATH)
         scenario = scenario_parser.parse_scenario(scenario_name=endpoint_test)
         
+        try:
+            scenario_model = Scenario.model_validate(scenario)
+        except ValidationError as e:
+            for err in e.errors():
+                logging.debug("=" * 68)
+                logging.debug(
+                    "Validation error at %s: %s",
+                    ".".join(map(str, err["loc"])),
+                    err["msg"])
+                logging.debug("=" * 68)
+                raise
+        
         logging.debug("=" * 68)
         logging.debug("Сценарий успешно загружен!")
         logging.debug("=" * 68)
         logging.debug(json.dumps(scenario, indent=2))
         logging.debug("=" * 68)
 
-        # ВАЛИДАЦИЯ 1: Базовая структура сценария (без проверки существования ref)
-        is_valid, validation_errors = SchemaValidator.validate_scenario_complete(scenario)
-        if not is_valid:
-            error_msg = f"Ошибки валидации сценария '{endpoint_test}':\n" + "\n".join(validation_errors[:10])
-            logging.error(error_msg)
-            raise ValueError(f"Сценарий содержит ошибки: {len(validation_errors)} ошибок")
         
         # Извлечение всех эндпоинтов которые присутствуют в сценарии
         all_endpoints = scenario_parser.find_all_endpoints(resolved_scenario=scenario, dict_endpoints=DICT_ENDPOINTS)
@@ -276,13 +289,6 @@ def generate_test(endpoint_test):
         logging.debug(json.dumps(arguments_patterns, indent=2))
         logging.debug("=" * 68)
 
-        # ВАЛИДАЦИЯ 2: Совместимость с OpenAPI (проверяем POST методы без параметров)
-        is_openapi_valid, openapi_errors = SchemaValidator.validate_openapi_compatibility(scenario, arguments_patterns)
-        if not is_openapi_valid:
-            error_msg = f"Ошибки совместимости с OpenAPI '{endpoint_test}':\n" + "\n".join(openapi_errors[:10])
-            logging.error(error_msg)
-            raise ValueError(f"Сценарий не совместим с OpenAPI: {len(openapi_errors)} ошибок")
-
         # Генерация значений для аргументов
         ready_scenario = GenerateValues.read_scenario(resolved_scenario=scenario, arguments_patterns=arguments_patterns, seed=seed)
         
@@ -291,13 +297,6 @@ def generate_test(endpoint_test):
         logging.debug("=" * 68)
         logging.debug(json.dumps(ready_scenario, indent=2))
         logging.debug("=" * 68)
-
-        # ВАЛИДАЦИЯ 3: Проверяем, что все ref ссылки разрешились после генерации значений
-        is_resolved_valid, resolved_errors = SchemaValidator.validate_resolved_scenario(ready_scenario)
-        if not is_resolved_valid:
-            error_msg = f"Неразрешенные ссылки в сценарии '{endpoint_test}':\n" + "\n".join(resolved_errors[:10])
-            logging.error(error_msg)
-            raise ValueError(f"Неразрешенные ссылки: {len(resolved_errors)} ошибок")
 
         # ==Генерация тестов==
         scenario_path = scenario_parser.find_scenario_by_name(scenarios_dir=SCENARIOS_DIR, target_name=endpoint_test)
@@ -354,8 +353,7 @@ if __name__ == "__main__":
     parser.add_argument('--seed', '-s', required=False)
 
     # Объявление допустимого аргумента [--logname, -ln]
-    parser.add_argument('--logname', '-ln', required=False,
-                       help='Указать имя файла лога')
+    parser.add_argument('--logname', '-ln', required=False)
 
     # Объявление допустимого аргумента [--route, -r]
     parser.add_argument('--route', '-r', required=False)
@@ -426,17 +424,11 @@ if __name__ == "__main__":
                 sys.exit()
             
             TESTS_DIR = parser_args.route
-            config["PATHS"]["tests_dir"] = parser_args.route # Записываем путь к целевой папке в конфиге
-            # Перезаписываем конфигурационный файл
-            with open(root_to_conf_con, 'w') as conf_file:
-                config.write(conf_file)
+            StructureGenerator.change_test_folder(TESTS_DIR)
         else:
             TESTS_DIR = 'tests'
             # Дефолтная директория
-            config["PATHS"]["tests_dir"] = 'tests' # Записываем путь к целевой папке в конфиге
-            # Перезаписываем конфигурационный файл
-            with open(root_to_conf_con, 'w') as conf_file:
-                config.write(conf_file)
+            StructureGenerator.change_test_folder()
 
         # Инициализация логирования и места записи логов
         initialize_log(verbose=verbose_arg, file_root=log_file_name)
@@ -490,7 +482,7 @@ if __name__ == "__main__":
         # Логируем суммарный отчет исполнения генераторов
         if len(LOGS_EXECUTION_LIST) > 0:
             logging.info("=" * 68)
-            logging.info("RESULT:")
+            logging.info("Result:")
             logging.info("=" * 68)
             for log in LOGS_EXECUTION_LIST:
                 logging.info(log)

@@ -5,6 +5,7 @@ import os
 from collections import defaultdict
 import logging
 
+from config.read_confg import config, root_to_conf_con
 
 class StructureGenerator:
     """
@@ -14,6 +15,24 @@ class StructureGenerator:
     
     DEFAULT_FOLDER = 'tests'
     
+    @classmethod
+    def change_test_folder(cls, test_folder: str = None):
+        try:
+            if test_folder is None:
+                config["PATHS"]["tests_dir"] = cls.DEFAULT_FOLDER # Записываем путь к целевой папке в конфиге
+
+            else:
+                config["PATHS"]["tests_dir"] = test_folder # Записываем путь к целевой папке в конфиге
+            
+            # Перезаписываем конфигурационный файл
+            with open(root_to_conf_con, 'w') as conf_file:
+                config.write(conf_file)
+        except Exception as e:
+            print(f"Ошибка при изменении пути к папке с тестами: {e}")
+            logging.debug(f"Ошибка при изменении пути к папке с тестами: {e}")
+            raise e
+
+
     @staticmethod
     def cleanup_empty_test_dirs(tests_path):
         """
@@ -59,6 +78,7 @@ class StructureGenerator:
                     
         except Exception as e:
             logging.debug(f"Критическая ошибка при очистке пустых директорий: {e}")
+    
 
     @classmethod
     def _get_prefix_counts(cls, endpoints):

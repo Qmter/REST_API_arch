@@ -22,7 +22,8 @@ def initialize_log(verbose, file_root):
         level=log_lvl,
         filename=os.path.join(os.getcwd(), "logs", f"{file_root}.log"),
         filemode='a',
-        format='%(message)s'
+        format='%(message)s',
+        encoding="utf-8"
     )
 
 def log_start_program(seed = None,

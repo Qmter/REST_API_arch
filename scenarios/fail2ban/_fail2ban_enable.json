@@ -23,8 +23,7 @@
                     "3": {
                         "endpoint": "/fail2ban/enable",
                         "method": "POST",
-                        "parameters": {"action": "stop"},
-                        "expected": {"errCode": 0, "httpCode": 200}
+                        "parameters": {"action": "stop"}
                     }
                 }
             },

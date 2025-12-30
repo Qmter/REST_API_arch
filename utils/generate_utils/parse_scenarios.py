@@ -1,6 +1,8 @@
 import os
 import json
 import logging
+
+
 class ScenarioParser:
     def __init__(self, scenarios_dir, templates_dir, openapi_file):
         """

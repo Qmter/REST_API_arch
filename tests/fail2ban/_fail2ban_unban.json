@@ -1,8 +1,11 @@
 {
   "1": {
+    "description": "Unban a random IP address",
     "1.1": {
       "endpoint": "/fail2ban/unban",
       "type": "POST",
+      "errCode": 0,
+      "httpCode": 200,
       "schema": {
         "ip_address": "14.7.57.193"
       }

@@ -2,11 +2,13 @@
     "/fail2ban/unban": {
         "TESTS": {
             "1": {
+                "description": "Unban a random IP address",
                 "steps": {
                     "1": {
                         "endpoint": "/fail2ban/unban",
                         "method": "POST",
-                        "parameters": {"ip_address": "random"}
+                        "parameters": {"ip_address": "random"},
+                        "expected": {"errCode": 0, "httpCode": 200}
                     }
                 } 
             }

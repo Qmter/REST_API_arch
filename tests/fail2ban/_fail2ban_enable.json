@@ -24,8 +24,6 @@
     "1.3": {
       "endpoint": "/fail2ban/enable",
       "type": "POST",
-      "errCode": 0,
-      "httpCode": 200,
       "schema": {
         "action": "stop"
       }

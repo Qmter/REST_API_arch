@@ -1,11 +1,13 @@
-import json
 import sys  # Импортируем библиотеку для работы с аргументами командной строки
 import os  # Импортируем библиотеку для работы с файловой системой
 import argparse  # Вытягивает аргументы из командной строки
-import configparser  # Для работы с конфигурационным файлом
-import logging  # Запись логов
 from datetime import datetime
-from pathlib import Path
+import json 
+
+from utils.log import logging, initialize_log, log_start_program
+from utils.http_methods import Http_methods
+from utils.generate_utils.generate_structure import StructureGenerator
+from utils.run_utils.running_test import RunningTest
 
 from config.read_confg import (
     TESTS_DIR,
@@ -19,6 +21,130 @@ from config.read_confg import (
     DICT_ENDPOINTS,
     config,
     root_to_conf_con)
+
+def run_single_test(test_path: str, endpoint_name: str, index_tests: int = None) -> str:
+    with open(test_path) as f:
+        data = json.load(f)
+
+    logging.debug("=" * 57)
+    logging.info(f"Starting the test: {endpoint_name}")
+    logging.debug("=" * 57)
+
+    if index_tests is None:
+        failed_indexes, test_status = RunningTest.read_test(data)
+    else:
+        failed_indexes, test_status = RunningTest.read_test(data, test_index=index_tests)
+
+    result_line = (
+        f"{endpoint_name.ljust(50, '.')} | {test_status} | "
+        + ", ".join(map(str, failed_indexes))
+    )
+
+    print(result_line)
+    return result_line
+
+def run_tests_endpoints():
+    """
+    Запуск тестов для указанных endpoint'ов (-e).
+    """
+    results = []
+
+    # Копия аргументов (НЕ мутируем parser_args)
+    requested_endpoints = set(parser_args.endpoints)
+    found_endpoints = set()
+
+    for root, _, files in os.walk(TESTS_DIR):
+        files.sort()
+
+        for file in files:
+            if not file.endswith(".json"):
+                continue
+
+            endpoint_key = file[:-5].replace("_", "/")
+            endpoint_name = DICT_ENDPOINTS.get(endpoint_key, endpoint_key)
+
+            if endpoint_name not in requested_endpoints:
+                continue
+
+            test_path = os.path.join(root, file)
+
+            results.append(
+                run_single_test(test_path, endpoint_name)
+            )
+
+            found_endpoints.add(endpoint_name)
+
+    # Определяем, какие endpoint'ы не нашли
+    not_found = requested_endpoints - found_endpoints
+
+    if not_found:
+        logging.error(
+            "No tests found for endpoints: %s",
+            ", ".join(sorted(not_found))
+        )
+        print(f"No tests found for endpoints: {', '.join(sorted(not_found))}")
+
+    return "\n".join(results)
+    
+
+def run_tests_all():
+    results = []
+
+    for root, _, files in os.walk(TESTS_DIR):
+        files.sort()
+
+        for file in files:
+            if not file.endswith(".json"):
+                continue
+
+            endpoint_key = file[:-5].replace("_", "/")
+            endpoint_name = DICT_ENDPOINTS.get(endpoint_key, endpoint_key)
+            test_path = os.path.join(root, file)
+
+            results.append(
+                run_single_test(test_path, endpoint_name)
+            )
+
+    return "\n".join(results)
+
+
+def run_tests_dir():
+    results = []
+
+    # нормализуем путь аргумента
+    target_dir = os.path.normpath(
+        os.path.join(TESTS_DIR, parser_args.dir.lstrip("/"))
+    )
+
+    if not os.path.isdir(target_dir):
+        print(f"The test directory was not found: {parser_args.dir}")
+        sys.exit(1)
+
+    for root, _, files in os.walk(target_dir):
+        files.sort()
+
+        for file in files:
+            if not file.endswith(".json"):
+                continue
+
+            endpoint_key = file[:-5].replace("_", "/")
+            endpoint_name = DICT_ENDPOINTS.get(endpoint_key, endpoint_key)
+            test_path = os.path.join(root, file)
+
+            results.append(
+                run_single_test(test_path, endpoint_name)
+            )
+
+    return "\n".join(results)
+
+
+
+def run_tests_endpoint_index():
+    ...
+
+
+
+
 
 if __name__ == '__main__':
     # Объявление переменной текущих даты и времени
@@ -84,9 +210,11 @@ if __name__ == '__main__':
 
     # Объявление флаговой переменной для запуска определенных тестов
     if parser_args.endpoints is not None:
-        # Объявление флаговой переменной
-        flag = "endpoints"
-
+        if len(parser_args.endpoints) > 0:
+            flag = "endpoints"
+        else:
+            print("Не указаны тестируесые endpoint'ы ")
+            sys.exit()
 
     # Объявление флаговой переменной для запуска тестов по тегам
     if parser_args.tag is not None:
@@ -130,14 +258,56 @@ if __name__ == '__main__':
             sys.exit()
         
         TESTS_DIR = parser_args.route
-        config["PATHS"]["tests_dir"] = parser_args.route # Записываем путь к целевой папке в конфиге
-        # Перезаписываем конфигурационный файл
-        with open(root_to_conf_con, 'w') as conf_file:
-            config.write(conf_file)
+        StructureGenerator.change_test_folder(TESTS_DIR)
     else:
         TESTS_DIR = 'tests'
         # Дефолтная директория
-        config["PATHS"]["tests_dir"] = 'tests' # Записываем путь к целевой папке в конфиге
-        # Перезаписываем конфигурационный файл
-        with open(root_to_conf_con, 'w') as conf_file:
-            config.write(conf_file)
+        StructureGenerator.change_test_folder()
+
+
+    
+    # Инициализация логирования и места записи логов
+    initialize_log(verbose=verbose_arg, file_root=log_name)
+
+    # Логгируем заголовок файла-лога
+    log_start_program(flag=flag,
+                      launch_command=" ".join(sys.argv),
+                      current_log_time=current_log_time)
+    
+    # Вызываем get_show_platform для запроса к /system/platform
+    Http_methods.get_show_platform()
+
+    # Создание сообщения-сводки для логов
+    last_log_msg = ''
+
+    # Запуск всех тестов по объявленному флагу в зависимости от переданных аргументов
+    if flag == "all":
+        # Запись результата выполнения тестов в сообщение сводку
+        last_log_msg = run_tests_all()
+    # Запуск определенного теста по объявленному флагу в зависимости от переданных аргументов
+    if flag == "test":
+        # Запись результата выполнения тестов в сообщение сводку
+        ...
+
+    # Запуск определенной директории с тестами по объявленному флагу в зависимости от переданных аргументов
+    if flag == "dir":
+        # Запись результата выполнения тестов в сообщение сводку
+        last_log_msg = run_tests_dir()
+
+    # Запуск определенных тестов к эндпоинтам по объявленному флагу в зависимости от переданных аргументов
+    if flag == "endpoints":
+        # Запись результата выполнения тестов в сообщение сводку
+        last_log_msg = run_tests_endpoints()
+    # Запуск определенных тестов по указанному тегу
+    if flag == "tag":
+        # Запись результатат выполнения тестов в сообщение сводку
+        ...
+        
+
+
+    # Вывод в лог сообщения-сводки выполненных тестов\
+    logging.info("=" * 69)
+    logging.info("Result")
+    logging.info("=" * 69)
+    logging.info(last_log_msg)
+    logging.info("=" * 69)
