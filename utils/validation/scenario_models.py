@@ -43,9 +43,19 @@ class RefValue(BaseModel):
         if not v.startswith("#"):
             raise ValueError("ref должен начинаться с '#'")
         return v
+    
+
+# ============================================================
+# ModifyValue
+# ============================================================
+
+class ModifyValue(BaseModel):
+    value: str
+    modify: str
 
 
-ParameterValue = str | int | float | bool | RefValue
+
+ParameterValue = str | int | float | bool | RefValue | ModifyValue
 
 
 # ============================================================
@@ -143,3 +153,5 @@ class Scenario(RootModel[Dict[str, EndpointScenario]]):
                     f"Endpoint '{endpoint}' должен начинаться с '/'"
                 )
         return v
+
+

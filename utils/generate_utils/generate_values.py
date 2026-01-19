@@ -2,8 +2,6 @@ import rstr
 import re
 from jsonpath_ng import parse
 import random
-import json
-import datetime
 import logging
 
 from config.read_confg import (
@@ -13,306 +11,247 @@ from config.read_confg import (
     NO_USE_VLAN_ID
 )
 
-# Список интерфесов которые нельзя использовать
+# Список интерфейсов которые нельзя использовать
 NO_USE_LIST = [NO_USE_VLAN_ID, NO_USE_ETH, NO_USE_SWITCHPORT, NO_USE_VLAN]
+
 
 class GenerateValues:
     """Класс для генерации значений для аргументов сценария."""
 
-    arguments_pattern = {}  # Словарь для хранения всех паттернов для каждого endpoint
-    context = {}  # Контекст для хранения значений аргументов
+    arguments_pattern = {}
+    context = {}
 
     @staticmethod
     def read_scenario(resolved_scenario: dict, arguments_patterns: dict, seed: int):
-        """Функция для чтения сценария и сопостовления аргументов по паттернам"""
-
-        random.seed(seed)  # Устанавливаем случайное сид для генерации значений
-
-        GenerateValues.context = {}  # Очищаем контекст
-
-        # Сохраняем аргументы и их паттерны
+        random.seed(seed)
+        GenerateValues.context = {}
         GenerateValues.arguments_pattern = arguments_patterns
 
-        # Найти все объекты на определенной глубине
-        try:
-            jsonpath_expr = parse('$..*')  # Создаем JSONPath-выражение для поиска всех объектов в JSON-структуре
-            all_matches = jsonpath_expr.find(resolved_scenario)  # Находим все объекты в JSON-структуре
-        except Exception as e:
-            logging.debug(f"Ошибка при разборе JSONPath: {e}")
-            raise
+        jsonpath_expr = parse('$..*')
+        all_matches = jsonpath_expr.find(resolved_scenario)
 
-        step_objects = []  # Список объектов, которые содержат параметры (parameters) или валидацию (validation)
+        step_objects = []
+        for match in all_matches:
+            if isinstance(match.value, dict):
+                if 'endpoint' in match.value and (
+                    'parameters' in match.value or 'validation' in match.value
+                ):
+                    step_objects.append(match)
 
-        for match in all_matches:  # Получаем все объекты в JSON-структуре
-            try:
-                if isinstance(match.value, dict):  # Если это словарь, то это объект
-                    # Проверяем, содержит ли объект нужные поля
-                    if 'endpoint' in match.value and ('parameters' in match.value or 'validation' in match.value):
-                        step_objects.append(match)  # Добавляем объект в список
-            except Exception as e:
-                logging.debug(f"Ошибка при обработке объекта JSONPath: {e}")
-                continue
+        for match in step_objects:
+            obj = match.value
+            path = match.full_path
+            endpoint = obj['endpoint']
 
-        for match in step_objects:  # Обходим все объекты в списке
-            try:
-                obj = match.value  # Получаем объект
-                path = match.full_path  # Получаем путь к объекту
+            if 'parameters' in obj:
+                GenerateValues.process_fields(
+                    resolved_scenario,
+                    obj['parameters'],
+                    path,
+                    "parameters",
+                    endpoint
+                )
 
-                logging.debug("=" * 68)
-                logging.debug(f"Путь: {path}")
-                logging.debug(f"Endpoint: {obj['endpoint']}")
-                logging.debug(f"Method: {obj.get('method', 'N/A')}")
-                logging.debug(f"Parameters: {obj.get('parameters', {})}")
-                logging.debug(f"Validation: {obj.get('validation', {})}")
-                if 'expected' in obj:
-                    logging.debug(f"Expected: {obj.get('expected', {})}")
+            if 'validation' in obj:
+                GenerateValues.process_fields(
+                    resolved_scenario,
+                    obj['validation'],
+                    path,
+                    "validation",
+                    endpoint
+                )
 
-                endpoint = obj['endpoint']  # Текущий endpoint
-
-                logging.debug("-" * 68)
-                logging.debug("Сгенерированные значения:")
-                logging.debug("-" * 68)
-
-                # Обрабатываем параметры (parameters)
-                if 'parameters' in obj:
-                    GenerateValues.process_fields(
-                        resolved_scenario=resolved_scenario,
-                        fields=obj['parameters'],
-                        path=path,
-                        field_type="parameters",
-                        endpoint=endpoint
-                    )
-
-                # Обрабатываем валидацию (validation)
-                if 'validation' in obj:
-                    GenerateValues.process_fields(
-                        resolved_scenario=resolved_scenario,
-                        fields=obj['validation'],
-                        path=path,
-                        field_type="validation",
-                        endpoint=endpoint
-                    )
-                logging.debug("=" * 68)
-            except Exception as e:
-                logging.debug(f"Ошибка при обработке шага сценария: {e}")
-                continue
-
-        return resolved_scenario  # Возвращаем обработанный сценарий
+        return resolved_scenario
 
     @staticmethod
-    def process_fields(resolved_scenario: dict, fields: dict, path, field_type: str, endpoint: str):
-        """
-        Обрабатывает поля parameters или validation.
-
-        -resolved_scenario: Исходная JSON-структура.
-        -fields: Словарь с параметрами (parameters или validation).
-        -path: Путь к текущему объекту.
-        -field_type: Тип полей ("parameters" или "validation").
-        -endpoint: Текущий endpoint.
-        """
+    def process_fields(resolved_scenario, fields, path, field_type, endpoint):
         for key, value in fields.items():
             try:
-                path_for_func = str(path) + f".{field_type}.{key}"  # Чистый путь до аргумента для функции setup_values
-                current_path = "#" + '.'.join(str(path).split('.')[1:]) + f".{field_type}.{key}"  # Текущий путь да аргумента для сохранения его в контексте для дальнейшего использования
+                path_for_func = str(path) + f".{field_type}.{key}"
+                current_path = (
+                    "#" + '.'.join(str(path).split('.')[1:]) +
+                    f".{field_type}.{key}"
+                )
 
-                if value == 'random':  # Если рандом, то генерим по regex
+                # ================= RANDOM =================
+                if value == 'random':
+                    patterns_info = GenerateValues.arguments_pattern.get(endpoint, {}).get(key, {})
+                    arg_value = None
+
+                    if "pattern" in patterns_info:
+                        patterns = patterns_info["pattern"]
+                        if isinstance(patterns, str):
+                            patterns = [patterns]
+
+                        selected_pattern = random.choice(patterns)
+                        while True:
+                            arg_value = rstr.xeger(selected_pattern)
+                            if arg_value not in NO_USE_LIST:
+                                break
+
+                    elif "minimum" in patterns_info and "maximum" in patterns_info:
+                        arg_min = patterns_info["minimum"]
+                        arg_max = patterns_info["maximum"]
+                        while True:
+                            arg_value = random.randint(arg_min, arg_max)
+                            if arg_value not in NO_USE_LIST:
+                                break
+
+                    if arg_value is not None:
+                        GenerateValues.setup_values(
+                            resolved_scenario, path_for_func, arg_value
+                        )
+                        GenerateValues.context[current_path] = arg_value
+                        logging.debug(f"key={key}, arg_value={arg_value}")
+
+                # ================= MIN / MAX =================
+                elif value == 'minimum':
+                    arg_value = GenerateValues.arguments_pattern[endpoint][key]["minimum"]
+                    GenerateValues.setup_values(resolved_scenario, path_for_func, arg_value)
+                    GenerateValues.context[current_path] = arg_value
+
+                elif value == 'maximum':
+                    arg_value = GenerateValues.arguments_pattern[endpoint][key]["maximum"]
+                    GenerateValues.setup_values(resolved_scenario, path_for_func, arg_value)
+                    GenerateValues.context[current_path] = arg_value
+
+                elif value == 'gt_max':
+                    arg_value = GenerateValues.arguments_pattern[endpoint][key]["maximum"] + 1
+                    GenerateValues.setup_values(resolved_scenario, path_for_func, arg_value)
+                    GenerateValues.context[current_path] = arg_value
+
+                elif value == 'lt_min':
+                    arg_value = GenerateValues.arguments_pattern[endpoint][key]["minimum"] - 1
+                    GenerateValues.setup_values(resolved_scenario, path_for_func, arg_value)
+                    GenerateValues.context[current_path] = arg_value
+
+                # ================= MODIFY =================
+                elif isinstance(value, dict) and "modify" in value:
+                    modify = value.get("modify")
+
                     try:
-                        keys_patterns_arguments = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"].keys()  # Получаем все паттерны для этого аргумента (Либо pattern, либо minimum, либо maximum)
+                        # Получаем паттерны из OpenAPI
+                        patterns = (
+                            GenerateValues.arguments_pattern
+                            .get(endpoint, {})
+                            .get(key, {})
+                            .get("pattern", [])
+                        )
 
-                        if "pattern" in keys_patterns_arguments:  # Проверяем, есть ли паттерны для этого аргумента
-                            arg_patterns = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["pattern"]  # Получаем список паттернов для аргумента(может быть 1 или больше)
-                            selected_pattern = random.choice(arg_patterns) if len(arg_patterns) > 1 else arg_patterns[0]  # Если есть несколько паттернов, выбираем случайный
-                            while True:
-                                arg_value = rstr.xeger(selected_pattern)  # Генерируем значение по регулярному выражению
-                                if arg_value in NO_USE_LIST:
-                                    arg_value = rstr.xeger(selected_pattern)
-                                else:
-                                    break
+                        # Нормализация
+                        if isinstance(patterns, str):
+                            patterns = [patterns]
 
-                        elif "minimum" in keys_patterns_arguments and "maximum" in keys_patterns_arguments:  # Если есть минимальное и максимальное значение, генерируем случайное значение в этом диапазоне
-                            arg_min = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["minimum"]  # Получаем минимальное значение
-                            arg_max = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["maximum"]  # Получаем максимальное значение
-                            while True:
-                                if arg_value in NO_USE_LIST:
-                                    arg_value = random.randint(arg_min, arg_max)  # Генерируем случайное значение в этом диапазоне
-                                else:
-                                    break
+                        if not patterns:
+                            raise ValueError("No patterns available")
 
+                        # ================= APPLY MODIFY =================
+
+                        # --- индекс anyOf ---
+                        if isinstance(modify, int):
+                            if modify < 0 or modify >= len(patterns):
+                                raise ValueError(f"modify index out of range: {modify}")
+                            selected_patterns = [patterns[modify]]
+
+                        # --- IPv4 ---
+                        elif modify == "ipv4":
+                            selected_patterns = [
+                                p for p in patterns
+                                if "25[0-5]" in p or "2[0-4][0-9]" in p or "1[0-9][0-9]" in p
+                            ]
+
+                        # --- IFNAME ---
+                        elif modify == "ifname":
+                            selected_patterns = [
+                                p for p in patterns
+                                if "eth" in p or "vlan" in p or "tun" in p or "lo" in p
+                            ]
+
+                        # --- кастомный regex ---
+                        elif modify == "regex":
+                            if "regex" not in value:
+                                raise ValueError("modify=regex requires 'regex' field")
+                            selected_patterns = [value["regex"]]
+
+                        # --- неизвестный modify ---
                         else:
-                            arg_value = None  # Если нет конфигурации, оставляем как есть
+                            raise ValueError(f"Unknown modify type: {modify}")
 
-                        if arg_value is not None:  # Если значение не None, то устанавливаем его
-                            # Устанавливаем значение
+                        if not selected_patterns:
+                            raise ValueError(f"No patterns matched for modify={modify}")
+
+                        # ================= GENERATE VALUE =================
+                        selected_pattern = random.choice(selected_patterns)
+
+                        while True:
+                            arg_value = rstr.xeger(selected_pattern)
+                            if arg_value not in NO_USE_LIST:
+                                break
+
+                        GenerateValues.setup_values(
+                            resolved_scenario,
+                            path_for_func,
+                            arg_value
+                        )
+                        GenerateValues.context[current_path] = arg_value
+
+                        logging.debug(
+                            f"key={key}, modify={modify}, "
+                            f"pattern={selected_pattern}, value={arg_value}"
+                        )
+
+                    except Exception as e:
+                        # ================= FALLBACK =================
+                        logging.debug(
+                            f"modify failed, fallback to random: "
+                            f"endpoint={endpoint}, key={key}, modify={modify}, error={e}"
+                        )
+
+                        if patterns:
+                            selected_pattern = random.choice(patterns)
+                            arg_value = rstr.xeger(selected_pattern)
+
                             GenerateValues.setup_values(
-                                scenario_scheme=resolved_scenario,
-                                path_to_arg=path_for_func,
-                                value=arg_value
+                                resolved_scenario,
+                                path_for_func,
+                                arg_value
                             )
-                            GenerateValues.context[f"{current_path}"] = arg_value  # Сохраняем значение в контексте для дальнейшего использования
-                            logging.debug(f"key = {key}, arg_value = {arg_value}")
+                            GenerateValues.context[current_path] = arg_value
 
-                    except KeyError as e:
-                        logging.debug(f"Отсутствует паттерн для аргумента {key} в endpoint {endpoint}: {e}")
-                        continue
-                    except Exception as e:
-                        logging.debug(f"Ошибка при генерации значения для {key}: {e}")
                         continue
 
-                elif value == 'minimum':  # Минимальное значение
-                    try:
-                        arg_value = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["minimum"]  # Получаем минимальное значение
 
-                        # Устанавливаем значение
-                        GenerateValues.setup_values(
-                            scenario_scheme=resolved_scenario,
-                            path_to_arg=path_for_func,
-                            value=arg_value
-                        )
+                # ================= REF =================
+                elif isinstance(value, dict) and "ref" in value:
+                    ref_path = value["ref"]
+                    arg_value = GenerateValues.context[ref_path]
 
-                        GenerateValues.context[f"{current_path}"] = arg_value  # Сохраняем значение в контексте для дальнейшего использования
-                        logging.debug(f"key = {key}, arg_value = {arg_value}")
-                    except KeyError as e:
-                        logging.debug(f"Отсутствует минимальное значение для аргумента {key} в endpoint {endpoint}: {e}")
-                        continue
-                    except Exception as e:
-                        logging.debug(f"Ошибка при установке минимального значения для {key}: {e}")
-                        continue
+                    GenerateValues.setup_values(
+                        resolved_scenario, path_for_func, arg_value
+                    )
+                    GenerateValues.context[current_path] = arg_value
+                    logging.debug(f"ref_link={arg_value}")
 
-                elif value == 'maximum':  # Максимальное значение
-                    try:
-                        arg_value = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["maximum"]  # Получаем максимальное значение
-
-                        # Устанавливаем значение
-                        GenerateValues.setup_values(
-                            scenario_scheme=resolved_scenario,
-                            path_to_arg=path_for_func,
-                            value=arg_value
-                        )
-
-                        GenerateValues.context[f"{current_path}"] = arg_value  # Сохраняем значение в контексте для дальнейшего использования
-                        logging.debug(f"key = {key}, arg_value = {arg_value}")
-                    except KeyError as e:
-                        logging.debug(f"Отсутствует максимальное значение для аргумента {key} в endpoint {endpoint}: {e}")
-                        continue
-                    except Exception as e:
-                        logging.debug(f"Ошибка при установке максимального значения для {key}: {e}")
-                        continue
-
-                elif value == 'gt_max':  # Больше максимального значения
-                    try:
-                        arg_value = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["maximum"] + 1  # Получаем максимальное значение
-
-                        # Устанавливаем значение
-                        GenerateValues.setup_values(
-                            scenario_scheme=resolved_scenario,
-                            path_to_arg=path_for_func,
-                            value=arg_value
-                        )
-
-                        GenerateValues.context[f"{current_path}"] = arg_value  # Сохраняем значение в контексте для дальнейшего использования
-                        logging.debug(f"key = {key}, arg_value = {arg_value}")
-                    except KeyError as e:
-                        logging.debug(f"Отсутствует максимальное значение для аргумента {key} в endpoint {endpoint}: {e}")
-                        continue
-                    except Exception as e:
-                        logging.debug(f"Ошибка при установке значения gt_max для {key}: {e}")
-                        continue
-
-                elif value == 'lt_min':  # Меньше минимального значения
-                    try:
-                        arg_value = GenerateValues.arguments_pattern[f"{endpoint}"][f"{key}"]["minimum"] - 1  # Получаем минимальное значение
-
-                        # Устанавливаем значение
-                        GenerateValues.setup_values(
-                            scenario_scheme=resolved_scenario,
-                            path_to_arg=path_for_func,
-                            value=arg_value
-                        )
-
-                        GenerateValues.context[f"{current_path}"] = arg_value  # Сохраняем значение в контексте для дальнейшего использования
-                        logging.debug(f"key = {key}, arg_value = {arg_value}")
-                    except KeyError as e:
-                        logging.debug(f"Отсутствует минимальное значение для аргумента {key} в endpoint {endpoint}: {e}")
-                        continue
-                    except Exception as e:
-                        logging.debug(f"Ошибка при установке значения lt_min для {key}: {e}")
-                        continue
-
-                elif isinstance(value, dict) and "modify" in value.keys():
-                    ...  # Добавить реализацию модификаторов для генерации значений(например: ip_address)
-
-                elif isinstance(value, dict) and "ref" in value.keys():  # Ссылка (ref):
-                    try:
-                        ref_arg = value['ref']  # Получаем ссылку в формате "TESTS.1.steps.1.parameters.ifname"
-                        arg_value = GenerateValues.context[f"{ref_arg}"]  # Получаем значение из контекста по ссылке
-
-                        # Устанавливаем значение
-                        GenerateValues.setup_values(
-                            scenario_scheme=resolved_scenario,
-                            path_to_arg=path_for_func,
-                            value=arg_value
-                        )
-
-                        GenerateValues.context[f"{current_path}"] = arg_value  # Сохраняем значение в контексте для дальнейшего использования
-                        logging.debug(f'ref_link = {GenerateValues.context[ref_arg]}')
-                    except KeyError as e:
-                        logging.debug(f"Ссылка {value['ref']} не найдена в контексте: {e}")
-                        continue
-                    except Exception as e:
-                        logging.debug(f"Ошибка при обработке ссылки для {key}: {e}")
-                        continue
-
-                else:  # Константа: если задали конкретное значение, то его и оставляем
-                    GenerateValues.context[f"{current_path}"] = value  # Устанавливаем значение в контексте для дальнейшего использования
-                    logging.debug(f"key = {key}, arg_value = {value}")
+                # ================= CONST =================
+                else:
+                    GenerateValues.context[current_path] = value
+                    logging.debug(f"key={key}, arg_value={value}")
 
             except Exception as e:
-                logging.debug(f"Ошибка при обработке поля {key}: {e}")
+                logging.debug(f"Ошибка обработки поля {key}: {e}")
                 continue
 
     @staticmethod
-    def setup_values(scenario_scheme: dict, path_to_arg: str, value) -> dict:
-        """
-        Рекурсивно устанавливает значение в указанном пути JSON-структуры.
+    def setup_values(scenario_scheme, path_to_arg, value):
+        parts = path_to_arg.split('.')
 
-        -scenario_scheme: Исходная JSON-структура (словарь).
-        -path_to_arg: Путь к параметру в формате "TESTS.1.steps.1.parameters.ifname".
-        -value: Значение, которое нужно установить.
-        -return: Обновленная JSON-структура.
-        """
-        try:
-            # Разбиваем путь на части
-            parts_of_path = path_to_arg.split('.')
+        def _set(obj, parts_left):
+            if len(parts_left) == 1:
+                obj[parts_left[0]] = value
+                return
+            if parts_left[0] not in obj:
+                obj[parts_left[0]] = {}
+            _set(obj[parts_left[0]], parts_left[1:])
 
-            def _set_value_recursive(current_level, path_parts):
-                """
-                Вспомогательная рекурсивная функция для установки значения.
-
-                -current_level: Текущий уровень JSON-структуры.
-                -path_parts: Оставшиеся части пути.
-                """
-                try:
-                    part = path_parts[0]  # Получаем текущий элемент пути
-
-                    # Если это последний элемент пути, устанавливаем значение
-                    if len(path_parts) == 1:
-                        current_level[part] = value
-                        return
-
-                    # Если текущий уровень еще не содержит нужный ключ, создаем его
-                    if part not in current_level:
-                        current_level[part] = {}
-
-                    # Рекурсивно углубляемся в структуру
-                    _set_value_recursive(current_level[part], path_parts[1:])
-                except Exception as e:
-                    logging.debug(f"Ошибка в _set_value_recursive: {e}")
-                    raise
-
-            # Вызываем рекурсивную функцию
-            _set_value_recursive(scenario_scheme, parts_of_path)
-
-            return scenario_scheme  # Возвращаем обновленную JSON-структуру
-        except Exception as e:
-            logging.debug(f"Ошибка в setup_values для пути {path_to_arg}: {e}")
-            raise
+        _set(scenario_scheme, parts)
+        return scenario_scheme
