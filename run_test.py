@@ -8,19 +8,10 @@ from utils.log import logging, initialize_log, log_start_program
 from utils.http_methods import Http_methods
 from utils.generate_utils.generate_structure import StructureGenerator
 from utils.running_test import RunningTest
+from utils.check_auth_method import CheckAuthMethod
 
-from config.read_confg import (
-    TESTS_DIR,
-    SCENARIOS_DIR,
-    TEMPLATES_DIR,
-    OPENAPI_PATH,
-    URL,
-    USERNAME,
-    PASSWORD,
-    TOKEN,
-    DICT_ENDPOINTS,
-    config,
-    root_to_conf_con)
+import config.read_confg as cfg   
+
 
 def run_single_test(test_path: str, endpoint_name: str, index_tests: int = None) -> str:
     with open(test_path) as f:
@@ -61,7 +52,7 @@ def run_tests_endpoints():
                 continue
 
             endpoint_key = file[:-5].replace("_", "/")
-            endpoint_name = DICT_ENDPOINTS.get(endpoint_key, endpoint_key)
+            endpoint_name = cfg.DICT_ENDPOINTS.get(endpoint_key, endpoint_key)
 
             if endpoint_name not in requested_endpoints:
                 continue
@@ -98,7 +89,7 @@ def run_tests_all():
                 continue
 
             endpoint_key = file[:-5].replace("_", "/")
-            endpoint_name = DICT_ENDPOINTS.get(endpoint_key, endpoint_key)
+            endpoint_name = cfg.DICT_ENDPOINTS.get(endpoint_key, endpoint_key)
             test_path = os.path.join(root, file)
 
             results.append(
@@ -128,7 +119,7 @@ def run_tests_dir():
                 continue
 
             endpoint_key = file[:-5].replace("_", "/")
-            endpoint_name = DICT_ENDPOINTS.get(endpoint_key, endpoint_key)
+            endpoint_name = cfg.DICT_ENDPOINTS.get(endpoint_key, endpoint_key)
             test_path = os.path.join(root, file)
 
             results.append(
@@ -274,14 +265,31 @@ if __name__ == '__main__':
                       launch_command=" ".join(sys.argv),
                       current_log_time=current_log_time)
     
-    if URL == '':
+    if cfg.URL == '':
         print("Error: URL is empty")
         logging.info("Error: URL is empty")
         sys.exit()
 
     
+
+    CheckAuthMethod.reset_auth_method()
+    # Проверяем, есть ли сохраненный метод аутентификации
+    saved_method = CheckAuthMethod.get_saved_auth_method()
+    if saved_method:
+        cfg.AUTH_METHOD = saved_method                    # ← ИЗМЕНЕНО
+    else:
+        cfg.AUTH_METHOD = CheckAuthMethod.check_auth_method()  # ← ИЗМЕНЕНО
+        CheckAuthMethod.save_auth_method(method=cfg.AUTH_METHOD)  # ← ИЗМЕНЕНО
+
     # Вызываем get_show_platform для запроса к /system/platform
-    Http_methods.get_show_platform()
+    try:
+        Http_methods.get_show_platform()
+    except RuntimeError as e:
+        print("ERROR: API is not reachable")          # ← ИЗМЕНЕНО
+        print(f"Reason: {e}")                           # ← ИЗМЕНЕНО
+        print("\nTests were not started.\n")            # ← ИЗМЕНЕНО
+        sys.exit(1)                                     # ← ИЗМЕНЕНО
+
 
     # Создание сообщения-сводки для логов
     last_log_msg = ''

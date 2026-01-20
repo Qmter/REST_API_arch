@@ -224,15 +224,25 @@ python3 generate_test.py --help
 
 ### Основные параметры в `config/read_confg.py`:
 
-```python
+```ini
 # Пути/папки к директориям
+[PATHS]
 SCENARIOS_DIR = "scenarios"
 TEMPLATES_DIR = "templates"
 TESTS_DIR = "tests"
 OPENAPI_PATH = "openapi.json"
 
+# Параметры для аутентификации
+[AUTH]
+url = https://1.1.1.1:1111/
+username = Имя пользователя
+password = Пароль
+token = Токен
+auth_method = basic
+
 # Словарь endpoint'ов для корректного отображения имен
-DICT_ENDPOINTS = {
+[ENDPOINTS]
+endpoints_dict = {
     "users_get": "/api/v1/users",
     "system_info": "/system/info"
 }

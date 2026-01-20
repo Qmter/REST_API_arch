@@ -2,13 +2,8 @@ import logging
 import requests
 import sys
 import urllib3
-from config.read_confg import (
-    URL,
-    USERNAME,
-    PASSWORD,
-    TOKEN,
-    config,
-    root_to_conf_con)
+import config.read_confg as cfg   
+
 
 # Отключение предупреждений отсутствия сертификата для запроса
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -33,8 +28,8 @@ class CheckAuthMethod:
         try:
             
             response = requests.get(
-                url=URL + '/system/platform',
-                headers=TOKEN,
+                url=cfg.URL + '/system/platform',
+                headers=cfg.TOKEN,
                 verify=False,
                 timeout=10
             )
@@ -47,8 +42,8 @@ class CheckAuthMethod:
                 return False
             
         except requests.exceptions.ConnectionError:
-            logging.info(f"Connection error: URL 'u{URL}' unavailable or incorrect.")
-            print(f"Connection error: URL '{TOKEN}' unavailable or incorrect.")
+            logging.info(f"Connection error: URL 'u{cfg.URL}' unavailable or incorrect.")
+            print(f"Connection error: URL '{cfg.TOKEN}' unavailable or incorrect.")
             logging.info('=' * 68)        
             sys.exit()
         finally:
@@ -72,8 +67,8 @@ class CheckAuthMethod:
         
         try:
             response = requests.get(
-                url=URL + '/system/platform',
-                auth=(USERNAME, PASSWORD),
+                url=cfg.URL + '/system/platform',
+                auth=(cfg.USERNAME, cfg.PASSWORD),
                 verify=False,
                 timeout=10
             )
@@ -85,8 +80,8 @@ class CheckAuthMethod:
                 logging.info("Basic Auth authentication error")
                 return False
         except requests.exceptions.ConnectionError:
-            logging.info(f"Connection error: URL '{URL}' unavailable or incorrect.")
-            print(f"Connection error: URL '{URL}' unavailable or incorrect.")
+            logging.info(f"Connection error: URL '{cfg.URL}' unavailable or incorrect.")
+            print(f"Connection error: URL '{cfg.URL}' unavailable or incorrect.")
             logging.info('=' * 68)
             sys.exit()        
         finally:
@@ -99,9 +94,9 @@ class CheckAuthMethod:
     def save_auth_method(method):
         """Сохраняем метод аутентификации в config файл"""
         try:
-            config['AUTH']['auth_method'] = method
-            with open(root_to_conf_con, 'w') as configfile:
-                config.write(configfile)
+            cfg.config['AUTH']['auth_method'] = method
+            with open(cfg.root_to_conf_con, 'w') as configfile:
+                cfg.config.write(configfile)
         except Exception as e:
             print(f"Error saving the authentication method:{e}")
     
@@ -110,7 +105,7 @@ class CheckAuthMethod:
     def get_saved_auth_method():
         """Получаем сохраненный метод аутентификации из config файла"""
         try:
-            return config['AUTH'].get('auth_method', None)
+            return cfg.config['AUTH'].get('auth_method', None)
         except:
             return None
     
@@ -120,12 +115,12 @@ class CheckAuthMethod:
         """Сброс сохраненного метода аутентификации"""
         try:
             # Удаляем оба параметра, если они существуют
-            if 'auth_method' in config['AUTH']:
-                del config['AUTH']['auth_method']
+            if 'auth_method' in cfg.config['AUTH']:
+                cfg.config['AUTH']['auth_method'] = ''
 
                 
-            with open(root_to_conf_con, 'w') as configfile:
-                config.write(configfile)
+            with open(cfg.root_to_conf_con, 'w') as configfile:
+                cfg.config.write(configfile)
 
         except Exception as e:
             print(f"Error when resetting the authentication method: {e}")
@@ -137,21 +132,21 @@ class CheckAuthMethod:
 
         
         # Если нет url, то пишем ошибку в лог       
-        if not URL:
+        if not cfg.URL:
             logging.info('Error: The authorization URL is missing in configs_auth.ini')
             print('Error: The authorization URL is missing in configs_auth.ini')
 
             sys.exit()
 
         # Если сохраненного метода нет, определяем его
-        if TOKEN:
+        if cfg.TOKEN:
 
             if CheckAuthMethod.try_token():
                 logging.info("Successful Bearer Token Authentication")
                 logging.info('=' * 68)
                 return 'token'
             
-            elif USERNAME and PASSWORD and CheckAuthMethod.try_basic():
+            elif cfg.USERNAME and cfg.PASSWORD and CheckAuthMethod.try_basic():
                 logging.info("Successful Basic Auth authentication")
                 logging.info('=' * 68)
                 return 'basic'
@@ -160,21 +155,21 @@ class CheckAuthMethod:
                 logging.info('=' * 68)
                 logging.info("Authentication error!")
                 print("Authentication error!")
-                logging.info(f"url: {'Installed' if URL else 'Absent'}")
-                logging.info(f"token: {'Installed' if TOKEN else 'Absent'}")
-                logging.info(f"username: {'Installed' if USERNAME else 'Absent'}")
-                logging.info(f"password: {'Installed' if PASSWORD else 'Absent'}")
+                logging.info(f"url: {'Installed' if cfg.URL else 'Absent'}")
+                logging.info(f"token: {'Installed' if cfg.TOKEN else 'Absent'}")
+                logging.info(f"username: {'Installed' if cfg.USERNAME else 'Absent'}")
+                logging.info(f"password: {'Installed' if cfg.PASSWORD else 'Absent'}")
                 logging.info('=' * 68)
                 sys.exit()
 
-        elif USERNAME and PASSWORD:
+        elif cfg.USERNAME and cfg.PASSWORD:
 
             if CheckAuthMethod.try_basic():
                 logging.info("Successful Basic Auth authentication")
                 logging.info('=' * 68)
                 return 'basic'
             
-            elif TOKEN and CheckAuthMethod.try_token():
+            elif cfg.TOKEN and CheckAuthMethod.try_token():
                 logging.info("Successful Bearer Token authentication")
                 logging.info('=' * 68)
                 return 'token'
@@ -183,10 +178,10 @@ class CheckAuthMethod:
                 logging.info('=' * 68)
                 logging.info("Authentication error!")
                 print("Authentication error!")
-                logging.info(f"url: {'Installed' if URL else 'Absent'}")
-                logging.info(f"token: {'Installed' if TOKEN else 'Absent'}")
-                logging.info(f"username: {'Installed' if USERNAME else 'Absent'}")
-                logging.info(f"password: {'Installed' if PASSWORD else 'Absent'}")
+                logging.info(f"url: {'Installed' if cfg.URL else 'Absent'}")
+                logging.info(f"token: {'Installed' if cfg.TOKEN else 'Absent'}")
+                logging.info(f"username: {'Installed' if cfg.USERNAME else 'Absent'}")
+                logging.info(f"password: {'Installed' if cfg.PASSWORD else 'Absent'}")
                 logging.info('=' * 68)
                 sys.exit()
 

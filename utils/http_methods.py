@@ -4,12 +4,7 @@ import sys
 import logging
 import urllib3
 
-from config.read_confg import (
-    URL,
-    USERNAME,
-    PASSWORD,
-    TOKEN,
-    AUTH_METHOD)
+import config.read_confg as cfg   
 
 # Отключение предупреждений отсутствия сертификата для запроса
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -22,13 +17,11 @@ class Http_methods:
     def get(endpoint, **kwargs):
         """Универсальный метод GET"""
         
-        request_url = URL[:-1] + f"{endpoint}"
+        request_url = cfg.URL[:-1] + f"{endpoint}"
 
-        # Объявление arguments = None, при отсутствии аргумента
         if "arguments" not in kwargs:
             kwargs["arguments"] = None
 
-        # Строение ссылки запроса при наличии arguments
         if kwargs["arguments"] is not None:
             arguments = kwargs["arguments"]
             request_url += "?"
@@ -37,192 +30,165 @@ class Http_methods:
                 request_url += str(key) + "=" + str(value) + "&"
 
             url_arg = request_url[:-1]
+        else:
+            url_arg = request_url  # ← ИЗМЕНЕНО: url_arg гарантирован
 
-        # Отправляем запрос. Если токен, то header, а если basic, то auth
         try:
+            if cfg.AUTH_METHOD == 'token':
+                result_get = requests.get(
+                    url=url_arg,
+                    headers=cfg.TOKEN,
+                    verify=False
+                )
 
-            if AUTH_METHOD == 'token':
-                result_get = requests.get(url=url_arg,
-                                        headers=TOKEN,
-                                        verify=False
-                                        )
+            elif cfg.AUTH_METHOD == 'basic':
+                result_get = requests.get(
+                    url=url_arg,
+                    auth=(cfg.USERNAME, cfg.PASSWORD),
+                    verify=False
+                )
 
-                # Логгируем в каждый запрос полный URL+endpoint, входную схему
-                logging.debug(f"")
-                logging.debug('-' * len(f"Request URL: {url_arg}"))
-                logging.debug(f"Request URL: {url_arg}")
-                logging.debug('-' * len(f"Request URL: {url_arg}"))
-                logging.debug(f"")
-                logging.debug("-" * len("Response"))
-                logging.debug(f"Response")
-                logging.debug("-" * len("Response"))
-                logging.debug(json.dumps(result_get.json(),
-                            indent=2, ensure_ascii=False))
-                logging.debug(f"")
-
-                return result_get
-            
-            elif AUTH_METHOD == 'basic':
-                result_get = requests.get(url=url_arg,
-                        auth=(USERNAME, PASSWORD),
-                        verify=False
-                        )
-
-                # Логгируем в каждый запрос полный URL+endpoint, входную схему
-                logging.debug(f"")
-                logging.debug('-' * len(f"Request URL: {url_arg}"))
-                logging.debug(f"Request URL: {url_arg}")
-                logging.debug('-' * len(f"Request URL: {url_arg}"))
-                logging.debug(f"")
-
-                logging.debug("-" * len("Response"))
-                logging.debug(f"Response")
-                logging.debug("-" * len("Response"))
-                logging.debug(json.dumps(result_get.json(),
-                            indent=2, ensure_ascii=False))
-                logging.debug(f"")
-
-                return result_get
-            
             else:
-                print("Incorrect authentication!")
-                logging.info("Incorrect authentication!")
+                raise RuntimeError(
+                    f"Incorrect authentication method: {cfg.AUTH_METHOD}"
+                )  # ← ИЗМЕНЕНО
+
+            # ← ИЗМЕНЕНО: логируем ТОЛЬКО если JSON валиден
+            logging.debug("")
+            logging.debug('-' * len(f"Request URL: {url_arg}"))
+            logging.debug(f"Request URL: {url_arg}")
+            logging.debug('-' * len(f"Request URL: {url_arg}"))
+            logging.debug("")
+
+            logging.debug("-" * len("Response"))
+            logging.debug("Response")
+            logging.debug("-" * len("Response"))
+
+            try:
+                logging.debug(json.dumps(
+                    result_get.json(),
+                    indent=2,
+                    ensure_ascii=False
+                ))
+            except Exception:
+                logging.debug("Response is not JSON")  # ← ИЗМЕНЕНО
+
+            logging.debug("")
+
+            return result_get
 
         except requests.exceptions.RequestException as e:
-            logging.info(e)
-        
+            raise RuntimeError(f"GET request failed: {e}")  # ← ИЗМЕНЕНО
+
     @staticmethod
-    def post(body = None, endpoint = None):
+    def post(body=None, endpoint=None):
         """Универсальный метод POST для изменения, добавления и удаления"""
 
         if endpoint is not None:
-            url_arg = URL[:-1] + endpoint
+            url_arg = cfg.URL[:-1] + endpoint
         else:
-            url_arg = URL[:-1]
-        
+            url_arg = cfg.URL[:-1]
+
         if body is None:
             body = {}
-    
-        # Отправляем запрос. Если токен, то header, а если basic, то auth
+
         try:
+            if cfg.AUTH_METHOD == 'token':
+                result_post = requests.post(
+                    url=url_arg,
+                    headers=cfg.TOKEN,
+                    json=body,
+                    verify=False
+                )
 
-            if AUTH_METHOD == 'token':
-                result_post = requests.post(url=url_arg,
-                                            headers=TOKEN,
-                                            json=body,
-                                            verify=False
-                                            )
+            elif cfg.AUTH_METHOD == 'basic':
+                result_post = requests.post(
+                    url=url_arg,
+                    auth=(cfg.USERNAME, cfg.PASSWORD),
+                    json=body,
+                    verify=False
+                )
 
-                # Логгируем в каждый запрос полный URL+endpoint, входную схему и выходную схему
-                logging.debug(f"")
-                logging.debug('-' * len(f"Request URL: {url_arg}"))
-                logging.debug(f"Request URL: {url_arg}")
-                logging.debug('-' * len(f"Request URL: {url_arg}"))
-
-                logging.debug(f"")
-
-                logging.debug("-" * len("Request"))
-                logging.debug(f"Request")
-                logging.debug("-" * len("Request"))
-                logging.debug(json.dumps(body, indent=2, ensure_ascii=False))
-
-                logging.debug(f"")
-
-                logging.debug("-" * len("Response"))
-                logging.debug(f"Response")
-                logging.debug("-" * len("Response"))
-                logging.debug(json.dumps(result_post.json(),
-                            indent=2, ensure_ascii=False))
-                logging.debug(f"")
-
-                return result_post
-            
-            elif AUTH_METHOD == 'basic':
-                result_post = requests.post(url=url_arg,
-                                            auth=(USERNAME, PASSWORD),
-                                            json=body,
-                                            verify=False
-                                            )
-
-                # Логгируем в каждый запрос полный URL+endpoint, входную схему и выходную схему
-                logging.debug(f"")
-                logging.debug('-' * len(f"Request URL: {url_arg}"))
-                logging.debug(f"Request URL: {url_arg}")
-                logging.debug('-' * len(f"Request URL: {url_arg}"))
-
-                logging.debug(f"")
-
-                logging.debug("-" * len("Request"))
-                logging.debug(f"Request")
-                logging.debug("-" * len("Request"))
-                logging.debug(json.dumps(body, indent=2, ensure_ascii=False))
-                
-                logging.debug(f"")
-                
-                logging.debug("-" * len("Response"))
-                logging.debug(f"Response")
-                logging.debug("-" * len("Response"))
-                logging.debug(json.dumps(result_post.json(),
-                            indent=2, ensure_ascii=False))
-                logging.debug(f"")
-
-                return result_post
-            
             else:
-                print("Incorrect authentication!")
-                logging.info("Incorrect authentication!")
-                
+                raise RuntimeError(
+                    f"Incorrect authentication method: {cfg.AUTH_METHOD}"
+                )  # ← ИЗМЕНЕНО
+
+            logging.debug("")
+            logging.debug('-' * len(f"Request URL: {url_arg}"))
+            logging.debug(f"Request URL: {url_arg}")
+            logging.debug('-' * len(f"Request URL: {url_arg}"))
+
+            logging.debug("")
+            logging.debug("-" * len("Request"))
+            logging.debug("Request")
+            logging.debug("-" * len("Request"))
+            logging.debug(json.dumps(body, indent=2, ensure_ascii=False))
+
+            logging.debug("")
+            logging.debug("-" * len("Response"))
+            logging.debug("Response")
+            logging.debug("-" * len("Response"))
+
+            try:
+                logging.debug(json.dumps(
+                    result_post.json(),
+                    indent=2,
+                    ensure_ascii=False
+                ))
+            except Exception:
+                logging.debug("Response is not JSON")  # ← ИЗМЕНЕНО
+
+            logging.debug("")
+
+            return result_post
 
         except requests.exceptions.RequestException as e:
-            logging.info(e)
-    
+            raise RuntimeError(f"POST request failed: {e}")  # ← ИЗМЕНЕНО
+
     @staticmethod
     def get_show_platform():
         """Метод для отправки запроса на /system/platform"""
         logging.info('=' * 68)
 
-        
-        # Отправляем запрос. Если токен, то header, а если basic, то auth
         try:
-
-            if AUTH_METHOD == 'token':
+            if cfg.AUTH_METHOD == 'token':
                 response = requests.get(
-                    url=URL + '/system/platform',
-                    headers=TOKEN,
+                    url=cfg.URL + '/system/platform',
+                    headers=cfg.TOKEN,
                     verify=False,
                     timeout=10
                 )
-                if response.status_code == 200:
-                    schema = response.json().get("result")
-                    logging.debug(json.dumps(schema, indent=2, ensure_ascii=False))
-                    
-                else:
-                    logging.debug(f'Authentication error: {response.status_code}')
-                    sys.exit()
 
-            elif AUTH_METHOD == 'basic':
+            elif cfg.AUTH_METHOD == 'basic':
                 response = requests.get(
-                    url=URL + '/system/platform',
-                    auth=(USERNAME, PASSWORD),
+                    url=cfg.URL + '/system/platform',
+                    auth=(cfg.USERNAME, cfg.PASSWORD),
                     verify=False,
                     timeout=10
                 )
-                if response.status_code == 200:
-                    schema = response.json().get("result")
-                    logging.debug(json.dumps(schema, indent=2, ensure_ascii=False))
-
-                else:
-                    logging.debug(f'Authentication error: {response.status_code}')
-                    sys.exit()
 
             else:
-                print("Incorrect authentication!")
-                logging.info("Incorrect authentication!")
-                sys.exit()
+                raise RuntimeError(
+                    f"Incorrect authentication method: {cfg.AUTH_METHOD}"
+                )  # ← ИЗМЕНЕНО
 
+            if response.status_code != 200:
+                raise RuntimeError(
+                    f"Authentication error: {response.status_code}"
+                )  # ← ИЗМЕНЕНО
+
+            try:
+                schema = response.json().get("result")
+                logging.debug(json.dumps(
+                    schema,
+                    indent=2,
+                    ensure_ascii=False
+                ))
+            except Exception:
+                logging.debug("Platform response is not JSON")  # ← ИЗМЕНЕНО
 
         except requests.exceptions.RequestException as e:
-            logging.info(e)
-            sys.exit()
+            raise RuntimeError(f"Platform request failed: {e}")  # ← ИЗМЕНЕНО
         finally:
             logging.debug("=" * 68)

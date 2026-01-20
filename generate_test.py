@@ -5,15 +5,7 @@ from datetime import datetime # Импортируем модуль для ра�
 import sys # Импортируем модуль для работы с аргументами командной строки
 from pydantic import ValidationError
 
-from config.read_confg import ( # Импортируем конфигурацию
-    TESTS_DIR, # Путь к директории с тестами
-    SCENARIOS_DIR, # Путь к директории с сценариями
-    TEMPLATES_DIR, # Путь к директории с шаблонами 
-    OPENAPI_PATH, # Путь к файлу OpenAPI 
-    DICT_ENDPOINTS, # Словарь с endpoint'ами
-    config, # Конфигурация 
-    root_to_conf_con # Путь до файла конфигурации
-    )  
+import config.read_confg as cfg 
  
 from utils.log import logging, initialize_log, log_start_program # Импортируем класс для логирования
 from utils.generate_utils.parse_scenarios import ScenarioParser # Импортируем класс для парсинга сценариев
@@ -125,7 +117,7 @@ class SingleValueAction(argparse.Action):
 def gen_endpoints(endpoints_list):
     for endpoint in endpoints_list:
         endpoint_processed = endpoint.replace("/", "_")
-        correct_name_endpoint = DICT_ENDPOINTS.get(f'{endpoint}'.replace('_', '/'), endpoint)
+        correct_name_endpoint = cfg.DICT_ENDPOINTS.get(f'{endpoint}'.replace('_', '/'), endpoint)
         
         try:
             logging.debug("=" * 68)
@@ -150,7 +142,7 @@ def gen_dir_endpoints():
     target_dir = parser_args.dir[0].strip('/')
     
     # Строим путь к директории
-    dir_path = os.path.join(SCENARIOS_DIR, target_dir.replace('/', os.sep))
+    dir_path = os.path.join(cfg.SCENARIOS_DIR, target_dir.replace('/', os.sep))
     
     if not os.path.exists(dir_path):
         print(f"Директория не найдена: {dir_path}")
@@ -161,7 +153,7 @@ def gen_dir_endpoints():
         for file in files:
             if file.endswith('.json') and file.startswith('_'):
                 # Получаем относительный путь от SCENARIOS_DIR
-                rel_path = os.path.relpath(root, SCENARIOS_DIR)
+                rel_path = os.path.relpath(root, cfg.SCENARIOS_DIR)
                 
                 # Имя файла без _ и .json
                 file_base = file[:-5]  # Например: '_fail2ban_enable' -> 'fail2ban_enable'
@@ -174,7 +166,7 @@ def gen_dir_endpoints():
                 logging.debug("=" * 68)
 
 
-                correct_name_endpoint = DICT_ENDPOINTS.get(f'{file_base}'.replace('_', '/'), file_base.replace('_', '/'))
+                correct_name_endpoint = cfg.DICT_ENDPOINTS.get(f'{file_base}'.replace('_', '/'), file_base.replace('_', '/'))
                 
                 try:
                     generate_test(endpoint_test=file_base)
@@ -192,7 +184,7 @@ def gen_dir_endpoints():
 
 def gen_all_endpoints():
     # Строим путь к директории
-    dir_path = os.path.join(SCENARIOS_DIR)
+    dir_path = os.path.join(cfg.SCENARIOS_DIR)
     
     if not os.path.exists(dir_path):
         print(f"Директория не найдена: {dir_path}")
@@ -203,7 +195,7 @@ def gen_all_endpoints():
         for file in files:
             if file.endswith('.json') and file.startswith('_'):
                 # Получаем относительный путь от SCENARIOS_DIR
-                rel_path = os.path.relpath(root, SCENARIOS_DIR)
+                rel_path = os.path.relpath(root, cfg.SCENARIOS_DIR)
                 
                 # Имя файла без _ и .json
                 file_base = file[:-5]  # Например: '_fail2ban_enable' -> 'fail2ban_enable'
@@ -216,7 +208,7 @@ def gen_all_endpoints():
                 logging.debug("=" * 68)
 
 
-                correct_name_endpoint = DICT_ENDPOINTS.get(f'{file_base}'.replace('_', '/'), file_base.replace('_', '/'))
+                correct_name_endpoint = cfg.DICT_ENDPOINTS.get(f'{file_base}'.replace('_', '/'), file_base.replace('_', '/'))
                 
                 try:
                     generate_test(endpoint_test=file_base)
@@ -233,7 +225,7 @@ def gen_all_endpoints():
 
 def generate_test(endpoint_test):
     try:
-        scenario_parser = ScenarioParser(scenarios_dir=SCENARIOS_DIR, templates_dir=TEMPLATES_DIR, openapi_file=OPENAPI_PATH)
+        scenario_parser = ScenarioParser(scenarios_dir=cfg.SCENARIOS_DIR, templates_dir=cfg.TEMPLATES_DIR, openapi_file=cfg.OPENAPI_PATH)
         scenario = scenario_parser.parse_scenario(scenario_name=endpoint_test)
         
         try:
@@ -256,7 +248,7 @@ def generate_test(endpoint_test):
 
         
         # Извлечение всех эндпоинтов которые присутствуют в сценарии
-        all_endpoints = scenario_parser.find_all_endpoints(resolved_scenario=scenario, dict_endpoints=DICT_ENDPOINTS)
+        all_endpoints = scenario_parser.find_all_endpoints(resolved_scenario=scenario, dict_endpoints=cfg.DICT_ENDPOINTS)
         logging.debug("=" * 68)
         logging.debug(f"Все endpoint'ы, присутствующие в сценарии:")
         logging.debug("=" * 68)
@@ -272,7 +264,7 @@ def generate_test(endpoint_test):
         # Проходимся по всем endpoint'ам, разрешаем схему и собираем паттерны
         for endpoint, method in all_endpoints.items():
             # Разрешение схемы endpoint'а сценария
-            resolved_scheme = ResolveScheme.resolve_endpoint(openapi_file=OPENAPI_PATH, endpoint_path=endpoint, method=method)
+            resolved_scheme = ResolveScheme.resolve_endpoint(openapi_file=cfg.OPENAPI_PATH, endpoint_path=endpoint, method=method)
             logging.debug("=" * 68)
             logging.debug(f"Разрешенная схема для {endpoint} {method}:")
             logging.debug("=" * 68)
@@ -299,20 +291,20 @@ def generate_test(endpoint_test):
         logging.debug("=" * 68)
 
         # ==Генерация тестов==
-        scenario_path = scenario_parser.find_scenario_by_name(scenarios_dir=SCENARIOS_DIR, target_name=endpoint_test)
+        scenario_path = scenario_parser.find_scenario_by_name(scenarios_dir=cfg.SCENARIOS_DIR, target_name=endpoint_test)
         logging.debug("=" * 68)
         logging.debug("=" * 68)
         logging.debug(f"Путь до сценария: {scenario_path}")
         logging.debug("=" * 68)
 
-        StructureGenerator.generate(base_dir=TESTS_DIR, openapi_path=OPENAPI_PATH)
+        StructureGenerator.generate(base_dir=TESTS_DIR, openapi_path=cfg.OPENAPI_PATH)
 
         logging.debug("=" * 68)
         logging.debug("Сгенерированный тест:")
         logging.debug("=" * 68)
         GenerateTests.generate_test(scenario=ready_scenario, 
                                     scenario_path=scenario_path,
-                                    scenario_folder=SCENARIOS_DIR,
+                                    scenario_folder=cfg.SCENARIOS_DIR,
                                     test_folder=TESTS_DIR)
         logging.debug("=" * 68)
 
@@ -340,9 +332,9 @@ if __name__ == "__main__":
         action='help',
         default=argparse.SUPPRESS,
         help=HELP_TEXT.format(
-            SCENARIOS_DIR=SCENARIOS_DIR,
-            TESTS_DIR=TESTS_DIR,
-            OPENAPI_PATH=OPENAPI_PATH
+            SCENARIOS_DIR=cfg.SCENARIOS_DIR,
+            TESTS_DIR=cfg.TESTS_DIR,
+            OPENAPI_PATH=cfg.OPENAPI_PATH
         )
     )
 
@@ -439,19 +431,25 @@ if __name__ == "__main__":
                           launch_command=" ".join(sys.argv),
                           current_log_time=current_log_time)
 
+        CheckAuthMethod.reset_auth_method()
         # Проверяем, есть ли сохраненный метод аутентификации
         saved_method = CheckAuthMethod.get_saved_auth_method()
-        if saved_method: # Если есть сохраненный метод аутентификации, то используем его
-            AUTH_METHOD =  saved_method 
+        if saved_method:
+            cfg.AUTH_METHOD = saved_method                    # ← ИЗМЕНЕНО
         else:
-            # Определяем метод аутентификации (basic или token)
-            AUTH_METHOD = CheckAuthMethod.check_auth_method()
+            cfg.AUTH_METHOD = CheckAuthMethod.check_auth_method()  # ← ИЗМЕНЕНО
+            CheckAuthMethod.save_auth_method(method=cfg.AUTH_METHOD)  # ← ИЗМЕНЕНО
 
-            # Сохраняем метод аутентификации в конфиге
-            CheckAuthMethod.save_auth_method(method=AUTH_METHOD)
         
         # Вызываем get_show_platform для запроса к /system/platform
-        Http_methods.get_show_platform()
+        try:
+            Http_methods.get_show_platform()
+        except RuntimeError as e:
+            print("ERROR: API is not reachable")          # ← ИЗМЕНЕНО
+            print(f"Reason: {e}")                           # ← ИЗМЕНЕНО
+            print("\nTests were not started.\n")            # ← ИЗМЕНЕНО
+            sys.exit(1)                                     # ← ИЗМЕНЕНО
+
 
 
         # Выполнение сценария запуска всех генераторов

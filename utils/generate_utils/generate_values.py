@@ -4,15 +4,11 @@ from jsonpath_ng import parse
 import random
 import logging
 
-from config.read_confg import (
-    NO_USE_SWITCHPORT,
-    NO_USE_VLAN,
-    NO_USE_ETH,
-    NO_USE_VLAN_ID
-)
+import config.read_confg as cfg   
+
 
 # Список интерфейсов которые нельзя использовать
-NO_USE_LIST = [NO_USE_VLAN_ID, NO_USE_ETH, NO_USE_SWITCHPORT, NO_USE_VLAN]
+NO_USE_LIST = [cfg.NO_USE_VLAN_ID, cfg.NO_USE_ETH, cfg.NO_USE_SWITCHPORT, cfg.NO_USE_VLAN]
 
 
 class GenerateValues:
