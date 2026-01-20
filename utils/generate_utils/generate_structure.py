@@ -5,7 +5,7 @@ import os
 from collections import defaultdict
 import logging
 
-from config.read_confg import config, root_to_conf_con
+import config.read_confg as cfg   
 
 class StructureGenerator:
     """
@@ -19,14 +19,14 @@ class StructureGenerator:
     def change_test_folder(cls, test_folder: str = None):
         try:
             if test_folder is None:
-                config["PATHS"]["tests_dir"] = cls.DEFAULT_FOLDER # Записываем путь к целевой папке в конфиге
+                cfg.config["PATHS"]["tests_dir"] = cls.DEFAULT_FOLDER # Записываем путь к целевой папке в конфиге
 
             else:
-                config["PATHS"]["tests_dir"] = test_folder # Записываем путь к целевой папке в конфиге
+                cfg.config["PATHS"]["tests_dir"] = test_folder # Записываем путь к целевой папке в конфиге
             
             # Перезаписываем конфигурационный файл
-            with open(root_to_conf_con, 'w') as conf_file:
-                config.write(conf_file)
+            with open(cfg.root_to_conf_con, 'w') as conf_file:
+                cfg.config.write(conf_file)
         except Exception as e:
             print(f"Ошибка при изменении пути к папке с тестами: {e}")
             logging.debug(f"Ошибка при изменении пути к папке с тестами: {e}")
