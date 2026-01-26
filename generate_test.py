@@ -435,20 +435,20 @@ if __name__ == "__main__":
         # Проверяем, есть ли сохраненный метод аутентификации
         saved_method = CheckAuthMethod.get_saved_auth_method()
         if saved_method:
-            cfg.AUTH_METHOD = saved_method                    # ← ИЗМЕНЕНО
+            cfg.AUTH_METHOD = saved_method                    # 
         else:
-            cfg.AUTH_METHOD = CheckAuthMethod.check_auth_method()  # ← ИЗМЕНЕНО
-            CheckAuthMethod.save_auth_method(method=cfg.AUTH_METHOD)  # ← ИЗМЕНЕНО
+            cfg.AUTH_METHOD = CheckAuthMethod.check_auth_method()  # 
+            CheckAuthMethod.save_auth_method(method=cfg.AUTH_METHOD)  # 
 
         
         # Вызываем get_show_platform для запроса к /system/platform
         try:
             Http_methods.get_show_platform()
         except RuntimeError as e:
-            print("ERROR: API is not reachable")          # ← ИЗМЕНЕНО
-            print(f"Reason: {e}")                           # ← ИЗМЕНЕНО
-            print("\nTests were not started.\n")            # ← ИЗМЕНЕНО
-            sys.exit(1)                                     # ← ИЗМЕНЕНО
+            print("ERROR: API is not reachable")          # 
+            print(f"Reason: {e}")                           # 
+            print("\nTests were not started.\n")            # 
+            sys.exit(1)                                     # 
 
 
 

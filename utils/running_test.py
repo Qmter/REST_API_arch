@@ -43,7 +43,7 @@ class RunningTest:
                     RunningTest.execute_test(test_schema[action])
                     logging.debug("")
 
-                except (AssertionError, RuntimeError) as e:  # ← ИЗМЕНЕНО
+                except (AssertionError, RuntimeError) as e:  # 
                     logging.debug(f"An error occurred: {e}")
                     logging.debug("")
 
@@ -58,7 +58,7 @@ class RunningTest:
                         try:
                             logging.debug("AFTER-TEST")
                             RunningTest.execute_test(test_schema["AFTER-TEST"])
-                        except (AssertionError, RuntimeError) as e_after:  # ← ИЗМЕНЕНО
+                        except (AssertionError, RuntimeError) as e_after:  # 
                             logging.debug(f"An error occurred: {e_after}")
                             logging.debug("")
                             failed_actions.add("AFTER-TEST")
@@ -67,7 +67,7 @@ class RunningTest:
                         try:
                             logging.debug("PRESET-TEST")
                             RunningTest.execute_test(test_schema["PRESET"])
-                        except (AssertionError, RuntimeError) as e_preset:  # ← ИЗМЕНЕНО
+                        except (AssertionError, RuntimeError) as e_preset:  # 
                             logging.debug(f"An error occurred: {e_preset}")
                             logging.debug("")
                             failed_actions.add("PRESET")
@@ -77,7 +77,7 @@ class RunningTest:
                 if "PRESET" in list_steps:
                     logging.debug("PRESET-TEST")
                     RunningTest.execute_test(test_schema["PRESET"])
-            except (AssertionError, RuntimeError) as e:  # ← ИЗМЕНЕНО
+            except (AssertionError, RuntimeError) as e:  # 
                 logging.debug(f"An error occurred: {e}")
                 logging.debug("")
                 failed_actions.add("PRESET")
@@ -98,7 +98,7 @@ class RunningTest:
 
                 RunningTest.execute_test(scenario_index)
 
-            except (AssertionError, RuntimeError) as e:  # ← ИЗМЕНЕНО
+            except (AssertionError, RuntimeError) as e:  # 
                 logging.debug(f"An error occurred: {e}")
                 logging.debug("")
                 failed_indexes.append(test_index)
@@ -108,7 +108,7 @@ class RunningTest:
                 if "AFTER-TEST" in list_steps:
                     logging.debug("AFTER-TEST")
                     RunningTest.execute_test(test_schema["AFTER-TEST"])
-            except (AssertionError, RuntimeError) as e:  # ← ИЗМЕНЕНО
+            except (AssertionError, RuntimeError) as e:  # 
                 logging.debug(f"An error occurred: {e}")
                 logging.debug("")
                 failed_actions.add("AFTER-TEST")
@@ -140,16 +140,16 @@ class RunningTest:
                         body=request_schema
                     )
                 except RuntimeError as e:
-                    raise AssertionError(str(e))  # ← ИЗМЕНЕНО
+                    raise AssertionError(str(e))  # 
 
                 if post_response is None:
-                    raise AssertionError("POST response is None")  # ← ИЗМЕНЕНО
+                    raise AssertionError("POST response is None")  # 
 
                 response_json = post_response.json()
 
                 if "errCode" in keys_in_test:
                     errCode_test = input_schema[index]["errCode"]
-                    errCode_response = response_json.get("errCode")[0]  # ← ИЗМЕНЕНО
+                    errCode_response = response_json.get("errCode")[0]  # 
                     if errCode_test != errCode_response:
                         raise AssertionError(
                             f"expected: {errCode_test}, response: {errCode_response}"
@@ -172,16 +172,16 @@ class RunningTest:
                         arguments=request_arguments
                     )
                 except RuntimeError as e:
-                    raise AssertionError(str(e))  # ← ИЗМЕНЕНО
+                    raise AssertionError(str(e))  # 
 
                 if get_response is None:
-                    raise AssertionError("GET response is None")  # ← ИЗМЕНЕНО
+                    raise AssertionError("GET response is None")  # 
 
                 response_json = get_response.json()
 
                 if "errCode" in keys_in_test:
                     errCode_test = input_schema[index]["errCode"]
-                    errCode_response = response_json.get("errCode")[0] # ← ИЗМЕНЕНО
+                    errCode_response = response_json.get("errCode")[0] # 
                     if errCode_test != errCode_response:
                         raise AssertionError(
                             f"expected: {errCode_test}, response: {errCode_response}"

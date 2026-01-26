@@ -31,7 +31,7 @@ class Http_methods:
 
             url_arg = request_url[:-1]
         else:
-            url_arg = request_url  # ← ИЗМЕНЕНО: url_arg гарантирован
+            url_arg = request_url  # : url_arg гарантирован
 
         try:
             if cfg.AUTH_METHOD == 'token':
@@ -51,9 +51,9 @@ class Http_methods:
             else:
                 raise RuntimeError(
                     f"Incorrect authentication method: {cfg.AUTH_METHOD}"
-                )  # ← ИЗМЕНЕНО
+                )  # 
 
-            # ← ИЗМЕНЕНО: логируем ТОЛЬКО если JSON валиден
+            # : логируем ТОЛЬКО если JSON валиден
             logging.debug("")
             logging.debug('-' * len(f"Request URL: {url_arg}"))
             logging.debug(f"Request URL: {url_arg}")
@@ -71,14 +71,14 @@ class Http_methods:
                     ensure_ascii=False
                 ))
             except Exception:
-                logging.debug("Response is not JSON")  # ← ИЗМЕНЕНО
+                logging.debug("Response is not JSON")  # 
 
             logging.debug("")
 
             return result_get
 
         except requests.exceptions.RequestException as e:
-            raise RuntimeError(f"GET request failed: {e}")  # ← ИЗМЕНЕНО
+            raise RuntimeError(f"GET request failed: {e}")  # 
 
     @staticmethod
     def post(body=None, endpoint=None):
@@ -112,7 +112,7 @@ class Http_methods:
             else:
                 raise RuntimeError(
                     f"Incorrect authentication method: {cfg.AUTH_METHOD}"
-                )  # ← ИЗМЕНЕНО
+                )  # 
 
             logging.debug("")
             logging.debug('-' * len(f"Request URL: {url_arg}"))
@@ -137,14 +137,14 @@ class Http_methods:
                     ensure_ascii=False
                 ))
             except Exception:
-                logging.debug("Response is not JSON")  # ← ИЗМЕНЕНО
+                logging.debug("Response is not JSON")  # 
 
             logging.debug("")
 
             return result_post
 
         except requests.exceptions.RequestException as e:
-            raise RuntimeError(f"POST request failed: {e}")  # ← ИЗМЕНЕНО
+            raise RuntimeError(f"POST request failed: {e}")  # 
 
     @staticmethod
     def get_show_platform():
@@ -171,12 +171,12 @@ class Http_methods:
             else:
                 raise RuntimeError(
                     f"Incorrect authentication method: {cfg.AUTH_METHOD}"
-                )  # ← ИЗМЕНЕНО
+                )  # 
 
             if response.status_code != 200:
                 raise RuntimeError(
                     f"Authentication error: {response.status_code}"
-                )  # ← ИЗМЕНЕНО
+                )  # 
 
             try:
                 schema = response.json().get("result")
@@ -186,9 +186,9 @@ class Http_methods:
                     ensure_ascii=False
                 ))
             except Exception:
-                logging.debug("Platform response is not JSON")  # ← ИЗМЕНЕНО
+                logging.debug("Platform response is not JSON")  # 
 
         except requests.exceptions.RequestException as e:
-            raise RuntimeError(f"Platform request failed: {e}")  # ← ИЗМЕНЕНО
+            raise RuntimeError(f"Platform request failed: {e}")  # 
         finally:
             logging.debug("=" * 68)
