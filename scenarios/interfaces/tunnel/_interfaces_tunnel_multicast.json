@@ -60,7 +60,10 @@
             "method": "POST",
             "parameters": {
               "ifname": "random",
-              "source": "random"
+              "source": {
+                "modify": "regex",
+                "regex": "VRF_[A-Z]4$"
+              }
             },
             "expected": {
               "errCode": 0,

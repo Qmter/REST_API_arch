@@ -55,7 +55,7 @@ class ModifyValue(BaseModel):
 
 
 
-ParameterValue = str | int | float | bool | RefValue | ModifyValue
+ParameterValue = str | int | float | bool | RefValue | ModifyValue | dict
 
 
 # ============================================================

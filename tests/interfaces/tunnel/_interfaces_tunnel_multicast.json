@@ -7,8 +7,8 @@
       "errCode": 0,
       "httpCode": 200,
       "schema": {
-        "ifname": "tunnel7",
-        "source": "fm9tbRkRMgSnMu0"
+        "ifname": "tunnel0",
+        "source": "JknHdfpSsg0"
       }
     },
     "1.2": {
@@ -17,7 +17,7 @@
       "errCode": 0,
       "httpCode": 200,
       "schema": {
-        "ifname": "tunnel8",
+        "ifname": "tunnel0",
         "action": "on"
       }
     },
@@ -27,11 +27,11 @@
       "errCode": 0,
       "httpCode": 200,
       "arguments": {
-        "ifname": "tunnel7"
+        "ifname": "tunnel0"
       },
       "validation": {
-        "ifname": "tunnel7",
-        "source": "fm9tbRkRMgSnMu0",
+        "ifname": "tunnel0",
+        "source": "JknHdfpSsg0",
         "multicast": "on"
       }
     }
@@ -44,8 +44,8 @@
       "errCode": 0,
       "httpCode": 200,
       "schema": {
-        "ifname": "tunnel793",
-        "source": "vlan4092"
+        "ifname": "tunnel0",
+        "source": "VRF_W4"
       }
     },
     "2.2": {
@@ -54,7 +54,7 @@
       "errCode": 0,
       "httpCode": 200,
       "schema": {
-        "ifname": "tunnel793",
+        "ifname": "tunnel0",
         "action": "off"
       }
     },
@@ -64,11 +64,11 @@
       "errCode": 0,
       "httpCode": 200,
       "arguments": {
-        "ifname": "tunnel793"
+        "ifname": "tunnel0"
       },
       "validation": {
-        "ifname": "tunnel793",
-        "source": "vlan4092",
+        "ifname": "tunnel0",
+        "source": "VRF_W4",
         "multicast": "off"
       }
     }
@@ -80,7 +80,7 @@
       "errCode": 0,
       "httpCode": 200,
       "schema": {
-        "ifname": "tunnel7"
+        "ifname": "tunnel0"
       }
     },
     "2": {
@@ -89,7 +89,7 @@
       "errCode": 0,
       "httpCode": 200,
       "schema": {
-        "ifname": "tunnel793"
+        "ifname": "tunnel0"
       }
     }
   }
