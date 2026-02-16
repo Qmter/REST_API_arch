@@ -72,7 +72,9 @@ class GenerateValues:
                 obj = match.value  # Текущий объект шага
                 path = match.full_path  # Полный путь к объекту в JSON
 
-                endpoint = obj['endpoint']  # Текущий endpoint
+                endpoint = obj['endpoint']
+                method = obj.get('method', 'POST').upper()
+                endpoint_key = f"{method}:{endpoint}"
 
                 # Если есть parameters — обрабатываем
                 if 'parameters' in obj:
@@ -81,7 +83,7 @@ class GenerateValues:
                         fields=obj['parameters'],
                         path=path,
                         field_type="parameters",
-                        endpoint=endpoint
+                        endpoint=endpoint_key
                     )
 
                 # Если есть validation — обрабатываем
@@ -91,7 +93,7 @@ class GenerateValues:
                         fields=obj['validation'],
                         path=path,
                         field_type="validation",
-                        endpoint=endpoint
+                        endpoint=endpoint_key
                     )
 
             except Exception as e:

@@ -226,63 +226,45 @@ class ScenarioParser:
             raise
 
     def find_all_endpoints(self, resolved_scenario, dict_endpoints) -> dict:
-        """Получение всех endpoint в сценарии"""
         try:
             def _find_endpoints_recursive(data):
-                try:
-                    if isinstance(data, dict):
-                        for key, value in data.items():
-                            try:
-                                if key in dict_endpoints.values():
-                                    self.endpoints_in_scenario[key] = 'post'  # Сохраняем endpoint в словарь
-                                elif key == 'endpoint' and isinstance(value, str):
-                                    # Получаем метод, если он есть
-                                    method = data.get('method', 'post')
-                                    self.endpoints_in_scenario[value] = method  # Сохраняем endpoint и метод
-                                
-                                # Рекурсивно обрабатываем вложенные данные
-                                _find_endpoints_recursive(value)
-                            except Exception as e:
-                                logging.debug(f"Ошибка при обработке ключа '{key}': {e}")
-                                continue
-                    elif isinstance(data, list):
-                        for item in data:
-                            try:
-                                _find_endpoints_recursive(item)
-                            except Exception as e:
-                                logging.debug(f"Ошибка при обработке элемента списка: {e}")
-                                continue
-                except Exception as e:
-                    logging.debug(f"Ошибка в _find_endpoints_recursive: {e}")
-                    raise
-            
-            # Очищаем словарь перед поиском
+                if isinstance(data, dict):
+                    for key, value in data.items():
+
+                        if key == 'endpoint' and isinstance(value, str):
+                            method = data.get('method', 'post').upper()
+
+                            # теперь endpoint хранит МНОЖЕСТВО методов
+                            self.endpoints_in_scenario \
+                                .setdefault(value, set()) \
+                                .add(method)
+
+                        _find_endpoints_recursive(value)
+
+                elif isinstance(data, list):
+                    for item in data:
+                        _find_endpoints_recursive(item)
+
             self.endpoints_in_scenario = {}
-            
-            # Запускаем рекурсивный поиск
             _find_endpoints_recursive(resolved_scenario)
-            
-            # ВАЛИДАЦИЯ: проверяем, что все найденные endpoint'ы есть в словаре
+
+            # ВАЛИДАЦИЯ
             validation_errors = []
             for endpoint in self.endpoints_in_scenario.keys():
-                endpoint_found = False
-                # Ищем endpoint в dict_endpoints (как ключ или значение)
-                for dict_key, dict_value in dict_endpoints.items():
-                    if endpoint == dict_key or endpoint == dict_value:
-                        endpoint_found = True
-                        break
-                
-                if not endpoint_found:
-                    validation_errors.append(f"Endpoint '{endpoint}' не найден в словаре endpoints_dict")
-            
-            # Если есть ошибки валидации, выбрасываем исключение
+                if endpoint not in dict_endpoints and \
+                endpoint not in dict_endpoints.values():
+                    validation_errors.append(
+                        f"Endpoint '{endpoint}' не найден в словаре endpoints_dict"
+                    )
+
             if validation_errors:
-                error_msg = f"Ошибки валидации endpoints:\n" + "\n".join(validation_errors[:10])  # Показываем первые 10 ошибок
-                logging.error(error_msg)
-                raise ValueError(error_msg)
-            
-            return self.endpoints_in_scenario  # Возвращаем все endpoint в сценарии
-            
+                raise ValueError(
+                    "Ошибки валидации endpoints:\n" +
+                    "\n".join(validation_errors[:10])
+                )
+
+            return self.endpoints_in_scenario
+
         except Exception as e:
             logging.debug(f"Ошибка при поиске endpoints: {e}")
-            raise  # Пробрасываем исключение наверх
+            raise

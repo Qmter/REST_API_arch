@@ -191,14 +191,14 @@ def gen_all_endpoints():
         return
     
     # Рекурсивно ищем все JSON файлы
-    for root, dirs, files in os.walk(dir_path):
+    for root, dirs, files in sorted(os.walk(dir_path)):
         for file in files:
             if file.endswith('.json') and file.startswith('_'):
                 # Получаем относительный путь от SCENARIOS_DIR
                 rel_path = os.path.relpath(root, cfg.SCENARIOS_DIR)
                 
-                # Имя файла без _ и .json
-                file_base = file[:-5]  # Например: '_fail2ban_enable' -> 'fail2ban_enable'
+                # Имя файла без .json
+                file_base = file[:-5]
                 
                 # ДЕБАГ: выводим информацию
                 logging.debug("=" * 68)
@@ -262,18 +262,20 @@ def generate_test(endpoint_test):
         arguments_patterns = {}
 
         # Проходимся по всем endpoint'ам, разрешаем схему и собираем паттерны
-        for endpoint, method in all_endpoints.items():
-            # Разрешение схемы endpoint'а сценария
-            resolved_scheme = ResolveScheme.resolve_endpoint(openapi_file=cfg.OPENAPI_PATH, endpoint_path=endpoint, method=method)
-            logging.debug("=" * 68)
-            logging.debug(f"Разрешенная схема для {endpoint} {method}:")
-            logging.debug("=" * 68)
-            logging.debug(json.dumps(resolved_scheme, indent=2))
-            dict_endpoint_scheme[f"{endpoint}"] = resolved_scheme
-            logging.debug("=" * 68)
+        for endpoint, methods in all_endpoints.items():
+            for method in methods:
+                # Разрешение схемы endpoint'а сценария
+                resolved_scheme = ResolveScheme.resolve_endpoint(openapi_file=cfg.OPENAPI_PATH, endpoint_path=endpoint, method=method)
+                logging.debug("=" * 68)
+                logging.debug(f"Разрешенная схема для {method}:{endpoint} :")
+                logging.debug("=" * 68)
+                logging.debug(json.dumps(resolved_scheme, indent=2))
+                dict_endpoint_scheme[f"{method}:{endpoint}"] = resolved_scheme
+                logging.debug("=" * 68)
 
-            # Получение паттернов аргументов
-            arguments_patterns[f"{endpoint}"] = ResolveScheme.find_all_patterns_min_max(schema=resolved_scheme)
+                # Получение паттернов аргументов
+                arguments_patterns[f"{method}:{endpoint}"] = ResolveScheme.find_all_patterns_min_max(schema=resolved_scheme)
+
 
         logging.debug("=" * 68)
         logging.debug("Аргументы endpoint'а и его паттерны:")
