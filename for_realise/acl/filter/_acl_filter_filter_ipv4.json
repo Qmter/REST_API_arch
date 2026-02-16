@@ -1,0 +1,52 @@
+{
+  "1": {
+    "description": "Add filter ipv4 with chain: input, action: reject",
+    "1.1": {
+      "endpoint": "/acl/acl_ipv4",
+      "type": "POST",
+      "errCode": 0,
+      "httpCode": 200,
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "`#nVg%",
+            "rule": {
+              "dpi": {
+                "not": true,
+                "dpi_protocol": "activision"
+              }
+            }
+          }
+        }
+      }
+    },
+    "1.2": {
+      "endpoint": "/acl/filter/filter_ipv4",
+      "type": "POST",
+      "errCode": 0,
+      "httpCode": 200,
+      "schema": {
+        "action.add.index": "random",
+        "action": {
+          "add": {
+            "vrf": "yara",
+            "chain": "input",
+            "filter": {
+              "action": "reject",
+              "acl_name": "`#nVg%"
+            }
+          }
+        }
+      }
+    },
+    "1.3": {
+      "endpoint": "/acl/filter/filter_ipv4",
+      "type": "GET",
+      "errCode": 0,
+      "httpCode": 200,
+      "arguments": {
+        "vrf": "yara"
+      }
+    }
+  }
+}
