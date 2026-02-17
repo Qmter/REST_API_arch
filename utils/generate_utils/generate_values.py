@@ -280,7 +280,22 @@ class GenerateValues:
                     if "." in full_key:
                         fields.pop(full_key, None)
 
-                    logging.debug(f"key={full_key}, value={arg_value}")
+                    list_path = str(path).split('.')
+                    type_test = ''
+
+                    if "TESTS" in list_path:
+                        type_test = "TESTS"
+                    elif "PRESET" in list_path:
+                        type_test = "PRESET"
+                    elif "AFTER-TEST" in list_path:
+                        type_test = "AFTER-TEST"
+                    
+                    num_test = list_path.index(type_test) + 1
+                    num_step = list_path.index("steps") + 1                    
+
+                    logging.debug('_'*58)
+                    logging.debug(f"{type_test}{" №" + list_path[num_test] if type_test == "TESTS" else ''}. Step №{list_path[num_step]}:\nparameter={full_key}\nvalue={arg_value}")
+                    logging.debug('-'*58)
 
             except Exception as e:
                 logging.debug(f"Ошибка обработки поля {full_key}: {e}")
