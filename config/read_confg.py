@@ -1,6 +1,7 @@
 import configparser
 import os
-import ast
+import json
+import sys
 
 config = configparser.ConfigParser() # Создаем объект для чтения конфигурационного файла
 root_to_conf_con = os.path.join(os.path.join(os.getcwd(), "config"), "config.ini") # Путь к конфигурационному файлу
@@ -27,10 +28,29 @@ AUTH_METHOD = config["AUTH"]["auth_method"] # Метод для авториза
 LOG_LVL = config["LOGGING"]["log_level"]
 
 # DICT OF ENDPOINTS
-DICT_ENDPOINTS = ast.literal_eval(config['ENDPOINTS']['endpoints_dict'])
+DICT_ENDPOINTS = {}
+
+try:
+    # Открываем файл и читаем его содержимое
+    with open(OPENAPI_PATH, 'r', encoding='utf-8') as f:
+        openapi = json.load(f)  # Преобразуем JSON в словарь
+
+    # Теперь openapi
+    all_endpoints = openapi['paths'].keys()
+
+    for endpoint in all_endpoints:
+        DICT_ENDPOINTS[f"{endpoint.replace("_", "/")}"] = f'{endpoint}'
+
+except Exception as e:
+    print("The 'openapi.json' file was not found, please check if it is in the root folder.")
+    sys.exit()
+
+# TOTAL COUNT ENDPOINTS
+TOTAL_COUNT_ENDPOINTS = len(openapi['paths'].keys())
 
 # NO USE INTERFACES
 NO_USE_SWITCHPORT = config["DO_NOT_USE"]["iface_switchport"]
 NO_USE_VLAN = config["DO_NOT_USE"]["iface_vlan"]
 NO_USE_VLAN_ID = config["DO_NOT_USE"]["vlan_id"]
 NO_USE_ETH = config["DO_NOT_USE"]["iface_eth"]
+

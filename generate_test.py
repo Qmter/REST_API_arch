@@ -311,7 +311,6 @@ def generate_test(endpoint_test):
         logging.debug("=" * 68)
 
     except ValueError as e:
-        # Это ошибки валидации, пробрасываем их наверх
         logging.error(f"Ошибка валидации для {endpoint_test}: {e}")
         raise
     except Exception as e:

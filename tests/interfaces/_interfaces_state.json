@@ -1,0 +1,493 @@
+{
+  "PRESET": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/add",
+      "schema": {
+        "ifname": "bond851"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan4060",
+        "vid": 1061
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/interfaces/loopback/add",
+      "schema": {
+        "ifname": "lo0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/add",
+      "schema": {
+        "ifname": "eth1.39",
+        "vid": 1061
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/add",
+      "schema": {
+        "ifname": "tunnel746",
+        "settings": {
+          "source": "1.1.1.1"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "1": {
+    "description": "get state bond no detail",
+    "1.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "bond851"
+      },
+      "validation": {
+        "ifname": "bond851"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "get state bond false detail",
+    "2.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "bond851",
+        "detail": false
+      },
+      "validation": {
+        "ifname": "bond851"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "get state bond true detail",
+    "3.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "bond851",
+        "detail": true
+      },
+      "validation": {
+        "ifname": "bond851"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "get state vlan no detail",
+    "4.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "vlan4060"
+      },
+      "validation": {
+        "ifname": "vlan4060"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "get state vlan false detail",
+    "5.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "vlan4060",
+        "detail": false
+      },
+      "validation": {
+        "ifname": "vlan4060"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "get state vlan true detail",
+    "6.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "vlan4060",
+        "detail": true
+      },
+      "validation": {
+        "ifname": "vlan4060"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "get state bridge no detail",
+    "7.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "br0"
+      },
+      "validation": {
+        "ifname": "br0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "8": {
+    "description": "get state bridge false detail",
+    "8.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "br0",
+        "detail": false
+      },
+      "validation": {
+        "ifname": "br0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "9": {
+    "description": "get state bridge true detail",
+    "9.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "br0",
+        "detail": true
+      },
+      "validation": {
+        "ifname": "br0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "10": {
+    "description": "get state loopback no detail",
+    "10.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "lo0"
+      },
+      "validation": {
+        "ifname": "lo0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "11": {
+    "description": "get state loopback false detail",
+    "11.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "lo0",
+        "detail": false
+      },
+      "validation": {
+        "ifname": "lo0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "12": {
+    "description": "get state loopback true detail",
+    "12.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "lo0",
+        "detail": true
+      },
+      "validation": {
+        "ifname": "lo0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "get state eth_vlan no detail",
+    "13.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "eth1.39"
+      },
+      "validation": {
+        "ifname": "eth1.39"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "14": {
+    "description": "get state eth_vlan false detail",
+    "14.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "eth1.39",
+        "detail": false
+      },
+      "validation": {
+        "ifname": "eth1.39"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "15": {
+    "description": "get state eth_vlan true detail",
+    "15.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "eth1.39",
+        "detail": true
+      },
+      "validation": {
+        "ifname": "eth1.39"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "16": {
+    "description": "get state tunnel no detail",
+    "16.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "tunnel746"
+      },
+      "validation": {
+        "ifname": "tunnel746"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "17": {
+    "description": "get state tunnel false detail",
+    "17.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "tunnel746",
+        "detail": false
+      },
+      "validation": {
+        "ifname": "tunnel746"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "18": {
+    "description": "get state tunnel true detail",
+    "18.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "tunnel746",
+        "detail": true
+      },
+      "validation": {
+        "ifname": "tunnel746"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "19": {
+    "description": "get state switchport no detail",
+    "19.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "switchport2"
+      },
+      "validation": {
+        "ifname": "switchport2"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "20": {
+    "description": "get state switchport false detail",
+    "20.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "switchport2",
+        "detail": false
+      },
+      "validation": {
+        "ifname": "switchport2"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "21": {
+    "description": "get state switchport true detail",
+    "21.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "switchport2",
+        "detail": true
+      },
+      "validation": {
+        "ifname": "switchport2"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "22": {
+    "description": "get state ethernet no detail",
+    "22.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "23": {
+    "description": "get state ethernet false detail",
+    "23.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "eth1",
+        "detail": false
+      },
+      "validation": {
+        "ifname": "eth1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "24": {
+    "description": "get state ethernet true detail",
+    "24.1": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "eth1",
+        "detail": true
+      },
+      "validation": {
+        "ifname": "eth1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/delete",
+      "schema": {
+        "ifname": "bond851"
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan4060"
+      }
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/interfaces/loopback/delete",
+      "schema": {
+        "ifname": "lo0"
+      }
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/delete",
+      "schema": {
+        "ifname": "eth1.39"
+      }
+    },
+    "5": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/delete",
+      "schema": {
+        "ifname": "tunnel746"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br0"
+      }
+    },
+    "7": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "1061"
+      }
+    }
+  }
+}

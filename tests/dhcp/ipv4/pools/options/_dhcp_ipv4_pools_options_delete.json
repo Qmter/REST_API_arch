@@ -1,0 +1,1451 @@
+{
+  "PRESET": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/add",
+      "schema": {
+        "pool_number": 55341,
+        "network": "8.213.131.0/24"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "1": {
+    "description": "Deleting option bootfile-name",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "3=M.s w+33 Y.W2sD5//VoM(G4<pQb''tVBIWQL0`Pe$`8@l4gW"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "bootfile-name"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Deleting option from group",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/add",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "mh9ZKOwMiSZ"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "mh9ZKOwMiSZ",
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "p;b)3)+L9v9"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "mh9ZKOwMiSZ",
+        "option": "bootfile-name"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.4": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341,
+        "group_name": "mh9ZKOwMiSZ"
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.5": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/delete",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "mh9ZKOwMiSZ"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Deleting option from host",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/hosts",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "faN7aaJy1LuIyDUQKCw.1oTZLx8qwPmuCUPChpPeM78_dAfkrcqzP",
+        "hw_client_id": {
+          "mac_address": "010101010101"
+        },
+        "ip_address": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "faN7aaJy1LuIyDUQKCw.1oTZLx8qwPmuCUPChpPeM78_dAfkrcqzP",
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "'~oY=U4=2m:lz586&[2(tJ_FTR"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "faN7aaJy1LuIyDUQKCw.1oTZLx8qwPmuCUPChpPeM78_dAfkrcqzP",
+        "option": "bootfile-name"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.4": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341,
+        "host_name": "faN7aaJy1LuIyDUQKCw.1oTZLx8qwPmuCUPChpPeM78_dAfkrcqzP"
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.5": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/hosts/delete",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "faN7aaJy1LuIyDUQKCw.1oTZLx8qwPmuCUPChpPeM78_dAfkrcqzP"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Deleting option from host in group",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/add",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "lFiClXn3"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/hosts",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "lFiClXn3",
+        "host_name": "hAkd7V7Ew_OjqE8mDXOa6YQn0GWj.F_2mDgfuWxW4ruuuupTIAyD4d-3xlyfp7C7mMB4yoiCz",
+        "hw_client_id": {
+          "mac_address": "010101010101"
+        },
+        "ip_address": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "hAkd7V7Ew_OjqE8mDXOa6YQn0GWj.F_2mDgfuWxW4ruuuupTIAyD4d-3xlyfp7C7mMB4yoiCz",
+        "group_name": "lFiClXn3",
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "IVR_i|~GMM63D)j[YI0f@`|$+T\\vo*v4Kve<'PRMXZYz;Dpf#&}i0"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "hAkd7V7Ew_OjqE8mDXOa6YQn0GWj.F_2mDgfuWxW4ruuuupTIAyD4d-3xlyfp7C7mMB4yoiCz",
+        "group_name": "lFiClXn3",
+        "option": "bootfile-name"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.5": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341,
+        "host_name": "hAkd7V7Ew_OjqE8mDXOa6YQn0GWj.F_2mDgfuWxW4ruuuupTIAyD4d-3xlyfp7C7mMB4yoiCz",
+        "group_name": "lFiClXn3"
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.6": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/delete",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "lFiClXn3"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Deleting option classless-static-routes",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "classless-static-routes",
+          "parameters": {
+            "routes": [
+              {
+                "destination_address": "109.61.8.252/1",
+                "router_address": "254.3.227.0"
+              },
+              {
+                "destination_address": "252.76.3.103/31",
+                "router_address": "46.113.255.0"
+              }
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "classless-static-routes"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "Deleting option default-ip-ttl",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "default-ip-ttl",
+          "parameters": {
+            "ttl": 230
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "default-ip-ttl"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Deleting option dhcp-message-type",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "dhcp-message-type",
+          "parameters": {
+            "type": 117
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "dhcp-message-type"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "8": {
+    "description": "Deleting option domain-name",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "domain-name",
+          "parameters": {
+            "domain_name": "Y.Y.jW3R2IwV-goCAUCMPR.C.y.C.YzRV0ZhVkjRvA9Y9T1OQmf8zsPzYmN2XXa6o0YVfaJv1ZC5Ll8u.5.q.jcmqc8rZ3Jp4dKVexzHE4wKTTqRfKjJs7KNRW-jIyYPGp.B.937iMSgJBv6HUZIJ2NsjN-ScT0LLy6zXtUpVNQQBvJguxll9YVwRW-1QJwvFm.7.w.S6yE3lz.22zRLW2qb4S9k5JZz1VgJUz95JnkywES5LajEHvdtVnbMZPrSb5ApKwHe.WHXG2bG.2yRTBGU.naFOyFTRBGFMJxlbRocrrGxCuzxg1zCrD0TXm-JY9Xqz.2.PtXy4E.4.znXY8-PjHGMVHLYoGmErFOYDo9flVFTInUwm1FCHw8sOQhe6s3Iq.sD0YCLSA5.x.Ppg4pbTRqT5YP13GfZdnBhWxlwCpvWWhEj6rWiaLr.y.cIalu2v6xxXtqn4SUEtXsJtkYMa.ajbgWxJ6842kW6jKXEgNrlq02hTvmHhnJcQOnx7cpY0KBDtw199RDDIfsXMfpc.Q.I.d.DGWRuDrBJta9zyc7hTXDMKm72rHKplDw.wkI1IfQ8RTHzDdJlpLzmg9AJOnCN.I.LRY.Vx8v17s-npy8mSVdv-hBt-GOIRed.Ux47BXxZHBNig5-M8LzumIYqwZXF6tJBF6TkcC4sntmDtUJ2DbZv.TpM4PsBJORtHGUfeIhMpJT5E.r.e.mmZI3p0xlGeUU.7T94bGP3tkiQHOCNloRzakjpgaIqxaY"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "domain-name"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "9": {
+    "description": "Deleting option domain-name-servers",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "domain-name-servers",
+          "parameters": {
+            "dns_addresses": [
+              "213.255.187.18",
+              "3.243.250.60",
+              "49.70.127.131"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "domain-name-servers"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "10": {
+    "description": "Deleting option host-name",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "host-name",
+          "parameters": {
+            "host": "c.K.t.1.f.AUTGSkcdpEdp4vccAdbXH09fh9Vb69sjUpIiK3cFEjugbR.z.2.myt.FW7OxCLszQrB73ue4qBMBr6UzwS0"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "host-name"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "11": {
+    "description": "Deleting option interfaces-mtu",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "interface-mtu",
+          "parameters": {
+            "mtu": 55129
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "interface-mtu"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "12": {
+    "description": "Deleting option ip-forwarding",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-forwarding",
+          "parameters": {
+            "flag": "true"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-forwarding"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Deleting option lpr-servers",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "lpr-servers",
+          "parameters": {
+            "server_addresses": [
+              "169.101.251.236",
+              "210.7.250.120",
+              "166.250.63.254"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "lpr-servers"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "14": {
+    "description": "Deleting option max-dgram-reassembly",
+    "14.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "max-dgram-reassembly",
+          "parameters": {
+            "reassembly": 21756
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "max-dgram-reassembly"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "15": {
+    "description": "Deleting option mobile-ip-home_agent",
+    "15.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "mobile-ip-home-agent",
+          "parameters": {
+            "agents_addresses": [
+              "154.92.161.255",
+              "5.235.177.78",
+              "29.6.77.161"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "mobile-ip-home-agent"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "16": {
+    "description": "Deleting option non-local-source-routing",
+    "16.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "non-local-source-routing",
+          "parameters": {
+            "flag": "false"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "non-local-source-routing"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "17": {
+    "description": "Deleting option ntp-servers",
+    "17.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ntp-servers",
+          "parameters": {
+            "server_addresses": [
+              "120.250.252.194",
+              "7.45.239.1",
+              "217.114.40.254"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ntp-servers"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "18": {
+    "description": "Deleting option policy-filter",
+    "18.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "policy-filter",
+          "parameters": {
+            "addresses": [
+              {
+                "address": "204.127.4.251",
+                "mask": "255.224.0.0"
+              }
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "policy-filter"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "19": {
+    "description": "Deleting option routers",
+    "19.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "routers",
+          "parameters": {
+            "router_addresses": [
+              "3.162.5.251",
+              "253.5.255.120",
+              "184.7.72.224"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "19.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "routers"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "19.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "20": {
+    "description": "Deleting option static-routes",
+    "20.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "static-routes",
+          "parameters": {
+            "routes": [
+              {
+                "destination_address": "103.253.250.211",
+                "router_address": "75.254.225.202"
+              },
+              {
+                "destination_address": "50.43.5.41",
+                "router_address": "221.8.251.80"
+              },
+              {
+                "destination_address": "32.17.251.255",
+                "router_address": "3.251.250.223"
+              },
+              {
+                "destination_address": "250.2.2.250",
+                "router_address": "254.3.129.32"
+              }
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "static-routes"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "21": {
+    "description": "Deleting option subnet-mask",
+    "21.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "subnet-mask",
+          "parameters": {
+            "subnet_mask": "240.0.0.0"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "subnet-mask"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "22": {
+    "description": "Deleting option tftp-server-address",
+    "22.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "tftp-server-address",
+          "parameters": {
+            "server_addresses": [
+              "254.6.44.225",
+              "4.250.3.84",
+              "230.6.107.251"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "tftp-server-address"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "23": {
+    "description": "Deleting option tftp-server-name",
+    "23.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "tftp-server-name",
+          "parameters": {
+            "server_name": "9(/5~QG0 ;$0l&N%QB/m%Z|Ln!.~O6LTi2l[HriaY3<Pw]^V7{\\}\\UqjeSZ\\q9j!k3yhmNP^N<h2$Goh!sZ8"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "tftp-server-name"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "24": {
+    "description": "Deleting option time-offset",
+    "24.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "time-offset",
+          "parameters": {
+            "time_offset": 3162764692
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "time-offset"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "25": {
+    "description": "Deleting option time-servers",
+    "25.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "time-servers",
+          "parameters": {
+            "server_addresses": [
+              "7.20.251.81",
+              "144.250.251.128",
+              "244.177.114.54"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "time-servers"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "26": {
+    "description": "Deleting option ip-tele-voicesrvr",
+    "26.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "mcipadd": "254.68.21.39",
+            "mcport": 39949,
+            "tftpsrvr": "99.64.2.24",
+            "tftpdir": "Xr8_/RiEp8;mz%#1zoliij8zA}d7yue@486~9h*|$",
+            "httpsrvr": "254.254.255.255",
+            "tlssrvr": "209.255.1.244",
+            "l2quad": 4,
+            "l2qsig": 3,
+            "l2qvlan": 3406,
+            "vlantest": 298
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "27": {
+    "description": "Deleting option ip-tele-datasrvr",
+    "27.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "mcipadd": "153.192.201.224",
+            "mcport": 29383,
+            "tftpsrvr": "205.250.214.87",
+            "tftpdir": "Oe-|k",
+            "httpsrvr": "8.187.162.89",
+            "tlssrvr": "127.103.0.196",
+            "l2quad": 5,
+            "l2qsig": 6,
+            "l2qvlan": 3441,
+            "vlantest": 588
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "28": {
+    "description": "Deleting option vendor-class-identifier",
+    "28.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vendor-class-identifier",
+          "parameters": {
+            "identifier": {
+              "type": "ascii",
+              "value": "zz6HGPY4ZIJpSbkZHIfplDNJdrQGrKftx"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "vendor-class-identifier"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "29": {
+    "description": "Deleting option vendor-encapsulated-options",
+    "29.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vendor-encapsulated-options",
+          "parameters": {
+            "identifier": {
+              "type": "ascii",
+              "value": "iN_txYyoGwZxJ7lsKCYNlceXzACVJDWnZIHEbGsGF885I"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "29.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "vendor-encapsulated-options"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "29.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "30": {
+    "description": "Deleting option vlan-id",
+    "30.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vlan-id",
+          "parameters": {
+            "vlan-id": 1045
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "30.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "vlan-id"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "30.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "31": {
+    "description": "Deleting option vlan-priority",
+    "31.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vlan-priority",
+          "parameters": {
+            "vlan-priority": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "vlan-priority"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "32": {
+    "description": "Deleting not added option",
+    "32.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "bootfile-name"
+      },
+      "errCode": -1,
+      "httpCode": 500
+    }
+  },
+  "33": {
+    "description": "Deleting option from non-existing group",
+    "33.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "no_group_created",
+        "option": "bootfile-name"
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "34": {
+    "description": "Deleting option from non-existing host",
+    "34.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "no_host_created",
+        "option": "bootfile-name"
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "35": {
+    "description": "Deleting option from non-existing host and non-existing group",
+    "35.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "no_host_created",
+        "group_name": "no_group_created",
+        "option": "bootfile-name"
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "36": {
+    "description": "Deleting option from non-existing pool",
+    "36.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 46534,
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "Yb@-u&7/To;eTKSQs?YX@a!Ab.NVZEV8TS>bGkPhq"
+          }
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 55341
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  }
+}

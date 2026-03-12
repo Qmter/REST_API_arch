@@ -1,0 +1,2041 @@
+{
+  "1": {
+    "description": "Set unknown_multicast: action = start and random arguments rates",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 404264,
+            "max_rate": 845265
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "on": true,
+          "rates": {
+            "min_rate": 404264,
+            "max_rate": 845265
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Set unknown_multicast: action = start and low min rate",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 42756
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "on": true,
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 42756
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Set unknown_multicast: action = start and high min rate",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 1000000,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "on": true,
+          "rates": {
+            "min_rate": 1000000,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Set unknown_multicast: action = start and low max rate",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 306
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "on": true,
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 306
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Set unknown_multicast: action = start and high max rate",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 536416,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "on": true,
+          "rates": {
+            "min_rate": 536416,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "Set unknown_multicast: action = start and unlimited max rate",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 509838,
+            "max_rate": "unlimited"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "on": true,
+          "rates": {
+            "min_rate": 509838,
+            "max_rate": "unlimited"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Set unknown_multicast: action = start and max rate less than min rate",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 424911,
+            "max_rate": 411242
+          }
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "8": {
+    "description": "Set unknown_multicast: action = start and min rate less than minimum",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 305,
+            "max_rate": 870469
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "9": {
+    "description": "Set unknown_multicast: action = start and min rate more than maximum",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 1000001,
+            "max_rate": 318352
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "10": {
+    "description": "Set unknown_multicast: action = start and max rate less than minimum",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 305
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "11": {
+    "description": "Set unknown_multicast: action = start and max rate more than maximum",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 1000001
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "12": {
+    "description": "Set unknown_multicast: action = stop when settings are enabled",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 500054,
+            "max_rate": 687774
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Set unknown_multicast: action = stop when settings are disabled",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "14": {
+    "description": "Set unknown_multicast: action = clear",
+    "14.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "clear"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "15": {
+    "description": "Set unknown_boardcast: action = start and random arguments rates",
+    "15.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 612026,
+            "max_rate": 726552
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "on": true,
+          "rates": {
+            "min_rate": 612026,
+            "max_rate": 726552
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "16": {
+    "description": "Set unknown_boardcast: action = start and minimum min-rate",
+    "16.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 529508
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "on": true,
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 529508
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "17": {
+    "description": "Set unknown_boardcast: action = start and maximum min-rate",
+    "17.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 1000000,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "on": true,
+          "rates": {
+            "min_rate": 1000000,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "18": {
+    "description": "Set unknown_boardcast: action = start and minimum max-rate",
+    "18.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 306
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "on": true,
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 306
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "19": {
+    "description": "Set unknown_boardcast: action = start and maximum max-rate",
+    "19.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 1000000,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "19.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "on": true,
+          "rates": {
+            "min_rate": 1000000,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "19.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "20": {
+    "description": "Set unknown_broadcast: action = start and max-rate unlimited",
+    "20.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 295834,
+            "max_rate": "unlimited"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "on": true,
+          "rates": {
+            "min_rate": 295834,
+            "max_rate": "unlimited"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "21": {
+    "description": "Set unknown_boardcast: action = start and max rate less than min rate",
+    "21.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 146841,
+            "max_rate": 25165
+          }
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "22": {
+    "description": "Set unknown_boardcast: action = start and min rate less than minimum ",
+    "22.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 305,
+            "max_rate": 648712
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "23": {
+    "description": "Set unknown_boardcast: action = start and min rate more than maximum ",
+    "23.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 1000001,
+            "max_rate": "unlimited"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "24": {
+    "description": "Set unknown_boardcast: action = start and max rate less than minimum ",
+    "24.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 305
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "25": {
+    "description": "Set unknown_boardcast: action = start and max rate more than maximum",
+    "25.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 838540,
+            "max_rate": 1000001
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "26": {
+    "description": "Set unknown_boardcast: action = stop action = stop when settings are disables",
+    "26.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "27": {
+    "description": "Set unknown_boardcast: action = stop action = stop when settings are enabled",
+    "27.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 262980,
+            "max_rate": 821413
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "on": true,
+          "rates": {
+            "min_rate": 262980,
+            "max_rate": 821413
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "28": {
+    "description": "Set unknown_boardcast: action = clear",
+    "28.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_broadcast": {
+          "action": "clear"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "29": {
+    "description": "Set known_broadcast_multicast: action = start and random arguments rates",
+    "29.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 739732,
+            "max_rate": 952125
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "29.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "on": true,
+          "rates": {
+            "min_rate": 739732,
+            "max_rate": 952125
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "29.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "30": {
+    "description": "Set known_broadcast_multicast: action = start and minimum min-rate",
+    "30.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 631446
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "30.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "on": true,
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 631446
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "30.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "31": {
+    "description": "Set known_broadcast_multicast: action = start and maximum min-rate",
+    "31.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 1000000,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "on": true,
+          "rates": {
+            "min_rate": 1000000,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "32": {
+    "description": "Set known_broadcast_multicast: action = start and minimum max-rate",
+    "32.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 306
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "on": true,
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 306
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "33": {
+    "description": "Set known_broadcast_multicast: action = start and maximum max-rate",
+    "33.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 325519,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "on": true,
+          "rates": {
+            "min_rate": 325519,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "34": {
+    "description": "Set known_broadcast_multicast: action = start and unlimited max-rate",
+    "34.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 103866,
+            "max_rate": "unlimited"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "34.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "on": true,
+          "rates": {
+            "min_rate": 103866,
+            "max_rate": "unlimited"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "34.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "35": {
+    "description": "Set known_broadcast_multicast: action = start and max-rate less than min-rate",
+    "35.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 765591,
+            "max_rate": 77630
+          }
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "36": {
+    "description": "Set known_broadcast_multicast: action = start and min-rate less than minimum",
+    "36.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 305,
+            "max_rate": 942806
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "37": {
+    "description": "Set known_broadcast_multicast: action = start and min-rate more than maximum",
+    "37.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 1000001,
+            "max_rate": "unlimited"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "38": {
+    "description": "Set known_broadcast_multicast: action = start and max-rate less than minimum",
+    "38.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 305
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "39": {
+    "description": "Set known_broadcast_multicast: action = start and max-rate more than maximum",
+    "39.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 892092,
+            "max_rate": 1000001
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "40": {
+    "description": "Set known_broadcast_multicast: action = stop when settings are enabled",
+    "40.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 717515,
+            "max_rate": 890633
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "40.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "on": true,
+          "rates": {
+            "min_rate": 717515,
+            "max_rate": 890633
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "40.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "41": {
+    "description": "Set known_broadcast_multicast: action = stop when settings are disabled",
+    "41.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "stop"
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "42": {
+    "description": "Set known_broadcast_multicast: action = clear",
+    "42.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "known_broadcast_multicast": {
+          "action": "clear"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "43": {
+    "description": "Set apr: action = start and random arguments rates",
+    "43.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "start",
+          "rates": {
+            "min_rate": 495383,
+            "max_rate": 788886
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "43.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "arp": {
+          "on": true,
+          "rates": {
+            "min_rate": 495383,
+            "max_rate": 788886
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "43.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "44": {
+    "description": "Set apr: action = start and minimum min-rate",
+    "44.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "start",
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 105898
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "44.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "arp": {
+          "on": true,
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 105898
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "44.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "45": {
+    "description": "Set apr: action = start and maximum min-rate",
+    "45.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "start",
+          "rates": {
+            "min_rate": 1000000,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "45.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "arp": {
+          "on": true,
+          "rates": {
+            "min_rate": 1000000,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "45.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "46": {
+    "description": "Set apr: action = start and minimum max-rate",
+    "46.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "start",
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 306
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "46.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "arp": {
+          "on": true,
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 306
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "46.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "47": {
+    "description": "Set apr: action = start and maximum max-rate",
+    "47.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "start",
+          "rates": {
+            "min_rate": 455568,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "47.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "arp": {
+          "on": true,
+          "rates": {
+            "min_rate": 455568,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "47.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "48": {
+    "description": "Set apr: action = start and unlimited max-rate",
+    "48.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "start",
+          "rates": {
+            "min_rate": 331862,
+            "max_rate": "unlimited"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "48.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "arp": {
+          "on": true,
+          "rates": {
+            "min_rate": 331862,
+            "max_rate": "unlimited"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "48.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "49": {
+    "description": "Set arp: action = start and max rate less than min rate",
+    "49.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "start",
+          "rates": {
+            "min_rate": 640868,
+            "max_rate": 214716
+          }
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "50": {
+    "description": "Set arp: action = start and min-rate less than minimum",
+    "50.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "start",
+          "rates": {
+            "min_rate": 305,
+            "max_rate": 579669
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "51": {
+    "description": "Set apr: action = start and maximum min-rate",
+    "51.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "start",
+          "rates": {
+            "min_rate": 1000000,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "51.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "arp": {
+          "on": true,
+          "rates": {
+            "min_rate": 1000000,
+            "max_rate": 1000000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "51.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "52": {
+    "description": "Set arp: action = start and max-rate less than minimum",
+    "52.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "start",
+          "rates": {
+            "min_rate": 306,
+            "max_rate": 305
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "53": {
+    "description": "Set arp: action = start and max-rate more than maximum",
+    "53.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "start",
+          "rates": {
+            "min_rate": 464503,
+            "max_rate": 1000001
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "54": {
+    "description": "Set arp: action = stop when settings are enabled",
+    "54.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "start",
+          "rates": {
+            "min_rate": 907649,
+            "max_rate": 975983
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "54.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "55": {
+    "description": "Set arp: action = stop when settings are disabled",
+    "55.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "stop"
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "56": {
+    "description": "Set arp: action = clear",
+    "56.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "arp": {
+          "action": "clear"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "57": {
+    "description": "Set all parameters start and stop",
+    "57.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 273451,
+            "max_rate": 338755
+          }
+        },
+        "unknown_broadcast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 98108,
+            "max_rate": "unlimited"
+          }
+        },
+        "known_broadcast_multicast": {
+          "action": "start",
+          "rates": {
+            "min_rate": 745060,
+            "max_rate": 961288
+          }
+        },
+        "arp": {
+          "action": "start",
+          "rates": {
+            "min_rate": 641926,
+            "max_rate": "unlimited"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "57.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "on": true,
+          "rates": {
+            "min_rate": 273451,
+            "max_rate": 338755
+          }
+        },
+        "unknown_broadcast": {
+          "on": true,
+          "rates": {
+            "min_rate": 98108,
+            "max_rate": "unlimited"
+          }
+        },
+        "known_broadcast_multicast": {
+          "on": true,
+          "rates": {
+            "min_rate": 745060,
+            "max_rate": 961288
+          }
+        },
+        "arp": {
+          "on": true,
+          "rates": {
+            "min_rate": 641926,
+            "max_rate": "unlimited"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "57.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "stop"
+        },
+        "unknown_broadcast": {
+          "action": "stop"
+        },
+        "known_broadcast_multicast": {
+          "action": "stop"
+        },
+        "arp": {
+          "action": "stop"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "58": {
+    "description": "Set all parameters clear",
+    "58.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "clear"
+        },
+        "unknown_broadcast": {
+          "action": "clear"
+        },
+        "known_broadcast_multicast": {
+          "action": "clear"
+        },
+        "arp": {
+          "action": "clear"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/storm_control_counters",
+      "schema": {
+        "ifname": "switchport8",
+        "unknown_multicast": {
+          "action": "stop"
+        },
+        "unknown_broadcast": {
+          "action": "stop"
+        },
+        "known_broadcast_multicast": {
+          "action": "stop"
+        },
+        "arp": {
+          "action": "stop"
+        }
+      }
+    }
+  }
+}

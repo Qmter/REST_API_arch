@@ -1,47 +1,1894 @@
 {
-  "PRESET": {
-    "1": {
-      "endpoint": "/fail2ban/jail/add",
-      "type": "POST",
-      "errCode": 0,
-      "httpCode": 200,
-      "schema": {
-        "jail_name": "1Fh_zm9tbRkRM"
-      }
-    }
-  },
   "1": {
-    "description": "Testing with the required parameter only",
+    "description": "Edit setting jail with required fields",
     "1.1": {
-      "endpoint": "/fail2ban/jail/settings",
       "type": "POST",
-      "errCode": 0,
-      "httpCode": 200,
+      "endpoint": "/fail2ban/jail/add",
       "schema": {
         "jail_name": "1Fh_zm9tbRkRM"
-      }
+      },
+      "errCode": 0,
+      "httpCode": 200
     },
     "1.2": {
+      "type": "POST",
       "endpoint": "/fail2ban/jail/settings",
-      "type": "GET",
+      "schema": {
+        "jail_name": "1Fh_zm9tbRkRM"
+      },
       "errCode": 0,
-      "httpCode": 200,
+      "httpCode": 200
+    },
+    "1.3": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/status",
       "arguments": {
         "jail_name": "1Fh_zm9tbRkRM"
       },
-      "validation": {
+      "validation": [
+        {
+          "jail_name": "1Fh_zm9tbRkRM",
+          "admin_status": false,
+          "real_status": false
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.4": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
         "jail_name": "1Fh_zm9tbRkRM"
-      }
+      },
+      "validation": [
+        {
+          "jail_name": "1Fh_zm9tbRkRM",
+          "enable": false
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.5": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "1Fh_zm9tbRkRM"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Edit setting jail with required fields and enable = true",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "SnMJq8Mt3"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "SnMJq8Mt3",
+        "enable": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "SnMJq8Mt3"
+      },
+      "validation": [
+        {
+          "jail_name": "SnMJq8Mt3",
+          "enable": true
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.4": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/status",
+      "arguments": {
+        "jail_name": "SnMJq8Mt3"
+      },
+      "validation": [
+        {
+          "jail_name": "SnMJq8Mt3",
+          "admin_status": true,
+          "real_status": false
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.5": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "SnMJq8Mt3"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Edit setting jail with required fields and enable = false",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "a94hHBLzA-q"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "a94hHBLzA-q",
+        "enable": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.3": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "a94hHBLzA-q"
+      },
+      "validation": [
+        {
+          "jail_name": "a94hHBLzA-q",
+          "enable": false
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.4": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/status",
+      "arguments": {
+        "jail_name": "a94hHBLzA-q"
+      },
+      "validation": [
+        {
+          "jail_name": "a94hHBLzA-q",
+          "admin_status": false,
+          "real_status": false
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.5": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "a94hHBLzA-q"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Edit setting jail with maxretry = minimum",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "pIYceS5L"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "pIYceS5L",
+        "maxretry": 0
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.3": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "pIYceS5L"
+      },
+      "validation": [
+        {
+          "jail_name": "pIYceS5L",
+          "enable": false,
+          "maxretry": 0
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "pIYceS5L"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Edit setting jail with maxretry = maximum",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "o_N"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "o_N",
+        "maxretry": 4294967295
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.3": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "o_N"
+      },
+      "validation": [
+        {
+          "jail_name": "o_N",
+          "enable": false,
+          "maxretry": 4294967295
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "o_N"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "Edit setting jail with maxretry = less than minimum",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "lPqak4Lxoe"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "lPqak4Lxoe",
+        "maxretry": -1
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "6.3": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "lPqak4Lxoe"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Edit setting jail with maxretry = more than maximum",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "XYXEh8ILQT"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "XYXEh8ILQT",
+        "maxretry": 4294967296
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "7.3": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "XYXEh8ILQT"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "8": {
+    "description": "Edit setting jail with maxretry = null",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "Ky"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "Ky",
+        "maxretry": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.3": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "Ky"
+      },
+      "validation": [
+        {
+          "jail_name": "Ky",
+          "enable": false
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "Ky"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "9": {
+    "description": "Edit setting jail with bantime = minimum",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "jeb1j5-tKpO_qYfCi"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "jeb1j5-tKpO_qYfCi",
+        "bantime": {
+          "bantime_value": 0,
+          "units": "sec"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.3": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "jeb1j5-tKpO_qYfCi"
+      },
+      "validation": [
+        {
+          "jail_name": "jeb1j5-tKpO_qYfCi",
+          "enable": false,
+          "bantime": {
+            "bantime_value": 0,
+            "units": "sec"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "jeb1j5-tKpO_qYfCi",
+        "bantime": {
+          "bantime_value": 0,
+          "units": "min"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.5": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "jeb1j5-tKpO_qYfCi"
+      },
+      "validation": [
+        {
+          "jail_name": "jeb1j5-tKpO_qYfCi",
+          "enable": false,
+          "bantime": {
+            "bantime_value": 0,
+            "units": "min"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.6": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "jeb1j5-tKpO_qYfCi",
+        "bantime": {
+          "bantime_value": 0,
+          "units": "hour"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.7": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "jeb1j5-tKpO_qYfCi"
+      },
+      "validation": [
+        {
+          "jail_name": "jeb1j5-tKpO_qYfCi",
+          "enable": false,
+          "bantime": {
+            "bantime_value": 0,
+            "units": "hour"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.8": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "jeb1j5-tKpO_qYfCi",
+        "bantime": {
+          "bantime_value": 0,
+          "units": "day"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.9": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "jeb1j5-tKpO_qYfCi"
+      },
+      "validation": [
+        {
+          "jail_name": "jeb1j5-tKpO_qYfCi",
+          "enable": false,
+          "bantime": {
+            "bantime_value": 0,
+            "units": "day"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.10": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "jeb1j5-tKpO_qYfCi",
+        "bantime": {
+          "bantime_value": 0,
+          "units": "week"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.11": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "jeb1j5-tKpO_qYfCi"
+      },
+      "validation": [
+        {
+          "jail_name": "jeb1j5-tKpO_qYfCi",
+          "enable": false,
+          "bantime": {
+            "bantime_value": 0,
+            "units": "week"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.12": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "jeb1j5-tKpO_qYfCi"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "10": {
+    "description": "Edit setting jail with bantime = maximum",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "cvVq"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "cvVq",
+        "bantime": {
+          "bantime_value": 4294967295,
+          "units": "sec"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.3": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "cvVq"
+      },
+      "validation": [
+        {
+          "jail_name": "cvVq",
+          "enable": false,
+          "bantime": {
+            "bantime_value": 4294967295,
+            "units": "sec"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "cvVq",
+        "bantime": {
+          "bantime_value": 4294967295,
+          "units": "min"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.5": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "cvVq"
+      },
+      "validation": [
+        {
+          "jail_name": "cvVq",
+          "enable": false,
+          "bantime": {
+            "bantime_value": 4294967295,
+            "units": "min"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.6": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "cvVq",
+        "bantime": {
+          "bantime_value": 4294967295,
+          "units": "hour"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.7": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "cvVq"
+      },
+      "validation": [
+        {
+          "jail_name": "cvVq",
+          "enable": false,
+          "bantime": {
+            "bantime_value": 4294967295,
+            "units": "hour"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.8": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "cvVq",
+        "bantime": {
+          "bantime_value": 4294967295,
+          "units": "day"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.9": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "cvVq"
+      },
+      "validation": [
+        {
+          "jail_name": "cvVq",
+          "enable": false,
+          "bantime": {
+            "bantime_value": 4294967295,
+            "units": "day"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.10": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "cvVq",
+        "bantime": {
+          "bantime_value": 4294967295,
+          "units": "week"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.11": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "cvVq"
+      },
+      "validation": [
+        {
+          "jail_name": "cvVq",
+          "enable": false,
+          "bantime": {
+            "bantime_value": 4294967295,
+            "units": "week"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.12": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "cvVq"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "11": {
+    "description": "Edit setting jail with bantime = less than minimum",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "HMScFJDPYPyLvO"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "HMScFJDPYPyLvO",
+        "bantime": {
+          "bantime_value": -1,
+          "units": "sec"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "11.3": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "HMScFJDPYPyLvO",
+        "bantime": {
+          "bantime_value": -1,
+          "units": "min"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "11.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "HMScFJDPYPyLvO",
+        "bantime": {
+          "bantime_value": -1,
+          "units": "hour"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "11.5": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "HMScFJDPYPyLvO",
+        "bantime": {
+          "bantime_value": -1,
+          "units": "day"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "11.6": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "HMScFJDPYPyLvO",
+        "bantime": {
+          "bantime_value": -1,
+          "units": "week"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "11.7": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "HMScFJDPYPyLvO"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "12": {
+    "description": "Edit setting jail with bantime = more than maximum",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "CY"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "CY",
+        "bantime": {
+          "bantime_value": 4294967296,
+          "units": "sec"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "12.3": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "CY",
+        "bantime": {
+          "bantime_value": 4294967296,
+          "units": "min"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "12.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "CY",
+        "bantime": {
+          "bantime_value": 4294967296,
+          "units": "hour"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "12.5": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "CY",
+        "bantime": {
+          "bantime_value": 4294967296,
+          "units": "day"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "12.6": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "CY",
+        "bantime": {
+          "bantime_value": 4294967296,
+          "units": "week"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "12.7": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "CY"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Edit setting jail with bantime = null",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "P9aHC2"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "P9aHC2",
+        "bantime": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.3": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "P9aHC2"
+      },
+      "validation": [
+        {
+          "jail_name": "P9aHC2",
+          "enable": false
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "P9aHC2"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "14": {
+    "description": "Edit setting jail with random ignoreip",
+    "14.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "hIcJ"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "hIcJ",
+        "ignoreip": [
+          "162.254.19.255/31"
+        ]
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.3": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "hIcJ"
+      },
+      "validation": [
+        {
+          "jail_name": "hIcJ",
+          "enable": false,
+          "ignoreip": [
+            "162.254.19.255/31"
+          ]
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "hIcJ"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "15": {
+    "description": "Edit setting jail with ignoreip = null",
+    "15.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "8VaHUUrgP4WB"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "8VaHUUrgP4WB",
+        "ignoreip": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.3": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "8VaHUUrgP4WB"
+      },
+      "validation": [
+        {
+          "jail_name": "8VaHUUrgP4WB",
+          "enable": false
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "8VaHUUrgP4WB"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "16": {
+    "description": "Edit setting jail with findtime = minimum",
+    "16.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "0ntxgTB6KqFjRe9t"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "0ntxgTB6KqFjRe9t",
+        "findtime": {
+          "findtime_value": 0,
+          "units": "sec"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.3": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "0ntxgTB6KqFjRe9t"
+      },
+      "validation": [
+        {
+          "jail_name": "0ntxgTB6KqFjRe9t",
+          "enable": false,
+          "findtime": {
+            "findtime_value": 0,
+            "units": "sec"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "0ntxgTB6KqFjRe9t",
+        "findtime": {
+          "findtime_value": 0,
+          "units": "min"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.5": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "0ntxgTB6KqFjRe9t"
+      },
+      "validation": [
+        {
+          "jail_name": "0ntxgTB6KqFjRe9t",
+          "enable": false,
+          "findtime": {
+            "findtime_value": 0,
+            "units": "min"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.6": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "0ntxgTB6KqFjRe9t",
+        "findtime": {
+          "findtime_value": 0,
+          "units": "hour"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.7": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "0ntxgTB6KqFjRe9t"
+      },
+      "validation": [
+        {
+          "jail_name": "0ntxgTB6KqFjRe9t",
+          "enable": false,
+          "findtime": {
+            "findtime_value": 0,
+            "units": "hour"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.8": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "0ntxgTB6KqFjRe9t",
+        "findtime": {
+          "findtime_value": 0,
+          "units": "day"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.9": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "0ntxgTB6KqFjRe9t"
+      },
+      "validation": [
+        {
+          "jail_name": "0ntxgTB6KqFjRe9t",
+          "enable": false,
+          "findtime": {
+            "findtime_value": 0,
+            "units": "day"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.10": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "0ntxgTB6KqFjRe9t",
+        "findtime": {
+          "findtime_value": 0,
+          "units": "week"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.11": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "0ntxgTB6KqFjRe9t"
+      },
+      "validation": [
+        {
+          "jail_name": "0ntxgTB6KqFjRe9t",
+          "enable": false,
+          "findtime": {
+            "findtime_value": 0,
+            "units": "week"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.12": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "0ntxgTB6KqFjRe9t"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "17": {
+    "description": "Edit setting jail with findtime = maximum",
+    "17.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "tQnx1KAYqU"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "tQnx1KAYqU",
+        "findtime": {
+          "findtime_value": 4294967295,
+          "units": "sec"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.3": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "tQnx1KAYqU"
+      },
+      "validation": [
+        {
+          "jail_name": "tQnx1KAYqU",
+          "enable": false,
+          "findtime": {
+            "findtime_value": 4294967295,
+            "units": "sec"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "tQnx1KAYqU",
+        "findtime": {
+          "findtime_value": 4294967295,
+          "units": "min"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.5": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "tQnx1KAYqU"
+      },
+      "validation": [
+        {
+          "jail_name": "tQnx1KAYqU",
+          "enable": false,
+          "findtime": {
+            "findtime_value": 4294967295,
+            "units": "min"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.6": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "tQnx1KAYqU",
+        "findtime": {
+          "findtime_value": 4294967295,
+          "units": "hour"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.7": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "tQnx1KAYqU"
+      },
+      "validation": [
+        {
+          "jail_name": "tQnx1KAYqU",
+          "enable": false,
+          "findtime": {
+            "findtime_value": 4294967295,
+            "units": "hour"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.8": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "tQnx1KAYqU",
+        "findtime": {
+          "findtime_value": 4294967295,
+          "units": "day"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.9": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "tQnx1KAYqU"
+      },
+      "validation": [
+        {
+          "jail_name": "tQnx1KAYqU",
+          "enable": false,
+          "findtime": {
+            "findtime_value": 4294967295,
+            "units": "day"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.10": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "tQnx1KAYqU",
+        "findtime": {
+          "findtime_value": 4294967295,
+          "units": "week"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.11": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "tQnx1KAYqU"
+      },
+      "validation": [
+        {
+          "jail_name": "tQnx1KAYqU",
+          "enable": false,
+          "findtime": {
+            "findtime_value": 4294967295,
+            "units": "week"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.12": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "tQnx1KAYqU"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "18": {
+    "description": "Edit setting jail with findtime less than minimum",
+    "18.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "c5w1Ez1F"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "c5w1Ez1F",
+        "findtime": {
+          "findtime_value": -1,
+          "units": "sec"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "18.3": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "c5w1Ez1F",
+        "findtime": {
+          "findtime_value": -1,
+          "units": "min"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "18.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "c5w1Ez1F",
+        "findtime": {
+          "findtime_value": -1,
+          "units": "hour"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "18.5": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "c5w1Ez1F",
+        "findtime": {
+          "findtime_value": -1,
+          "units": "day"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "18.6": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "c5w1Ez1F",
+        "findtime": {
+          "findtime_value": -1,
+          "units": "week"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "18.7": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "c5w1Ez1F"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "19": {
+    "description": "Edit setting jail with findtime more than maximum",
+    "19.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "5IhU5_"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "19.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "5IhU5_",
+        "findtime": {
+          "findtime_value": 4294967296,
+          "units": "sec"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "19.3": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "5IhU5_",
+        "findtime": {
+          "findtime_value": 4294967296,
+          "units": "min"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "19.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "5IhU5_",
+        "findtime": {
+          "findtime_value": 4294967296,
+          "units": "hour"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "19.5": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "5IhU5_",
+        "findtime": {
+          "findtime_value": 4294967296,
+          "units": "day"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "19.6": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "5IhU5_",
+        "findtime": {
+          "findtime_value": 4294967296,
+          "units": "week"
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "19.7": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "5IhU5_"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "20": {
+    "description": "Edit setting jail with findtime = null",
+    "20.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "E"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "E",
+        "findtime": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.3": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "E"
+      },
+      "validation": [
+        {
+          "jail_name": "E",
+          "enable": false
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "E"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "21": {
+    "description": "Edit setting jail with random acl",
+    "21.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "pn7G1YKQBz1oAbBA"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "pn7G1YKQBz1oAbBA",
+        "access_list": "z5]pX=iv4d&$]VjNT8dU#CSi`iQ3#}d811Gzxn.2,1:=i6BQaF!)oYGmheAS}(Dq)Bgq"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.3": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "pn7G1YKQBz1oAbBA"
+      },
+      "validation": [
+        {
+          "jail_name": "pn7G1YKQBz1oAbBA",
+          "enable": false,
+          "access_list": "z5]pX=iv4d&$]VjNT8dU#CSi`iQ3#}d811Gzxn.2,1:=i6BQaF!)oYGmheAS}(Dq)Bgq"
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "pn7G1YKQBz1oAbBA"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "22": {
+    "description": "Edit setting jail with acl = null",
+    "22.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/add",
+      "schema": {
+        "jail_name": "Fi"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/settings",
+      "schema": {
+        "jail_name": "Fi",
+        "access_list": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.3": {
+      "type": "GET",
+      "endpoint": "/fail2ban/jail/settings",
+      "arguments": {
+        "jail_name": "Fi"
+      },
+      "validation": [
+        {
+          "jail_name": "Fi",
+          "enable": false
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "Fi"
+      },
+      "errCode": 0,
+      "httpCode": 200
     }
   },
   "AFTER-TEST": {
     "1": {
-      "endpoint": "/fail2ban/jail/delete",
       "type": "POST",
-      "errCode": 0,
-      "httpCode": 200,
+      "endpoint": "/fail2ban/jail/delete",
       "schema": {
         "jail_name": "1Fh_zm9tbRkRM"
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "SnMJq8Mt3"
+      }
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "a94hHBLzA-q"
+      }
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "pIYceS5L"
+      }
+    },
+    "5": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "o_N"
+      }
+    },
+    "6": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "lPqak4Lxoe"
+      }
+    },
+    "7": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "XYXEh8ILQT"
+      }
+    },
+    "8": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "Ky"
+      }
+    },
+    "9": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "jeb1j5-tKpO_qYfCi"
+      }
+    },
+    "10": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "cvVq"
+      }
+    },
+    "11": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "HMScFJDPYPyLvO"
+      }
+    },
+    "12": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "CY"
+      }
+    },
+    "13": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "P9aHC2"
+      }
+    },
+    "14": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "hIcJ"
+      }
+    },
+    "15": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "8VaHUUrgP4WB"
+      }
+    },
+    "16": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "0ntxgTB6KqFjRe9t"
+      }
+    },
+    "17": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "tQnx1KAYqU"
+      }
+    },
+    "18": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "c5w1Ez1F"
+      }
+    },
+    "19": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "5IhU5_"
+      }
+    },
+    "20": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "E"
+      }
+    },
+    "21": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "pn7G1YKQBz1oAbBA"
+      }
+    },
+    "22": {
+      "type": "POST",
+      "endpoint": "/fail2ban/jail/delete",
+      "schema": {
+        "jail_name": "Fi"
       }
     }
   }

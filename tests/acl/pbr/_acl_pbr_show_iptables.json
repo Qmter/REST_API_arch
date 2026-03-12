@@ -1,0 +1,262 @@
+{
+  "PRESET": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "ci~a.I:RMX;y*^K^o}mb9hdo#J,r@oX530P`SM87a%S$G:>fz0),v]eL/B2hN+GC3.IqRS&[S,N`9SDK8G1j3p2&TLTO0{areG",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "waze"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "JYEOCNJcgt72yHDi;t+){kXC]0AIDf,Lv(UABnw,=%ohB~pPb9J#6[PL9p[cGnAO9(LT[M`%H(N=}oaeB#kRl5T%*<~1oc!aX",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "waze"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "1": {
+    "description": "Getting empy list of all IP tables",
+    "1.1": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/show_iptables",
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Getting empty list of ipv4 tables",
+    "2.1": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/show_iptables",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Getting list of ipv4 tables",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "input",
+            "item": {
+              "acl": "ci~a.I:RMX;y*^K^o}mb9hdo#J,r@oX530P`SM87a%S$G:>fz0),v]eL/B2hN+GC3.IqRS&[S,N`9SDK8G1j3p2&TLTO0{areG",
+              "lookup": 86
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/show_iptables",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "chain": "input",
+            "acl": "ci~a.I:RMX;y*^K^o}mb9hdo#J,r@oX530P`SM87a%S$G:>fz0),v]eL/B2hN+GC3.IqRS&[S,N`9SDK8G1j3p2&TLTO0{areG"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Getting empty list of ipv6 tables",
+    "4.1": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/show_iptables",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Getting list of ipv6 tables",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "input",
+            "item": {
+              "acl": "JYEOCNJcgt72yHDi;t+){kXC]0AIDf,Lv(UABnw,=%ohB~pPb9J#6[PL9p[cGnAO9(LT[M`%H(N=}oaeB#kRl5T%*<~1oc!aX",
+              "lookup": 29
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/show_iptables",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "chain": "input",
+            "acl": "JYEOCNJcgt72yHDi;t+){kXC]0AIDf,Lv(UABnw,=%ohB~pPb9J#6[PL9p[cGnAO9(LT[M`%H(N=}oaeB#kRl5T%*<~1oc!aX"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "Getting list of all IP tables",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "postrouting",
+            "item": {
+              "acl": "ci~a.I:RMX;y*^K^o}mb9hdo#J,r@oX530P`SM87a%S$G:>fz0),v]eL/B2hN+GC3.IqRS&[S,N`9SDK8G1j3p2&TLTO0{areG",
+              "lookup": 82
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "forward",
+            "item": {
+              "acl": "JYEOCNJcgt72yHDi;t+){kXC]0AIDf,Lv(UABnw,=%ohB~pPb9J#6[PL9p[cGnAO9(LT[M`%H(N=}oaeB#kRl5T%*<~1oc!aX",
+              "lookup": 175
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.3": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/show_iptables",
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.4": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "chain": "postrouting",
+            "acl": "ci~a.I:RMX;y*^K^o}mb9hdo#J,r@oX530P`SM87a%S$G:>fz0),v]eL/B2hN+GC3.IqRS&[S,N`9SDK8G1j3p2&TLTO0{areG"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.5": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "chain": "forward",
+            "acl": "JYEOCNJcgt72yHDi;t+){kXC]0AIDf,Lv(UABnw,=%ohB~pPb9J#6[PL9p[cGnAO9(LT[M`%H(N=}oaeB#kRl5T%*<~1oc!aX"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "ci~a.I:RMX;y*^K^o}mb9hdo#J,r@oX530P`SM87a%S$G:>fz0),v]eL/B2hN+GC3.IqRS&[S,N`9SDK8G1j3p2&TLTO0{areG"
+          }
+        }
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "JYEOCNJcgt72yHDi;t+){kXC]0AIDf,Lv(UABnw,=%ohB~pPb9J#6[PL9p[cGnAO9(LT[M`%H(N=}oaeB#kRl5T%*<~1oc!aX"
+          }
+        }
+      }
+    }
+  }
+}

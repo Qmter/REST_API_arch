@@ -1,0 +1,101 @@
+{
+  "1": {
+    "description": "Delete existing interface",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/loopback/add",
+      "schema": {
+        "ifname": "lo7"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/loopback/delete",
+      "schema": {
+        "ifname": "lo7"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Delete existing interface with vrf",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "bRkRMg",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/loopback/add",
+      "schema": {
+        "ifname": "lo9647",
+        "vrf_name": "bRkRMg"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/loopback/delete",
+      "schema": {
+        "ifname": "lo9647"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.4": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "bRkRMg",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Delete non existing interface",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/loopback/delete",
+      "schema": {
+        "ifname": "lo0"
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/loopback/delete",
+      "schema": {
+        "ifname": "lo7"
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/interfaces/loopback/delete",
+      "schema": {
+        "ifname": "lo9647"
+      }
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "bRkRMg",
+        "action": "delete"
+      }
+    }
+  }
+}

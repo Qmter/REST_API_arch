@@ -1,0 +1,2386 @@
+{
+  "1": {
+    "description": "Getting non-existing client",
+    "1.1": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "No_dhcp_client_created"
+      },
+      "errCode": 10,
+      "httpCode": 400
+    }
+  },
+  "2": {
+    "description": "Adding client with name only",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "s1(5d}*c7!R;o>obZYHB:Xmb{3l^8b7#qMpJWcjw(xW/_}BDC%"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "s1(5d}*c7!R;o>obZYHB:Xmb{3l^8b7#qMpJWcjw(xW/_}BDC%"
+      },
+      "validation": {
+        "config": {
+          "config_name": "s1(5d}*c7!R;o>obZYHB:Xmb{3l^8b7#qMpJWcjw(xW/_}BDC%",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "s1(5d}*c7!R;o>obZYHB:Xmb{3l^8b7#qMpJWcjw(xW/_}BDC%"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "s1(5d}*c7!R;o>obZYHB:Xmb{3l^8b7#qMpJWcjw(xW/_}BDC%"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Adding client with select_timeout | required only",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "rl2NB$hAF~XS&_4q5dI*WgBPWlSJ:WL>j_<\"qU~g,h,0M-(^$_@`n04zS3VB]=w~R@Ls!=&r-yz74NM",
+          "select_timeout": {
+            "value": 495423391
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "rl2NB$hAF~XS&_4q5dI*WgBPWlSJ:WL>j_<\"qU~g,h,0M-(^$_@`n04zS3VB]=w~R@Ls!=&r-yz74NM"
+      },
+      "validation": {
+        "config": {
+          "config_name": "rl2NB$hAF~XS&_4q5dI*WgBPWlSJ:WL>j_<\"qU~g,h,0M-(^$_@`n04zS3VB]=w~R@Ls!=&r-yz74NM",
+          "select_timeout": {
+            "value": 495423391,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "rl2NB$hAF~XS&_4q5dI*WgBPWlSJ:WL>j_<\"qU~g,h,0M-(^$_@`n04zS3VB]=w~R@Ls!=&r-yz74NM"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "rl2NB$hAF~XS&_4q5dI*WgBPWlSJ:WL>j_<\"qU~g,h,0M-(^$_@`n04zS3VB]=w~R@Ls!=&r-yz74NM"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Adding client with select_timeout | full field",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "Clh2ft.BFGOlExbXzF1UpH:3{[Pph:UPV_G.0:fh,PcJx@fSEZb($F{y*'#,x;91<bzV)(7^AOz@",
+          "select_timeout": {
+            "value": 3295736039,
+            "units": "min"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "Clh2ft.BFGOlExbXzF1UpH:3{[Pph:UPV_G.0:fh,PcJx@fSEZb($F{y*'#,x;91<bzV)(7^AOz@"
+      },
+      "validation": {
+        "config": {
+          "config_name": "Clh2ft.BFGOlExbXzF1UpH:3{[Pph:UPV_G.0:fh,PcJx@fSEZb($F{y*'#,x;91<bzV)(7^AOz@",
+          "select_timeout": {
+            "value": 197744162340,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "Clh2ft.BFGOlExbXzF1UpH:3{[Pph:UPV_G.0:fh,PcJx@fSEZb($F{y*'#,x;91<bzV)(7^AOz@"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "Clh2ft.BFGOlExbXzF1UpH:3{[Pph:UPV_G.0:fh,PcJx@fSEZb($F{y*'#,x;91<bzV)(7^AOz@"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Adding client with select_timeout | minimum value argument",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "6]YP<jD+/^3eA5mT7\"-Yn",
+          "select_timeout": {
+            "value": 0,
+            "units": "week"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "6]YP<jD+/^3eA5mT7\"-Yn"
+      },
+      "validation": {
+        "config": {
+          "config_name": "6]YP<jD+/^3eA5mT7\"-Yn",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "6]YP<jD+/^3eA5mT7\"-Yn"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "6]YP<jD+/^3eA5mT7\"-Yn"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "Adding client with select_timeout | maximum value argument",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "/u4l1S=o~c7M>@7LpZ`m\"sT4%<hzlK~Fp&vB@As0}zAs-B1O&$(zK&]d8:%0rNm9ashWp4`/}@sq%R/%@]MbhP:T)",
+          "select_timeout": {
+            "value": 4294967295,
+            "units": "hour"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "/u4l1S=o~c7M>@7LpZ`m\"sT4%<hzlK~Fp&vB@As0}zAs-B1O&$(zK&]d8:%0rNm9ashWp4`/}@sq%R/%@]MbhP:T)"
+      },
+      "validation": {
+        "config": {
+          "config_name": "/u4l1S=o~c7M>@7LpZ`m\"sT4%<hzlK~Fp&vB@As0}zAs-B1O&$(zK&]d8:%0rNm9ashWp4`/}@sq%R/%@]MbhP:T)",
+          "select_timeout": {
+            "value": 15461882262000,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "/u4l1S=o~c7M>@7LpZ`m\"sT4%<hzlK~Fp&vB@As0}zAs-B1O&$(zK&]d8:%0rNm9ashWp4`/}@sq%R/%@]MbhP:T)"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "/u4l1S=o~c7M>@7LpZ`m\"sT4%<hzlK~Fp&vB@As0}zAs-B1O&$(zK&]d8:%0rNm9ashWp4`/}@sq%R/%@]MbhP:T)"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Adding client with select_timeout | value out of bounce, lower",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "k,b^VC4f=&.YoTwTy'.n=f11J3(8qQA1z:Tr",
+          "select_timeout": {
+            "value": -1
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "8": {
+    "description": "Adding client with select_timeout | value out of bounce, higher",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "yup#GH+JvLg/ontl6G_6Z01tKn!gQVW`g.c~am+w{*}l*sIb8c^66Pc.zrE0*l3nOCAvp_$4)Fx\"/bV8wg&d!@RE4GF(",
+          "select_timeout": {
+            "value": 4294967296
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "9": {
+    "description": "Editing select_timeout field",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "O#h7.$z[]&@)PrVYJy1RZXI)uvQSnI<dXA}p3Ewr@NrrpD)SMF/6BqN0]XY:nv!gB^$4w1$F`1*"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "O#h7.$z[]&@)PrVYJy1RZXI)uvQSnI<dXA}p3Ewr@NrrpD)SMF/6BqN0]XY:nv!gB^$4w1$F`1*",
+          "select_timeout": {
+            "value": 4294967295,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "O#h7.$z[]&@)PrVYJy1RZXI)uvQSnI<dXA}p3Ewr@NrrpD)SMF/6BqN0]XY:nv!gB^$4w1$F`1*"
+      },
+      "validation": {
+        "config": {
+          "config_name": "O#h7.$z[]&@)PrVYJy1RZXI)uvQSnI<dXA}p3Ewr@NrrpD)SMF/6BqN0]XY:nv!gB^$4w1$F`1*",
+          "select_timeout": {
+            "value": 4294967295,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "O#h7.$z[]&@)PrVYJy1RZXI)uvQSnI<dXA}p3Ewr@NrrpD)SMF/6BqN0]XY:nv!gB^$4w1$F`1*"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "10": {
+    "description": "Adding client with retry | required only",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "&lKnTuG;v];0U_@w<{EJgH<sc\":Lif-%,*;AYl$r(*e\"\"xKy`~>lx0csXd:4@zn7e0M9\"uab^nf0<Z`CNIzWT'h\"d.xMz9MC6T",
+          "retry": {
+            "value": 2671630484
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "&lKnTuG;v];0U_@w<{EJgH<sc\":Lif-%,*;AYl$r(*e\"\"xKy`~>lx0csXd:4@zn7e0M9\"uab^nf0<Z`CNIzWT'h\"d.xMz9MC6T"
+      },
+      "validation": {
+        "config": {
+          "config_name": "&lKnTuG;v];0U_@w<{EJgH<sc\":Lif-%,*;AYl$r(*e\"\"xKy`~>lx0csXd:4@zn7e0M9\"uab^nf0<Z`CNIzWT'h\"d.xMz9MC6T",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 2671630484,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "&lKnTuG;v];0U_@w<{EJgH<sc\":Lif-%,*;AYl$r(*e\"\"xKy`~>lx0csXd:4@zn7e0M9\"uab^nf0<Z`CNIzWT'h\"d.xMz9MC6T"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "&lKnTuG;v];0U_@w<{EJgH<sc\":Lif-%,*;AYl$r(*e\"\"xKy`~>lx0csXd:4@zn7e0M9\"uab^nf0<Z`CNIzWT'h\"d.xMz9MC6T"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "11": {
+    "description": "Adding client with retry | full field",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "\"g3Pwh0VjGhu7C{11",
+          "retry": {
+            "value": 2088063218,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "\"g3Pwh0VjGhu7C{11"
+      },
+      "validation": {
+        "config": {
+          "config_name": "\"g3Pwh0VjGhu7C{11",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 2088063218,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "\"g3Pwh0VjGhu7C{11"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "\"g3Pwh0VjGhu7C{11"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "12": {
+    "description": "Adding client with retry | minimum value argument",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "DAURi_C;z]s;m.XEAE4Is$bsn[&#3s[rNY47{P7k[''+/iQ{<XJ%J-@P%gGk[:iX,u.",
+          "retry": {
+            "value": 0,
+            "units": "day"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "DAURi_C;z]s;m.XEAE4Is$bsn[&#3s[rNY47{P7k[''+/iQ{<XJ%J-@P%gGk[:iX,u."
+      },
+      "validation": {
+        "config": {
+          "config_name": "DAURi_C;z]s;m.XEAE4Is$bsn[&#3s[rNY47{P7k[''+/iQ{<XJ%J-@P%gGk[:iX,u.",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 0,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "DAURi_C;z]s;m.XEAE4Is$bsn[&#3s[rNY47{P7k[''+/iQ{<XJ%J-@P%gGk[:iX,u."
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "DAURi_C;z]s;m.XEAE4Is$bsn[&#3s[rNY47{P7k[''+/iQ{<XJ%J-@P%gGk[:iX,u."
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Adding client with select_timeout | maximum value argument",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "B(`[JQl^ggWpN,L4IH!mKvX`Fq52~,gGs-1`<fV{z{`s*",
+          "retry": {
+            "value": 4294967295,
+            "units": "week"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "B(`[JQl^ggWpN,L4IH!mKvX`Fq52~,gGs-1`<fV{z{`s*"
+      },
+      "validation": {
+        "config": {
+          "config_name": "B(`[JQl^ggWpN,L4IH!mKvX`Fq52~,gGs-1`<fV{z{`s*",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 2597596220016000,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "B(`[JQl^ggWpN,L4IH!mKvX`Fq52~,gGs-1`<fV{z{`s*"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "B(`[JQl^ggWpN,L4IH!mKvX`Fq52~,gGs-1`<fV{z{`s*"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "14": {
+    "description": "Adding client with retry | value out of bounce, lower",
+    "14.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "XLE*p742jCGp]xve/sNjJGg^_,I=.8:knz&},s#+2u6wX79Cp_cJg%",
+          "retry": {
+            "value": -1
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "15": {
+    "description": "Adding client with retry | value out of bounce, higher",
+    "15.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "&Z9%R*.C*S:nEB^_@riS}=CfPtD1%YV]!BVjIY7>@)<40{(mH6P]2K$sg>woUwCJHIepS}=gjGACoKPzPv}L9o8D*7",
+          "retry": {
+            "value": 4294967296
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "16": {
+    "description": "Editing retry field",
+    "16.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "^sRcdk;qrTxj*XraZR[7^V/]$343DV%Q1.Z%tpzgiXU>hI#ul\"Olsy3#X&BX]q`J,j'\"Ed\"F)jJLBa\"0i"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "^sRcdk;qrTxj*XraZR[7^V/]$343DV%Q1.Z%tpzgiXU>hI#ul\"Olsy3#X&BX]q`J,j'\"Ed\"F)jJLBa\"0i",
+          "retry": {
+            "value": 2719469349,
+            "units": "min"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "^sRcdk;qrTxj*XraZR[7^V/]$343DV%Q1.Z%tpzgiXU>hI#ul\"Olsy3#X&BX]q`J,j'\"Ed\"F)jJLBa\"0i"
+      },
+      "validation": {
+        "config": {
+          "config_name": "^sRcdk;qrTxj*XraZR[7^V/]$343DV%Q1.Z%tpzgiXU>hI#ul\"Olsy3#X&BX]q`J,j'\"Ed\"F)jJLBa\"0i",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 163168160940,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "^sRcdk;qrTxj*XraZR[7^V/]$343DV%Q1.Z%tpzgiXU>hI#ul\"Olsy3#X&BX]q`J,j'\"Ed\"F)jJLBa\"0i"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "17": {
+    "description": "Adding client with reboot | required only",
+    "17.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "xp@+iM*M_B5>7euaCzwDTW#!udYB^R6t11aK'%gT%o$E3F:",
+          "reboot": {
+            "value": 3957348140
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "xp@+iM*M_B5>7euaCzwDTW#!udYB^R6t11aK'%gT%o$E3F:"
+      },
+      "validation": {
+        "config": {
+          "config_name": "xp@+iM*M_B5>7euaCzwDTW#!udYB^R6t11aK'%gT%o$E3F:",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 3957348140,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "xp@+iM*M_B5>7euaCzwDTW#!udYB^R6t11aK'%gT%o$E3F:"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "xp@+iM*M_B5>7euaCzwDTW#!udYB^R6t11aK'%gT%o$E3F:"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "18": {
+    "description": "Adding client with reboot | full field",
+    "18.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "h6:I:4qNHuNY[w1hG4J]'h)Y@*mw\"Yc'~1mW{/urjaerujP44~bneRjM{E8",
+          "reboot": {
+            "value": 3561981415,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "h6:I:4qNHuNY[w1hG4J]'h)Y@*mw\"Yc'~1mW{/urjaerujP44~bneRjM{E8"
+      },
+      "validation": {
+        "config": {
+          "config_name": "h6:I:4qNHuNY[w1hG4J]'h)Y@*mw\"Yc'~1mW{/urjaerujP44~bneRjM{E8",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 3561981415,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "h6:I:4qNHuNY[w1hG4J]'h)Y@*mw\"Yc'~1mW{/urjaerujP44~bneRjM{E8"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "h6:I:4qNHuNY[w1hG4J]'h)Y@*mw\"Yc'~1mW{/urjaerujP44~bneRjM{E8"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "19": {
+    "description": "Adding client with reboot | minimum value argument",
+    "19.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "2dF`=7q#I8>MS)gj5:9Hp(ti",
+          "reboot": {
+            "value": 0,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "19.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "2dF`=7q#I8>MS)gj5:9Hp(ti"
+      },
+      "validation": {
+        "config": {
+          "config_name": "2dF`=7q#I8>MS)gj5:9Hp(ti",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 0,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "19.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "2dF`=7q#I8>MS)gj5:9Hp(ti"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "19.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "2dF`=7q#I8>MS)gj5:9Hp(ti"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "20": {
+    "description": "Adding client with reboot | maximum value argument",
+    "20.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "Mb+s2R>-%H5EaP\"y",
+          "reboot": {
+            "value": 4294967295,
+            "units": "hour"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "Mb+s2R>-%H5EaP\"y"
+      },
+      "validation": {
+        "config": {
+          "config_name": "Mb+s2R>-%H5EaP\"y",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 15461882262000,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "Mb+s2R>-%H5EaP\"y"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "Mb+s2R>-%H5EaP\"y"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "21": {
+    "description": "Adding client with reboot | value out of bounce, lower",
+    "21.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "A7i@BS->F~$wm@Ni",
+          "reboot": {
+            "value": -1
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "22": {
+    "description": "Adding client with reboot | value out of bounce, higher",
+    "22.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "Cc>!Oo/W;NQ!p[`Vn+5{oJrAzR~`i\"7:L`CrIM[]<7dum/F8",
+          "reboot": {
+            "value": 4294967296
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "23": {
+    "description": "Editing reboot field",
+    "23.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "K-rcSqB4(o:}Bhqg\"xJ0q26jD--F('DKmf7USxCn7fdCx[~1/FTN$x'-EoR&#X7m+Tlev/e(HH3B91APe\"O%"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "K-rcSqB4(o:}Bhqg\"xJ0q26jD--F('DKmf7USxCn7fdCx[~1/FTN$x'-EoR&#X7m+Tlev/e(HH3B91APe\"O%",
+          "reboot": {
+            "value": 2149864224,
+            "units": "week"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "K-rcSqB4(o:}Bhqg\"xJ0q26jD--F('DKmf7USxCn7fdCx[~1/FTN$x'-EoR&#X7m+Tlev/e(HH3B91APe\"O%"
+      },
+      "validation": {
+        "config": {
+          "config_name": "K-rcSqB4(o:}Bhqg\"xJ0q26jD--F('DKmf7USxCn7fdCx[~1/FTN$x'-EoR&#X7m+Tlev/e(HH3B91APe\"O%",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 1300237882675200,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "K-rcSqB4(o:}Bhqg\"xJ0q26jD--F('DKmf7USxCn7fdCx[~1/FTN$x'-EoR&#X7m+Tlev/e(HH3B91APe\"O%"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "24": {
+    "description": "Adding client with timeout | required only",
+    "24.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "5zX4l~+2fO38O4E<IZCuBnM:1Y6v[C0r_7gDnu~;7K}6trV/m]>W^0HUW(30uVP}'raft0Y33!zg3J]w6\"YJ.",
+          "timeout": {
+            "value": 3970808710
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "5zX4l~+2fO38O4E<IZCuBnM:1Y6v[C0r_7gDnu~;7K}6trV/m]>W^0HUW(30uVP}'raft0Y33!zg3J]w6\"YJ."
+      },
+      "validation": {
+        "config": {
+          "config_name": "5zX4l~+2fO38O4E<IZCuBnM:1Y6v[C0r_7gDnu~;7K}6trV/m]>W^0HUW(30uVP}'raft0Y33!zg3J]w6\"YJ.",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 3970808710,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "5zX4l~+2fO38O4E<IZCuBnM:1Y6v[C0r_7gDnu~;7K}6trV/m]>W^0HUW(30uVP}'raft0Y33!zg3J]w6\"YJ."
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "5zX4l~+2fO38O4E<IZCuBnM:1Y6v[C0r_7gDnu~;7K}6trV/m]>W^0HUW(30uVP}'raft0Y33!zg3J]w6\"YJ."
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "25": {
+    "description": "Adding client with timeout | full field",
+    "25.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "@H37Knl/!aAn'QgCgNr}<#O%XA1j`6/cD-YMh$WE=+]O$-pK!.;CS:\"#tm>/E=(H]Wq6hB#X%5n-",
+          "timeout": {
+            "value": 1649888346,
+            "units": "day"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "@H37Knl/!aAn'QgCgNr}<#O%XA1j`6/cD-YMh$WE=+]O$-pK!.;CS:\"#tm>/E=(H]Wq6hB#X%5n-"
+      },
+      "validation": {
+        "config": {
+          "config_name": "@H37Knl/!aAn'QgCgNr}<#O%XA1j`6/cD-YMh$WE=+]O$-pK!.;CS:\"#tm>/E=(H]Wq6hB#X%5n-",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 142550353094400,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "@H37Knl/!aAn'QgCgNr}<#O%XA1j`6/cD-YMh$WE=+]O$-pK!.;CS:\"#tm>/E=(H]Wq6hB#X%5n-"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "@H37Knl/!aAn'QgCgNr}<#O%XA1j`6/cD-YMh$WE=+]O$-pK!.;CS:\"#tm>/E=(H]Wq6hB#X%5n-"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "26": {
+    "description": "Adding client with timeout | minimum value argument",
+    "26.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "8epMi",
+          "timeout": {
+            "value": 0,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "8epMi"
+      },
+      "validation": {
+        "config": {
+          "config_name": "8epMi",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "8epMi"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "8epMi"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "27": {
+    "description": "Adding client with timeout | maximum value argument",
+    "27.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "]K3hC7Czrf2U~=,s{U&~&5BbhOj$EpVtY#7MN_m[r/Y)V\"#",
+          "timeout": {
+            "value": 4294967295,
+            "units": "day"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "]K3hC7Czrf2U~=,s{U&~&5BbhOj$EpVtY#7MN_m[r/Y)V\"#"
+      },
+      "validation": {
+        "config": {
+          "config_name": "]K3hC7Czrf2U~=,s{U&~&5BbhOj$EpVtY#7MN_m[r/Y)V\"#",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 371085174288000,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "]K3hC7Czrf2U~=,s{U&~&5BbhOj$EpVtY#7MN_m[r/Y)V\"#"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "]K3hC7Czrf2U~=,s{U&~&5BbhOj$EpVtY#7MN_m[r/Y)V\"#"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "28": {
+    "description": "Adding client with timeout | value out of bounce, lower",
+    "28.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "0!97A`AB=N[V^wo14A'Q%$h.DS^1q[qV`p=eDX<X}m5xK`ocBy1w18kzC\",'!448+()(NzBY(wun&Wn0C!+y50q{hy",
+          "timeout": {
+            "value": -1
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "29": {
+    "description": "Adding client with timeout | value out of bounce, higher",
+    "29.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "M~uwKBlTo^8xS4w6%4IE:7A&lv5QpPoqf,`f6:h1eyxzm\"a<O7{eaj7:ZY@",
+          "timeout": {
+            "value": 4294967296
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "30": {
+    "description": "Editing timeout field",
+    "30.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "Aue,[u(h\"$7bP['f+}MkT/NuWkr^4aH}([ywb4l7"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "30.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "Aue,[u(h\"$7bP['f+}MkT/NuWkr^4aH}([ywb4l7",
+          "timeout": {
+            "value": 4102326157,
+            "units": "day"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "30.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "Aue,[u(h\"$7bP['f+}MkT/NuWkr^4aH}([ywb4l7"
+      },
+      "validation": {
+        "config": {
+          "config_name": "Aue,[u(h\"$7bP['f+}MkT/NuWkr^4aH}([ywb4l7",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 354440979964800,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 30,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "30.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "Aue,[u(h\"$7bP['f+}MkT/NuWkr^4aH}([ywb4l7"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "31": {
+    "description": "Adding client with initial interval | required only",
+    "31.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "nwC>0",
+          "initial_interval": {
+            "value": 3120324
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "nwC>0"
+      },
+      "validation": {
+        "config": {
+          "config_name": "nwC>0",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 3120324,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "nwC>0"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "nwC>0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "32": {
+    "description": "Adding client with initial interval | full field",
+    "32.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "KWzXK+Kp32Zl[cC@V1F~p>lO~7FKs9QAo\"A/K!%3\"+nf",
+          "initial_interval": {
+            "value": 15877635,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "KWzXK+Kp32Zl[cC@V1F~p>lO~7FKs9QAo\"A/K!%3\"+nf"
+      },
+      "validation": {
+        "config": {
+          "config_name": "KWzXK+Kp32Zl[cC@V1F~p>lO~7FKs9QAo\"A/K!%3\"+nf",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 15877635,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "KWzXK+Kp32Zl[cC@V1F~p>lO~7FKs9QAo\"A/K!%3\"+nf"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "KWzXK+Kp32Zl[cC@V1F~p>lO~7FKs9QAo\"A/K!%3\"+nf"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "33": {
+    "description": "Adding client with initial interval | minimum value argument",
+    "33.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": ".UMXn@v[s#A3l2oQ5RH}{`eA-'b##2^vFV~ycV!$Y=]GSf:M^~=1MNVCIHaXV[sV#Iu:9KO6^eKL>;.G'XC7^Cwa)Y+!Ngvp1gW#",
+          "initial_interval": {
+            "value": 0,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": ".UMXn@v[s#A3l2oQ5RH}{`eA-'b##2^vFV~ycV!$Y=]GSf:M^~=1MNVCIHaXV[sV#Iu:9KO6^eKL>;.G'XC7^Cwa)Y+!Ngvp1gW#"
+      },
+      "validation": {
+        "config": {
+          "config_name": ".UMXn@v[s#A3l2oQ5RH}{`eA-'b##2^vFV~ycV!$Y=]GSf:M^~=1MNVCIHaXV[sV#Iu:9KO6^eKL>;.G'XC7^Cwa)Y+!Ngvp1gW#",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 0,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        ".UMXn@v[s#A3l2oQ5RH}{`eA-'b##2^vFV~ycV!$Y=]GSf:M^~=1MNVCIHaXV[sV#Iu:9KO6^eKL>;.G'XC7^Cwa)Y+!Ngvp1gW#"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": ".UMXn@v[s#A3l2oQ5RH}{`eA-'b##2^vFV~ycV!$Y=]GSf:M^~=1MNVCIHaXV[sV#Iu:9KO6^eKL>;.G'XC7^Cwa)Y+!Ngvp1gW#"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "34": {
+    "description": "Adding client with initial interval | maximum value argument",
+    "34.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "etvJ'o`.M7O[#UV9{yBB3{ESWoOnJOi[]or7Z>l3Pe(K6C;lHkXv8m~v'\"^5meeb3nX%!<pBwIzyzJ<y:5.tkMOv",
+          "initial_interval": {
+            "value": 4294967295,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "34.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "etvJ'o`.M7O[#UV9{yBB3{ESWoOnJOi[]or7Z>l3Pe(K6C;lHkXv8m~v'\"^5meeb3nX%!<pBwIzyzJ<y:5.tkMOv"
+      },
+      "validation": {
+        "config": {
+          "config_name": "etvJ'o`.M7O[#UV9{yBB3{ESWoOnJOi[]or7Z>l3Pe(K6C;lHkXv8m~v'\"^5meeb3nX%!<pBwIzyzJ<y:5.tkMOv",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 4294967295,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "34.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "etvJ'o`.M7O[#UV9{yBB3{ESWoOnJOi[]or7Z>l3Pe(K6C;lHkXv8m~v'\"^5meeb3nX%!<pBwIzyzJ<y:5.tkMOv"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "34.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "etvJ'o`.M7O[#UV9{yBB3{ESWoOnJOi[]or7Z>l3Pe(K6C;lHkXv8m~v'\"^5meeb3nX%!<pBwIzyzJ<y:5.tkMOv"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "35": {
+    "description": "Adding client with initial interval | value out of bounce, lower",
+    "35.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "/.Qcq",
+          "initial_interval": {
+            "value": -1,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "36": {
+    "description": "Adding client with initial interval | value out of bounce, higher",
+    "36.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "&G!zYDdiK8W{5O[yOwe:-JjB3}(fLo\"OjAav_yL}li;u1cZIt;dWyV^(,iSQK*:Xu$$cVAe8_(ci.gXQbo-xDoL",
+          "initial_interval": {
+            "value": 4294967296,
+            "units": "week"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "37": {
+    "description": "Editing initial interval field",
+    "37.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "%0}8z:dkI^8'6b3%~irm=F/r75"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "37.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "%0}8z:dkI^8'6b3%~irm=F/r75",
+          "initial_interval": {
+            "value": 3979358957,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "37.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "%0}8z:dkI^8'6b3%~irm=F/r75"
+      },
+      "validation": {
+        "config": {
+          "config_name": "%0}8z:dkI^8'6b3%~irm=F/r75",
+          "select_timeout": {
+            "value": 0,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 10,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 10,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 300,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 3979358957,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "37.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "%0}8z:dkI^8'6b3%~irm=F/r75"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "38": {
+    "description": "Adding client with all fields setted",
+    "38.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "mUEFGvXi>)",
+          "select_timeout": {
+            "value": 1542614728,
+            "units": "day"
+          },
+          "retry": {
+            "value": 2630308781,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 1723109318,
+            "units": "week"
+          },
+          "timeout": {
+            "value": 3730825454,
+            "units": "min"
+          },
+          "initial_interval": {
+            "value": 3933594445,
+            "units": "day"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "38.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "mUEFGvXi>)"
+      },
+      "validation": {
+        "config": {
+          "config_name": "mUEFGvXi>)",
+          "select_timeout": {
+            "value": 133281912499200,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 2630308781,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 1042136515526400,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 223849527240,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 339862560048000,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "38.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "mUEFGvXi>)"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "38.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "mUEFGvXi>)"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "39": {
+    "description": "Editing all fields",
+    "39.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "7}>IcgP&n'2,6ri.3\"\"959AZF@};mdiqw3%_"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "39.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "7}>IcgP&n'2,6ri.3\"\"959AZF@};mdiqw3%_",
+          "select_timeout": {
+            "value": 2026219894,
+            "units": "day"
+          },
+          "retry": {
+            "value": 4155734662,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 173671202,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 1131563517,
+            "units": "hour"
+          },
+          "initial_interval": {
+            "value": 766959137,
+            "units": "min"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "39.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config",
+      "arguments": {
+        "config_name": "7}>IcgP&n'2,6ri.3\"\"959AZF@};mdiqw3%_"
+      },
+      "validation": {
+        "config": {
+          "config_name": "7}>IcgP&n'2,6ri.3\"\"959AZF@};mdiqw3%_",
+          "select_timeout": {
+            "value": 175065398841600,
+            "units": "sec"
+          },
+          "retry": {
+            "value": 4155734662,
+            "units": "sec"
+          },
+          "reboot": {
+            "value": 173671202,
+            "units": "sec"
+          },
+          "timeout": {
+            "value": 4073628661200,
+            "units": "sec"
+          },
+          "initial_interval": {
+            "value": 46017548220,
+            "units": "sec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "39.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "7}>IcgP&n'2,6ri.3\"\"959AZF@};mdiqw3%_"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "s1(5d}*c7!R;o>obZYHB:Xmb{3l^8b7#qMpJWcjw(xW/_}BDC%"
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "rl2NB$hAF~XS&_4q5dI*WgBPWlSJ:WL>j_<\"qU~g,h,0M-(^$_@`n04zS3VB]=w~R@Ls!=&r-yz74NM"
+      }
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "Clh2ft.BFGOlExbXzF1UpH:3{[Pph:UPV_G.0:fh,PcJx@fSEZb($F{y*'#,x;91<bzV)(7^AOz@"
+      }
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "6]YP<jD+/^3eA5mT7\"-Yn"
+      }
+    },
+    "5": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "/u4l1S=o~c7M>@7LpZ`m\"sT4%<hzlK~Fp&vB@As0}zAs-B1O&$(zK&]d8:%0rNm9ashWp4`/}@sq%R/%@]MbhP:T)"
+      }
+    },
+    "6": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "O#h7.$z[]&@)PrVYJy1RZXI)uvQSnI<dXA}p3Ewr@NrrpD)SMF/6BqN0]XY:nv!gB^$4w1$F`1*"
+      }
+    },
+    "7": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "&lKnTuG;v];0U_@w<{EJgH<sc\":Lif-%,*;AYl$r(*e\"\"xKy`~>lx0csXd:4@zn7e0M9\"uab^nf0<Z`CNIzWT'h\"d.xMz9MC6T"
+      }
+    },
+    "8": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "\"g3Pwh0VjGhu7C{11"
+      }
+    },
+    "9": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "DAURi_C;z]s;m.XEAE4Is$bsn[&#3s[rNY47{P7k[''+/iQ{<XJ%J-@P%gGk[:iX,u."
+      }
+    },
+    "10": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "B(`[JQl^ggWpN,L4IH!mKvX`Fq52~,gGs-1`<fV{z{`s*"
+      }
+    },
+    "11": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "XLE*p742jCGp]xve/sNjJGg^_,I=.8:knz&},s#+2u6wX79Cp_cJg%"
+      }
+    },
+    "12": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "&Z9%R*.C*S:nEB^_@riS}=CfPtD1%YV]!BVjIY7>@)<40{(mH6P]2K$sg>woUwCJHIepS}=gjGACoKPzPv}L9o8D*7"
+      }
+    },
+    "13": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "^sRcdk;qrTxj*XraZR[7^V/]$343DV%Q1.Z%tpzgiXU>hI#ul\"Olsy3#X&BX]q`J,j'\"Ed\"F)jJLBa\"0i"
+      }
+    },
+    "14": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "xp@+iM*M_B5>7euaCzwDTW#!udYB^R6t11aK'%gT%o$E3F:"
+      }
+    },
+    "15": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "h6:I:4qNHuNY[w1hG4J]'h)Y@*mw\"Yc'~1mW{/urjaerujP44~bneRjM{E8"
+      }
+    },
+    "16": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "2dF`=7q#I8>MS)gj5:9Hp(ti"
+      }
+    },
+    "17": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "Mb+s2R>-%H5EaP\"y"
+      }
+    },
+    "18": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "K-rcSqB4(o:}Bhqg\"xJ0q26jD--F('DKmf7USxCn7fdCx[~1/FTN$x'-EoR&#X7m+Tlev/e(HH3B91APe\"O%"
+      }
+    },
+    "19": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "5zX4l~+2fO38O4E<IZCuBnM:1Y6v[C0r_7gDnu~;7K}6trV/m]>W^0HUW(30uVP}'raft0Y33!zg3J]w6\"YJ."
+      }
+    },
+    "20": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "@H37Knl/!aAn'QgCgNr}<#O%XA1j`6/cD-YMh$WE=+]O$-pK!.;CS:\"#tm>/E=(H]Wq6hB#X%5n-"
+      }
+    },
+    "21": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "8epMi"
+      }
+    },
+    "22": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "]K3hC7Czrf2U~=,s{U&~&5BbhOj$EpVtY#7MN_m[r/Y)V\"#"
+      }
+    },
+    "23": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "Aue,[u(h\"$7bP['f+}MkT/NuWkr^4aH}([ywb4l7"
+      }
+    },
+    "24": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "nwC>0"
+      }
+    },
+    "25": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "KWzXK+Kp32Zl[cC@V1F~p>lO~7FKs9QAo\"A/K!%3\"+nf"
+      }
+    },
+    "26": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": ".UMXn@v[s#A3l2oQ5RH}{`eA-'b##2^vFV~ycV!$Y=]GSf:M^~=1MNVCIHaXV[sV#Iu:9KO6^eKL>;.G'XC7^Cwa)Y+!Ngvp1gW#"
+      }
+    },
+    "27": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "etvJ'o`.M7O[#UV9{yBB3{ESWoOnJOi[]or7Z>l3Pe(K6C;lHkXv8m~v'\"^5meeb3nX%!<pBwIzyzJ<y:5.tkMOv"
+      }
+    },
+    "28": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "mUEFGvXi>)"
+      }
+    },
+    "29": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "7}>IcgP&n'2,6ri.3\"\"959AZF@};mdiqw3%_"
+      }
+    }
+  }
+}

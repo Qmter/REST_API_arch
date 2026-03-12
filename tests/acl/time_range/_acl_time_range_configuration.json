@@ -1,0 +1,2633 @@
+{
+  "1": {
+    "description": "Getting non-existing timerange",
+    "1.1": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "NO_timerange_created"
+      },
+      "errCode": 10,
+      "httpCode": 400
+    }
+  },
+  "2": {
+    "description": "Deleting non-existing time_range",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "No_Created_timerange"
+          }
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "3": {
+    "description": "Modifying non-existing time_range",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "modify": {
+            "name": "No_time_range_to_modify",
+            "configuration": {
+              "timestart": "23:04:34"
+            }
+          }
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "4": {
+    "description": "Creating, Getting and Deleting time_range with empty configuration",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "tb-RkRMgSnMJq8Mt3oa94hHBLzA.qfp",
+            "configuration": {}
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.2": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "tb-RkRMgSnMJq8Mt3oa94hHBLzA.qfp"
+      },
+      "validation": [
+        {
+          "name": "tb-RkRMgSnMJq8Mt3oa94hHBLzA.qfp",
+          "configuration": {}
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [
+        "tb-RkRMgSnMJq8Mt3oa94hHBLzA.qfp"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "tb-RkRMgSnMJq8Mt3oa94hHBLzA.qfp"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Modifying time_range | empty modification configuration",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "YceS5",
+            "configuration": {}
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "modify": {
+            "name": "YceS5",
+            "configuration": {}
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.3": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "YceS5"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "Creating timerange | datestart",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "Ko_Nml",
+            "configuration": {
+              "datestart": "1985"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "Ko_Nml"
+      },
+      "validation": [
+        {
+          "name": "Ko_Nml",
+          "configuration": {
+            "datestart": "1985"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [
+        "Ko_Nml"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "Ko_Nml"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Creating timerange | datestop",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "4LxoelXYXEh8ILQTEKy",
+            "configuration": {
+              "datestop": "2083"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.2": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "4LxoelXYXEh8ILQTEKy"
+      },
+      "validation": [
+        {
+          "name": "4LxoelXYXEh8ILQTEKy",
+          "configuration": {
+            "datestop": "2083"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [
+        "4LxoelXYXEh8ILQTEKy"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "4LxoelXYXEh8ILQTEKy"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "8": {
+    "description": "Creating timerange | timestart",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "j5.tKpO_qYfCiOcvVq2HMScFJDP",
+            "configuration": {
+              "timestart": "06:05"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.2": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "j5.tKpO_qYfCiOcvVq2HMScFJDP"
+      },
+      "validation": [
+        {
+          "name": "j5.tKpO_qYfCiOcvVq2HMScFJDP",
+          "configuration": {
+            "timestart": "06:05"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [
+        "j5.tKpO_qYfCiOcvVq2HMScFJDP"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "j5.tKpO_qYfCiOcvVq2HMScFJDP"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "9": {
+    "description": "Creating timerange | timestop",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "CYX",
+            "configuration": {
+              "timestop": "13:50"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "CYX"
+      },
+      "validation": [
+        {
+          "name": "CYX",
+          "configuration": {
+            "timestop": "13:50"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [
+        "CYX"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "CYX"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "10": {
+    "description": "Creating timerange | monthdays",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "MhIcJms3XH-7FMyZht8VaHUUrgP4",
+            "configuration": {
+              "monthdays": [
+                22,
+                6,
+                1,
+                16,
+                22,
+                14,
+                29,
+                19,
+                28,
+                17,
+                30,
+                10,
+                21,
+                12,
+                13,
+                27,
+                22,
+                9,
+                5,
+                18,
+                23,
+                1,
+                15,
+                24,
+                3,
+                11,
+                24,
+                2,
+                18,
+                9
+              ]
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.2": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "MhIcJms3XH-7FMyZht8VaHUUrgP4"
+      },
+      "validation": [
+        {
+          "name": "MhIcJms3XH-7FMyZht8VaHUUrgP4",
+          "configuration": {
+            "monthdays": [
+              1,
+              2,
+              3,
+              5,
+              6,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              21,
+              22,
+              23,
+              24,
+              27,
+              28,
+              29,
+              30
+            ]
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [
+        "MhIcJms3XH-7FMyZht8VaHUUrgP4"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "MhIcJms3XH-7FMyZht8VaHUUrgP4"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "11": {
+    "description": "Creating timerange | weekdays, Monday, True",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "e9tktQnx1",
+            "configuration": {
+              "weekdays": {
+                "mon": true
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.2": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "e9tktQnx1"
+      },
+      "validation": [
+        {
+          "name": "e9tktQnx1",
+          "configuration": {
+            "weekdays": {
+              "mon": true
+            }
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [
+        "e9tktQnx1"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "e9tktQnx1"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "12": {
+    "description": "Creating timerange | weekdays, Tuesday, True",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "AYqUec",
+            "configuration": {
+              "weekdays": {
+                "tue": true
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.2": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "AYqUec"
+      },
+      "validation": [
+        {
+          "name": "AYqUec",
+          "configuration": {
+            "weekdays": {
+              "tue": true
+            }
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [
+        "AYqUec"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "AYqUec"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Creating timerange | weekdays, Wednesday, True",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "w1Ez1FV5IhU5_AE.pn7G1YKQBz1oA",
+            "configuration": {
+              "weekdays": {
+                "wed": true
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.2": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "w1Ez1FV5IhU5_AE.pn7G1YKQBz1oA"
+      },
+      "validation": [
+        {
+          "name": "w1Ez1FV5IhU5_AE.pn7G1YKQBz1oA",
+          "configuration": {
+            "weekdays": {
+              "wed": true
+            }
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [
+        "w1Ez1FV5IhU5_AE.pn7G1YKQBz1oA"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "w1Ez1FV5IhU5_AE.pn7G1YKQBz1oA"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "14": {
+    "description": "Creating timerange | weekdays, Thursday, True",
+    "14.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "BAMYPZmjXM8yKC",
+            "configuration": {
+              "weekdays": {
+                "thu": true
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.2": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "BAMYPZmjXM8yKC"
+      },
+      "validation": [
+        {
+          "name": "BAMYPZmjXM8yKC",
+          "configuration": {
+            "weekdays": {
+              "thu": true
+            }
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [
+        "BAMYPZmjXM8yKC"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "BAMYPZmjXM8yKC"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "15": {
+    "description": "Creating timerange | weekdays, Friday, True",
+    "15.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "5OgRsOTjCFFahouF.6",
+            "configuration": {
+              "weekdays": {
+                "fri": true
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.2": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "5OgRsOTjCFFahouF.6"
+      },
+      "validation": [
+        {
+          "name": "5OgRsOTjCFFahouF.6",
+          "configuration": {
+            "weekdays": {
+              "fri": true
+            }
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [
+        "5OgRsOTjCFFahouF.6"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "5OgRsOTjCFFahouF.6"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "16": {
+    "description": "Creating timerange | weekdays, Saturday, True",
+    "16.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "vWawlBRTiqrvLrEFiUTluyQlO9eG",
+            "configuration": {
+              "weekdays": {
+                "sat": true
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.2": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "vWawlBRTiqrvLrEFiUTluyQlO9eG"
+      },
+      "validation": [
+        {
+          "name": "vWawlBRTiqrvLrEFiUTluyQlO9eG",
+          "configuration": {
+            "weekdays": {
+              "sat": true
+            }
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [
+        "vWawlBRTiqrvLrEFiUTluyQlO9eG"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "vWawlBRTiqrvLrEFiUTluyQlO9eG"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "17": {
+    "description": "Creating timerange | weekdays, Sunday, True",
+    "17.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "WJmzqm1NM98rrP9O.2Em",
+            "configuration": {
+              "weekdays": {
+                "sun": true
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.2": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "WJmzqm1NM98rrP9O.2Em"
+      },
+      "validation": [
+        {
+          "name": "WJmzqm1NM98rrP9O.2Em",
+          "configuration": {
+            "weekdays": {
+              "sun": true
+            }
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [
+        "WJmzqm1NM98rrP9O.2Em"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "WJmzqm1NM98rrP9O.2Em"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "18": {
+    "description": "Creating timerange | all weekdays",
+    "18.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "TVwLIKZcHxBMyl5_b2Kvch",
+            "configuration": {
+              "weekdays": {
+                "mon": true,
+                "tue": true,
+                "wed": true,
+                "thu": true,
+                "fri": true,
+                "sat": true,
+                "sun": true
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.2": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "TVwLIKZcHxBMyl5_b2Kvch"
+      },
+      "validation": [
+        {
+          "name": "TVwLIKZcHxBMyl5_b2Kvch",
+          "configuration": {
+            "weekdays": {
+              "mon": true,
+              "tue": true,
+              "wed": true,
+              "thu": true,
+              "fri": true,
+              "sat": true,
+              "sun": true
+            }
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [
+        "TVwLIKZcHxBMyl5_b2Kvch"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "TVwLIKZcHxBMyl5_b2Kvch"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "19": {
+    "description": "Creating timerange | weekday with False-argument",
+    "19.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "3YtOID5ZP.y",
+            "configuration": {
+              "weekdays": {
+                "mon": false
+              }
+            }
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "20": {
+    "description": "Creating timerange | all arguments without null values",
+    "20.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "aFbSNZ6wuTN_Sz2.p",
+            "configuration": {
+              "datestart": "2073",
+              "datestop": "1955-09",
+              "timestart": "21:39:57",
+              "timestop": "08:01",
+              "monthdays": [
+                5,
+                2,
+                10,
+                1,
+                25,
+                28,
+                15,
+                11,
+                28,
+                6,
+                26,
+                5,
+                28,
+                21,
+                15,
+                31,
+                12,
+                17,
+                13,
+                29,
+                17,
+                17,
+                2,
+                19,
+                3,
+                22,
+                26,
+                26,
+                17,
+                25
+              ],
+              "weekdays": {
+                "mon": true,
+                "tue": true,
+                "wed": true,
+                "thu": true,
+                "fri": true,
+                "sat": true,
+                "sun": true
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.2": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "aFbSNZ6wuTN_Sz2.p"
+      },
+      "validation": [
+        {
+          "name": "aFbSNZ6wuTN_Sz2.p",
+          "configuration": {
+            "datestart": "2073",
+            "datestop": "1955-09",
+            "timestart": "21:39:57",
+            "timestop": "08:01",
+            "monthdays": [
+              1,
+              2,
+              3,
+              5,
+              6,
+              10,
+              11,
+              12,
+              13,
+              15,
+              17,
+              19,
+              21,
+              22,
+              25,
+              26,
+              28,
+              29,
+              31
+            ],
+            "weekdays": {
+              "mon": true,
+              "tue": true,
+              "wed": true,
+              "thu": true,
+              "fri": true,
+              "sat": true,
+              "sun": true
+            }
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [
+        "aFbSNZ6wuTN_Sz2.p"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "aFbSNZ6wuTN_Sz2.p"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "21": {
+    "description": "Creating timerange | all arguments, null values",
+    "21.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "2al19",
+            "configuration": {
+              "datestart": null,
+              "datestop": null,
+              "timestart": null,
+              "timestop": null,
+              "monthdays": null,
+              "weekdays": null
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.2": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "2al19"
+      },
+      "validation": [
+        {
+          "name": "2al19",
+          "configuration": {}
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [
+        "2al19"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "2al19"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "22": {
+    "description": "Deleting datestart-argument",
+    "22.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "dCAXm-gqI.hm0xxHUQekqHE91",
+            "configuration": {
+              "datestart": "1979"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.2": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "modify": {
+            "name": "dCAXm-gqI.hm0xxHUQekqHE91",
+            "configuration": {
+              "datestart": null
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "dCAXm-gqI.hm0xxHUQekqHE91"
+      },
+      "validation": [
+        {
+          "name": "dCAXm-gqI.hm0xxHUQekqHE91",
+          "configuration": {}
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "dCAXm-gqI.hm0xxHUQekqHE91"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "23": {
+    "description": "Deleting datestop-argument",
+    "23.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "t0E7x6GM8T",
+            "configuration": {
+              "datestop": "1909"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.2": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "modify": {
+            "name": "t0E7x6GM8T",
+            "configuration": {
+              "datestop": null
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "t0E7x6GM8T"
+      },
+      "validation": [
+        {
+          "name": "t0E7x6GM8T",
+          "configuration": {}
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "t0E7x6GM8T"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "24": {
+    "description": "Deleting timestart-argument",
+    "24.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "NsYx_OH7rPlQxlPYEy4vY",
+            "configuration": {
+              "timestart": "22:51"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.2": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "modify": {
+            "name": "NsYx_OH7rPlQxlPYEy4vY",
+            "configuration": {
+              "timestart": null
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "NsYx_OH7rPlQxlPYEy4vY"
+      },
+      "validation": [
+        {
+          "name": "NsYx_OH7rPlQxlPYEy4vY",
+          "configuration": {}
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "NsYx_OH7rPlQxlPYEy4vY"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "25": {
+    "description": "Deleting timestop-argument",
+    "25.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "_gD",
+            "configuration": {
+              "timestop": "01:58:44"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.2": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "modify": {
+            "name": "_gD",
+            "configuration": {
+              "timestop": null
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "_gD"
+      },
+      "validation": [
+        {
+          "name": "_gD",
+          "configuration": {}
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "_gD"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "26": {
+    "description": "Deleting monthdays-argument",
+    "26.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "S22KN1IM",
+            "configuration": {
+              "monthdays": [
+                14,
+                25,
+                5,
+                24,
+                31,
+                1,
+                26,
+                15,
+                14,
+                22,
+                14,
+                1,
+                16,
+                30,
+                28,
+                31,
+                11,
+                24,
+                9,
+                3,
+                12,
+                3,
+                4,
+                12,
+                23,
+                1,
+                12,
+                12,
+                6,
+                1
+              ]
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.2": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "modify": {
+            "name": "S22KN1IM",
+            "configuration": {
+              "monthdays": null
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "S22KN1IM"
+      },
+      "validation": [
+        {
+          "name": "S22KN1IM",
+          "configuration": {}
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "S22KN1IM"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "27": {
+    "description": "Deleting weekdays-argument",
+    "27.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "uJSaAaPAlvDdSX6",
+            "configuration": {
+              "weekdays": {
+                "mon": true,
+                "tue": true,
+                "wed": true,
+                "thu": true,
+                "fri": true,
+                "sat": true,
+                "sun": true
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.2": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "modify": {
+            "name": "uJSaAaPAlvDdSX6",
+            "configuration": {
+              "weekdays": null
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "uJSaAaPAlvDdSX6"
+      },
+      "validation": [
+        {
+          "name": "uJSaAaPAlvDdSX6",
+          "configuration": {}
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "uJSaAaPAlvDdSX6"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "28": {
+    "description": "Changing datestart-argument",
+    "28.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "9shQDauq",
+            "configuration": {
+              "datestart": "2044-02"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.2": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "modify": {
+            "name": "9shQDauq",
+            "configuration": {
+              "datestart": "2026"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "9shQDauq"
+      },
+      "validation": [
+        {
+          "name": "9shQDauq",
+          "configuration": {
+            "datestart": "2026"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "9shQDauq"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "29": {
+    "description": "Changing datestop-argument",
+    "29.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "cofeXlv1F",
+            "configuration": {
+              "datestop": "1990-02"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "29.2": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "modify": {
+            "name": "cofeXlv1F",
+            "configuration": {
+              "datestop": "2048-07-31"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "29.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "cofeXlv1F"
+      },
+      "validation": [
+        {
+          "name": "cofeXlv1F",
+          "configuration": {
+            "datestop": "2048-07-31"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "29.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "cofeXlv1F"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "30": {
+    "description": "Changing timestart-argument",
+    "30.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "vHw0B1p4avl8LXNjOT5zX13Wf6rSt",
+            "configuration": {
+              "timestart": "20:33:07"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "30.2": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "modify": {
+            "name": "vHw0B1p4avl8LXNjOT5zX13Wf6rSt",
+            "configuration": {
+              "timestart": "20:14"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "30.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "vHw0B1p4avl8LXNjOT5zX13Wf6rSt"
+      },
+      "validation": [
+        {
+          "name": "vHw0B1p4avl8LXNjOT5zX13Wf6rSt",
+          "configuration": {
+            "timestart": "20:14"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "30.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "vHw0B1p4avl8LXNjOT5zX13Wf6rSt"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "31": {
+    "description": "Changing timestop-argument",
+    "31.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "T28L.dzjCPiFAgyy4Ngt",
+            "configuration": {
+              "timestop": "21:41"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.2": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "modify": {
+            "name": "T28L.dzjCPiFAgyy4Ngt",
+            "configuration": {
+              "timestop": "14:45"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "T28L.dzjCPiFAgyy4Ngt"
+      },
+      "validation": [
+        {
+          "name": "T28L.dzjCPiFAgyy4Ngt",
+          "configuration": {
+            "timestop": "14:45"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "T28L.dzjCPiFAgyy4Ngt"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "32": {
+    "description": "Changing monthdays-argument",
+    "32.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "UI1lkRaN0zjl4vRU",
+            "configuration": {
+              "monthdays": [
+                4,
+                23,
+                4,
+                13,
+                13,
+                19,
+                15,
+                5,
+                18,
+                22,
+                10,
+                12,
+                21,
+                16,
+                24,
+                14,
+                7,
+                16,
+                16,
+                23,
+                17,
+                11,
+                16,
+                21,
+                31,
+                2,
+                15,
+                10,
+                5,
+                24
+              ]
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.2": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "modify": {
+            "name": "UI1lkRaN0zjl4vRU",
+            "configuration": {
+              "monthdays": [
+                16,
+                2,
+                29,
+                20,
+                7,
+                1,
+                12,
+                16,
+                13,
+                29,
+                1,
+                28,
+                17,
+                3,
+                22,
+                28,
+                3,
+                22,
+                31,
+                24,
+                30,
+                22,
+                13,
+                1,
+                12,
+                2,
+                4,
+                20,
+                1,
+                9
+              ]
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "UI1lkRaN0zjl4vRU"
+      },
+      "validation": [
+        {
+          "name": "UI1lkRaN0zjl4vRU",
+          "configuration": {
+            "monthdays": [
+              1,
+              2,
+              3,
+              4,
+              7,
+              9,
+              12,
+              13,
+              16,
+              17,
+              20,
+              22,
+              24,
+              28,
+              29,
+              30,
+              31
+            ]
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "UI1lkRaN0zjl4vRU"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "33": {
+    "description": "Changing weekdays-argument",
+    "33.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "dSkYN36qxVq13S5SoQa",
+            "configuration": {
+              "weekdays": {
+                "thu": true,
+                "sat": true
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.2": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "modify": {
+            "name": "dSkYN36qxVq13S5SoQa",
+            "configuration": {
+              "weekdays": {
+                "wed": true,
+                "thu": true,
+                "sat": true
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "dSkYN36qxVq13S5SoQa"
+      },
+      "validation": [
+        {
+          "name": "dSkYN36qxVq13S5SoQa",
+          "configuration": {
+            "weekdays": {
+              "wed": true,
+              "thu": true,
+              "sat": true
+            }
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "dSkYN36qxVq13S5SoQa"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "34": {
+    "description": "Changing all arguments for time_range",
+    "34.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "aGxEdKXuHWdmLkt06G36_g8briFFG",
+            "configuration": {
+              "datestart": "1950-03",
+              "datestop": "2091",
+              "timestart": "05:03:13",
+              "timestop": "21:04",
+              "monthdays": [
+                30,
+                26,
+                14,
+                16,
+                15,
+                15,
+                4,
+                3,
+                3,
+                8,
+                4,
+                27,
+                25,
+                5,
+                14,
+                29,
+                30,
+                7,
+                15,
+                20,
+                3,
+                27,
+                14,
+                18,
+                25,
+                29,
+                27,
+                13,
+                2,
+                31
+              ],
+              "weekdays": {
+                "tue": true,
+                "mon": true,
+                "sat": true
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "34.2": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "modify": {
+            "name": "aGxEdKXuHWdmLkt06G36_g8briFFG",
+            "configuration": {
+              "datestart": "2039-08",
+              "datestop": "2058-11",
+              "timestart": "22:28:27",
+              "timestop": "17:57",
+              "monthdays": [
+                6,
+                8,
+                16,
+                8,
+                5,
+                27,
+                28,
+                9,
+                30,
+                12,
+                11,
+                14,
+                4,
+                18,
+                29,
+                10,
+                20,
+                18,
+                26,
+                7,
+                23,
+                10,
+                25,
+                15,
+                17,
+                20,
+                15,
+                18,
+                21,
+                9
+              ],
+              "weekdays": {
+                "tue": true
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "34.3": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/configuration",
+      "arguments": {
+        "name": "aGxEdKXuHWdmLkt06G36_g8briFFG"
+      },
+      "validation": [
+        {
+          "name": "aGxEdKXuHWdmLkt06G36_g8briFFG",
+          "configuration": {
+            "datestart": "2039-08",
+            "datestop": "2058-11",
+            "timestart": "22:28:27",
+            "timestop": "17:57",
+            "monthdays": [
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              14,
+              15,
+              16,
+              17,
+              18,
+              20,
+              21,
+              23,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30
+            ],
+            "weekdays": {
+              "tue": true
+            }
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "34.4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "aGxEdKXuHWdmLkt06G36_g8briFFG"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "tb-RkRMgSnMJq8Mt3oa94hHBLzA.qfp"
+          }
+        }
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "YceS5"
+          }
+        }
+      }
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "Ko_Nml"
+          }
+        }
+      }
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "4LxoelXYXEh8ILQTEKy"
+          }
+        }
+      }
+    },
+    "5": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "j5.tKpO_qYfCiOcvVq2HMScFJDP"
+          }
+        }
+      }
+    },
+    "6": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "CYX"
+          }
+        }
+      }
+    },
+    "7": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "MhIcJms3XH-7FMyZht8VaHUUrgP4"
+          }
+        }
+      }
+    },
+    "8": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "MhIcJms3XH-7FMyZht8VaHUUrgP4"
+          }
+        }
+      }
+    },
+    "9": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "e9tktQnx1"
+          }
+        }
+      }
+    },
+    "10": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "AYqUec"
+          }
+        }
+      }
+    },
+    "11": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "w1Ez1FV5IhU5_AE.pn7G1YKQBz1oA"
+          }
+        }
+      }
+    },
+    "12": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "BAMYPZmjXM8yKC"
+          }
+        }
+      }
+    },
+    "13": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "5OgRsOTjCFFahouF.6"
+          }
+        }
+      }
+    },
+    "14": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "vWawlBRTiqrvLrEFiUTluyQlO9eG"
+          }
+        }
+      }
+    },
+    "15": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "WJmzqm1NM98rrP9O.2Em"
+          }
+        }
+      }
+    },
+    "16": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "TVwLIKZcHxBMyl5_b2Kvch"
+          }
+        }
+      }
+    },
+    "17": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "aFbSNZ6wuTN_Sz2.p"
+          }
+        }
+      }
+    },
+    "18": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "2al19"
+          }
+        }
+      }
+    },
+    "19": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "dCAXm-gqI.hm0xxHUQekqHE91"
+          }
+        }
+      }
+    },
+    "20": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "t0E7x6GM8T"
+          }
+        }
+      }
+    },
+    "21": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "NsYx_OH7rPlQxlPYEy4vY"
+          }
+        }
+      }
+    },
+    "22": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "_gD"
+          }
+        }
+      }
+    },
+    "23": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "S22KN1IM"
+          }
+        }
+      }
+    },
+    "24": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "uJSaAaPAlvDdSX6"
+          }
+        }
+      }
+    },
+    "25": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "9shQDauq"
+          }
+        }
+      }
+    },
+    "26": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "cofeXlv1F"
+          }
+        }
+      }
+    },
+    "27": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "vHw0B1p4avl8LXNjOT5zX13Wf6rSt"
+          }
+        }
+      }
+    },
+    "28": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "T28L.dzjCPiFAgyy4Ngt"
+          }
+        }
+      }
+    },
+    "29": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "UI1lkRaN0zjl4vRU"
+          }
+        }
+      }
+    },
+    "30": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "dSkYN36qxVq13S5SoQa"
+          }
+        }
+      }
+    },
+    "31": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "aGxEdKXuHWdmLkt06G36_g8briFFG"
+          }
+        }
+      }
+    }
+  }
+}

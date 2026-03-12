@@ -1,0 +1,698 @@
+{
+  "PRESET": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "1": {
+    "description": "Set autonegotiation: on",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "autonegotiation": {
+            "on": true
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "autonegotiation": {
+            "on": true
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Set capability autonegotiation: off, duplex: full, speed: 10",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "autonegotiation": {
+            "on": false,
+            "duplex": "full",
+            "speed": 10
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "autonegotiation": {
+            "on": false,
+            "duplex": "full",
+            "speed": 10
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Set capability autonegotiation: off, duplex: full, speed: 100",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "autonegotiation": {
+            "on": false,
+            "duplex": "full",
+            "speed": 100
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "autonegotiation": {
+            "on": false,
+            "duplex": "full",
+            "speed": 100
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Set capability autonegotiation: off, duplex: full, speed: 1000",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "autonegotiation": {
+            "on": false,
+            "duplex": "full",
+            "speed": 1000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "autonegotiation": {
+            "on": false,
+            "duplex": "full",
+            "speed": 1000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Set capability autonegotiation: off, duplex: half, speed: 10",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "autonegotiation": {
+            "on": false,
+            "duplex": "half",
+            "speed": 10
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "autonegotiation": {
+            "on": false,
+            "duplex": "half",
+            "speed": 10
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "Set capability autonegotiation: off, duplex: half, speed: 100",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "autonegotiation": {
+            "on": false,
+            "duplex": "half",
+            "speed": 100
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "autonegotiation": {
+            "on": false,
+            "duplex": "half",
+            "speed": 100
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Set capability autonegotiation: off, duplex: half, speed: 1000",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "autonegotiation": {
+            "on": false,
+            "duplex": "half",
+            "speed": 1000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "autonegotiation": {
+            "on": false,
+            "duplex": "half",
+            "speed": 1000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "8": {
+    "description": "Set allmulti: on",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "allmulti": true
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "allmulti": true
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "9": {
+    "description": "Set allmulti: off",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "allmulti": false
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "allmulti": false
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "10": {
+    "description": "Set promiscuous: on",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "promiscuous": true
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "promiscuous": true
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "11": {
+    "description": "Set promiscuous: off",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "promiscuous": false
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "promiscuous": false
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "12": {
+    "description": "Set MAC address unicast",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "mac_address": "18:af:fb:c6:94:3d"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "mac_address": "18:af:fb:c6:94:3d"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "mac_address": "94:3f:bb:00:2d:e3"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.4": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "mac_address": "94:3f:bb:00:2d:e3"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.5": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Set MAC address multicast",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "mac_address": "93:2f:b3:bd:de:6b"
+        }
+      },
+      "errCode": -1,
+      "httpCode": 500
+    }
+  },
+  "14": {
+    "description": "Set all params off",
+    "14.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "allmulti": false,
+          "promiscuous": false,
+          "autonegotiation": {
+            "on": false,
+            "duplex": "full",
+            "speed": 1000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "autonegotiation": {
+            "on": false,
+            "duplex": "full",
+            "speed": 1000
+          },
+          "promiscuous": false,
+          "allmulti": false
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "mac_address": "a8:1b:cf:e0:a7:a2"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.4": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "mac_address": "a8:1b:cf:e0:a7:a2"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.5": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "mac_address": "94:3f:bb:00:2d:e3"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.6": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "mac_address": "94:3f:bb:00:2d:e3"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.7": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "15": {
+    "description": "Set all params on",
+    "15.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "allmulti": true,
+          "promiscuous": true,
+          "autonegotiation": {
+            "on": true
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "autonegotiation": {
+            "on": true
+          },
+          "promiscuous": true,
+          "allmulti": true
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "mac_address": "74:be:22:aa:f3:9b"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.4": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "mac_address": "74:be:22:aa:f3:9b"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.5": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/capability",
+      "schema": {
+        "ifname": "eth1",
+        "capability": {
+          "mac_address": "94:3f:bb:00:2d:e3"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.6": {
+      "type": "GET",
+      "endpoint": "/interfaces/ethernet/capability",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "capability": {
+          "mac_address": "94:3f:bb:00:2d:e3"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.7": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  }
+}

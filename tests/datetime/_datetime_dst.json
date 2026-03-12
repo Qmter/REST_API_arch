@@ -1,0 +1,289 @@
+{
+  "1": {
+    "description": "Getter test",
+    "1.1": {
+      "type": "GET",
+      "endpoint": "/datetime/dst",
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Adding DST",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/datetime/dst",
+      "schema": {
+        "action": {
+          "add": {
+            "time": "23:04:34",
+            "date": "15.11.1987",
+            "timezone": "posix/Australia/Lindeman"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "GET",
+      "endpoint": "/datetime/dst",
+      "validation": [
+        {
+          "date": "15.11.1987",
+          "time": "23:04:34",
+          "timezone": "posix/Australia/Lindeman",
+          "scheduled": true
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "type": "POST",
+      "endpoint": "/datetime/dst",
+      "schema": {
+        "action": {
+          "delete": {}
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Adding DST without time-argument",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/datetime/dst",
+      "schema": {
+        "action": {
+          "add": {
+            "date": "04.03.2011",
+            "timezone": "posix/America/Costa_Rica"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "4": {
+    "description": "Adding DST without date-argument",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/datetime/dst",
+      "schema": {
+        "action": {
+          "add": {
+            "time": "20:28:51",
+            "timezone": "posix/Turkey"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "5": {
+    "description": "Adding DST without timezone-argument",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/datetime/dst",
+      "schema": {
+        "action": {
+          "add": {
+            "time": "21:48:31",
+            "date": "03.05.2011"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "6": {
+    "description": "Deleting selected DST",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/datetime/dst",
+      "schema": {
+        "action": {
+          "add": {
+            "time": "00:08:58",
+            "date": "13.12.2077",
+            "timezone": "right/America/Thule"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "POST",
+      "endpoint": "/datetime/dst",
+      "schema": {
+        "action": {
+          "add": {
+            "time": "20:29",
+            "date": "13.12.2077",
+            "timezone": "right/America/Thule"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.3": {
+      "type": "POST",
+      "endpoint": "/datetime/dst",
+      "schema": {
+        "action": {
+          "delete": {
+            "time": "00:08:58",
+            "date": "13.12.2077"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.4": {
+      "type": "GET",
+      "endpoint": "/datetime/dst",
+      "validation": [
+        {
+          "time": "20:29",
+          "date": "13.12.2077",
+          "timezone": "right/America/Thule",
+          "scheduled": true
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.5": {
+      "type": "POST",
+      "endpoint": "/datetime/dst",
+      "schema": {
+        "action": {
+          "delete": {}
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Deleting DST by date",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/datetime/dst",
+      "schema": {
+        "action": {
+          "add": {
+            "time": "22:13",
+            "date": "11.04.1998",
+            "timezone": "right/America/Cayenne"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.2": {
+      "type": "POST",
+      "endpoint": "/datetime/dst",
+      "schema": {
+        "action": {
+          "add": {
+            "time": "01:53",
+            "date": "11.04.1998",
+            "timezone": "right/America/Cayenne"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.3": {
+      "type": "POST",
+      "endpoint": "/datetime/dst",
+      "schema": {
+        "action": {
+          "delete": {
+            "date": "11.04.1998"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.4": {
+      "type": "GET",
+      "endpoint": "/datetime/dst",
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "8": {
+    "description": "Trying to delete DST by time",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/datetime/dst",
+      "schema": {
+        "action": {
+          "add": {
+            "time": "20:21",
+            "date": "30.09.2091",
+            "timezone": "right/Portugal"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.2": {
+      "type": "POST",
+      "endpoint": "/datetime/dst",
+      "schema": {
+        "action": {
+          "delete": {
+            "time": "20:21"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "8.3": {
+      "type": "GET",
+      "endpoint": "/datetime/dst",
+      "validation": [
+        {
+          "time": "20:21",
+          "date": "30.09.2091",
+          "timezone": "right/Portugal",
+          "scheduled": true
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/datetime/dst",
+      "schema": {
+        "action": {
+          "delete": {}
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  }
+}

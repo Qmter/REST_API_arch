@@ -1,0 +1,11 @@
+{
+  "1": {
+    "description": "Getter test",
+    "1.1": {
+      "type": "GET",
+      "endpoint": "/datetime/tz",
+      "errCode": 0,
+      "httpCode": 200
+    }
+  }
+}

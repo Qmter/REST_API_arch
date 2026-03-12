@@ -1,0 +1,2571 @@
+{
+  "1": {
+    "description": "Add acl filter with chain input filter reject",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.3": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "filter": {
+              "action": "reject",
+              "acl_name": "acl_test"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.4": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "reject"
+              }
+            ],
+            "policy": "permit"
+          },
+          "forward": {
+            "acl": []
+          },
+          "output": {
+            "acl": []
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.5": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "acl_name": "acl_test"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.6": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.7": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Add acl filter with chain forward filter reject",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "vrf": "1Fh_zm9",
+            "chain": "forward",
+            "filter": {
+              "action": "reject",
+              "acl_name": "acl_test"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.4": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": []
+          },
+          "forward": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "reject"
+              }
+            ],
+            "policy": "permit"
+          },
+          "output": {
+            "acl": []
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.5": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "vrf": "1Fh_zm9",
+            "chain": "forward",
+            "acl_name": "acl_test"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.6": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.7": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Add acl filter with chain output filter reject",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.3": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "vrf": "1Fh_zm9",
+            "chain": "output",
+            "filter": {
+              "action": "reject",
+              "acl_name": "acl_test"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.4": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": []
+          },
+          "forward": {
+            "acl": []
+          },
+          "output": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "reject"
+              }
+            ],
+            "policy": "permit"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.5": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "vrf": "1Fh_zm9",
+            "chain": "output",
+            "acl_name": "acl_test"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.6": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.7": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Add acl filter with chain input filter permit",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.3": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "filter": {
+              "action": "permit",
+              "acl_name": "acl_test"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.4": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "permit"
+              }
+            ],
+            "policy": "permit"
+          },
+          "forward": {
+            "acl": []
+          },
+          "output": {
+            "acl": []
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.5": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "acl_name": "acl_test"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.6": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.7": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Add acl filter with chain forward filter permit",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.3": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "vrf": "1Fh_zm9",
+            "chain": "forward",
+            "filter": {
+              "action": "permit",
+              "acl_name": "acl_test"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.4": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": []
+          },
+          "forward": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "permit"
+              }
+            ],
+            "policy": "permit"
+          },
+          "output": {
+            "acl": []
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.5": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "vrf": "1Fh_zm9",
+            "chain": "forward",
+            "acl_name": "acl_test"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.6": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.7": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "Add acl filter with chain output filter permit",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.3": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "vrf": "1Fh_zm9",
+            "chain": "output",
+            "filter": {
+              "action": "permit",
+              "acl_name": "acl_test"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.4": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": []
+          },
+          "forward": {
+            "acl": []
+          },
+          "output": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "permit"
+              }
+            ],
+            "policy": "permit"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.5": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "vrf": "1Fh_zm9",
+            "chain": "output",
+            "acl_name": "acl_test"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.6": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.7": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Add acl filter with chain input filter deny",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.3": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "filter": {
+              "action": "deny",
+              "acl_name": "acl_test"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.4": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "deny"
+              }
+            ],
+            "policy": "permit"
+          },
+          "forward": {
+            "acl": []
+          },
+          "output": {
+            "acl": []
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.5": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "acl_name": "acl_test"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.6": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.7": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "8": {
+    "description": "Add acl filter with chain forward filter deny",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.3": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "vrf": "1Fh_zm9",
+            "chain": "forward",
+            "filter": {
+              "action": "deny",
+              "acl_name": "acl_test"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.4": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": []
+          },
+          "forward": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "deny"
+              }
+            ],
+            "policy": "permit"
+          },
+          "output": {
+            "acl": []
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.5": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "vrf": "1Fh_zm9",
+            "chain": "forward",
+            "acl_name": "acl_test"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.6": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.7": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "9": {
+    "description": "Add acl filter with chain output filter deny",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.3": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "vrf": "1Fh_zm9",
+            "chain": "output",
+            "filter": {
+              "action": "deny",
+              "acl_name": "acl_test"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.4": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": []
+          },
+          "forward": {
+            "acl": []
+          },
+          "output": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "deny"
+              }
+            ],
+            "policy": "permit"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.5": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "vrf": "1Fh_zm9",
+            "chain": "output",
+            "acl_name": "acl_test"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.6": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.7": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "10": {
+    "description": "Modify set deny for acl filter with chain input filter permit",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.3": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "filter": {
+              "action": "permit",
+              "acl_name": "acl_test"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.4": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "permit"
+              }
+            ],
+            "policy": "permit"
+          },
+          "forward": {
+            "acl": []
+          },
+          "output": {
+            "acl": []
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.5": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "modify": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "policy": "deny"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.6": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "permit"
+              }
+            ],
+            "policy": "deny"
+          },
+          "forward": {
+            "acl": []
+          },
+          "output": {
+            "acl": []
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.7": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "modify": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "policy": "permit"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.8": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "permit"
+              }
+            ],
+            "policy": "permit"
+          },
+          "forward": {
+            "acl": []
+          },
+          "output": {
+            "acl": []
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.9": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "acl_name": "acl_test"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.10": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.11": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "11": {
+    "description": "Modify set deny for acl filter with chain forward filter permit",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.3": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "vrf": "1Fh_zm9",
+            "chain": "forward",
+            "filter": {
+              "action": "permit",
+              "acl_name": "acl_test"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.4": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": []
+          },
+          "forward": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "permit"
+              }
+            ],
+            "policy": "permit"
+          },
+          "output": {
+            "acl": []
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.5": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "modify": {
+            "vrf": "1Fh_zm9",
+            "chain": "forward",
+            "policy": "deny"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.6": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": []
+          },
+          "forward": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "permit"
+              }
+            ],
+            "policy": "deny"
+          },
+          "output": {
+            "acl": []
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.7": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "modify": {
+            "vrf": "1Fh_zm9",
+            "chain": "forward",
+            "policy": "permit"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.8": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": []
+          },
+          "forward": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "permit"
+              }
+            ],
+            "policy": "permit"
+          },
+          "output": {
+            "acl": []
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.9": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "vrf": "1Fh_zm9",
+            "chain": "forward",
+            "acl_name": "acl_test"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.10": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.11": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "12": {
+    "description": "Modify set deny for acl filter with chain output filter permit",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.3": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "vrf": "1Fh_zm9",
+            "chain": "output",
+            "filter": {
+              "action": "permit",
+              "acl_name": "acl_test"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.4": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": []
+          },
+          "forward": {
+            "acl": []
+          },
+          "output": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "permit"
+              }
+            ],
+            "policy": "permit"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.5": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "modify": {
+            "vrf": "1Fh_zm9",
+            "chain": "output",
+            "policy": "deny"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.6": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": []
+          },
+          "forward": {
+            "acl": []
+          },
+          "output": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "permit"
+              }
+            ],
+            "policy": "deny"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.7": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "modify": {
+            "vrf": "1Fh_zm9",
+            "chain": "output",
+            "policy": "permit"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.8": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": []
+          },
+          "forward": {
+            "acl": []
+          },
+          "output": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "permit"
+              }
+            ],
+            "policy": "permit"
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.9": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "vrf": "1Fh_zm9",
+            "chain": "output",
+            "acl_name": "acl_test"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.10": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.11": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Add acl filter with chain input filter permit and random index",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.3": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "filter": {
+              "action": "permit",
+              "acl_name": "acl_test"
+            },
+            "index": 367
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.4": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "permit"
+              }
+            ],
+            "policy": "permit"
+          },
+          "forward": {
+            "acl": []
+          },
+          "output": {
+            "acl": []
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.5": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "acl_name": "acl_test"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.6": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.7": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "14": {
+    "description": "Add acl filter with chain input filter permit and minimum index",
+    "14.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.3": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "filter": {
+              "action": "permit",
+              "acl_name": "acl_test"
+            },
+            "index": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.4": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "permit"
+              }
+            ],
+            "policy": "permit"
+          },
+          "forward": {
+            "acl": []
+          },
+          "output": {
+            "acl": []
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.5": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "acl_name": "acl_test"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.6": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.7": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "15": {
+    "description": "Add acl filter with chain input filter permit and maximum index",
+    "15.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.3": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "filter": {
+              "action": "permit",
+              "acl_name": "acl_test"
+            },
+            "index": 1000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.4": {
+      "type": "GET",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "validation": [
+        {
+          "vrf": "1Fh_zm9",
+          "input": {
+            "acl": [
+              {
+                "acl_name": "acl_test",
+                "action": "permit"
+              }
+            ],
+            "policy": "permit"
+          },
+          "forward": {
+            "acl": []
+          },
+          "output": {
+            "acl": []
+          }
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.5": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "acl_name": "acl_test"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.6": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.7": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "16": {
+    "description": "Add acl filter with chain input filter permit and less than minimum index",
+    "16.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.3": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "filter": {
+              "action": "permit",
+              "acl_name": "acl_test"
+            },
+            "index": 0
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "16.4": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.5": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "17": {
+    "description": "Add acl filter with chain input filter permit and more than maximum index",
+    "17.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.3": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "vrf": "1Fh_zm9",
+            "chain": "input",
+            "filter": {
+              "action": "permit",
+              "acl_name": "acl_test"
+            },
+            "index": 1001
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "17.4": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.5": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "18": {
+    "description": "clear all VRFs and all chains",
+    "18.1": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv6",
+      "schema": {
+        "action": {
+          "clear": {}
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "19": {
+    "description": "clear all VRFs and chain: input",
+    "19.1": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv4",
+      "schema": {
+        "action": {
+          "clear": {
+            "chain": "input"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "20": {
+    "description": "clear all VRFs and chain: output",
+    "20.1": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv4",
+      "schema": {
+        "action": {
+          "clear": {
+            "chain": "output"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "21": {
+    "description": "clear all VRFs and chain: forward",
+    "21.1": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv4",
+      "schema": {
+        "action": {
+          "clear": {
+            "chain": "forward"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "22": {
+    "description": "clear definite VRFs and all chains",
+    "22.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.2": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv4",
+      "schema": {
+        "action": {
+          "clear": {
+            "vrf": "1Fh_zm9"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.3": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "23": {
+    "description": "clear definite VRFs and chain: input",
+    "23.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.2": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv4",
+      "schema": {
+        "action": {
+          "clear": {
+            "vrf": "1Fh_zm9",
+            "chain": "input"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.3": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "24": {
+    "description": "clear definite VRFs and chain: output",
+    "24.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.2": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv4",
+      "schema": {
+        "action": {
+          "clear": {
+            "vrf": "1Fh_zm9",
+            "chain": "output"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.3": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "25": {
+    "description": "clear definite VRFs and chain: forward",
+    "25.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.2": {
+      "type": "POST",
+      "endpoint": "/acl/filter/filter_ipv4",
+      "schema": {
+        "action": {
+          "clear": {
+            "vrf": "1Fh_zm9",
+            "chain": "forward"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.3": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "26": {
+    "description": "Get list filters without arguments",
+    "26.1": {
+      "type": "GET",
+      "endpoint": "/acl/filter/list",
+      "arguments": {},
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "27": {
+    "description": "Get list filters with proto ipv4 and ipv6",
+    "27.1": {
+      "type": "GET",
+      "endpoint": "/acl/filter/list",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.2": {
+      "type": "GET",
+      "endpoint": "/acl/filter/list",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "28": {
+    "description": "Get list filters with VRF",
+    "28.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.2": {
+      "type": "GET",
+      "endpoint": "/acl/filter/list",
+      "arguments": {
+        "vrf": "1Fh_zm9"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.3": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "29": {
+    "description": "Get list filters with VRF",
+    "29.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "29.2": {
+      "type": "GET",
+      "endpoint": "/acl/filter/list",
+      "arguments": {
+        "proto": "ipv6",
+        "vrf": "1Fh_zm9"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "29.3": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "acl_test",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "socks"
+              }
+            }
+          }
+        }
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      }
+    }
+  }
+}

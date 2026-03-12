@@ -1,90 +1,86 @@
 {
   "1": {
-    "description": "Add fail2ban service",
+    "description": "Add jail fail2ban",
     "1.1": {
-      "endpoint": "/fail2ban/jail/add",
       "type": "POST",
-      "errCode": 0,
-      "httpCode": 200,
+      "endpoint": "/fail2ban/jail/add",
       "schema": {
         "jail_name": "1Fh_zm9tbRkRM"
-      }
+      },
+      "errCode": 0,
+      "httpCode": 200
     },
     "1.2": {
-      "endpoint": "/fail2ban/jail/list",
       "type": "GET",
-      "errCode": 0,
-      "httpCode": 200,
+      "endpoint": "/fail2ban/jail/list",
       "arguments": {},
-      "validation": {
-        "jail_name": "1Fh_zm9tbRkRM"
-      }
+      "validation": [
+        "1Fh_zm9tbRkRM"
+      ],
+      "errCode": 0,
+      "httpCode": 200
     },
     "1.3": {
-      "endpoint": "/fail2ban/jail/delete",
       "type": "POST",
-      "errCode": 0,
-      "httpCode": 200,
+      "endpoint": "/fail2ban/jail/delete",
       "schema": {
         "jail_name": "1Fh_zm9tbRkRM"
-      }
+      },
+      "errCode": 0,
+      "httpCode": 200
     }
   },
   "2": {
-    "description": "Add existing fail2ban service",
+    "description": "Add same jail fail2ban",
     "2.1": {
-      "endpoint": "/fail2ban/jail/add",
       "type": "POST",
-      "errCode": 0,
-      "httpCode": 200,
+      "endpoint": "/fail2ban/jail/add",
       "schema": {
         "jail_name": "SnMJq8Mt3"
-      }
+      },
+      "errCode": 0,
+      "httpCode": 200
     },
     "2.2": {
-      "endpoint": "/fail2ban/jail/list",
       "type": "GET",
-      "errCode": 0,
-      "httpCode": 200,
+      "endpoint": "/fail2ban/jail/list",
       "arguments": {},
-      "validation": {
-        "jail_name": "SnMJq8Mt3"
-      }
+      "validation": [
+        "SnMJq8Mt3"
+      ],
+      "errCode": 0,
+      "httpCode": 200
     },
     "2.3": {
-      "endpoint": "/fail2ban/jail/add",
       "type": "POST",
-      "errCode": 15,
-      "httpCode": 400,
+      "endpoint": "/fail2ban/jail/add",
       "schema": {
         "jail_name": "SnMJq8Mt3"
-      }
+      },
+      "errCode": 9,
+      "httpCode": 400
     },
     "2.4": {
-      "endpoint": "/fail2ban/jail/delete",
       "type": "POST",
-      "errCode": 0,
-      "httpCode": 200,
+      "endpoint": "/fail2ban/jail/delete",
       "schema": {
         "jail_name": "SnMJq8Mt3"
-      }
+      },
+      "errCode": 0,
+      "httpCode": 200
     }
   },
   "AFTER-TEST": {
     "1": {
-      "endpoint": "/fail2ban/jail/delete",
       "type": "POST",
-      "errCode": 0,
-      "httpCode": 200,
+      "endpoint": "/fail2ban/jail/delete",
       "schema": {
         "jail_name": "1Fh_zm9tbRkRM"
       }
     },
     "2": {
-      "endpoint": "/fail2ban/jail/delete",
       "type": "POST",
-      "errCode": 0,
-      "httpCode": 200,
+      "endpoint": "/fail2ban/jail/delete",
       "schema": {
         "jail_name": "SnMJq8Mt3"
       }

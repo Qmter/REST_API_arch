@@ -1,0 +1,7121 @@
+{
+  "PRESET": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/add",
+      "schema": {
+        "pool_number": 55341,
+        "network": "8.213.131.0/24"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "1": {
+    "description": "Adding bootfile-name option",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "9+lP3:&e99:[POU3/TppRnlv5d(M>V||0R6gO>r.qmLaq) 8dSO"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "bootfile-name"
+      },
+      "validation": {
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "9+lP3:&e99:[POU3/TppRnlv5d(M>V||0R6gO>r.qmLaq) 8dSO"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "bootfile-name"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "bootfile-name"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Adding bootfile-name option with non-vaild bootfile_name",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "Name with \"quote"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "3": {
+    "description": "Adding classless-static-routes option",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "classless-static-routes",
+          "parameters": {
+            "routes": [
+              {
+                "destination_address": "234.254.232.254/4",
+                "router_address": "9.41.1.24"
+              },
+              {
+                "destination_address": "3.43.1.49/3",
+                "router_address": "6.6.252.1"
+              }
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "classless-static-routes"
+      },
+      "validation": {
+        "option": {
+          "name": "classless-static-routes",
+          "parameters": {
+            "routes": [
+              {
+                "destination_address": "234.254.232.254/4",
+                "router_address": "9.41.1.24"
+              },
+              {
+                "destination_address": "3.43.1.49/3",
+                "router_address": "6.6.252.1"
+              }
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "classless-static-routes"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "classless-static-routes"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Adding classless-static-routes option | empty argument: routes",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "classless-static-routes",
+          "parameters": {
+            "routes": []
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "5": {
+    "description": "Adding classless-static-routes option | destination_address with leading zero",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "classless-static-routes",
+          "parameters": {
+            "routes": [
+              {
+                "destination_address": "010.1.1.1/24",
+                "router_address": "211.253.78.192"
+              }
+            ]
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "6": {
+    "description": "Adding classless-static-routes option | router_address with leading zero",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "classless-static-routes",
+          "parameters": {
+            "routes": [
+              {
+                "destination_address": "254.89.161.9/20",
+                "router_address": "01.1.1.1/24"
+              }
+            ]
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "7": {
+    "description": "Adding default-ip-ttl option",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "default-ip-ttl",
+          "parameters": {
+            "ttl": 63
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "default-ip-ttl"
+      },
+      "validation": {
+        "option": {
+          "name": "default-ip-ttl",
+          "parameters": {
+            "ttl": 63
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "default-ip-ttl"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "default-ip-ttl"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "8": {
+    "description": "Adding default-ip-ttl option | ttl - lowest value",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "default-ip-ttl",
+          "parameters": {
+            "ttl": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "default-ip-ttl"
+      },
+      "validation": {
+        "option": {
+          "name": "default-ip-ttl",
+          "parameters": {
+            "ttl": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "default-ip-ttl"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "default-ip-ttl"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "9": {
+    "description": "Adding default-ip-ttl option | ttl - highest value",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "default-ip-ttl",
+          "parameters": {
+            "ttl": 255
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "default-ip-ttl"
+      },
+      "validation": {
+        "option": {
+          "name": "default-ip-ttl",
+          "parameters": {
+            "ttl": 255
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "default-ip-ttl"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "default-ip-ttl"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "10": {
+    "description": "Adding default-ip-ttl option | ttl value out of bounce, lower",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "default-ip-ttl",
+          "parameters": {
+            "ttl": -1
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "11": {
+    "description": "Adding default-ip-ttl option | ttl value out of bounce, higher",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "default-ip-ttl",
+          "parameters": {
+            "ttl": 256
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "12": {
+    "description": "Adding dhcp-message-type option",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "dhcp-message-type",
+          "parameters": {
+            "type": 9
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "dhcp-message-type"
+      },
+      "validation": {
+        "option": {
+          "name": "dhcp-message-type",
+          "parameters": {
+            "type": 9
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "dhcp-message-type"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "dhcp-message-type"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Adding dhcp-message-type option | type - lowest value",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "dhcp-message-type",
+          "parameters": {
+            "type": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "dhcp-message-type"
+      },
+      "validation": {
+        "option": {
+          "name": "dhcp-message-type",
+          "parameters": {
+            "type": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "dhcp-message-type"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "dhcp-message-type"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "14": {
+    "description": "Adding dhcp-message-type option | type - highest value",
+    "14.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "dhcp-message-type",
+          "parameters": {
+            "type": 255
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "dhcp-message-type"
+      },
+      "validation": {
+        "option": {
+          "name": "dhcp-message-type",
+          "parameters": {
+            "type": 255
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "dhcp-message-type"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "dhcp-message-type"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "15": {
+    "description": "Adding dhcp-message-type option | type value out of bounce, lower",
+    "15.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "dhcp-message-type",
+          "parameters": {
+            "type": -1
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "16": {
+    "description": "Adding dhcp-message-type option | type value out of bounce, higher",
+    "16.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "dhcp-message-type",
+          "parameters": {
+            "type": 256
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "17": {
+    "description": "Adding domain-name option",
+    "17.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "domain-name",
+          "parameters": {
+            "domain_name": "ZI6tgJVH8ofS4CND1En-ZHoruYn5u9ygljGI1Z.A.Aha.l.QtBpZX1WXanJzVurJp0ICY3GoAA3P0pTXRxOYN.v.V.U.8bWnoWz5ImA.e.9DjKJA93NiMkkTefcFqIlcrbKXS.r.s.XNXAJ3p-rn7CjOCObxIPEgqubDs9ILWOakgmCYYlYSShsF76.Nkq6F.1.28GsaKpow3KFFIQSk1GxkLBT3uTwN.J3TwKwNti4MVTJdL-VSy18aBJnSF3AxryoKtPCaJC4sf-BWHz.TqaygO3Gyv-6LZBu0eFI-qJeSIEaYWHInnwBHc-cZpYxzyH.O.t.o.D5PmyufmUSc6TMcT0BnXfuXjiEpW3R2J.x.h.DCMPQBbx1gBLdX1tWzRV0ZhVkjRvA9Y9T1OQmf8zsPzYmN2XY.b.1.bZC5Ll8t40-phiPKrQcmqc8rZ3Jp4dKVexzHE4wKTTqRfKjJs7KNRW-k.JPGoAj8z637iMSgJBv6HUZIJ2NsjN-ScT0LLy6zXtUpVNQQBvJguy.m.ZW-1QJwvFl6LoviRS7Hxe6yE3ly131E22zRLW2qb4S9k5K.0VgJUz95JnkywES5LajEHvdtVnbMZPrSb5ApKwHdVteHXG2bF1xeyRTC.H.8aFOyFTRBGFMJxlbRocrrGxCuzxg1zCrD0TXm-JY9Xqz.2.PtXy4E.4.znXY8-PjHGMVHLYoGmErFOYDo9flVFTInUwm1FCHw8sOQhe6s3Iq.sD0YCLSA5.x.Ppg4pbTRqT5YP13GfZdnBhWxlwCpvWWhEj6rWiaLr.y.cIalu2v6xxXtqn4SUEtXsJtkYMa.ajbgWxJ6842kW6jKXEgNrlq02hTvmHhnJcQOnx7cpY0KBDtw199RDDIfsXMfpc.Q.I.d.DGWRuDrBJta9zyc7hTXDMKm72rHKplDw.wkI1IfQ8RTHzDdJlpLzmg9AJOnCN.I.LRY.Vx8v17s-npy8mSVdv-hBt-GOIRed.Ux47BXxZHBNig5-M8LzumIYqwZXF6tJBF6TkcC4sntmDtUJ2DbZv.TpM4PsBJORtHGUfeIhMpJT5E.r.e.mmZI3p0xlGeUU.7T94bGP3tkiQHOCNloRzakjpgaIqxaY.a.l.m.OEzaOFOgSMvKojModdN8B6wbwOjAUNi1lm.32GsPFE57aEZGxIrzlMr7WLe2xsa07Ncfaf1iNarkcMnFTiYCR3cYYwZVsCo8TFw.7tDdNoJ80dCb6lpSfy7Nv8GyrJwfM8IPG5JbN6eQ1.1.PA.M.obtgavQjNF69mt8sboGoU64Q.NICqUNHOu.q.cXuzCj6EXIfouN2Gu89wS1K3zXuR6HHdGHsh1wToVENhO1qei2.u.r.aY8cvO.I.YHGqaDnQe2N8HP-lu6wUjSGiUO5xZbBg6JCLt84cjTrjGlp.Nlu5LC04bj9.xgPgKzwC3ILtfvObWC0wrOFh0rQgzfTFeJ0kfQR37RWlkNo8Kzs6sT-CclCCaei"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "domain-name"
+      },
+      "validation": {
+        "option": {
+          "name": "domain-name",
+          "parameters": {
+            "domain_name": "ZI6tgJVH8ofS4CND1En-ZHoruYn5u9ygljGI1Z.A.Aha.l.QtBpZX1WXanJzVurJp0ICY3GoAA3P0pTXRxOYN.v.V.U.8bWnoWz5ImA.e.9DjKJA93NiMkkTefcFqIlcrbKXS.r.s.XNXAJ3p-rn7CjOCObxIPEgqubDs9ILWOakgmCYYlYSShsF76.Nkq6F.1.28GsaKpow3KFFIQSk1GxkLBT3uTwN.J3TwKwNti4MVTJdL-VSy18aBJnSF3AxryoKtPCaJC4sf-BWHz.TqaygO3Gyv-6LZBu0eFI-qJeSIEaYWHInnwBHc-cZpYxzyH.O.t.o.D5PmyufmUSc6TMcT0BnXfuXjiEpW3R2J.x.h.DCMPQBbx1gBLdX1tWzRV0ZhVkjRvA9Y9T1OQmf8zsPzYmN2XY.b.1.bZC5Ll8t40-phiPKrQcmqc8rZ3Jp4dKVexzHE4wKTTqRfKjJs7KNRW-k.JPGoAj8z637iMSgJBv6HUZIJ2NsjN-ScT0LLy6zXtUpVNQQBvJguy.m.ZW-1QJwvFl6LoviRS7Hxe6yE3ly131E22zRLW2qb4S9k5K.0VgJUz95JnkywES5LajEHvdtVnbMZPrSb5ApKwHdVteHXG2bF1xeyRTC.H.8aFOyFTRBGFMJxlbRocrrGxCuzxg1zCrD0TXm-JY9Xqz.2.PtXy4E.4.znXY8-PjHGMVHLYoGmErFOYDo9flVFTInUwm1FCHw8sOQhe6s3Iq.sD0YCLSA5.x.Ppg4pbTRqT5YP13GfZdnBhWxlwCpvWWhEj6rWiaLr.y.cIalu2v6xxXtqn4SUEtXsJtkYMa.ajbgWxJ6842kW6jKXEgNrlq02hTvmHhnJcQOnx7cpY0KBDtw199RDDIfsXMfpc.Q.I.d.DGWRuDrBJta9zyc7hTXDMKm72rHKplDw.wkI1IfQ8RTHzDdJlpLzmg9AJOnCN.I.LRY.Vx8v17s-npy8mSVdv-hBt-GOIRed.Ux47BXxZHBNig5-M8LzumIYqwZXF6tJBF6TkcC4sntmDtUJ2DbZv.TpM4PsBJORtHGUfeIhMpJT5E.r.e.mmZI3p0xlGeUU.7T94bGP3tkiQHOCNloRzakjpgaIqxaY.a.l.m.OEzaOFOgSMvKojModdN8B6wbwOjAUNi1lm.32GsPFE57aEZGxIrzlMr7WLe2xsa07Ncfaf1iNarkcMnFTiYCR3cYYwZVsCo8TFw.7tDdNoJ80dCb6lpSfy7Nv8GyrJwfM8IPG5JbN6eQ1.1.PA.M.obtgavQjNF69mt8sboGoU64Q.NICqUNHOu.q.cXuzCj6EXIfouN2Gu89wS1K3zXuR6HHdGHsh1wToVENhO1qei2.u.r.aY8cvO.I.YHGqaDnQe2N8HP-lu6wUjSGiUO5xZbBg6JCLt84cjTrjGlp.Nlu5LC04bj9.xgPgKzwC3ILtfvObWC0wrOFh0rQgzfTFeJ0kfQR37RWlkNo8Kzs6sT-CclCCaei"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "domain-name"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "domain-name"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "18": {
+    "description": "Adding domain-name option | non-valid domain-name",
+    "18.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "domain-name",
+          "parameters": {
+            "domain_name": "ab c"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "19": {
+    "description": "Adding domain-name-servers",
+    "19.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "domain-name-servers",
+          "parameters": {
+            "dns_addresses": [
+              "4.242.14.153",
+              "211.254.49.150",
+              "217.234.21.234"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "19.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "domain-name-servers"
+      },
+      "validation": {
+        "option": {
+          "name": "domain-name-servers",
+          "parameters": {
+            "dns_addresses": [
+              "4.242.14.153",
+              "211.254.49.150",
+              "217.234.21.234"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "19.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "domain-name-servers"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "19.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "domain-name-servers"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "20": {
+    "description": "Adding domain-name-servers | empty dns_addresses",
+    "20.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "domain-name-servers",
+          "parameters": {
+            "dns_addresses": []
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "21": {
+    "description": "Adding domain-name-servers | leading zero",
+    "21.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "domain-name-servers",
+          "parameters": {
+            "dns_addresses": [
+              "010.1.1.1"
+            ]
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "22": {
+    "description": "Adding host-name option",
+    "22.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "host-name",
+          "parameters": {
+            "host": "oJrehZan8ahmEXQjyIEZ.3CJhcsbU94fKSXL.5sH3C-medn5m.G.z.lUSKSyw9a3.tq8lfxOt72.a8DNp1.pxWoUFhrb6nCd5rFgaKNC--0D.v.ebnDLdR4wxe9xX-XXu.n.u.l.a.j.I-LgxwLmy6EjnsDGDiPijSzYNVRCd8tCjnEbPn56umhRKJhLc2Wd01xusiE8.aguyV78yqgtV2A8G7riSbY1sXthSJyUoenI0LwkOAacsJof.dpgvGTarfmQgeXQCs.8OQL9.8.wzQjWQbuQdA25uS.l.U.0yGz7BG0O-FtHZ6f7rxBaa7XCtmDaps7cVQvOxUSarZNiAWshCrMWuXDb-OHxTA1.HMIFbMqklxabr34ZDJuC6KS2ELAfedCyB26bRKuYNz.R7ph3.SrinEEYkUW0IMcPF4lCeRENdlRS.VzL0Cd0sw24IaztGo7nAc5EqgaOHAHfA.u.1.v7QXayGPDdSSO6NGg1XZ-lD77h0Zz1rQ7.pWM.S5XM-Db4HyBrQjN.U.rn4Uj03-ZA.l.2AkHqU.CAZjEX.u.K.Y.ilGvg9eGNpPZ7-8Hf6maedwZR.j.P.JR6TYcsYeEoqgH0n21I4WXmsm4D2S8a4-QIDXqYbd1qTsEueVmAuIdc-oJ.l.ehKq8e60LtkcDQTL8h.E-2-sRTKbIfzjy.dOT5rJk4dTo-NvIDWV26svg7PmIb68BzyJkAJ.o.R.F.g.a.LDhonwAgCaIp1KsoWjnlb-BAuUclgCEhsnuo0SRG5rvd.a.fKY7V-sZy4aLwjryACBUEzI.h.I1qtcABusI8PyOP0.2ZB0bWz0cVHPE7tfl7L.V4vkYFTecqconJfvHbXBvwA8gPc1OSsHjMdbfUw-j3bwI.y.J66PcxjPGHLC92uzUjTf7fVNISXn8V8V.Mox3by1Z2hGJVIjGEyZ4irfS4imCZuqEUCa9IK.w-hyMtc8VjbzH0C8lx4FBwmlHfHJQOF6DKtrH0.0.JoacQys7x4gEZxVm41d-NkxIJQ32A4SggZj9oft-DjzPu.C.fOn5.7"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "host-name"
+      },
+      "validation": {
+        "option": {
+          "name": "host-name",
+          "parameters": {
+            "host": "oJrehZan8ahmEXQjyIEZ.3CJhcsbU94fKSXL.5sH3C-medn5m.G.z.lUSKSyw9a3.tq8lfxOt72.a8DNp1.pxWoUFhrb6nCd5rFgaKNC--0D.v.ebnDLdR4wxe9xX-XXu.n.u.l.a.j.I-LgxwLmy6EjnsDGDiPijSzYNVRCd8tCjnEbPn56umhRKJhLc2Wd01xusiE8.aguyV78yqgtV2A8G7riSbY1sXthSJyUoenI0LwkOAacsJof.dpgvGTarfmQgeXQCs.8OQL9.8.wzQjWQbuQdA25uS.l.U.0yGz7BG0O-FtHZ6f7rxBaa7XCtmDaps7cVQvOxUSarZNiAWshCrMWuXDb-OHxTA1.HMIFbMqklxabr34ZDJuC6KS2ELAfedCyB26bRKuYNz.R7ph3.SrinEEYkUW0IMcPF4lCeRENdlRS.VzL0Cd0sw24IaztGo7nAc5EqgaOHAHfA.u.1.v7QXayGPDdSSO6NGg1XZ-lD77h0Zz1rQ7.pWM.S5XM-Db4HyBrQjN.U.rn4Uj03-ZA.l.2AkHqU.CAZjEX.u.K.Y.ilGvg9eGNpPZ7-8Hf6maedwZR.j.P.JR6TYcsYeEoqgH0n21I4WXmsm4D2S8a4-QIDXqYbd1qTsEueVmAuIdc-oJ.l.ehKq8e60LtkcDQTL8h.E-2-sRTKbIfzjy.dOT5rJk4dTo-NvIDWV26svg7PmIb68BzyJkAJ.o.R.F.g.a.LDhonwAgCaIp1KsoWjnlb-BAuUclgCEhsnuo0SRG5rvd.a.fKY7V-sZy4aLwjryACBUEzI.h.I1qtcABusI8PyOP0.2ZB0bWz0cVHPE7tfl7L.V4vkYFTecqconJfvHbXBvwA8gPc1OSsHjMdbfUw-j3bwI.y.J66PcxjPGHLC92uzUjTf7fVNISXn8V8V.Mox3by1Z2hGJVIjGEyZ4irfS4imCZuqEUCa9IK.w-hyMtc8VjbzH0C8lx4FBwmlHfHJQOF6DKtrH0.0.JoacQys7x4gEZxVm41d-NkxIJQ32A4SggZj9oft-DjzPu.C.fOn5.7"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "host-name"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "host-name"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "23": {
+    "description": "Adding host_name option | non-valid host",
+    "23.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "host-name",
+          "parameters": {
+            "host": "ab c"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "24": {
+    "description": "Adding interface-mtu option",
+    "24.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "interface-mtu",
+          "parameters": {
+            "mtu": 14360
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "interface-mtu"
+      },
+      "validation": {
+        "option": {
+          "name": "interface-mtu",
+          "parameters": {
+            "mtu": 14360
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "interface-mtu"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "interface-mtu"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "25": {
+    "description": "Adding interface-mtu option | lowest value",
+    "25.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "interface-mtu",
+          "parameters": {
+            "mtu": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "interface-mtu"
+      },
+      "validation": {
+        "option": {
+          "name": "interface-mtu",
+          "parameters": {
+            "mtu": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "interface-mtu"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "interface-mtu"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "26": {
+    "description": "Adding interface-mtu option | highest value",
+    "26.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "interface-mtu",
+          "parameters": {
+            "mtu": 65535
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "interface-mtu"
+      },
+      "validation": {
+        "option": {
+          "name": "interface-mtu",
+          "parameters": {
+            "mtu": 65535
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "interface-mtu"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "interface-mtu"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "27": {
+    "description": "Adding interface-mtu option | mtu value out of bounce, lower",
+    "27.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "interface-mtu",
+          "parameters": {
+            "mtu": -1
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "28": {
+    "description": "Adding interface-mtu option | mtu value out of bounce, higher",
+    "28.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "interface-mtu",
+          "parameters": {
+            "mtu": 65536
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "29": {
+    "description": "Adding ip-forwarding | flag = True",
+    "29.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-forwarding",
+          "parameters": {
+            "flag": "true"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "29.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-forwarding"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-forwarding",
+          "parameters": {
+            "flag": "true"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "29.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-forwarding"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "29.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-forwarding"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "30": {
+    "description": "Adding ip-forwarding | flag = False",
+    "30.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-forwarding",
+          "parameters": {
+            "flag": "false"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "30.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-forwarding"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-forwarding",
+          "parameters": {
+            "flag": "false"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "30.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-forwarding"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "30.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-forwarding"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "31": {
+    "description": "Adding lpr-servers option",
+    "31.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "lpr-servers",
+          "parameters": {
+            "server_addresses": [
+              "23.221.44.0",
+              "1.0.217.69",
+              "252.211.7.253"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "lpr-servers"
+      },
+      "validation": {
+        "option": {
+          "name": "lpr-servers",
+          "parameters": {
+            "server_addresses": [
+              "23.221.44.0",
+              "1.0.217.69",
+              "252.211.7.253"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "lpr-servers"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "lpr-servers"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "32": {
+    "description": "Adding lpr-servers option | empty dns_addresses",
+    "32.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-forwarding",
+          "parameters": {
+            "dns_addresses": []
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "33": {
+    "description": "Adding lpr-servers option | dns_addresses with leading zero",
+    "33.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-forwarding",
+          "parameters": {
+            "dns_addresses": [
+              "010.1.1.1"
+            ]
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "34": {
+    "description": "Adding max-dgram-reassembly",
+    "34.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "max-dgram-reassembly",
+          "parameters": {
+            "reassembly": 52115
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "34.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "max-dgram-reassembly"
+      },
+      "validation": {
+        "option": {
+          "name": "max-dgram-reassembly",
+          "parameters": {
+            "reassembly": 52115
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "34.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "max-dgram-reassembly"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "34.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "max-dgram-reassembly"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "35": {
+    "description": "Adding max-dgram-reassembly | lowest value reassembly",
+    "35.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "max-dgram-reassembly",
+          "parameters": {
+            "reassembly": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "35.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "max-dgram-reassembly"
+      },
+      "validation": {
+        "option": {
+          "name": "max-dgram-reassembly",
+          "parameters": {
+            "reassembly": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "35.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "max-dgram-reassembly"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "35.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "max-dgram-reassembly"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "36": {
+    "description": "Adding max-dgram-reassembly | highest value reassembly",
+    "36.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "max-dgram-reassembly",
+          "parameters": {
+            "reassembly": 65535
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "36.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "max-dgram-reassembly"
+      },
+      "validation": {
+        "option": {
+          "name": "max-dgram-reassembly",
+          "parameters": {
+            "reassembly": 65535
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "36.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "max-dgram-reassembly"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "36.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "max-dgram-reassembly"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "37": {
+    "description": "Adding max-dgram-reassembly option | reassembly value out of bounce, lower",
+    "37.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "max-dgram-reassembly",
+          "parameters": {
+            "reassembly": -1
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "38": {
+    "description": "Adding max-dgram-reassembly option | reassembly value out of bounce, higher",
+    "38.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "max-dgram-reassembly",
+          "parameters": {
+            "reassembly": 65536
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "39": {
+    "description": "Adding mobile-ip-home-agent",
+    "39.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "mobile-ip-home-agent",
+          "parameters": {
+            "agents_addresses": [
+              "209.0.7.249",
+              "242.188.113.7",
+              "222.1.251.37"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "39.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "mobile-ip-home-agent"
+      },
+      "validation": {
+        "option": {
+          "name": "mobile-ip-home-agent",
+          "parameters": {
+            "agents_addresses": [
+              "209.0.7.249",
+              "242.188.113.7",
+              "222.1.251.37"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "39.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "mobile-ip-home-agent"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "39.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "mobile-ip-home-agent"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "40": {
+    "description": "Adding mobile-ip-home-agent | empty agents_addresses",
+    "40.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "mobile-ip-home-agent",
+          "parameters": {
+            "agents_addresses": []
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "41": {
+    "description": "Adding mobile-ip-home-agent | agents_addresses with leading zero",
+    "41.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "mobile-ip-home-agent",
+          "parameters": {
+            "agents_addresses": [
+              "01.1.1.1"
+            ]
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "42": {
+    "description": "Adding non-local-source-routing option | flag = True",
+    "42.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "non-local-source-routing",
+          "parameters": {
+            "flag": "true"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "42.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "non-local-source-routing"
+      },
+      "validation": {
+        "option": {
+          "name": "non-local-source-routing",
+          "parameters": {
+            "flag": "true"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "42.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "non-local-source-routing"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "42.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "non-local-source-routing"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "43": {
+    "description": "Adding non-local-source-routing option | flag = False",
+    "43.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "non-local-source-routing",
+          "parameters": {
+            "flag": "false"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "43.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "non-local-source-routing"
+      },
+      "validation": {
+        "option": {
+          "name": "non-local-source-routing",
+          "parameters": {
+            "flag": "false"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "43.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "non-local-source-routing"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "43.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "non-local-source-routing"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "44": {
+    "description": "Adding ntp-servers option",
+    "44.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ntp-servers",
+          "parameters": {
+            "server_addresses": [
+              "5.236.68.55",
+              "248.254.7.0",
+              "250.39.255.148"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "44.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ntp-servers"
+      },
+      "validation": {
+        "option": {
+          "name": "ntp-servers",
+          "parameters": {
+            "server_addresses": [
+              "5.236.68.55",
+              "248.254.7.0",
+              "250.39.255.148"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "44.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ntp-servers"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "44.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ntp-servers"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "45": {
+    "description": "Adding ntp-servers option | empty server_addresses",
+    "45.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ntp-servers",
+          "parameters": {
+            "server_addresses": []
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "46": {
+    "description": "Adding ntp-servers option | server_addresses with leading zero",
+    "46.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ntp-servers",
+          "parameters": {
+            "agents_addresses": "01.1.1.1"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "47": {
+    "description": "Adding policy-filter option",
+    "47.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "policy-filter",
+          "parameters": {
+            "addresses": [
+              {
+                "address": "212.236.8.46",
+                "mask": "255.255.255.128"
+              },
+              {
+                "address": "237.2.251.255",
+                "mask": "0.0.0.0"
+              },
+              {
+                "address": "11.180.170.6",
+                "mask": "255.255.192.0"
+              },
+              {
+                "address": "198.233.109.6",
+                "mask": "255.192.0.0"
+              },
+              {
+                "address": "252.241.215.9",
+                "mask": "255.255.255.254"
+              }
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "47.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "policy-filter"
+      },
+      "validation": {
+        "option": {
+          "name": "policy-filter",
+          "parameters": {
+            "addresses": [
+              {
+                "address": "212.236.8.46",
+                "mask": "255.255.255.128"
+              },
+              {
+                "address": "237.2.251.255",
+                "mask": "0.0.0.0"
+              },
+              {
+                "address": "11.180.170.6",
+                "mask": "255.255.192.0"
+              },
+              {
+                "address": "198.233.109.6",
+                "mask": "255.192.0.0"
+              },
+              {
+                "address": "252.241.215.9",
+                "mask": "255.255.255.254"
+              }
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "47.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "policy-filter"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "47.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "policy-filter"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "48": {
+    "description": "Adding policy-filter option | address with leading zero",
+    "48.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "policy-filter",
+          "parameters": {
+            "addresses": [
+              {
+                "address": "010.1.1.1",
+                "mask": "255.255.255.0"
+              }
+            ]
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "49": {
+    "description": "Adding policy-filter option | mask with leading zero",
+    "49.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "policy-filter",
+          "parameters": {
+            "addresses": [
+              {
+                "address": "1.2.3.0",
+                "mask": "250.250.025.0"
+              }
+            ]
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "50": {
+    "description": "Adding policy-filter option | empty addresses",
+    "50.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "policy-filter",
+          "parameters": {
+            "addresses": []
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "51": {
+    "description": "Adding routers option",
+    "51.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "routers",
+          "parameters": {
+            "router_addresses": [
+              "252.19.47.1",
+              "170.162.32.147",
+              "70.253.9.255"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "51.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "routers"
+      },
+      "validation": {
+        "option": {
+          "name": "routers",
+          "parameters": {
+            "router_addresses": [
+              "252.19.47.1",
+              "170.162.32.147",
+              "70.253.9.255"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "51.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "routers"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "51.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "routers"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "52": {
+    "description": "Adding routers option | empty router_addresses",
+    "52.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "routers",
+          "parameters": {
+            "router_addresses": []
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "53": {
+    "description": "Adding routers option | router_addresses with leading zero",
+    "53.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "routers",
+          "parameters": {
+            "router_addresses": [
+              "010.1.1.1"
+            ]
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "54": {
+    "description": "Adding static-routes option",
+    "54.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "static-routes",
+          "parameters": {
+            "routes": [
+              {
+                "destination_address": "6.217.200.133",
+                "router_address": "147.178.9.1"
+              },
+              {
+                "destination_address": "65.250.254.8",
+                "router_address": "32.171.4.245"
+              },
+              {
+                "destination_address": "234.6.111.251",
+                "router_address": "184.254.228.250"
+              }
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "54.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "static-routes"
+      },
+      "validation": {
+        "option": {
+          "name": "static-routes",
+          "parameters": {
+            "routes": [
+              {
+                "destination_address": "6.217.200.133",
+                "router_address": "147.178.9.1"
+              },
+              {
+                "destination_address": "65.250.254.8",
+                "router_address": "32.171.4.245"
+              },
+              {
+                "destination_address": "234.6.111.251",
+                "router_address": "184.254.228.250"
+              }
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "54.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "static-routes"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "54.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "static-routes"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "55": {
+    "description": "Adding static-routes option | empty routes",
+    "55.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "static-routers",
+          "parameters": {
+            "routes": []
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "56": {
+    "description": "Adding static-routes option | destination_address with leading zero",
+    "56.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "static-routers",
+          "parameters": {
+            "routes": [
+              {
+                "destination_address": "010.1.1.1",
+                "router_address": "96.0.246.205"
+              }
+            ]
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "57": {
+    "description": "Adding static-routes option | router_address with leading zero",
+    "57.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "static-routers",
+          "parameters": {
+            "routes": [
+              {
+                "destination_address": "8.210.154.109",
+                "router_address": "01.1.1.1"
+              }
+            ]
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "58": {
+    "description": "Adding option subnet-mask",
+    "58.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "subnet-mask",
+          "parameters": {
+            "subnet_mask": "240.0.0.0"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "58.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "subnet-mask"
+      },
+      "validation": {
+        "option": {
+          "name": "subnet-mask",
+          "parameters": {
+            "subnet_mask": "240.0.0.0"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "58.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "subnet-mask"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "58.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "subnet-mask"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "59": {
+    "description": "Adding option subnet-mask | non-valid mask",
+    "59.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "subnet-mask",
+          "parameters": {
+            "subnet_mask": "6.5.5.242"
+          }
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "60": {
+    "description": "Adding tftp-server-address option",
+    "60.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "tftp-server-address",
+          "parameters": {
+            "server_addresses": [
+              "214.244.80.141",
+              "124.251.153.214",
+              "226.6.5.223"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "60.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "tftp-server-address"
+      },
+      "validation": {
+        "option": {
+          "name": "tftp-server-address",
+          "parameters": {
+            "server_addresses": [
+              "214.244.80.141",
+              "124.251.153.214",
+              "226.6.5.223"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "60.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "tftp-server-address"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "60.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "tftp-server-address"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "61": {
+    "description": "Adding tftp-server-address option | empty server_addresses",
+    "61.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "tftp-server-address",
+          "parameters": {
+            "server_addresses": []
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "62": {
+    "description": "Adding tftp-server-address option | server_addresses with leading zero",
+    "62.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "tftp-server-address",
+          "parameters": {
+            "server_addresses": "010.1.1.1"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "63": {
+    "description": "Adding tftp-server-name",
+    "63.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "tftp-server-name",
+          "parameters": {
+            "server_name": "d_vH$P-nZ@M[0I~V1KF]j=N0=yYF'#PBPZG|"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "63.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "tftp-server-name"
+      },
+      "validation": {
+        "option": {
+          "name": "tftp-server-name",
+          "parameters": {
+            "server_name": "d_vH$P-nZ@M[0I~V1KF]j=N0=yYF'#PBPZG|"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "63.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "tftp-server-name"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "63.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "tftp-server-name"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "64": {
+    "description": "Adding tftp-server-name | server_name with quote",
+    "64.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "tftp-server-name",
+          "parameters": {
+            "server_name": "name_\"_quote"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "65": {
+    "description": "Adding time-offset option",
+    "65.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "time-offset",
+          "parameters": {
+            "time_offset": 3983510582
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "65.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "time-offset"
+      },
+      "validation": {
+        "option": {
+          "name": "time-offset",
+          "parameters": {
+            "time_offset": 3983510582
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "65.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "time-offset"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "65.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "time-offset"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "66": {
+    "description": "Adding time-offset option | lowest time_offset value",
+    "66.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "time-offset",
+          "parameters": {
+            "time_offset": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "66.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "time-offset"
+      },
+      "validation": {
+        "option": {
+          "name": "time-offset",
+          "parameters": {
+            "time_offset": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "66.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "time-offset"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "66.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "time-offset"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "67": {
+    "description": "Adding time-offset option | highest time_offset value",
+    "67.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "time-offset",
+          "parameters": {
+            "time_offset": 4294967295
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "67.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "time-offset"
+      },
+      "validation": {
+        "option": {
+          "name": "time-offset",
+          "parameters": {
+            "time_offset": 4294967295
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "67.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "time-offset"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "67.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "time-offset"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "68": {
+    "description": "Adding time-offset option | time_offset value out of bounce, lower",
+    "68.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "time-offset",
+          "parameters": {
+            "time_offset": -1
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "69": {
+    "description": "Adding time-offset option | time_offset value out of bounce, higher",
+    "69.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "time-offset",
+          "parameters": {
+            "time_offset": 4294967296
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "70": {
+    "description": "Adding time-servers option",
+    "70.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "time-servers",
+          "parameters": {
+            "server_addresses": [
+              "250.117.127.255",
+              "147.4.1.0",
+              "232.182.119.118"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "70.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "time-servers"
+      },
+      "validation": {
+        "option": {
+          "name": "time-servers",
+          "parameters": {
+            "server_addresses": [
+              "250.117.127.255",
+              "147.4.1.0",
+              "232.182.119.118"
+            ]
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "70.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "time-servers"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "70.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "time-servers"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "71": {
+    "description": "Adding time-servers option | empty server_addresses",
+    "71.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "time-servers",
+          "parameters": {
+            "server_addresses": []
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "72": {
+    "description": "Adding time-servers option | empty server_addresses",
+    "72.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "time-servers",
+          "parameters": {
+            "server_addresses": [
+              "01.1.1.1"
+            ]
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "73": {
+    "description": "Adding ip-tele-voicesrvr | raw",
+    "73.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {}
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "73.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {}
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "73.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "73.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "74": {
+    "description": "Adding ip-tele-voicesrvr | mcipadd",
+    "74.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "mcipadd": "65.198.38.8"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "74.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "mcipadd": "65.198.38.8"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "74.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "74.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "75": {
+    "description": "Adding ip-tele-voicesrvr | mcipadd with leading zero",
+    "75.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "mcipadd": "010.1.1.1"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "76": {
+    "description": "Adding ip-tele-voicesrvr | mcport",
+    "76.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "mcport": 43890
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "76.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "mcport": 43890
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "76.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "76.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "77": {
+    "description": "Adding ip-tele-voicesrvr | mcport - lowest value",
+    "77.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "mcport": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "77.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "mcport": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "77.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "77.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "78": {
+    "description": "Adding ip-tele-voicesrvr | mcport - highest value",
+    "78.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "mcport": 65535
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "78.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "mcport": 65535
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "78.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "78.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "79": {
+    "description": "Adding ip-tele-voicesrvr | mcport out of bounce, lower",
+    "79.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "mcport": -1
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "80": {
+    "description": "Adding ip-tele-voicesrvr | mcport out of bounce, higher",
+    "80.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "mcport": 65536
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "81": {
+    "description": "Adding ip-tele-voicesrvr | tftpsrvr",
+    "81.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "tftpsrvr": "213.62.228.0"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "81.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "tftpsrvr": "213.62.228.0"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "81.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "81.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "82": {
+    "description": "Adding ip-tele-voicesrvr | tftpsrvr with leading zero",
+    "82.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "tftpsrvr": "01.1.1.1"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "83": {
+    "description": "Adding ip-tele-voicesrvr | tftpdir",
+    "83.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "tftpdir": "#/9gQ'4nu9V6cS/ao)>XBTYoGdk0HT$7x6#GK?9e,"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "83.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "tftpdir": "#/9gQ'4nu9V6cS/ao)>XBTYoGdk0HT$7x6#GK?9e,"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "83.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "83.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "84": {
+    "description": "Adding ip-tele-voicesrvr | tftpdir with double_quote",
+    "84.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "tftpdir": "Quote\"_dir"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "85": {
+    "description": "Adding ip-tele-voicesrvr | tftpdir - empty line",
+    "85.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "tftpdir": ""
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "86": {
+    "description": "Adding ip-tele-voicesrvr | tftpdir - lenght is out of bounce",
+    "86.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "tftpdir": "V2WH6?n7Ng|w;2h[Aw(4O[{?;v;*Zx/(fu{iE3-,t#9iC4~7\\Qx|,k:[y@g{/gM:iV2WH6?n7Ng|w;2h[Aw(4O[{?;v;*Zx/(fu{iE3-,t#9iC4~7\\Qx|,k:[y@g{/gM:iV2WH6?n7Ng|w;2h[Aw(4O[{?;v;*Zx/(fu{iE3-,t#9iC4~7\\Qx|,k:[y@g{/gM:iV2WH6?n7Ng|w;2h[Aw(4O[{?;v;*Zx/(fu{iE3-,t#9iC4~7\\Qx|,k:[y@g{/gM:i"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "87": {
+    "description": "Adding ip-tele-voicesrvr | httpsrvr",
+    "87.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "httpsrvr": "41.163.7.1"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "87.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "httpsrvr": "41.163.7.1"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "87.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "87.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "88": {
+    "description": "Adding ip-tele-voicesrvr | httpsrvr with leading zero",
+    "88.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "httpsrvr": "01.1.1.1"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "89": {
+    "description": "Adding ip-tele-voicesrvr | tlssrvr",
+    "89.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "tlssrvr": "167.191.242.216"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "89.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "tlssrvr": "167.191.242.216"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "89.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "89.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "90": {
+    "description": "Adding ip-tele-voicesrvr | tlssrvr with leading zero",
+    "90.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "tlssrvr": "01.1.1.1"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "91": {
+    "description": "Adding ip-tele-voicesrvr | l2quad",
+    "91.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2quad": 5
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "91.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2quad": 5
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "91.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "91.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "92": {
+    "description": "Adding ip-tele-voicesrvr | l2quad - lowest value",
+    "92.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2quad": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "92.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2quad": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "92.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "92.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "93": {
+    "description": "Adding ip-tele-voicesrvr | l2quad - highest value",
+    "93.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2quad": 6
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "93.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2quad": 6
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "93.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "93.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "94": {
+    "description": "Adding ip-tele-voicesrvr | l2quad out of bounce, lower",
+    "94.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2quad": 0
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "95": {
+    "description": "Adding ip-tele-voicesrvr | l2quad out of bounce, higher",
+    "95.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2quad": 7
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "96": {
+    "description": "Adding ip-tele-voicesrvr | l2qsig",
+    "96.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qsig": 2
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "96.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qsig": 2
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "96.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "96.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "97": {
+    "description": "Adding ip-tele-voicesrvr | l2qsig - lowest value",
+    "97.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qsig": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "97.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qsig": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "97.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "97.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "98": {
+    "description": "Adding ip-tele-voicesrvr | l2qsig - highest value",
+    "98.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qsig": 6
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "98.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qsig": 6
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "98.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "98.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "99": {
+    "description": "Adding ip-tele-voicesrvr | l2qsig out of bounce, lower",
+    "99.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qsig": 0
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "100": {
+    "description": "Adding ip-tele-voicesrvr | l2qsig out of bounce, higher",
+    "100.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qsig": 7
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "101": {
+    "description": "Adding ip-tele-voicesrvr | l2qvlan",
+    "101.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qvlan": 3421
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "101.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qvlan": 3421
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "101.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "101.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "102": {
+    "description": "Adding ip-tele-voicesrvr | l2qvlan - lowest value",
+    "102.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qvlan": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "102.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qvlan": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "102.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "102.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "103": {
+    "description": "Adding ip-tele-voicesrvr | l2qvlan - highest value",
+    "103.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qvlan": 4094
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "103.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qvlan": 4094
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "103.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "103.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "104": {
+    "description": "Adding ip-tele-voicesrvr | l2qvlan out of bounce, lower",
+    "104.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qvlan": 0
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "105": {
+    "description": "Adding ip-tele-voicesrvr | l2qvlan out of bounce, higher",
+    "105.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qvlan": 4095
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "106": {
+    "description": "Adding ip-tele-voicesrvr | l2qvlan, vlantest",
+    "106.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qvlan": 1064,
+            "vlantest": 276
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "106.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qvlan": 1064,
+            "vlantest": 276
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "106.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "106.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "107": {
+    "description": "Adding ip-tele-voicesrvr | l2qvlan, vlantest - lowest value",
+    "107.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qvlan": 1930,
+            "vlantest": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "107.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qvlan": 1930,
+            "vlantest": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "107.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "107.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "108": {
+    "description": "Adding ip-tele-voicesrvr | l2qvlan, vlantest - highest value",
+    "108.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qvlan": 3586,
+            "vlantest": 1000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "108.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qvlan": 3586,
+            "vlantest": 1000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "108.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "108.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "109": {
+    "description": "Adding ip-tele-voicesrvr | l2qvlan, vlantest out of bounce - lower",
+    "109.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qvlan": 1724,
+            "vlantest": 0
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "110": {
+    "description": "Adding ip-tele-voicesrvr | l2qvlan, vlantest out of bounce - higher",
+    "110.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "l2qvlan": 477,
+            "vlantest": 1001
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "111": {
+    "description": "Adding ip-tele-voicesrvr | vlantest without l2qvlan",
+    "111.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "vlantest": 72
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "112": {
+    "description": "Adding ip-tele-voicesrvr | all params",
+    "112.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "mcipadd": "1.227.202.226",
+            "mcport": 40255,
+            "tftpsrvr": "251.3.102.219",
+            "tftpdir": "^08fvw!5Ce+h#8G'_5fC+nd@mKZnGoNJ(L,mX\\-9{+cL'$wA8'dfk.J!-R`+&rC]K5#Dw FrB|qg9j5-y",
+            "httpsrvr": "2.5.255.87",
+            "tlssrvr": "69.243.132.6",
+            "l2quad": 2,
+            "l2qsig": 1,
+            "l2qvlan": 3970,
+            "vlantest": 848
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "112.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-voicesrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "mcipadd": "1.227.202.226",
+            "mcport": 40255,
+            "tftpsrvr": "251.3.102.219",
+            "tftpdir": "^08fvw!5Ce+h#8G'_5fC+nd@mKZnGoNJ(L,mX\\-9{+cL'$wA8'dfk.J!-R`+&rC]K5#Dw FrB|qg9j5-y",
+            "httpsrvr": "2.5.255.87",
+            "tlssrvr": "69.243.132.6",
+            "l2quad": 2,
+            "l2qsig": 1,
+            "l2qvlan": 3970,
+            "vlantest": 848
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "112.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-voicesrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "112.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-voicesrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "113": {
+    "description": "Adding ip-tele-datasrvr | raw",
+    "113.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {}
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "113.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {}
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "113.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "113.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "114": {
+    "description": "Adding ip-tele-datasrvr | mcipadd",
+    "114.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "mcipadd": "233.250.2.221"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "114.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "mcipadd": "233.250.2.221"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "114.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "114.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "115": {
+    "description": "Adding ip-tele-datasrvr | mcipadd with leading zero",
+    "115.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "mcipadd": "01.1.1.1"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "116": {
+    "description": "Adding ip-tele-datasrvr | mcport",
+    "116.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "mcport": 34419
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "116.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "mcport": 34419
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "116.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "116.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "117": {
+    "description": "Adding ip-tele-datasrvr | mcport - lowest value",
+    "117.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "mcport": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "117.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "mcport": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "117.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "117.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "118": {
+    "description": "Adding ip-tele-datasrvr | mcport - highest value",
+    "118.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "mcport": 65535
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "118.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "mcport": 65535
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "118.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "118.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "119": {
+    "description": "Adding ip-tele-datasrvr | mcport out of bounce, lower",
+    "119.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "mcport": -1
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "120": {
+    "description": "Adding ip-tele-datasrvr | mcport out of bounce, higher",
+    "120.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "mcport": 65536
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "121": {
+    "description": "Adding ip-tele-datasrvr | tftpsrvr",
+    "121.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "tftpsrvr": "4.118.13.129"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "121.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "tftpsrvr": "4.118.13.129"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "121.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "121.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "122": {
+    "description": "Adding ip-tele-datasrvr | tftpsrvr with leading zero",
+    "122.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "tftpsrvr": "01.1.1.1"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "123": {
+    "description": "Adding ip-tele-datasrvr | tftpsrvr",
+    "123.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "tftpdir": "i0J+#A#+PsJrb;WtO>FBRFBzD.|!hy8;]bX*Bcfa{$8j"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "123.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "tftpdir": "i0J+#A#+PsJrb;WtO>FBRFBzD.|!hy8;]bX*Bcfa{$8j"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "123.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "123.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "124": {
+    "description": "Adding ip-tele-datasrvr | tftpsrvr with double_quote",
+    "124.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "tftpdir": "Quote\"_dir"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "125": {
+    "description": "Adding ip-tele-datasrvr | tftpsrvr - empty line",
+    "125.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "tftpdir": ""
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "126": {
+    "description": "Adding ip-tele-datasrvr | tftpsrvr - lenght out of bounce",
+    "126.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "tftpdir": "Z=(p9;0k9H^ZfN;;?-)rBLpWqG_j_p0DV`G,_;)Gz2{w^(56|A]$Y\\hf~Du)Zr5Z=(p9;0k9H^ZfN;;?-)rBLpWqG_j_p0DV`G,_;)Gz2{w^(56|A]$Y\\hf~Du)Zr5Z=(p9;0k9H^ZfN;;?-)rBLpWqG_j_p0DV`G,_;)Gz2{w^(56|A]$Y\\hf~Du)Zr5Z=(p9;0k9H^ZfN;;?-)rBLpWqG_j_p0DV`G,_;)Gz2{w^(56|A]$Y\\hf~Du)Zr5Z=(p9;0k9H^ZfN;;?-)rBLpWqG_j_p0DV`G,_;)Gz2{w^(56|A]$Y\\hf~Du)Zr5Z=(p9;0k9H^ZfN;;?-)rBLpWqG_j_p0DV`G,_;)Gz2{w^(56|A]$Y\\hf~Du)Zr5Z=(p9;0k9H^ZfN;;?-)rBLpWqG_j_p0DV`G,_;)Gz2{w^(56|A]$Y\\hf~Du)Zr5Z=(p9;0k9H^ZfN;;?-)rBLpWqG_j_p0DV`G,_;)Gz2{w^(56|A]$Y\\hf~Du)Zr5"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "127": {
+    "description": "Adding ip-tele-datasrvr | httpsrvr",
+    "127.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "httpsrvr": "205.116.254.3"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "127.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "httpsrvr": "205.116.254.3"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "127.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "127.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "128": {
+    "description": "Adding ip-tele-datasrvr | httpsrvr with leading zero",
+    "128.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "datasrvr": "01.1.1.1"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "129": {
+    "description": "Adding ip-tele-datasrvr | tlssrvr",
+    "129.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "tlssrvr": "5.3.1.253"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "129.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "tlssrvr": "5.3.1.253"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "129.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "129.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "130": {
+    "description": "Adding ip-tele-datasrvr | tlssrvr with leading zero",
+    "130.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-voicesrvr",
+          "parameters": {
+            "tlssrvr": "010.1.1.1"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "131": {
+    "description": "Adding ip-tele-datasrvr | l2quad",
+    "131.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2quad": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "131.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2quad": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "131.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "131.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "132": {
+    "description": "Adding ip-tele-datasrvr | l2quad - lowest value",
+    "132.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2quad": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "132.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2quad": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "132.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "132.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "133": {
+    "description": "Adding ip-tele-datasrvr | l2quad - highest value",
+    "133.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2quad": 6
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "133.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2quad": 6
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "133.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "133.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "134": {
+    "description": "Adding ip-tele-datasrvr | l2quad out of bounce, lower",
+    "134.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2quad": 0
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "135": {
+    "description": "Adding ip-tele-datasrvr | l2quad out of bounce, higher",
+    "135.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2quad": 7
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "136": {
+    "description": "Adding ip-tele-datasrvr | l2qsig",
+    "136.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qsig": 4
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "136.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qsig": 4
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "136.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "136.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "137": {
+    "description": "Adding ip-tele-datasrvr | l2qsig - lowest value",
+    "137.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qsig": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "137.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qsig": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "137.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "137.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "138": {
+    "description": "Adding ip-tele-datasrvr | l2qsig - highest value",
+    "138.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qsig": 6
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "138.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qsig": 6
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "138.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "138.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "139": {
+    "description": "Adding ip-tele-datasrvr | l2qsig out of bounce, lower",
+    "139.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qsig": 0
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "140": {
+    "description": "Adding ip-tele-datasrvr | l2qsig out of bounce, higher",
+    "140.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qsig": 7
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "142": {
+    "description": "Adding ip-tele-datasrvr | l2qvlan - lowest value",
+    "142.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qvlan": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "142.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qvlan": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "142.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "142.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "143": {
+    "description": "Adding ip-tele-datasrvr | l2qvlan - highest value",
+    "143.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qvlan": 4094
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "143.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qvlan": 4094
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "143.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "143.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "144": {
+    "description": "Adding ip-tele-datasrvr | l2qvlan out of bounce, lower",
+    "144.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qvlan": 0
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "145": {
+    "description": "Adding ip-tele-datasrvr | l2qvlan out of bounce, higher",
+    "145.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qvlan": 4095
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "146": {
+    "description": "Adding ip-tele-datasrvr | l2qvlan, vlantest",
+    "146.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qvlan": 798,
+            "vlantest": 387
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "146.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qvlan": 798,
+            "vlantest": 387
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "146.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "146.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "147": {
+    "description": "Adding ip-tele-datasrvr | l2qvlan, vlantest - lowest value",
+    "147.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qvlan": 478,
+            "vlantest": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "147.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qvlan": 478,
+            "vlantest": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "147.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "147.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "148": {
+    "description": "Adding ip-tele-datasrvr | l2qvlan, vlantest - highest value",
+    "148.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qvlan": 1757,
+            "vlantest": 1000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "148.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "l2qvlan": 1757,
+            "vlantest": 1000
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "148.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "148.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "149": {
+    "description": "Adding ip-tele-datasrvr | l2qvlan, vlantest out of bounce - lower",
+    "149.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datarvr",
+          "parameters": {
+            "l2qvlan": 134,
+            "vlantest": 0
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "150": {
+    "description": "Adding ip-tele-datasrvr | l2qvlan, vlantest out of bounce - higher",
+    "150.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datarvr",
+          "parameters": {
+            "l2qvlan": 244,
+            "vlantest": 1001
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "151": {
+    "151.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "vlantest": 295
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "description": "Adding ip-tele-datasrvr | vlantest without l2qvlan"
+  },
+  "152": {
+    "description": "Adding ip-tele-datasrvr | all params",
+    "152.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "mcipadd": "143.232.253.9",
+            "mcport": 38988,
+            "tftpsrvr": "245.158.255.246",
+            "tftpdir": "[rXLeb;mcm|Yy c [Rq<",
+            "httpsrvr": "193.129.45.254",
+            "tlssrvr": "66.21.7.101",
+            "l2quad": 4,
+            "l2qsig": 3,
+            "l2qvlan": 1225,
+            "vlantest": 356
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "152.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "ip-tele-datasrvr"
+      },
+      "validation": {
+        "option": {
+          "name": "ip-tele-datasrvr",
+          "parameters": {
+            "mcipadd": "143.232.253.9",
+            "mcport": 38988,
+            "tftpsrvr": "245.158.255.246",
+            "tftpdir": "[rXLeb;mcm|Yy c [Rq<",
+            "httpsrvr": "193.129.45.254",
+            "tlssrvr": "66.21.7.101",
+            "l2quad": 4,
+            "l2qsig": 3,
+            "l2qvlan": 1225,
+            "vlantest": 356
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "152.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "ip-tele-datasrvr"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "152.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "ip-tele-datasrvr"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "153": {
+    "description": "Adding vendor-class-identifier | argument type = ascii",
+    "153.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vendor-class-identifier",
+          "parameters": {
+            "identifier": {
+              "type": "ascii",
+              "value": "BDLppWYRBzUO8T4jcTq6gw_Q0iVS0si-JDyJDDlpIPRZLtqx5RBWEKW273SRD8ZUmG-ArkGlrg4fzSzQbHpl-SVN2"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "153.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "vendor-class-identifier"
+      },
+      "validation": {
+        "option": {
+          "name": "vendor-class-identifier",
+          "parameters": {
+            "identifier": {
+              "type": "ascii",
+              "value": "BDLppWYRBzUO8T4jcTq6gw_Q0iVS0si-JDyJDDlpIPRZLtqx5RBWEKW273SRD8ZUmG-ArkGlrg4fzSzQbHpl-SVN2"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "153.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "vendor-class-identifier"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "153.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "vendor-class-identifier"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "154": {
+    "description": "Adding vendor-class-identifier | argument type = hex",
+    "154.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vendor-class-identifier",
+          "parameters": {
+            "identifier": {
+              "type": "hex",
+              "value": "aF:Cd:6b:69:77:c8:4c:c5:02:aD:28:D1:9f:dc:B1:E1:3a:40:49:D6:ec:8D:a6:E4:58:aa:42:a3:0B:eC:2d:13:eF:ce:FC:FA:98:91:8D:8B:c7:8e:Db:95:Ef:08:01:Dc:f3:dC:AB:Ed:3E:f4:5F:f4:D6:80:4B:c6:5F:EE:d4:5A:E0:c7:f7:4F:96:Fb:AA:e6:Ef"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "154.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "vendor-class-identifier"
+      },
+      "validation": {
+        "option": {
+          "name": "vendor-class-identifier",
+          "parameters": {
+            "identifier": {
+              "type": "hex",
+              "value": "aF:Cd:6b:69:77:c8:4c:c5:02:aD:28:D1:9f:dc:B1:E1:3a:40:49:D6:ec:8D:a6:E4:58:aa:42:a3:0B:eC:2d:13:eF:ce:FC:FA:98:91:8D:8B:c7:8e:Db:95:Ef:08:01:Dc:f3:dC:AB:Ed:3E:f4:5F:f4:D6:80:4B:c6:5F:EE:d4:5A:E0:c7:f7:4F:96:Fb:AA:e6:Ef"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "154.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "vendor-class-identifier"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "154.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "vendor-class-identifier"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "155": {
+    "description": "Adding vendor-encapsulated-options | argument type = ascii",
+    "155.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vendor-encapsulated-options",
+          "parameters": {
+            "identifier": {
+              "type": "ascii",
+              "value": "yf9bQZCW0H5mIRI3r_Z"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "155.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "vendor-encapsulated-options"
+      },
+      "validation": {
+        "option": {
+          "name": "vendor-encapsulated-options",
+          "parameters": {
+            "identifier": {
+              "type": "ascii",
+              "value": "yf9bQZCW0H5mIRI3r_Z"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "155.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "vendor-encapsulated-options"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "155.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "vendor-encapsulated-options"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "156": {
+    "description": "Adding vendor-encapsulated-options | argument type = hex",
+    "156.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vendor-encapsulated-options",
+          "parameters": {
+            "identifier": {
+              "type": "hex",
+              "value": "8c:66:b9:29:ee:14:4a:fa:bc:02:Eb:DD:b1:5f:80:e1:E6:3F:78:5F:37:9D:Fd:80:eD:00:Fa:9F:be:2C:12:ad:Ae:0C:AB:0F:Af:aE:f3:14:CE:ef:94:BC:bC:09:9c:EE:fd:1a:37:3d:A0:2b:3b:A9:5E:f7:31:DA:bF:48:3E:6D:63:4E:C4:4D:7A:aE:D9:ee:d7:4A:fE:EB:c0:bd:62:48:aa:32:05:A8:b3:74:3E:75:d7:db:e1:EC"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "156.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "vendor-encapsulated-options"
+      },
+      "validation": {
+        "option": {
+          "name": "vendor-encapsulated-options",
+          "parameters": {
+            "identifier": {
+              "type": "hex",
+              "value": "8c:66:b9:29:ee:14:4a:fa:bc:02:Eb:DD:b1:5f:80:e1:E6:3F:78:5F:37:9D:Fd:80:eD:00:Fa:9F:be:2C:12:ad:Ae:0C:AB:0F:Af:aE:f3:14:CE:ef:94:BC:bC:09:9c:EE:fd:1a:37:3d:A0:2b:3b:A9:5E:f7:31:DA:bF:48:3E:6D:63:4E:C4:4D:7A:aE:D9:ee:d7:4A:fE:EB:c0:bd:62:48:aa:32:05:A8:b3:74:3E:75:d7:db:e1:EC"
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "156.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "vendor-encapsulated-options"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "156.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "vendor-encapsulated-options"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "157": {
+    "description": "Adding option with comment",
+    "157.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": ",!D7x(L9bs1[1X>Z3X1TZM({k>.s`azE@ONZ`IDKf,V`7W>BiM$A4!)dlVU=1ANQk^[y`KJ[hE)1PR",
+            "comment": ".Lu*iH7FJ[b<_<(~4>6tl2QaoyYkS:a>7!p/w!T9_MvKj"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "157.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "bootfile-name"
+      },
+      "validation": {
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": ",!D7x(L9bs1[1X>Z3X1TZM({k>.s`azE@ONZ`IDKf,V`7W>BiM$A4!)dlVU=1ANQk^[y`KJ[hE)1PR"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "157.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "bootfile-name"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "158": {
+    "description": "Adding option with comment, length out of bounce",
+    "158.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "OxZ6/2bj{2[sXS)8$[`g!z4Dml(&)5?k4xfr[",
+            "comment": "_Very_Very_Very_Very_Very_Very_Very_Very_Very_Very_Long_Comment_"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "159": {
+    "description": "Adding option with comment with 1 quote",
+    "159.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "e {zxO43=3>G'yYzzDZ!(z&^l!i\\~g:vMSmI`Vm",
+            "comment": "comm_'_comm"
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "160": {
+    "description": "Adding option vlan-id",
+    "160.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vlan-id",
+          "parameters": {
+            "vlan-id": 2474
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "160.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "vlan-id"
+      },
+      "validation": {
+        "option": {
+          "name": "vlan-id",
+          "parameters": {
+            "vlan-id": 2474
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "160.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "vlan-id"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "160.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "vlan-id"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "161": {
+    "description": "Adding option vlan-id | lowest value",
+    "161.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vlan-id",
+          "parameters": {
+            "vlan-id": 2
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "161.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "vlan-id"
+      },
+      "validation": {
+        "option": {
+          "name": "vlan-id",
+          "parameters": {
+            "vlan-id": 2
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "161.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "vlan-id"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "161.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "vlan-id"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "162": {
+    "description": "Adding option vlan-id | highest value",
+    "162.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vlan-id",
+          "parameters": {
+            "vlan-id": 4094
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "162.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "vlan-id"
+      },
+      "validation": {
+        "option": {
+          "name": "vlan-id",
+          "parameters": {
+            "vlan-id": 4094
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "162.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "vlan-id"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "162.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "vlan-id"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "163": {
+    "description": "Adding option vlan-id | value out of bounce, lower",
+    "163.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vlan-id",
+          "parameters": {
+            "vlan-id": 1
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "164": {
+    "description": "Adding option vlan-id | value out of bounce, higher",
+    "164.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vlan-id",
+          "parameters": {
+            "vlan-id": 4095
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "165": {
+    "description": "Adding option vlan-priority",
+    "165.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vlan-priority",
+          "parameters": {
+            "vlan-priority": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "165.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "vlan-priority"
+      },
+      "validation": {
+        "option": {
+          "name": "vlan-priority",
+          "parameters": {
+            "vlan-priority": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "165.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "vlan-priority"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "165.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "vlan-priority"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "166": {
+    "description": "Adding option vlan-priority | lowest value",
+    "166.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vlan-priority",
+          "parameters": {
+            "vlan-priority": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "166.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "vlan-priority"
+      },
+      "validation": {
+        "option": {
+          "name": "vlan-priority",
+          "parameters": {
+            "vlan-priority": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "166.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "vlan-priority"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "166.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "vlan-priority"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "167": {
+    "description": "Adding option vlan-priority | highest value",
+    "167.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vlan-priority",
+          "parameters": {
+            "vlan-priority": 7
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "167.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "option_name": "vlan-priority"
+      },
+      "validation": {
+        "option": {
+          "name": "vlan-priority",
+          "parameters": {
+            "vlan-priority": 7
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "167.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        "vlan-priority"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "167.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/delete",
+      "schema": {
+        "pool_number": 55341,
+        "option": "vlan-priority"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "168": {
+    "description": "Adding option vlan-priority | out of bounce, lower",
+    "168.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vlan-priority",
+          "parameters": {
+            "vlan-priority": -1
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "169": {
+    "description": "Adding option vlan-priority | out of bounce, higher",
+    "169.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "option": {
+          "name": "vlan-priority",
+          "parameters": {
+            "vlan-priority": 8
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "170": {
+    "description": "Adding option to group",
+    "170.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/add",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "IDH4tMbDNXEFQBpy7GhIZozDQuSdHNHgj0AMKB9x7zpoam75fU0OYiPzW.l3vX"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "170.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "IDH4tMbDNXEFQBpy7GhIZozDQuSdHNHgj0AMKB9x7zpoam75fU0OYiPzW.l3vX",
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "UCc^[#/pIXc6yGHqee$8]a L\\Q~MdSqd2z[IyT ?yeB l,D&/b<UT9"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "170.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "group_name": "IDH4tMbDNXEFQBpy7GhIZozDQuSdHNHgj0AMKB9x7zpoam75fU0OYiPzW.l3vX",
+        "option_name": "bootfile-name"
+      },
+      "validation": {
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "UCc^[#/pIXc6yGHqee$8]a L\\Q~MdSqd2z[IyT ?yeB l,D&/b<UT9"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "170.4": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341,
+        "group_name": "IDH4tMbDNXEFQBpy7GhIZozDQuSdHNHgj0AMKB9x7zpoam75fU0OYiPzW.l3vX"
+      },
+      "validation": [
+        "bootfile-name"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "170.5": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/delete",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "IDH4tMbDNXEFQBpy7GhIZozDQuSdHNHgj0AMKB9x7zpoam75fU0OYiPzW.l3vX"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "171": {
+    "description": "Adding option to host",
+    "171.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/hosts",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "AP4LT1r7APm7muH13AzV3fqxZO7JFNPxqvXhS1075hZlozdCC3OTtsxqX-N-Wwvv3Z2vjvPdlgd1QIZC5TobeYpCIk3QmusdFA",
+        "hw_client_id": {
+          "mac_address": "010101010101"
+        },
+        "ip_address": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "171.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "AP4LT1r7APm7muH13AzV3fqxZO7JFNPxqvXhS1075hZlozdCC3OTtsxqX-N-Wwvv3Z2vjvPdlgd1QIZC5TobeYpCIk3QmusdFA",
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": ">:|+>mc6"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "171.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "host_name": "AP4LT1r7APm7muH13AzV3fqxZO7JFNPxqvXhS1075hZlozdCC3OTtsxqX-N-Wwvv3Z2vjvPdlgd1QIZC5TobeYpCIk3QmusdFA",
+        "option_name": "bootfile-name"
+      },
+      "validation": {
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": ">:|+>mc6"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "171.4": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341,
+        "host_name": "AP4LT1r7APm7muH13AzV3fqxZO7JFNPxqvXhS1075hZlozdCC3OTtsxqX-N-Wwvv3Z2vjvPdlgd1QIZC5TobeYpCIk3QmusdFA"
+      },
+      "validation": [
+        "bootfile-name"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "171.5": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/hosts/delete",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "AP4LT1r7APm7muH13AzV3fqxZO7JFNPxqvXhS1075hZlozdCC3OTtsxqX-N-Wwvv3Z2vjvPdlgd1QIZC5TobeYpCIk3QmusdFA"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "172": {
+    "description": "Adding option to host in group",
+    "172.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/add",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "3Av_02AnyQdPP04gqFoz5YtSHNsRM69n1WejRaN-S7gg4mFDJVvzvEEQ_ZqpaB4i"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "172.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/hosts",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "3Av_02AnyQdPP04gqFoz5YtSHNsRM69n1WejRaN-S7gg4mFDJVvzvEEQ_ZqpaB4i",
+        "host_name": "g9gb1I7UXcxyvSnYUC3e2DIKPKR1ZvGMJ6aT8e3Wh-5sxOwGHX",
+        "hw_client_id": {
+          "mac_address": "010101010101"
+        },
+        "ip_address": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "172.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "g9gb1I7UXcxyvSnYUC3e2DIKPKR1ZvGMJ6aT8e3Wh-5sxOwGHX",
+        "group_name": "3Av_02AnyQdPP04gqFoz5YtSHNsRM69n1WejRaN-S7gg4mFDJVvzvEEQ_ZqpaB4i",
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "'I"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "172.4": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options",
+      "arguments": {
+        "pool_number": 55341,
+        "host_name": "g9gb1I7UXcxyvSnYUC3e2DIKPKR1ZvGMJ6aT8e3Wh-5sxOwGHX",
+        "group_name": "3Av_02AnyQdPP04gqFoz5YtSHNsRM69n1WejRaN-S7gg4mFDJVvzvEEQ_ZqpaB4i",
+        "option_name": "bootfile-name"
+      },
+      "validation": {
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "'I"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "172.5": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/options/list",
+      "arguments": {
+        "pool_number": 55341,
+        "host_name": "g9gb1I7UXcxyvSnYUC3e2DIKPKR1ZvGMJ6aT8e3Wh-5sxOwGHX",
+        "group_name": "3Av_02AnyQdPP04gqFoz5YtSHNsRM69n1WejRaN-S7gg4mFDJVvzvEEQ_ZqpaB4i"
+      },
+      "validation": [
+        "bootfile-name"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "172.6": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/delete",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "3Av_02AnyQdPP04gqFoz5YtSHNsRM69n1WejRaN-S7gg4mFDJVvzvEEQ_ZqpaB4i"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "173": {
+    "description": "Adding option to non-existing group",
+    "173.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "not_created_group",
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "A;zO[de{Lcd&)x6)b\\Q+]l i|XoW"
+          }
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "174": {
+    "description": "Adding option to non-existing host",
+    "174.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "not_created_host",
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "'Xnu'TG#2rPCXp9s,]97L~wxr#:#qO%[Q>w*"
+          }
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "175": {
+    "description": "Adding option to non-existing host in non-existing group",
+    "175.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "not_created_host",
+        "group_name": "not_created_group",
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "w:5|[F<(jZ~}ju {ak{-iBkpwp+DJ-Ag_02uvDG7Jc`CYX]5'4Lg,p5nOGP-3=lJ*V"
+          }
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "176": {
+    "description": "Adding option to non-existing pool",
+    "176.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/options/add",
+      "schema": {
+        "pool_number": 53203,
+        "option": {
+          "name": "bootfile-name",
+          "parameters": {
+            "bootfile_name": "&!vg~Aq<wD*U8Qu&UH:DmIXk ]8X6_+m(<UH]7UOH'*%YNl0d?O2klcAEsdv{c!2"
+          }
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 55341
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  }
+}

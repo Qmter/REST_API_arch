@@ -1,0 +1,622 @@
+{
+  "PRESET": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/add",
+      "schema": {
+        "pool_number": 55341,
+        "network": "8.213.131.0/24"
+      }
+    }
+  },
+  "1": {
+    "description": "Getting not configured max-lease-time from pool",
+    "1.1": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": {
+        "time": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Setting and getting numerical max-lease-time from the pool",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "schema": {
+        "pool_number": 55341,
+        "time": 4136698462
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": {
+        "time": 4136698462
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Setting and getting infinite max-lease-time from the pool",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "schema": {
+        "pool_number": 55341,
+        "time": "infinite"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": {
+        "time": "infinite"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Setting and getting disabled max-lease-time from the pool",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "schema": {
+        "pool_number": 55341,
+        "time": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": {
+        "time": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Setting and getting minimum-numerical max-lease-time from the pool",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "schema": {
+        "pool_number": 55341,
+        "time": 0
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": {
+        "time": 0
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "Setting and getting maximum-numerical max-lease-time from the pool",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "schema": {
+        "pool_number": 55341,
+        "time": 4294967295
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": {
+        "time": 4294967295
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Setting numerical max-lease-time out of bounce, lower",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "schema": {
+        "pool_number": 55341,
+        "time": -1
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "8": {
+    "description": "Setting numerical max-lease-time out of bounce, higher",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "schema": {
+        "pool_number": 55341,
+        "time": 4294967296
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "9": {
+    "description": "Getting not configured max-lease-time from group in pool",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/add",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "032sLFhhL26sl3fI8Kn.VVolqnYdzTdOAI"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "arguments": {
+        "pool_number": 55341,
+        "group_name": "032sLFhhL26sl3fI8Kn.VVolqnYdzTdOAI"
+      },
+      "validation": {
+        "time": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/delete",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "032sLFhhL26sl3fI8Kn.VVolqnYdzTdOAI"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "10": {
+    "description": "Setting and getting configured max-lease-time from group in pool",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/add",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "KKW.hFQ1QKmh9ZKOwMiSZ0faN7aaJy1LuIyDUQKCw.1oTZLx8qwPmuCUPChpPeM78_dAfkrcqzPZV0I06DRAXO-6"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "KKW.hFQ1QKmh9ZKOwMiSZ0faN7aaJy1LuIyDUQKCw.1oTZLx8qwPmuCUPChpPeM78_dAfkrcqzPZV0I06DRAXO-6",
+        "time": 2445809944
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "arguments": {
+        "pool_number": 55341,
+        "group_name": "KKW.hFQ1QKmh9ZKOwMiSZ0faN7aaJy1LuIyDUQKCw.1oTZLx8qwPmuCUPChpPeM78_dAfkrcqzPZV0I06DRAXO-6"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/delete",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "KKW.hFQ1QKmh9ZKOwMiSZ0faN7aaJy1LuIyDUQKCw.1oTZLx8qwPmuCUPChpPeM78_dAfkrcqzPZV0I06DRAXO-6"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "11": {
+    "description": "Getting not configured max-lease-time from host in pool",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/hosts",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "Cc0qlg7f33hwqYNd7TFce1b1IB1z8V3SX",
+        "hw_client_id": {
+          "mac_address": "31A8B6191C8F"
+        },
+        "ip_address": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "arguments": {
+        "pool_number": 55341,
+        "host_name": "Cc0qlg7f33hwqYNd7TFce1b1IB1z8V3SX"
+      },
+      "validation": {
+        "time": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/hosts/delete",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "Cc0qlg7f33hwqYNd7TFce1b1IB1z8V3SX"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "12": {
+    "description": "Setting and getting configured max-lease-time from host in pool",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/hosts",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "ClXn3hAkd7V7Ew_OjqE8mDXOa6YQn0GWj.F_2mDgfuWxW4ruuuupTIAyD4d-3xlyfp7C7mMB4yoiCzPyt",
+        "hw_client_id": {
+          "mac_address": "a2AB08C2Bf0B"
+        },
+        "ip_address": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "ClXn3hAkd7V7Ew_OjqE8mDXOa6YQn0GWj.F_2mDgfuWxW4ruuuupTIAyD4d-3xlyfp7C7mMB4yoiCzPyt",
+        "time": "infinite"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "arguments": {
+        "pool_number": 55341,
+        "host_name": "ClXn3hAkd7V7Ew_OjqE8mDXOa6YQn0GWj.F_2mDgfuWxW4ruuuupTIAyD4d-3xlyfp7C7mMB4yoiCzPyt"
+      },
+      "validation": {
+        "time": "infinite"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/hosts/delete",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "ClXn3hAkd7V7Ew_OjqE8mDXOa6YQn0GWj.F_2mDgfuWxW4ruuuupTIAyD4d-3xlyfp7C7mMB4yoiCzPyt"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Getting not configured max-lease-time from host in group in pool",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/add",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "4GBGhw0zanCcU7t9azrMaHH5dMqVS_guBOe7374FxP5Ip0R"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/hosts",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "4GBGhw0zanCcU7t9azrMaHH5dMqVS_guBOe7374FxP5Ip0R",
+        "host_name": "WVs3aM0m1aDeMDt7YpBhQSkHajGkhJKw0.vjNUnBUye2V1TP4tmVBHz0ph4tOrxZZvAvs-ZfsTwLz_Yy.0jFW0O1cWyu.DV_tJ",
+        "hw_client_id": {
+          "mac_address": "1DF9.8CbB.a2BA"
+        },
+        "ip_address": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "arguments": {
+        "pool_number": 55341,
+        "host_name": "WVs3aM0m1aDeMDt7YpBhQSkHajGkhJKw0.vjNUnBUye2V1TP4tmVBHz0ph4tOrxZZvAvs-ZfsTwLz_Yy.0jFW0O1cWyu.DV_tJ",
+        "group_name": "4GBGhw0zanCcU7t9azrMaHH5dMqVS_guBOe7374FxP5Ip0R"
+      },
+      "validation": {
+        "time": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/delete",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "4GBGhw0zanCcU7t9azrMaHH5dMqVS_guBOe7374FxP5Ip0R"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "14": {
+    "description": "Setting and getting configured max-lease-time from host in group in pool",
+    "14.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/add",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "-xLz5"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/hosts",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "-xLz5",
+        "host_name": "buD-y-5xZEeHlkw7q0wO06l8aAjza2Ioz9By5dBVea_l8fMY-dvb-6unQLmhkzO972uJ",
+        "hw_client_id": {
+          "mac_address": "D8:8F:27:4c:be:b4"
+        },
+        "ip_address": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "buD-y-5xZEeHlkw7q0wO06l8aAjza2Ioz9By5dBVea_l8fMY-dvb-6unQLmhkzO972uJ",
+        "group_name": "-xLz5",
+        "time": 2091296307
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.4": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "arguments": {
+        "pool_number": 55341,
+        "host_name": "buD-y-5xZEeHlkw7q0wO06l8aAjza2Ioz9By5dBVea_l8fMY-dvb-6unQLmhkzO972uJ",
+        "group_name": "-xLz5"
+      },
+      "validation": {
+        "time": 2091296307
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.5": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/delete",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "-xLz5"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "15": {
+    "description": "Setting max-lease-time to non-existing group",
+    "15.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "TCjwQExyCYqsxxpic_pmoXBAgVEPwWV_OkYiRtaQdHcwHh59ov98NnMgFOHGI7p9r8l4pC1yGR9algY9ts_1XM08IZg0aP3c6cg",
+        "time": 1303887368
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "16": {
+    "description": "Setting max-lease-time to non-existing host",
+    "16.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "nAdhzbItAR4pAKHix4w4TOB1raiup4XG6mcpa9p9Fr_tg",
+        "time": 2834724210
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "17": {
+    "description": "Setting max-lease-time to non-existing host in group",
+    "17.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/add",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "pNLRg8iLJXZqWbgwYLh7EpWS6Zf0CXUgOCjwDBEXcZHg-_0COtfUeJI5vFvU2TZY9n-.C.xl1Z"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "schema": {
+        "pool_number": 55341,
+        "host_name": "lKxmCGNCMSClWGcS6Hun7ftxp9JeJ6FYhMyszlvNELc.A1adjtFpPDtVbpnEff.O7jpgfE6q17V_Neq",
+        "group_name": "pNLRg8iLJXZqWbgwYLh7EpWS6Zf0CXUgOCjwDBEXcZHg-_0COtfUeJI5vFvU2TZY9n-.C.xl1Z",
+        "time": 2226478211
+      },
+      "errCode": 9,
+      "httpCode": 400
+    },
+    "17.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/delete",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "pNLRg8iLJXZqWbgwYLh7EpWS6Zf0CXUgOCjwDBEXcZHg-_0COtfUeJI5vFvU2TZY9n-.C.xl1Z"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "18": {
+    "description": "Setting max-lease-time to non-existing pool",
+    "18.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "schema": {
+        "pool_number": 47018,
+        "time": 3799514651
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "19": {
+    "description": "Getting max-lease-time from non-existing pool",
+    "19.1": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "arguments": {
+        "pool_number": 46067
+      },
+      "errCode": 10,
+      "httpCode": 400
+    }
+  },
+  "20": {
+    "description": "Getting max-lease-time from non-existing group",
+    "20.1": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "arguments": {
+        "pool_number": 55341,
+        "group_name": "ImRue.RjKSpLjFB7JHsE0iD8dKBYrvUSwE5P6pHVkVYfzSZr7FVv0OP1v7pMtE6vl-RkP0"
+      },
+      "errCode": 10,
+      "httpCode": 400
+    }
+  },
+  "21": {
+    "description": "Getting max-lease-time from non-existing host",
+    "21.1": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "arguments": {
+        "pool_number": 55341,
+        "host_name": "LWNZXf0mnA6HZ6"
+      },
+      "errCode": 10,
+      "httpCode": 400
+    }
+  },
+  "22": {
+    "description": "Getting max-lease-time from non-existing host in group",
+    "22.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/add",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "DLR-v1jU-HopmTlVsUd_D5VgzD0JVyLOZ1hSj.WzZlz-ZDI7uay3ELvZ-bv7"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/max-lease-time",
+      "arguments": {
+        "pool_number": 55341,
+        "host_name": ".JYvux4eTMx2nt4-diuuaKtQJgZNG",
+        "group_name": "DLR-v1jU-HopmTlVsUd_D5VgzD0JVyLOZ1hSj.WzZlz-ZDI7uay3ELvZ-bv7"
+      },
+      "errCode": 10,
+      "httpCode": 400
+    },
+    "22.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/groups/delete",
+      "schema": {
+        "pool_number": 55341,
+        "group_name": "DLR-v1jU-HopmTlVsUd_D5VgzD0JVyLOZ1hSj.WzZlz-ZDI7uay3ELvZ-bv7"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 55341
+      }
+    }
+  }
+}

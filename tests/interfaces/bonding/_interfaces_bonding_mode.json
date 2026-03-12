@@ -1,0 +1,1088 @@
+{
+  "PRESET": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/add",
+      "schema": {
+        "ifname": "bond0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan4091",
+        "vid": 3459
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/add",
+      "schema": {
+        "ifname": "eth1.457",
+        "vid": 3459
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1.457",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "1": {
+    "description": "Set balance-rr mode",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "balance-rr"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "mode": {
+            "mode_type": "balance-rr"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Set balance-xor mode",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "balance-xor"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "mode": {
+            "mode_type": "balance-xor"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Set broadcast mode",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "broadcast"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "mode": {
+            "mode_type": "broadcast"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Set 802.3ad mode with lacp_rate slow",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "802.3ad",
+          "lacp_rate": "slow"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "mode": {
+            "mode_type": "802.3ad",
+            "lacp_rate": "slow"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Set 802.3ad mode with lacp_rate fast",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "802.3ad",
+          "lacp_rate": "fast"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "mode": {
+            "mode_type": "802.3ad",
+            "lacp_rate": "fast"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "Set 802.3ad mode with lacp_rate null",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "802.3ad",
+          "lacp_rate": null
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "mode": {
+            "mode_type": "802.3ad",
+            "lacp_rate": "slow"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Set active-backup mode without interfaces",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "active-backup",
+          "primary_interface": null
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "mode": {
+            "mode_type": "active-backup",
+            "primary_interface": null
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "8": {
+    "description": "Set active-backup mode with eth interface",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/delete",
+      "schema": {
+        "ifname": "eth1.457"
+      }
+    },
+    "8.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": [
+            "eth1"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "active-backup",
+          "primary_interface": "eth1"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.4": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "mode": {
+            "mode_type": "active-backup",
+            "primary_interface": "eth1"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.5": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/add",
+      "schema": {
+        "ifname": "eth1.457",
+        "vid": 3459
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.7": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "9": {
+    "description": "Set active-backup mode with vlan interface",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": [
+            "vlan4091"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "active-backup",
+          "primary_interface": "vlan4091"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "mode": {
+            "mode_type": "active-backup",
+            "primary_interface": "vlan4091"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.5": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "10": {
+    "description": "Set active-backup mode with eth-vlan interface",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": [
+            "eth1.457"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "active-backup",
+          "primary_interface": "eth1.457"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "mode": {
+            "mode_type": "active-backup",
+            "primary_interface": "eth1.457"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.5": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "11": {
+    "description": "Set balance-tlb mode without interfaces",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "balance-tlb",
+          "primary_interface": null
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "mode": {
+            "mode_type": "balance-tlb",
+            "primary_interface": null
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "12": {
+    "description": "Set balance-tlb mode with eth interface",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/delete",
+      "schema": {
+        "ifname": "eth1.457"
+      }
+    },
+    "12.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": [
+            "eth1"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "balance-tlb",
+          "primary_interface": "eth1"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.4": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "mode": {
+            "mode_type": "balance-tlb",
+            "primary_interface": "eth1"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.5": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/add",
+      "schema": {
+        "ifname": "eth1.457",
+        "vid": 3459
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.7": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Set balance-tlb mode with vlan interface",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": [
+            "vlan4091"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "balance-tlb",
+          "primary_interface": "vlan4091"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "mode": {
+            "mode_type": "balance-tlb",
+            "primary_interface": "vlan4091"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.5": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "14": {
+    "description": "Set balance-tlb mode with eth-vlan interface",
+    "14.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": [
+            "eth1.457"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "balance-tlb",
+          "primary_interface": "eth1.457"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "mode": {
+            "mode_type": "balance-tlb",
+            "primary_interface": "eth1.457"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.5": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "15": {
+    "description": "Set balance-alb mode without interfaces",
+    "15.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "balance-alb",
+          "primary_interface": null
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "mode": {
+            "mode_type": "balance-alb",
+            "primary_interface": null
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "16": {
+    "description": "Set balance-alb mode with eth interface",
+    "16.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/delete",
+      "schema": {
+        "ifname": "eth1.457"
+      }
+    },
+    "16.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": [
+            "eth1"
+          ]
+        }
+      }
+    },
+    "16.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "balance-alb",
+          "primary_interface": "eth1"
+        }
+      }
+    },
+    "16.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.5": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/add",
+      "schema": {
+        "ifname": "eth1.457",
+        "vid": 3459
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.7": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1.457",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "17": {
+    "description": "Set balance-alb mode with vlan interface",
+    "17.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": [
+            "vlan4091"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "balance-alb",
+          "primary_interface": "vlan4091"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "mode": {
+            "mode_type": "balance-alb",
+            "primary_interface": "vlan4091"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.5": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "18": {
+    "description": "Set balance-alb mode with eth-vlan interface",
+    "18.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": [
+            "eth1.457"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/mode",
+      "schema": {
+        "ifname": "bond0",
+        "mode": {
+          "mode_type": "balance-alb",
+          "primary_interface": "eth1.457"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "mode": {
+            "mode_type": "balance-alb",
+            "primary_interface": "eth1.457"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.5": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/delete",
+      "schema": {
+        "ifname": "bond0"
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan4091"
+      }
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/delete",
+      "schema": {
+        "ifname": "eth1.457"
+      }
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "3459"
+      }
+    }
+  }
+}

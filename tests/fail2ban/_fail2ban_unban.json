@@ -1,14 +1,55 @@
 {
   "1": {
-    "description": "Unban a random IP address",
+    "description": "Unban random ip_address with stop fail2ban",
     "1.1": {
-      "endpoint": "/fail2ban/unban",
       "type": "POST",
-      "errCode": 0,
-      "httpCode": 200,
+      "endpoint": "/fail2ban/unban",
       "schema": {
         "ip_address": "14.7.57.193"
-      }
+      },
+      "errCode": -1,
+      "httpCode": 500
+    }
+  },
+  "2": {
+    "description": "Unban random ip_address with running fail2ban",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/fail2ban/enable",
+      "schema": {
+        "action": "start"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "GET",
+      "endpoint": "/fail2ban/status",
+      "arguments": {},
+      "validation": {
+        "admin_status": true,
+        "real_status": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "type": "POST",
+      "endpoint": "/fail2ban/unban",
+      "schema": {
+        "ip_address": "121.4.9.221"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.4": {
+      "type": "POST",
+      "endpoint": "/fail2ban/enable",
+      "schema": {
+        "action": "stop"
+      },
+      "errCode": 0,
+      "httpCode": 200
     }
   }
 }

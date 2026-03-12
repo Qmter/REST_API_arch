@@ -1,0 +1,16 @@
+{
+    "1": {
+        "description": "Clear ARP tables",
+        "1.1": {
+            "type": "POST",
+            "endpoint": "/arp/clear",
+            "schema": {
+                "vrf_name": "default",
+                "interface": "eth1",
+                "cache": true
+            },
+            "errCode": 0,
+            "htppCode": 200
+        }
+    }
+}

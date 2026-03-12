@@ -1,0 +1,2357 @@
+{
+  "PRESET": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "waze"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "waze"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "1": {
+    "description": "Getting empty lists of pbr chains",
+    "1.1": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "validation": {
+        "ipv4": {},
+        "ipv6": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Getting empty list of ipv4 pbr chains",
+    "2.1": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Getting empty list of ipv6 pbr chains",
+    "3.1": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Adding ipv4 pbr chains with non-existing ACL-argument",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "item": {
+              "acl": "No_acl_created",
+              "lookup": 1
+            }
+          }
+        }
+      },
+      "errCode": -1,
+      "httpCode": 500
+    }
+  },
+  "5": {
+    "description": "Adding ipv6 pbr chains with non-existing ACL-argument",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "prerouting",
+            "item": {
+              "acl": "Acl_doesnt_exist",
+              "lookup": 10
+            }
+          }
+        }
+      },
+      "errCode": -1,
+      "httpCode": 500
+    }
+  },
+  "6": {
+    "description": "Adding ipv4 pbr chains | prerouting",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 86
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {
+          "prerouting": [
+            {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 86
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Adding ipv4 pbr chains | input",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "input",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 104
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {
+          "input": [
+            {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 104
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "chain": "input",
+            "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "8": {
+    "description": "Adding ipv4 pbr chains | forward",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "forward",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 29
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {
+          "forward": [
+            {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 29
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "chain": "forward",
+            "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "9": {
+    "description": "Adding ipv4 pbr chains | output",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "output",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 81
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {
+          "output": [
+            {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 81
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "chain": "output",
+            "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "10": {
+    "description": "Adding ipv4 pbr chains | postrouting",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "postrouting",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 82
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {
+          "postrouting": [
+            {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 82
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "chain": "postrouting",
+            "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "11": {
+    "description": "Adding ipv4 pbr chains | lookup minumum value",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "postrouting",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 0
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {
+          "postrouting": [
+            {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 0
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "chain": "postrouting",
+            "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "12": {
+    "description": "Adding ipv4 pbr chains | lookup maximum value",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 255
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {
+          "prerouting": [
+            {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 255
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Adding ipv4 pbr chains | lookup-value out of bounce, lower",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": -1
+            }
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "14": {
+    "description": "Adding ipv4 pbr chains | lookup-value out of bounce, higher",
+    "14.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 256
+            }
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "15": {
+    "description": "Adding ipv4 pbr chains | with priority-argument",
+    "15.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 175,
+              "priority": 17350
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {
+          "prerouting": [
+            {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 175,
+              "priority": 17350
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "16": {
+    "description": "Adding ipv4 pbr chains | with minimum priority value",
+    "16.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 128,
+              "priority": 1
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {
+          "prerouting": [
+            {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 128,
+              "priority": 1
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "17": {
+    "description": "Adding ipv4 pbr chains | with maximum priority value",
+    "17.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 60,
+              "priority": 32511
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {
+          "prerouting": [
+            {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 60,
+              "priority": 32511
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "18": {
+    "description": "Adding ipv4 pbr chains | priority value out of bounce, lower",
+    "18.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 226,
+              "priority": 0
+            }
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "19": {
+    "description": "Adding ipv4 pbr chains | priority value out of bounce, higher",
+    "19.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 89,
+              "priority": 32512
+            }
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "20": {
+    "description": "Deleting prerouting ipv4 pbr chains",
+    "20.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 6
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.2": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "chain": "prerouting"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.3": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "21": {
+    "description": "Deleting input ipv4 pbr chains",
+    "21.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "input",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 241
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.2": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "chain": "input"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.3": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "22": {
+    "description": "Deleting forward ipv4 pbr chains",
+    "22.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "forward",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 209
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.2": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "chain": "forward"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.3": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "23": {
+    "description": "Deleting output ipv4 pbr chains",
+    "23.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "output",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 159
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.2": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "chain": "output"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.3": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "24": {
+    "description": "Deleting postrouting ipv4 pbr chains",
+    "24.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "postrouting",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 182
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.2": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "chain": "postrouting"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.3": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "25": {
+    "description": "Deleting ipv4 pbr chain by acl",
+    "25.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "output",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 128
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.2": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.3": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "26": {
+    "description": "Deleting ipv4 pbr chains by non-existing acl",
+    "26.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "acl": "no_ACL_with_this_name_created"
+          }
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "27": {
+    "description": "Deleting ipv4 pbr chains by deleting ACL",
+    "27.1": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "2!knprCuD/=T&QAF&8dHsyq0bp[<(rm=Gd{9F,0Y-,0IC@{Jwm{BLSP[YRxy3c0(*dpsk-F0",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "ppstream"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.2": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "item": {
+              "acl": "2!knprCuD/=T&QAF&8dHsyq0bp[<(rm=Gd{9F,0Y-,0IC@{Jwm{BLSP[YRxy3c0(*dpsk-F0",
+              "lookup": 109
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.3": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "2!knprCuD/=T&QAF&8dHsyq0bp[<(rm=Gd{9F,0Y-,0IC@{Jwm{BLSP[YRxy3c0(*dpsk-F0"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.4": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "28": {
+    "description": "Deleting ipv4 pbr chain by priority",
+    "28.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv4",
+            "chain": "prerouting",
+            "item": {
+              "acl": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^",
+              "lookup": 1,
+              "priority": 32121
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.2": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "priority": 32121
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.3": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv4"
+      },
+      "validation": {
+        "ipv4": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "29": {
+    "description": "Deleting ipv4 pbr chains with wrong priority",
+    "29.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "priority": 26960
+          }
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "30": {
+    "description": "Deleting ipv4 pbr chains by priority out of bounce, lower",
+    "30.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "priority": 0
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "31": {
+    "description": "Deleting ipv4 pbr chains by priority out of bounce, higher",
+    "31.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv4",
+            "priority": 32512
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "32": {
+    "description": "Adding ipv6 pbr chains | prerouting",
+    "32.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "prerouting",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 50
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {
+          "prerouting": [
+            {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 50
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "chain": "prerouting",
+            "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "33": {
+    "description": "Adding ipv6 pbr chains | input",
+    "33.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "input",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 97
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {
+          "input": [
+            {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 97
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "chain": "input",
+            "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "34": {
+    "description": "Adding ipv6 pbr chains | forward",
+    "34.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "forward",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 60
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "34.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {
+          "forward": [
+            {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 60
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "34.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "chain": "forward",
+            "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "35": {
+    "description": "Adding ipv6 pbr chains | output",
+    "35.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "output",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 101
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "35.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {
+          "output": [
+            {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 101
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "35.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "chain": "output",
+            "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "36": {
+    "description": "Adding ipv6 pbr chains | postrouting",
+    "36.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "postrouting",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 154
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "36.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {
+          "postrouting": [
+            {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 154
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "36.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "chain": "postrouting",
+            "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "37": {
+    "description": "Adding ipv6 pbr chains | lookup minumum value",
+    "37.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "postrouting",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 0
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "37.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {
+          "postrouting": [
+            {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 0
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "37.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "chain": "postrouting",
+            "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "38": {
+    "description": "Adding ipv6 pbr chains | lookup maximum value",
+    "38.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "postrouting",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 255
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "38.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {
+          "postrouting": [
+            {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 255
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "38.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "chain": "postrouting",
+            "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "39": {
+    "description": "Adding ipv6 pbr chains | lookup-value out of bounce, lower",
+    "39.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "postrouting",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": -1
+            }
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "40": {
+    "description": "Adding ipv6 pbr chains | lookup-value out of bounce, higher",
+    "40.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "postrouting",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 256
+            }
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "41": {
+    "description": "Adding ipv6 pbr chains | with priority-argument",
+    "41.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "forward",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 93,
+              "priority": 3283
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "41.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {
+          "forward": [
+            {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 93,
+              "priority": 3283
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "41.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "chain": "forward",
+            "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "42": {
+    "description": "Adding ipv6 pbr chains | with minimum priority value",
+    "42.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "output",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 203,
+              "priority": 1
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "42.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {
+          "output": [
+            {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 203,
+              "priority": 1
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "42.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "chain": "output",
+            "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "43": {
+    "description": "Adding ipv6 pbr chains | with maximum priority value",
+    "43.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "prerouting",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 11,
+              "priority": 32511
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "43.2": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {
+          "prerouting": [
+            {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 11,
+              "priority": 32511
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "43.3": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "chain": "prerouting",
+            "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "44": {
+    "description": "Adding ipv6 pbr chains | priority value out of bounce, lower",
+    "44.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "forward",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 231,
+              "priority": 0
+            }
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "45": {
+    "description": "Adding ipv6 pbr chains | priority value out of bounce, higher",
+    "45.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "prerouting",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 131,
+              "priority": 32512
+            }
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "46": {
+    "description": "Deleting prerouting ipv6 pbr chains",
+    "46.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "prerouting",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 68
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "46.2": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "chain": "prerouting"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "46.3": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "47": {
+    "description": "Deleting input ipv6 pbr chains",
+    "47.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "input",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 177
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "47.2": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "chain": "input"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "47.3": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "48": {
+    "description": "Deleting forward ipv6 pbr chains",
+    "48.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "forward",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 58
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "48.2": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "chain": "forward"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "48.3": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "49": {
+    "description": "Deleting output ipv6 pbr chains",
+    "49.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "output",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 79
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "49.2": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "chain": "output"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "49.3": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "50": {
+    "description": "Deleting postrouting ipv6 pbr chains",
+    "50.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "postrouting",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 142
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "50.2": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "chain": "postrouting"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "50.3": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "51": {
+    "description": "Deleting ipv6 pbr chain by acl",
+    "51.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "prerouting",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 21
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "51.2": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "51.3": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "52": {
+    "description": "Deleting ipv6 pbr chains by non-existing acl",
+    "52.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "acl": "ACL_does_not_exist"
+          }
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "53": {
+    "description": "Deleting pbr chain by deleting ACL",
+    "53.1": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "CiwShM,CPbR#nd%)KOe98zk/2lr",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "rsync"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "53.2": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "forward",
+            "item": {
+              "acl": "CiwShM,CPbR#nd%)KOe98zk/2lr",
+              "lookup": 47
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "53.3": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "CiwShM,CPbR#nd%)KOe98zk/2lr"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "53.4": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "54": {
+    "description": "Deleting ipv6 pbr chain by priority",
+    "54.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "add": {
+            "proto": "ipv6",
+            "chain": "forward",
+            "item": {
+              "acl": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&",
+              "lookup": 18,
+              "priority": 1351
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "54.2": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "priority": 1351
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "54.3": {
+      "type": "GET",
+      "endpoint": "/acl/pbr/chains",
+      "arguments": {
+        "proto": "ipv6"
+      },
+      "validation": {
+        "ipv6": {}
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "55": {
+    "description": "Deleting ipv6 pbr chain by wrong priority",
+    "55.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "priority": 8835
+          }
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "56": {
+    "description": "Deleting ipv6 pbr chains by priority out of bounce, lower",
+    "56.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "priority": 0
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "57": {
+    "description": "Deleting ipv6 pbr chains by priority out of bounce, higher",
+    "57.1": {
+      "type": "POST",
+      "endpoint": "/acl/pbr/chains",
+      "schema": {
+        "action": {
+          "delete": {
+            "proto": "ipv6",
+            "priority": 32512
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "q0CwXL-}T&EjW/A/`H4KP>y`Vir7S`&%hQde*T$+wg*k^-.~[QRr1xJ(,G=>u{^phXL6}*z:*rueP*8A$^<qhv=za(aYQIw7J^"
+          }
+        }
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "is2Ypui_BD+=jF80ED{RI#&pxQZL8~r(1tlZG)@r;g`>GCvdKPiV5:d(Pv:_^)ZYPt(a:TegFtu;H`wJGV#}U%agW3C<`_fw&"
+          }
+        }
+      }
+    }
+  }
+}

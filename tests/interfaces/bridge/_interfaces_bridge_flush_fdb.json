@@ -1,0 +1,44 @@
+{
+  "1": {
+    "description": "Flush_fdb",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br7"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/flush_fdb",
+      "schema": {
+        "ifname": "br7"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Flush_fdb non existing interface",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/flush_fdb",
+      "schema": {
+        "ifname": "br9647"
+      },
+      "errCode": 9,
+      "httpCode": 400
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br7"
+      }
+    }
+  }
+}

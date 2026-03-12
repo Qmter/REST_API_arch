@@ -1,0 +1,533 @@
+{
+  "PRESET": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/add",
+      "schema": {
+        "ifname": "bond851"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan4060",
+        "vid": 1061
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/interfaces/loopback/add",
+      "schema": {
+        "ifname": "lo0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/add",
+      "schema": {
+        "ifname": "eth1.39",
+        "vid": 1061
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/add",
+      "schema": {
+        "ifname": "tunnel746",
+        "settings": {
+          "source": "1.1.1.1"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "1": {
+    "description": "Set no shutdown bond",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "bond851",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "bond851"
+      },
+      "validation": {
+        "ifname": "bond851",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Set no shutdown vlan",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "vlan4060",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "vlan4060"
+      },
+      "validation": {
+        "ifname": "vlan4060",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Set no shutdown bridge",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "br0",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "br0"
+      },
+      "validation": {
+        "ifname": "br0",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Set no shutdown loopback",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "lo0",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "lo0"
+      },
+      "validation": {
+        "ifname": "lo0",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Set no shutdown eth_vlan",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1.39",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "eth1.39"
+      },
+      "validation": {
+        "ifname": "eth1.39",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "Set no shutdown tunnel",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "tunnel746",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "tunnel746"
+      },
+      "validation": {
+        "ifname": "tunnel746",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Set no shutdown switchport",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "switchport2",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "switchport2"
+      },
+      "validation": {
+        "ifname": "switchport2",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "8": {
+    "description": "Set no shutdown ethernet",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "9": {
+    "description": "Set shutdown bond",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "bond851",
+        "adm_state": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "bond851"
+      },
+      "validation": {
+        "ifname": "bond851",
+        "adm_state": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "10": {
+    "description": "Set shutdown vlan",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "vlan4060",
+        "adm_state": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "vlan4060"
+      },
+      "validation": {
+        "ifname": "vlan4060",
+        "adm_state": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "11": {
+    "description": "Set shutdown bridge",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "br0",
+        "adm_state": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "br0"
+      },
+      "validation": {
+        "ifname": "br0",
+        "adm_state": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "12": {
+    "description": "Set shutdown loopback",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "lo0",
+        "adm_state": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "lo0"
+      },
+      "validation": {
+        "ifname": "lo0",
+        "adm_state": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Set shutdown eth_vlan",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1.39",
+        "adm_state": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "eth1.39"
+      },
+      "validation": {
+        "ifname": "eth1.39",
+        "adm_state": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "14": {
+    "description": "Set shutdown tunnel",
+    "14.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "tunnel746",
+        "adm_state": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "tunnel746"
+      },
+      "validation": {
+        "ifname": "tunnel746",
+        "adm_state": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "15": {
+    "description": "Set shutdown switchport",
+    "15.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "switchport2",
+        "adm_state": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "switchport2"
+      },
+      "validation": {
+        "ifname": "switchport2",
+        "adm_state": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "16": {
+    "description": "Set shutdown ethernet",
+    "16.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/state",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "adm_state": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/delete",
+      "schema": {
+        "ifname": "bond851"
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan4060"
+      }
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/interfaces/loopback/delete",
+      "schema": {
+        "ifname": "lo0"
+      }
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/delete",
+      "schema": {
+        "ifname": "eth1.39"
+      }
+    },
+    "5": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/delete",
+      "schema": {
+        "ifname": "tunnel746"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br0"
+      }
+    },
+    "7": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "1061"
+      }
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "1": {
+    "description": "Getting empty list",
+    "1.1": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Getting filled list",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "f-8rwY'D@\"_{~4~76S!5WT`7$N)Us7@[uJybpDGI8vp/BY5g1V"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "Z)2l5zMkc&TCKB(urwn'p>5#p)CbWp]4GBaXu3&>+M+iJ^8UzBqAEi(.CNe5O,I&_q]f\",KZ^%.@(lJ"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": "w]1)M2;*R5cd=)P"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.4": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [
+        "f-8rwY'D@\"_{~4~76S!5WT`7$N)Us7@[uJybpDGI8vp/BY5g1V",
+        "Z)2l5zMkc&TCKB(urwn'p>5#p)CbWp]4GBaXu3&>+M+iJ^8UzBqAEi(.CNe5O,I&_q]f\",KZ^%.@(lJ",
+        "w]1)M2;*R5cd=)P"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.5": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "f-8rwY'D@\"_{~4~76S!5WT`7$N)Us7@[uJybpDGI8vp/BY5g1V"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.6": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "Z)2l5zMkc&TCKB(urwn'p>5#p)CbWp]4GBaXu3&>+M+iJ^8UzBqAEi(.CNe5O,I&_q]f\",KZ^%.@(lJ"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.7": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "w]1)M2;*R5cd=)P"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "f-8rwY'D@\"_{~4~76S!5WT`7$N)Us7@[uJybpDGI8vp/BY5g1V"
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "Z)2l5zMkc&TCKB(urwn'p>5#p)CbWp]4GBaXu3&>+M+iJ^8UzBqAEi(.CNe5O,I&_q]f\",KZ^%.@(lJ"
+      }
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "w]1)M2;*R5cd=)P"
+      }
+    }
+  }
+}

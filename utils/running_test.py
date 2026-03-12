@@ -14,6 +14,7 @@ class RunningTest:
         pass_message = "PASS"
         failed_indexes = []
         failed_actions = set()
+        desc = ''
 
         list_steps = list(test_schema.keys())
 
@@ -53,6 +54,7 @@ class RunningTest:
                         failed_actions.add(action)
 
                     pass_message = "FAIL"
+                    desc = e
 
                     if "AFTER-TEST" in list_steps:
                         try:
@@ -82,6 +84,7 @@ class RunningTest:
                 logging.debug("")
                 failed_actions.add("PRESET")
                 pass_message = "FAIL"
+                desc = e
 
             try:
                 logging.debug("")
@@ -103,18 +106,20 @@ class RunningTest:
                 logging.debug("")
                 failed_indexes.append(test_index)
                 pass_message = "FAIL"
+                desc = e
 
             try:
                 if "AFTER-TEST" in list_steps:
                     logging.debug("AFTER-TEST")
                     RunningTest.execute_test(test_schema["AFTER-TEST"])
-            except (AssertionError, RuntimeError) as e:  # 
+            except (AssertionError, RuntimeError) as e:  #
+                desc = e
                 logging.debug(f"An error occurred: {e}")
                 logging.debug("")
                 failed_actions.add("AFTER-TEST")
                 pass_message = "FAIL"
 
-        return failed_indexes + list(failed_actions), pass_message
+        return failed_indexes + list(failed_actions), pass_message, desc
 
     @staticmethod
     def execute_test(input_schema):
@@ -152,7 +157,7 @@ class RunningTest:
                     errCode_response = response_json.get("errCode")[0]  # 
                     if errCode_test != errCode_response:
                         raise AssertionError(
-                            f"expected: {errCode_test}, response: {errCode_response}"
+                            f"errCode Error: expected: {errCode_test}, response: {errCode_response}"
                         )
 
                 if "httpCode" in keys_in_test:
@@ -160,7 +165,7 @@ class RunningTest:
                     httpCode_test = input_schema[index]["httpCode"]
                     if httpCode_response != httpCode_test:
                         raise AssertionError(
-                            f"expected: {httpCode_test}, response: {httpCode_response}"
+                            f"httpCode Error: expected: {httpCode_test}, response: {httpCode_response}"
                         )
 
             if request_type == "GET":
@@ -184,7 +189,7 @@ class RunningTest:
                     errCode_response = response_json.get("errCode")[0] # 
                     if errCode_test != errCode_response:
                         raise AssertionError(
-                            f"expected: {errCode_test}, response: {errCode_response}"
+                            f"errCode Error: expected: {errCode_test}, response: {errCode_response}"
                         )
 
                 if "httpCode" in keys_in_test:
@@ -192,7 +197,7 @@ class RunningTest:
                     httpCode_test = input_schema[index]["httpCode"]
                     if httpCode_response != httpCode_test:
                         raise AssertionError(
-                            f"expected: {httpCode_test}, response: {httpCode_response}"
+                            f"httpCode Error: expected: {httpCode_test}, response: {httpCode_response}"
                         )
 
                 if "validation" in keys_in_test:

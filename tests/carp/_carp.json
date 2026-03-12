@@ -1,0 +1,2437 @@
+{
+  "PRESET": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/noip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "dhcp"
+      }
+    }
+  },
+  "1": {
+    "description": "Enable carp on eth interface with requirement fields and requirement password field",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "5.3.8.4/19"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.3": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 217,
+        "address": "14.7.57.193",
+        "password": "$,$Y#[h@9%OYI+^Sw-Y:8K/R74NBd!`4aL3?@]rU/;SZI0@&blPc%F=LCKny*\\4D@"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.4": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "eth1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 217
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/noip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "5.3.8.4/19"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Enable carp on eth interface with requirement fields and requirement password field and minimal group_id",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "246.4.85.252/1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 1,
+        "address": "193.123.209.171",
+        "password": "><eQC|F^t@A\""
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.4": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "eth1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 1
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/noip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "246.4.85.252/1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Enable carp on eth interface with requirement fields and requirement password field and maximum group_id",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "225.33.255.215/4"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.3": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 255,
+        "address": "5.210.113.125",
+        "password": "`Y%|Pi'Rh9^+E)Rb9')tLp{Q9(bWf)N7I`>(F6#Y!&P+g\\k8W`GXimY"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.4": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "eth1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 255
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/noip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "225.33.255.215/4"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Enable carp on eth interface with requirement fields and requirement password field and group_id less than minimum",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.2": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 0,
+        "address": "7.207.94.164",
+        "password": "-~a5CSiF\"$cN:/,>:2R#"
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "5": {
+    "description": "Enable carp on eth interface with requirement fields and requirement password field and group_id more than maximum",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 256,
+        "address": "166.250.3.123",
+        "password": "R=z@>lMQ?|lMV@ij=&!|J=Ay-9UQ;"
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "6": {
+    "description": "Enable carp on eth interface with requirement fields and requirement password field and random timer",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "100.251.185.190/9"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.3": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 84,
+        "address": "16.241.206.60",
+        "password": "afU>A/Yb)9ov\\\"~WYwtrC(\"={[$o",
+        "timer": 1490581366
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.4": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "eth1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 84
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/noip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "100.251.185.190/9"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Enable carp on eth interface with requirement fields and requirement password field and minimum timer",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "40.128.252.64/11"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.3": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 168,
+        "address": "75.2.239.102",
+        "password": "xS1pfL1#QixJesD}t4<D",
+        "timer": 0
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.4": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "eth1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 168
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/noip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "40.128.252.64/11"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "8": {
+    "description": "Enable carp on eth interface with requirement fields and requirement password field and maximum timer",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "236.182.254.39/28"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.3": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 144,
+        "address": "65.253.255.70",
+        "password": "S^ejrlzRL&CvP`TaYt-dD=ysf>.6CpP!sj8b:{&",
+        "timer": 4294967295
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.4": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "eth1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 144
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/noip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "236.182.254.39/28"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "9": {
+    "description": "Enable carp on eth interface with requirement fields and requirement password field and timer less than minimum",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 127,
+        "address": "83.9.205.150",
+        "password": "%[9ezsDf@w&Cdi&P<i\\a=SJeo5pGzAGQ'L>dm+67DhmMNT92H(VUW\\Gl[S&;!\\qTT`Jg",
+        "timer": -1
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "10": {
+    "description": "Enable carp on eth interface with requirement fields and requirement password field and timer more than maximum",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.2": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 240,
+        "address": "225.250.72.22",
+        "password": "qQ/XT5_Ywe(Qm#<r0*|4okbTy{`/|X/r1o)^f#D<TD^)db",
+        "timer": 4294967296
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "11": {
+    "description": "Enable carp on eth interface with requirement fields and requirement secret field",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "202.47.1.96/30"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.3": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 10,
+        "address": "63.61.250.50",
+        "secret": "dL1nS22K1IM1D531/pgKJPtDsWBdJSaAPAlvdSX69shQauq8lpXKnUwScofelv1FCyJJ1m1SmtKfvHw01p4al8LXjOT5X13W6rStL9al57AbOmT2L/dzCPiFgyy4gtkZEJhnPfUIlkRa0zjlvRUPwz7Rt81b+o/HmS/GDt8yIKyAFOAidSkY36qxq13SSoQa4sx2xcZ4GxEdXuHWmLkt6G36g8brFFGUAlAR2cycYrNKp6pgFYvKsYZgnxg9eFnJ6/4G/64P"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.4": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "eth1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 10
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/noip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "202.47.1.96/30"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "12": {
+    "description": "Enable carp on eth interface with requirement fields and requirement secret field and group id minimum",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "28.251.16.71/7"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.3": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 1,
+        "address": "42.155.28.198",
+        "secret": "l47hdCPM1fbk2GPxPtdkeInpv9kVBpuDyTWJa/bedxtQNDt+nBcU9oKhzYolHaEor4chUnCtTtC+DeFBpIHsRb53tnWqwB0hFP0xARSKeWfCVK2NTFgrDE/LlT6eUzriyBnkEhE6Pzs/CiEgarxgOqftTqBGsull/z3VSF4QB9gY2jWVUOx3nkB2horYSATx7E0duUYtCfej1J5eMYV42yigtpLn/BgZx3xEtQjpy8RFsuAIO8FooyQjSSznUQR9FxXsKWhZpgh65TEWoJY66UqRHKrAN2t5wuPRCXQCYF0HxGVt0G4tn60X6hYxtMPDCWzB6/8KzhDMqtM8TkEArUSUUfqDyFceqVetU17uxBUAWTCDAEGOTwD1qfRuzJQ0M33fwcyeyIgjC8ej"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.4": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "eth1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 1
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/noip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "28.251.16.71/7"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Enable carp on eth interface with requirement fields and requirement secret field and group id maximum",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "255.40.9.28/30"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.3": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 255,
+        "address": "215.72.4.1",
+        "secret": "St8GgWplFl3EiwasQOtV3y7J2RVTVdDRtkqPhUrqwnewx8n0MTSAaOiVKEBO9oN5g+dUVDV04zhCxV4GLzqdF9Niy8hXuUmSII9yLh9dlSuMHRZAz+N8rMAe/njc/trLn2cvSdkZtkxQzt8dt3jtkN9l5Tsfr/dOx77cn+doL8oy3GF0hZpWXuDdBwAQ"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.4": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "eth1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 255
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/noip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "255.40.9.28/30"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "14": {
+    "description": "Enable carp on eth interface with requirement fields and requirement secret field and group id less than minimum",
+    "14.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.2": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 0,
+        "address": "77.253.230.4",
+        "secret": "vr6RgNNiSRwaPN8="
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "15": {
+    "description": "Enable carp on eth interface with requirement fields and requirement secret field and group id more than maximum",
+    "15.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.2": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 256,
+        "address": "7.37.5.234",
+        "secret": "qd6f90D5z5c2g98S4ku+LYmPTrEq7xY0YVyGYpX3/b4E+oZAHRf4N2krYUvty4o7ScOT7avFzaL0aAR+wIK/a1unCeDv7hO5cwxrhLFT+I93xDO3SDP3EihxslvYrBU/hqRs1IgNQ+EcMbWdZ4sUsZb7QjAKnpEKlOVjs5L1PK7ple3kCBiJokGfhHx1cgo+2==="
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "16": {
+    "description": "Enable carp on eth interface with requirement fields and requirement secret field with random timer",
+    "16.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "47.248.109.225/28"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.3": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 96,
+        "address": "0.236.251.252",
+        "secret": "Q4BuPf/kz38HtZfTmSXgXd1UQVfm6ZH0wxbxNQLBBfy50syh",
+        "timer": 3668763555
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.4": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "eth1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 96
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/noip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "47.248.109.225/28"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "17": {
+    "description": "Enable carp on eth interface with requirement fields and requirement secret field with minimum timer",
+    "17.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "5.252.224.86/32"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.3": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 165,
+        "address": "207.246.174.37",
+        "secret": "swyzeY3bVR8r3m6Gg6ICNgAbWuiBCVne/utLODWBtaxZXW/TdAG3RK1nYHrRj+9qJ6UNz51UQOOXlM2hOtJBBRP09DoRycGaDGzQ0zH5QaVLkigbBGIBTSROApSqLvagq+8Ko4xz2JcSoSJSExOIt===",
+        "timer": 0
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.4": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "eth1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 165
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/noip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "5.252.224.86/32"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "18": {
+    "description": "Enable carp on eth interface with requirement fields and requirement secret field with maximum timer",
+    "18.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "133.254.218.235/31"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.3": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 198,
+        "address": "62.255.92.59",
+        "secret": "D6W4p3S2evwlbgeverSpSgWO9aXtL/aliZt0CFYZ6Kgk1oxGHqUin19vLKLCMeCFnLyQjlUXRQdhmSiaR0XZs9QijcASA1QSFocWo4djMs+ikbkyWwOM6S2hWIh4wGsxQTEn1a7aLMzPVEZdMw0IZb+LMQY3h8DsaEZ4bASe8LjlqmLPvLdReC+kvSOpJuYZ2wyE4JkT+sTThbOU42WE8KuM/fFD7hgwePU/BcSSWINji7h1JS5H0x==",
+        "timer": 4294967295
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.4": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "eth1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 198
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/noip_address",
+      "schema": {
+        "ifname": "eth1",
+        "ip_addr": "133.254.218.235/31"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "19": {
+    "description": "Enable carp on eth interface with requirement fields and requirement secret field with timer less than minimum",
+    "19.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "19.2": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 108,
+        "address": "198.44.253.134",
+        "secret": "KvS5x5Gk7YUANxgZ8hzQiWBahND3pYq0Pft8Wt23uNL5MBx9yM1HVmjPASALr5Zf7hV5BNANanOmNkHfV4VVhV4DCPMnwagx7vX21dks87gsUXc7Cv8kCN6XxqRE074vZaI+Lzja2C9rZl15IELs0wdkzA3kTz3y8vm1sE24nIdqwDrT/IMWdWB3Wly4EU9UO8knyEiqIHlcnawIFFLvlnHAFTV8RCRNIOZM3KO8VNRvQKEfwvpyeLTzktvCASgaXO+9jhRFspZMSgpYftzNxtEqyE1ihFiK1AidgvOVZJ0khADUWzdZY65quOC1X9dxY/0yT2w4gIUAXMTgyg1p+7Pgggkw/Z2iEC1KDD/x848Xtan3cMV6/o4Tg+rcuhyMQRSIYFD+JGR7",
+        "timer": -1
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "20": {
+    "description": "Enable carp on eth interface with requirement fields and requirement secret field with timer more than maximum",
+    "20.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.2": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "eth1",
+        "group_id": 145,
+        "address": "252.127.105.250",
+        "secret": "nnuX8zzb1i+3wS2aYiJRpul5fU7Qc/TMoWLoitOOppnqYmXV8eKhGwLy+SSHTPzMKMbmW5irzhWUbt6L2m6HsW/cIQ43ucPpZeo/9ilCiZOnWOG61ord/SD9AKCRHpnYGdWuv1aycA5BTZIQjl5r+qimqzqzBb7m2QW9VYJiX+P93XOGLMRStuMM+Qqa4kMRMYQWjpV5MLyBYr3f2PqI/mfxsqVL6AUS6IxikDzDOQmqT+4AT1DmUK151rQuKLfO9YDwhtg4n53cByrblUWjPtwTgVzDXx0KfIbpMVUGhbH/CGYVZlLTAqncB0tJMm==",
+        "timer": 4294967296
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "21": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement password field",
+    "21.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan4091",
+        "vid": 1443
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "vlan4091",
+        "ip_addr": "126.255.168.245/3"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "vlan4091",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": 1443
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4091",
+        "group_id": 10,
+        "address": "6.253.239.50",
+        "password": "~'5h&ga]iL<tTmuIPo4*Eit"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.6": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "vlan4091"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.7": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4091",
+        "group_id": 10
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.8": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.9": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan4091"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.10": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "1443"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "22": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement password field and minimum group id",
+    "22.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan6",
+        "vid": 2018
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "vlan6",
+        "ip_addr": "226.254.254.24/3"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "vlan6",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": 2018
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan6",
+        "group_id": 1,
+        "address": "227.243.203.252",
+        "password": "0SIO%W'3M\"`z{l;JzPqT<-rB#~}ig/AH.n?yP'ICF{ej\\EK{<#RA#WFM[a}$in.fB]/xM`Z2xb1]*~xypD`!|*:,b1Hcvb^z)"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.6": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "vlan6"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.7": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan6",
+        "group_id": 1
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.8": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.9": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan6"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.10": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "2018"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "23": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement password field and maximum group id",
+    "23.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan4092",
+        "vid": 3017
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "vlan4092",
+        "ip_addr": "157.3.39.2/10"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "vlan4092",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": 3017
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4092",
+        "group_id": 255,
+        "address": "254.95.211.142",
+        "password": "DZhs~c+Nb:6x0*$XrkG<&5?NK/ON%,iq~&X2u&{tHDr*6rsDFEl_?qApHZJoo*{"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.6": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "vlan4092"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.7": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4092",
+        "group_id": 255
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.8": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.9": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan4092"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.10": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "3017"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "24": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement password field and group id less than minimum",
+    "24.1": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan1859",
+        "group_id": 0,
+        "address": "255.1.99.55",
+        "password": "L7iR?!n@1P21!3|&=<Q]YB@\"S[B(1I0RZ:I}:fzv(trshO?9(F)KE8%L<_V-Dvo}ZlCP]8KgR|r,(&5"
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "25": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement password field and group id more than maximum",
+    "25.1": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan3327",
+        "group_id": 256,
+        "address": "251.0.252.255",
+        "password": "P;[OlpohKo|;/G_Z<.HY$*im-L23/"
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "26": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement password field and random timer",
+    "26.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan4077",
+        "vid": 1620
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "vlan4077",
+        "ip_addr": "252.251.84.149/3"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "vlan4077",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": 1620
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4077",
+        "group_id": 4,
+        "address": "3.244.4.90",
+        "password": "'lZt!-VO)K'@[|nx==*2O0~+f81U*fS2*-v'>]U((OX{d](;c\"n\\!v?9=NO",
+        "timer": 1421564093
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.6": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "vlan4077"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.7": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4077",
+        "group_id": 4
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.8": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.9": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan4077"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.10": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "1620"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "27": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement password field and timer minimum",
+    "27.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan974",
+        "vid": 1949
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "vlan974",
+        "ip_addr": "252.64.130.3/16"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "vlan974",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": 1949
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan974",
+        "group_id": 25,
+        "address": "240.155.106.124",
+        "password": "iFG\\Kx#rK+k(=#u:/D~!yU=JZkH{g_zBzgmQ0E>a5[.|uX*|?-`!*$`a[6AVs",
+        "timer": 0
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.6": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "vlan974"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.7": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan974",
+        "group_id": 25
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.8": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.9": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan974"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "27.10": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "1949"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "28": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement password field and timer maximum",
+    "28.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan1183",
+        "vid": 124
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "vlan1183",
+        "ip_addr": "9.9.254.224/27"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "vlan1183",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": 124
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan1183",
+        "group_id": 210,
+        "address": "219.97.37.120",
+        "password": ">D1r\"HtU`^Y$mSlj(ihJseC$e4WqT(p,kl(c2app1L'>^p}",
+        "timer": 4294967295
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.6": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "vlan1183"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.7": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan1183",
+        "group_id": 210
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.8": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.9": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan1183"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "28.10": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "124"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "29": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement password field and timer less than minimum",
+    "29.1": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan751",
+        "group_id": 39,
+        "address": "227.252.145.233",
+        "password": "Js5m6V2@ZU}$EBqlY_TD#~v8U@",
+        "timer": -1
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "30": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement password field and timer more than maximum",
+    "30.1": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4091",
+        "group_id": 158,
+        "address": "76.14.215.254",
+        "password": "=J'THf<[(5KNknPOlEy|$x7pa,#8IHUP9T$[3R'4v<TlVN}>w/f$EmtV6kO%D;!t@mcXv~W;5QqvAD~6",
+        "timer": 4294967296
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "31": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement secret field",
+    "31.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan4",
+        "vid": 1108
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "vlan4",
+        "ip_addr": "151.4.251.191/31"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "vlan4",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": 1108
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4",
+        "group_id": 42,
+        "address": "222.223.9.201",
+        "secret": "kkXHvN0hhNHD29od21KgTFBQuDvqONYbzSFKta0OarLNieVb3ZaB1bNugd/bNh3M"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.6": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "vlan4"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.7": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4",
+        "group_id": 42
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.8": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.9": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan4"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "31.10": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "1108"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "32": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement secret field and group id minimum",
+    "32.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan4025",
+        "vid": 922
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "vlan4025",
+        "ip_addr": "5.3.0.238/18"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "vlan4025",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": 922
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4025",
+        "group_id": 1,
+        "address": "210.0.88.3",
+        "secret": "bMqWN55Zh9Y5bzs3xVQ+esjA5bycoDuEDCGGm5qDN1jFFHsPMEb0MNXPed9haG+JQy6IdPT31gYET/RGx961dImeme3iwpoammYN0Uob7fjuI84MPihByZDU12q2Fi8BETeV2Rl+JiSYRBD4mCw7EVBzLoD7hwH3+VbObzpjHojLN6C9g3WEU3ZmGdDv6kjqQI4OTVr1gttgI1O1JM6SX0EsSK=="
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.6": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "vlan4025"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.7": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4025",
+        "group_id": 1
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.8": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.9": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan4025"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "32.10": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "922"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "33": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement secret field and group id maximum",
+    "33.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan4090",
+        "vid": 2947
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "vlan4090",
+        "ip_addr": "188.239.255.163/32"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "vlan4090",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": 2947
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4090",
+        "group_id": 255,
+        "address": "183.108.146.203",
+        "secret": "a5lA23BVu1ditTLpFywjYeE+ajUXdFKdy2DSnFamwOsLucFM7YnlAI3Za+z8TA6JoWKrY+1Ggll3/I8lu9In17t49uIgRkKW69jX3tm3EFf2Fw8aiCW8ICgSUbecH5+qJHGHzhB/MTKvZbmfXtIM12gTvyPX0DioCHECpOLk7HN2hiORvuiuI0luAR+qaJ2sUWdLwHtbZ7N4sorDNox2eQvwkYaIaXYGwINFTVt7rmlpV5R70toPStpaluGMdC68eJaatvAmBrHs0K3S8oBvK7+AHNwMQ9mxEbVWW5YB8+xirMVF+9i2FEpweCZq"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.6": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "vlan4090"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.7": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4090",
+        "group_id": 255
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.8": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.9": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan4090"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "33.10": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "2947"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "34": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement secret field and group id less than minimum",
+    "34.1": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan2687",
+        "group_id": 0,
+        "address": "165.165.50.235",
+        "secret": "oBw12f1oCamJmKaU3plU/AQ+An4iRrnRpzls91W6h13+r+rG/u4Ikl3rOs50ysAt82cHYbOzGhor5TC09iclfZ+fisYpIxYawU+mMnbDsL5ljc=="
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "35": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement secret field and group id more than maximum",
+    "35.1": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4092",
+        "group_id": 256,
+        "address": "165.254.247.9",
+        "secret": "iTRJLgFcxsN8Z0C0fNKrnb/7k8uMrs6TGI5XmTUJU6EPq2sd0+L7Dr9PNvFXXr9crBvra61o29YUGYF/UNUbP2YCwUP1c6HOZNNKBXg6nlcpQ/VqeQy8HXCkG2ETnJYCw38aJt+2CEO8Z5AgFdojyuafoCNGctNyZX45cLXPXJh3aRNfngGN/hRKZfcQZ//N2WA0"
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "36": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement secret field and random timer",
+    "36.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan4095",
+        "vid": 538
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "36.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "vlan4095",
+        "ip_addr": "112.242.59.253/7"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "36.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "vlan4095",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "36.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": 538
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "36.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4095",
+        "group_id": 179,
+        "address": "188.215.247.253",
+        "secret": "FpZoDp+JnWcCOa5llAsiBD7GKHgnIKcEq7D+lDetpV1YGDibTBzgCFW5cqmy8cihumgdqljwOJ1Zajv40a4rb9nNEJd2ML9l7Hn88QcGefdEOxr1Sx6QUdEv6OqhmEZleK6OpXnNacuWqdnYwglxKHAQAQkW+E/ntPacTj9nlYra79Ucxjbs7Q3w0bGg9G0WBgWIiqCmNw0qfV4x5SMkORmf0qIuBOSRjQeUrceF+vWy/a5xdP71oLMT/XH69QDeZErsnqqpmzJ+s3MPTueDNn2xp9Heq0pHJFoRmhcpaR5wKhwpl3qY",
+        "timer": 2778351468
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "36.6": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "vlan4095"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "36.7": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4095",
+        "group_id": 179
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "36.8": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "36.9": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan4095"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "36.10": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "538"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "37": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement secret field and timer minimum",
+    "37.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan4091",
+        "vid": 2664
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "37.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "vlan4091",
+        "ip_addr": "254.101.252.102/31"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "37.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "vlan4091",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "37.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": 2664
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "37.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4091",
+        "group_id": 129,
+        "address": "254.3.78.183",
+        "secret": "jzSc1WSGMAeOFYfTr00Ko===",
+        "timer": 0
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "37.6": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "vlan4091"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "37.7": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4091",
+        "group_id": 129
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "37.8": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "37.9": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan4091"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "37.10": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "2664"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "38": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement secret field and timer maximum",
+    "38.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan2763",
+        "vid": 2664
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "38.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/common/ip_address",
+      "schema": {
+        "ifname": "vlan2763",
+        "ip_addr": "193.254.250.63/3"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "38.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "vlan2763",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "38.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": 2664
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "38.5": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan2763",
+        "group_id": 252,
+        "address": "250.37.8.98",
+        "secret": "MC9TqGKghq2PAkm1/nGCQPEadPcY3l79baAbVnbE0rbQLQHqQIOOPSwn4NYBVB4hXyoNPS8TEmbPh5+c36m41N1y",
+        "timer": 4294967295
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "38.6": {
+      "type": "GET",
+      "endpoint": "/carp",
+      "arguments": {
+        "interface_name": "vlan2763"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "38.7": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan2763",
+        "group_id": 252
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "38.8": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "38.9": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan2763"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "38.10": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "2664"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "39": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement secret field and timer less than minimum",
+    "39.1": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan2076",
+        "group_id": 79,
+        "address": "56.2.201.205",
+        "secret": "73Zztx6zOWkVgRKnm3A/kZBn0uwuaoBH1O1rrqsvorKgjkT0cNdiQkRjBeuq5HjTbdqLh+7nuXLPziKl81fviqWhMlxz7MIf6YuiRAv4nqWBUD4438KE3cjQ5Lt1/85oKONJ24I7WS0qqUf9VMuUMTqEmnjWy8CiOmvwlK5c8CeCCq2SFNMnnR2gh11n3eW6RMXQkjNoAZIoi+2PgYdoEGAZG/Lnt2Ue6xZG/T0JVoU021la01c6B8Epp9kJIlXiLMYE3gKEQdK2sJadLc7UvfRO+Hzb6QxFfuDQNcVxaJ0Zd80mUjmyZ0R=",
+        "timer": -1
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "40": {
+    "description": "Enable carp on vlan interface with requirement fields and requirement secret field and timer more than maximum",
+    "40.1": {
+      "type": "POST",
+      "endpoint": "/carp",
+      "schema": {
+        "interface_name": "vlan4043",
+        "group_id": 215,
+        "address": "159.252.232.255",
+        "secret": "v62dX9SCzQHZb9Azh7GoG+RR6pHKAK0iOreqyYdy++C4AZdnL+yyDHJMMJayjH8prhCiEzsAsXfXj46RiXPc",
+        "timer": 4294967296
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/system/reboot",
+      "schema": {},
+      "errCode": 0,
+      "httpCode": 200
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "1": {
+    "description": "Do blink interface",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/ethernet/blink",
+      "schema": {
+        "ifname": "eth1"
+      }
+    }
+  }
+}

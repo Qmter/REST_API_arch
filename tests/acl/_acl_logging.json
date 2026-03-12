@@ -1,0 +1,710 @@
+{
+  "1": {
+    "description": "Change logging for non-existing ACL",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/acl/logging",
+      "schema": {
+        "proto": "ipv4",
+        "list_name": "non_existing_ACL",
+        "logging": true
+      },
+      "errCode": -1,
+      "httpCode": 500
+    }
+  },
+  "2": {
+    "description": "Turning on logging for ipv4 ACL",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "8&~%,Y{yLF-las)s;ZOEWw4;>x.QT;F(u}^SnL=A%bn`j{K6f}9.3PgzidRwe@j_u,Y[yn+0n.eSWno)=jVhucR+DzD<}H%Qgj",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "soap"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "POST",
+      "endpoint": "/acl/logging",
+      "schema": {
+        "proto": "ipv4",
+        "list_name": "8&~%,Y{yLF-las)s;ZOEWw4;>x.QT;F(u}^SnL=A%bn`j{K6f}9.3PgzidRwe@j_u,Y[yn+0n.eSWno)=jVhucR+DzD<}H%Qgj",
+        "logging": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "type": "GET",
+      "endpoint": "/acl/acl_ipv4",
+      "arguments": {
+        "list_name": "8&~%,Y{yLF-las)s;ZOEWw4;>x.QT;F(u}^SnL=A%bn`j{K6f}9.3PgzidRwe@j_u,Y[yn+0n.eSWno)=jVhucR+DzD<}H%Qgj"
+      },
+      "validation": [
+        {
+          "list_name": "8&~%,Y{yLF-las)s;ZOEWw4;>x.QT;F(u}^SnL=A%bn`j{K6f}9.3PgzidRwe@j_u,Y[yn+0n.eSWno)=jVhucR+DzD<}H%Qgj",
+          "rules": [
+            {
+              "dpi": {
+                "dpi_protocol": "soap"
+              },
+              "logging": true
+            }
+          ]
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.4": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "8&~%,Y{yLF-las)s;ZOEWw4;>x.QT;F(u}^SnL=A%bn`j{K6f}9.3PgzidRwe@j_u,Y[yn+0n.eSWno)=jVhucR+DzD<}H%Qgj",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "soap"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Turning on logging for ipv6 ACL",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "test_log_ipv6_acl",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "telegram"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "POST",
+      "endpoint": "/acl/logging",
+      "schema": {
+        "proto": "ipv6",
+        "list_name": "test_log_ipv6_acl",
+        "logging": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.3": {
+      "type": "GET",
+      "endpoint": "/acl/acl_ipv6",
+      "arguments": {
+        "list_name": "test_log_ipv6_acl"
+      },
+      "validation": [
+        {
+          "list_name": "test_log_ipv6_acl",
+          "rules": [
+            {
+              "dpi": {
+                "dpi_protocol": "telegram"
+              },
+              "logging": true
+            }
+          ]
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.4": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "test_log_ipv6_acl",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "telegram"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Turning on logging for specific rule in ACL",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "test_logging_ACL",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "c"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "test_logging_ACL",
+            "rule": {
+              "dpi": {
+                "not": true,
+                "dpi_protocol": "zattoo"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.3": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "test_logging_ACL",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "mqtt"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.4": {
+      "type": "POST",
+      "endpoint": "/acl/logging",
+      "schema": {
+        "proto": "ipv4",
+        "list_name": "test_logging_ACL",
+        "logging": true,
+        "index": 2
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.5": {
+      "type": "GET",
+      "endpoint": "/acl/acl_ipv4",
+      "arguments": {
+        "list_name": "test_logging_ACL"
+      },
+      "validation": [
+        {
+          "list_name": "test_logging_ACL",
+          "rules": [
+            {
+              "dpi": {
+                "dpi_protocol": "c"
+              }
+            },
+            {
+              "dpi": {
+                "not": true,
+                "dpi_protocol": "zattoo"
+              },
+              "logging": true
+            },
+            {
+              "dpi": {
+                "dpi_protocol": "mqtt"
+              }
+            }
+          ]
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.6": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "test_logging_ACL"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Change logging with index out of bounce | lower",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "test_l0g_index_acl",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "wikipedia"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "POST",
+      "endpoint": "/acl/logging",
+      "schema": {
+        "proto": "ipv4",
+        "list_name": "test_l0g_index_acl",
+        "logging": true,
+        "index": 0
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "5.3": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "test_l0g_index_acl",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "wikipedia"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "Change logging with index out of bounce | higher than amount of rules",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "test_log_1nd3x_acl",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "stealthnet"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "POST",
+      "endpoint": "/acl/logging",
+      "schema": {
+        "proto": "ipv4",
+        "list_name": "test_log_1nd3x_acl",
+        "logging": true,
+        "index": 3
+      },
+      "errCode": 9,
+      "httpCode": 400
+    },
+    "6.3": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "test_log_1nd3x_acl",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "stealthnet"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Turning off logging for ipv4 ACL",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "test_log_off_ipv4_acl",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "pinterest"
+              },
+              "logging": true
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.2": {
+      "type": "POST",
+      "endpoint": "/acl/logging",
+      "schema": {
+        "proto": "ipv4",
+        "list_name": "test_log_off_ipv4_acl",
+        "logging": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.3": {
+      "type": "GET",
+      "endpoint": "/acl/acl_ipv4",
+      "arguments": {
+        "list_name": "test_log_off_ipv4_acl"
+      },
+      "validation": [
+        {
+          "list_name": "test_log_off_ipv4_acl",
+          "rules": [
+            {
+              "dpi": {
+                "dpi_protocol": "pinterest"
+              }
+            }
+          ]
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.4": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "test_log_off_ipv4_acl",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "pinterest"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "8": {
+    "description": "Turning off logging for ipv6 ACL",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "test_log_off_ipv6_acl",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "whatsapp"
+              },
+              "logging": true
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.2": {
+      "type": "POST",
+      "endpoint": "/acl/logging",
+      "schema": {
+        "proto": "ipv6",
+        "list_name": "test_log_off_ipv6_acl",
+        "logging": false
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.3": {
+      "type": "GET",
+      "endpoint": "/acl/acl_ipv6",
+      "arguments": {
+        "list_name": "test_log_off_ipv6_acl"
+      },
+      "validation": [
+        {
+          "list_name": "test_log_off_ipv6_acl",
+          "rules": [
+            {
+              "dpi": {
+                "dpi_protocol": "whatsapp"
+              }
+            }
+          ]
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.4": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "test_log_off_ipv6_acl",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "whatsapp"
+              }
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "9": {
+    "description": "Turning off logging for specific rule in ACL",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "test_logging_off_ACL",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "signal"
+              },
+              "logging": true
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "test_logging_off_ACL",
+            "rule": {
+              "dpi": {
+                "not": true,
+                "dpi_protocol": "youtubeupload"
+              },
+              "logging": true
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.3": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "add": {
+            "list_name": "test_logging_off_ACL",
+            "rule": {
+              "dpi": {
+                "dpi_protocol": "kerberos"
+              },
+              "logging": true
+            }
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.4": {
+      "type": "POST",
+      "endpoint": "/acl/logging",
+      "schema": {
+        "proto": "ipv4",
+        "list_name": "test_logging_off_ACL",
+        "logging": false,
+        "index": 2
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.5": {
+      "type": "GET",
+      "endpoint": "/acl/acl_ipv4",
+      "arguments": {
+        "list_name": "test_logging_off_ACL"
+      },
+      "validation": [
+        {
+          "list_name": "test_logging_off_ACL",
+          "rules": [
+            {
+              "dpi": {
+                "dpi_protocol": "signal"
+              },
+              "logging": true
+            },
+            {
+              "dpi": {
+                "not": true,
+                "dpi_protocol": "youtubeupload"
+              }
+            },
+            {
+              "dpi": {
+                "dpi_protocol": "kerberos"
+              },
+              "logging": true
+            }
+          ]
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.6": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "test_logging_off_ACL"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "8&~%,Y{yLF-las)s;ZOEWw4;>x.QT;F(u}^SnL=A%bn`j{K6f}9.3PgzidRwe@j_u,Y[yn+0n.eSWno)=jVhucR+DzD<}H%Qgj"
+          }
+        }
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "test_logging_ACL"
+          }
+        }
+      }
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "test_log_off_ipv4_acl"
+          }
+        }
+      }
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv4",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "test_logging_off_ACL"
+          }
+        }
+      }
+    },
+    "5": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "test_log_ipv6_acl"
+          }
+        }
+      }
+    },
+    "6": {
+      "type": "POST",
+      "endpoint": "/acl/acl_ipv6",
+      "schema": {
+        "action": {
+          "delete": {
+            "list_name": "test_log_off_ipv6_acl"
+          }
+        }
+      }
+    }
+  }
+}

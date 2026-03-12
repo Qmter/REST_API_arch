@@ -1,0 +1,304 @@
+{
+  "1": {
+    "description": "Get filter iptables without arguments",
+    "1.1": {
+      "type": "GET",
+      "endpoint": "/acl/filter/show_iptables",
+      "arguments": {},
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Get iptables proto = ipv4 and chain = input",
+    "2.1": {
+      "type": "GET",
+      "endpoint": "/acl/filter/show_iptables",
+      "arguments": {
+        "proto": "ipv4",
+        "chain": "input"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Get iptables proto = ipv4 and chain = forward",
+    "3.1": {
+      "type": "GET",
+      "endpoint": "/acl/filter/show_iptables",
+      "arguments": {
+        "proto": "ipv4",
+        "chain": "forward"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Get iptables proto = ipv4 and chain = output",
+    "4.1": {
+      "type": "GET",
+      "endpoint": "/acl/filter/show_iptables",
+      "arguments": {
+        "proto": "ipv4",
+        "chain": "output"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Get iptables proto = ipv6 and chain = input",
+    "5.1": {
+      "type": "GET",
+      "endpoint": "/acl/filter/show_iptables",
+      "arguments": {
+        "proto": "ipv6",
+        "chain": "input"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "Get iptables proto = ipv6 and chain = forward",
+    "6.1": {
+      "type": "GET",
+      "endpoint": "/acl/filter/show_iptables",
+      "arguments": {
+        "proto": "ipv6",
+        "chain": "forward"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Get iptables proto = ipv6 and chain = output",
+    "7.1": {
+      "type": "GET",
+      "endpoint": "/acl/filter/show_iptables",
+      "arguments": {
+        "proto": "ipv6",
+        "chain": "output"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "8": {
+    "description": "Get iptables proto = ipv4 and chain = input and use VRF",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.2": {
+      "type": "GET",
+      "endpoint": "/acl/filter/show_iptables",
+      "arguments": {
+        "proto": "ipv4",
+        "vrf": "1Fh_zm9",
+        "chain": "input"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.3": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "9": {
+    "description": "Get iptables proto = ipv4 and chain = forward and use VRF",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "GET",
+      "endpoint": "/acl/filter/show_iptables",
+      "arguments": {
+        "proto": "ipv4",
+        "vrf": "1Fh_zm9",
+        "chain": "forward"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.3": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "10": {
+    "description": "Get iptables proto = ipv4 and chain = output and use VRF",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.2": {
+      "type": "GET",
+      "endpoint": "/acl/filter/show_iptables",
+      "arguments": {
+        "proto": "ipv4",
+        "vrf": "1Fh_zm9",
+        "chain": "output"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.3": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "11": {
+    "description": "Get iptables proto = ipv6 and chain = input and use VRF",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.2": {
+      "type": "GET",
+      "endpoint": "/acl/filter/show_iptables",
+      "arguments": {
+        "proto": "ipv6",
+        "vrf": "1Fh_zm9",
+        "chain": "input"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.3": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "12": {
+    "description": "Get iptables proto = ipv6 and chain = forward and use VRF",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.2": {
+      "type": "GET",
+      "endpoint": "/acl/filter/show_iptables",
+      "arguments": {
+        "proto": "ipv6",
+        "vrf": "1Fh_zm9",
+        "chain": "forward"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.3": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Get iptables proto = ipv6 and chain = output and use VRF",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.2": {
+      "type": "GET",
+      "endpoint": "/acl/filter/show_iptables",
+      "arguments": {
+        "proto": "ipv6",
+        "vrf": "1Fh_zm9",
+        "chain": "output"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.3": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1Fh_zm9",
+        "action": "delete"
+      }
+    }
+  }
+}

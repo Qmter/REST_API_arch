@@ -1,0 +1,164 @@
+{
+  "1": {
+    "description": "Deleting created pool",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/add",
+      "schema": {
+        "pool_number": 55341,
+        "network": "165.3.7.94/32"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 55341
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/list",
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Deleting created pool from vrf",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "TEK",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/add",
+      "schema": {
+        "pool_number": 60031,
+        "network": "193.123.209.171/32",
+        "vrf_name": "TEK"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 60031
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.4": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/list",
+      "arguments": {
+        "vrf_name": "TEK"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.5": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "TEK",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Deleting non-existing pool",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 58863
+      },
+      "errCode": -1,
+      "httpCode": 500
+    }
+  },
+  "4": {
+    "description": "Deleting pool with number out of bounce, lower",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 0
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "5": {
+    "description": "Deleting pool with number out of bounce, higher",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 65536
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 55341
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 60031
+      }
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 58863
+      }
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 0
+      }
+    },
+    "5": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 65536
+      }
+    },
+    "6": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "TEK",
+        "action": "delete"
+      }
+    }
+  }
+}

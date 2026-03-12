@@ -12,8 +12,15 @@ from utils.check_auth_method import CheckAuthMethod
 
 import config.read_confg as cfg   
 
+TOTAL_COUNT_ENDPOINTS = cfg.TOTAL_COUNT_ENDPOINTS
+DONE_COUNT_ENDPOINTS = 0
 
 def run_single_test(test_path: str, endpoint_name: str, index_tests: int = None) -> str:
+    
+    global DONE_COUNT_ENDPOINTS
+
+    DONE_COUNT_ENDPOINTS += 1
+
     with open(test_path) as f:
         data = json.load(f)
 
@@ -22,16 +29,23 @@ def run_single_test(test_path: str, endpoint_name: str, index_tests: int = None)
     logging.debug("=" * 57)
 
     if index_tests is None:
-        failed_indexes, test_status = RunningTest.read_test(data)
+        failed_indexes, test_status, desc = RunningTest.read_test(data)
     else:
-        failed_indexes, test_status = RunningTest.read_test(data, test_index=index_tests)
+        failed_indexes, test_status, desc = RunningTest.read_test(data, test_index=index_tests)
 
-    result_line = (
-        f"{endpoint_name.ljust(50, '.')} | {test_status} | "
-        + ", ".join(map(str, failed_indexes))
-    )
+    endpoint_status_str = f"{endpoint_name.ljust(50, '.')}" + "|" + f"{test_status}".center(10) + "| " 
+    failed_indexes_str = ''
 
-    print(result_line)
+    if str(desc) == '':
+        failed_indexes_str = " * Тест прошел успешно"
+    else:
+        endpoint_status_str += "Непрошедшие индексы теста:"
+
+    for index in failed_indexes:
+        failed_indexes_str += "\n" + ' ' * len(endpoint_status_str) + f" * Индекс теста: {index} - {str(desc)}"
+    
+    result_line =  endpoint_status_str + failed_indexes_str
+
     return result_line
 
 def run_tests_endpoints():
@@ -318,10 +332,20 @@ if __name__ == '__main__':
         ...
         
 
-
+    percent_tests = round(DONE_COUNT_ENDPOINTS / TOTAL_COUNT_ENDPOINTS * 100, 2)
     # Вывод в лог сообщения-сводки выполненных тестов\
-    logging.info("=" * 69)
-    logging.info("Result")
-    logging.info("=" * 69)
+    logging.info("=" * 100)
+    logging.info(f"Result\nЕндпоинтов в схеме: {TOTAL_COUNT_ENDPOINTS}\t\tЗапущенных тестов: {DONE_COUNT_ENDPOINTS}\t\tПроцент поркытия: {percent_tests}%")
+    logging.info("=" * 100)
+    logging.info("Ендпоинт".center(50) + "|" + "Статус".center(10) + "|"  + "Описание".center(20))
+    logging.info("_" * 100)
     logging.info(last_log_msg)
-    logging.info("=" * 69)
+    logging.info("=" * 100)
+
+    print("=" * 100)
+    print(f"Result\nЕндпоинтов в схеме: {TOTAL_COUNT_ENDPOINTS}\t\tЗапущенных тестов: {DONE_COUNT_ENDPOINTS}\t\tПроцент поркытия: {percent_tests}%")
+    print("=" * 100)
+    print("Ендпоинт".center(50) + "|" + "Статус".center(10) + "|"  + "Описание".center(20))
+    print("_" * 100)
+    print(last_log_msg)
+    print("=" * 100)

@@ -1,0 +1,637 @@
+{
+  "PRESET": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/add",
+      "schema": {
+        "ifname": "bond851"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan4060",
+        "vid": 1061
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/interfaces/loopback/add",
+      "schema": {
+        "ifname": "lo0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/add",
+      "schema": {
+        "ifname": "eth1.39",
+        "vid": 1061
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/add",
+      "schema": {
+        "ifname": "tunnel746",
+        "settings": {
+          "source": "1.1.1.1"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "1": {
+    "description": "Set bond description",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "bond851",
+        "description": "SP Mz.O?/^N7F2&I=f6\"r3eC0vm['{j"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/description",
+      "arguments": {
+        "ifname": "bond851"
+      },
+      "validation": {
+        "ifname": "bond851",
+        "description": "SP Mz.O?/^N7F2&I=f6\"r3eC0vm['{j"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Set bond no description",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "bond851",
+        "description": ""
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/description",
+      "arguments": {
+        "ifname": "bond851"
+      },
+      "validation": {
+        "ifname": "bond851",
+        "description": ""
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Set vlan description",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "vlan4060",
+        "description": "QM=q6c{^T|}SIP@X[afs Ctx#bQ!%Kf$Fd~/K-'%7`2?"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/description",
+      "arguments": {
+        "ifname": "vlan4060"
+      },
+      "validation": {
+        "ifname": "vlan4060",
+        "description": "QM=q6c{^T|}SIP@X[afs Ctx#bQ!%Kf$Fd~/K-'%7`2?"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Set vlan no description",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "vlan4060",
+        "description": ""
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/description",
+      "arguments": {
+        "ifname": "vlan4060"
+      },
+      "validation": {
+        "ifname": "vlan4060",
+        "description": ""
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Set loopback description",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "lo0",
+        "description": "v aw  21f~V63JRowzX%tu/F{mjR"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/description",
+      "arguments": {
+        "ifname": "lo0"
+      },
+      "validation": {
+        "ifname": "lo0",
+        "description": "v aw  21f~V63JRowzX%tu/F{mjR"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "Set loopback no description",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "lo0",
+        "description": ""
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/description",
+      "arguments": {
+        "ifname": "lo0"
+      },
+      "validation": {
+        "ifname": "lo0",
+        "description": ""
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Set eth-vlan description",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "eth1.39",
+        "description": "I=vbI6yb.3[Ol/4$q*FX*zA&av-EMxm"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/description",
+      "arguments": {
+        "ifname": "eth1.39"
+      },
+      "validation": {
+        "ifname": "eth1.39",
+        "description": "I=vbI6yb.3[Ol/4$q*FX*zA&av-EMxm"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "8": {
+    "description": "Set eth-vlan no description",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "eth1.39",
+        "description": ""
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/description",
+      "arguments": {
+        "ifname": "eth1.39"
+      },
+      "validation": {
+        "ifname": "eth1.39",
+        "description": ""
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "9": {
+    "description": "Set tunnel description",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "tunnel746",
+        "description": "-(UruH5i,pB.*7tOI c.grr\"l#y9]DO\"zU("
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/description",
+      "arguments": {
+        "ifname": "tunnel746"
+      },
+      "validation": {
+        "ifname": "tunnel746",
+        "description": "-(UruH5i,pB.*7tOI c.grr\"l#y9]DO\"zU("
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "10": {
+    "description": "Set tunnel no description",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "tunnel746",
+        "description": ""
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/description",
+      "arguments": {
+        "ifname": "tunnel746"
+      },
+      "validation": {
+        "ifname": "tunnel746",
+        "description": ""
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "11": {
+    "description": "Set bridge description",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "br0",
+        "description": "'uj=aP/}gz"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/description",
+      "arguments": {
+        "ifname": "br0"
+      },
+      "validation": {
+        "ifname": "br0",
+        "description": "'uj=aP/}gz"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "12": {
+    "description": "Set bridge no description",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "br0",
+        "description": ""
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/description",
+      "arguments": {
+        "ifname": "br0"
+      },
+      "validation": {
+        "ifname": "br0",
+        "description": ""
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Set switchport description",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "switchport2",
+        "description": "kr$ZeG/iz-!yNwKP_4W|r'S\"VPkVNJ4s?j!myrm?"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/description",
+      "arguments": {
+        "ifname": "switchport2"
+      },
+      "validation": {
+        "ifname": "switchport2",
+        "description": "kr$ZeG/iz-!yNwKP_4W|r'S\"VPkVNJ4s?j!myrm?"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "14": {
+    "description": "Set switchport no description",
+    "14.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "switchport2",
+        "description": ""
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/description",
+      "arguments": {
+        "ifname": "switchport2"
+      },
+      "validation": {
+        "ifname": "switchport2",
+        "description": ""
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "15": {
+    "description": "Set ethernet description",
+    "15.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "eth1",
+        "description": "v|zC>q|$"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/description",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "description": "v|zC>q|$"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "16": {
+    "description": "Set ethernet no description",
+    "16.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "eth1",
+        "description": ""
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/description",
+      "arguments": {
+        "ifname": "eth1"
+      },
+      "validation": {
+        "ifname": "eth1",
+        "description": ""
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "17": {
+    "description": "Set bond description out of bounce",
+    "17.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "bond851",
+        "description": "Very_Very_Very_Very_Very_Very_Very_Long_Description"
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "18": {
+    "description": "Set vlan description out of bounce",
+    "18.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "vlan4060",
+        "description": "Very_Very_Very_Very_Very_Very_Very_Long_Description"
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "19": {
+    "description": "Set loopback description out of bounce",
+    "19.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "lo0",
+        "description": "Very_Very_Very_Very_Very_Very_Very_Long_Description"
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "20": {
+    "description": "Set eth_vlan description out of bounce",
+    "20.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "eth1.39",
+        "description": "Very_Very_Very_Very_Very_Very_Very_Long_Description"
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "21": {
+    "description": "Set tunnel description out of bounce",
+    "21.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "tunnel746",
+        "description": "Very_Very_Very_Very_Very_Very_Very_Long_Description"
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "22": {
+    "description": "Set bridge description out of bounce",
+    "22.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "br0",
+        "description": "Very_Very_Very_Very_Very_Very_Very_Long_Description"
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "23": {
+    "description": "Set switchport description out of bounce",
+    "23.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "switchport2",
+        "description": "Very_Very_Very_Very_Very_Very_Very_Long_Description"
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "24": {
+    "description": "Set ethernet description out of bounce",
+    "24.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/description",
+      "schema": {
+        "ifname": "eth1",
+        "description": "Very_Very_Very_Very_Very_Very_Very_Long_Description"
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/delete",
+      "schema": {
+        "ifname": "bond851"
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan4060"
+      }
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/interfaces/loopback/delete",
+      "schema": {
+        "ifname": "lo0"
+      }
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/delete",
+      "schema": {
+        "ifname": "eth1.39"
+      }
+    },
+    "5": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "1061"
+      }
+    },
+    "6": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/delete",
+      "schema": {
+        "ifname": "tunnel746"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br0"
+      }
+    }
+  }
+}

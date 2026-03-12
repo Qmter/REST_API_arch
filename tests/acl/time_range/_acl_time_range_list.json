@@ -1,0 +1,142 @@
+{
+  "1": {
+    "description": "Getting empty list",
+    "1.1": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Getting filled list",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "1Fh_zm9tb-RkRMgSnMJq8Mt3o",
+            "configuration": {}
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "94hHBLzA.qfpIY",
+            "configuration": {}
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "add": {
+            "name": "eS5LKo_NmlPqak4",
+            "configuration": {}
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.4": {
+      "type": "GET",
+      "endpoint": "/acl/time_range/list",
+      "validation": [
+        "1Fh_zm9tb-RkRMgSnMJq8Mt3o",
+        "94hHBLzA.qfpIY",
+        "eS5LKo_NmlPqak4"
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.5": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "1Fh_zm9tb-RkRMgSnMJq8Mt3o"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.6": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "94hHBLzA.qfpIY"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.7": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "eS5LKo_NmlPqak4"
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "1Fh_zm9tb-RkRMgSnMJq8Mt3o"
+          }
+        }
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "94hHBLzA.qfpIY"
+          }
+        }
+      }
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/acl/time_range/configuration",
+      "schema": {
+        "action": {
+          "delete": {
+            "name": "eS5LKo_NmlPqak4"
+          }
+        }
+      }
+    }
+  }
+}

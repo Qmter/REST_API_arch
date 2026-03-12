@@ -1,0 +1,1682 @@
+{
+  "1": {
+    "description": "Set bridge capability mode = 0",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br0",
+        "capability": {
+          "mode": {
+            "mode_type": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bridge/capability",
+      "arguments": {
+        "ifname": "br0"
+      },
+      "validation": {
+        "ifname": "br0",
+        "capability": {
+          "mode": {
+            "mode_type": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Set bridge capability mode = 1",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br919"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br919",
+        "capability": {
+          "mode": {
+            "mode_type": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bridge/capability",
+      "arguments": {
+        "ifname": "br919"
+      },
+      "validation": {
+        "ifname": "br919",
+        "capability": {
+          "mode": {
+            "mode_type": 1
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br919"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Set bridge capability mode = 2 with down time ",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br3"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br3",
+        "capability": {
+          "mode": {
+            "mode_type": 2,
+            "down_time": 1533954791
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bridge/capability",
+      "arguments": {
+        "ifname": "br3"
+      },
+      "validation": {
+        "ifname": "br3",
+        "capability": {
+          "mode": {
+            "mode_type": 2,
+            "down_time": 1533954791
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br3"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Set bridge capability mode = 2 with down time minimum",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br208"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br208",
+        "capability": {
+          "mode": {
+            "mode_type": 2,
+            "down_time": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bridge/capability",
+      "arguments": {
+        "ifname": "br208"
+      },
+      "validation": {
+        "ifname": "br208",
+        "capability": {
+          "mode": {
+            "mode_type": 2,
+            "down_time": 0
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br208"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Set bridge capability mode = 2 with down time maximum",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br37"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br37",
+        "capability": {
+          "mode": {
+            "mode_type": 2,
+            "down_time": 4294967295
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bridge/capability",
+      "arguments": {
+        "ifname": "br37"
+      },
+      "validation": {
+        "ifname": "br37",
+        "capability": {
+          "mode": {
+            "mode_type": 2,
+            "down_time": 4294967295
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br37"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "Set bridge capability mode = 2 with down time null",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br599"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br599",
+        "capability": {
+          "mode": {
+            "mode_type": 2,
+            "down_time": null
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bridge/capability",
+      "arguments": {
+        "ifname": "br599"
+      },
+      "validation": {
+        "ifname": "br599",
+        "capability": {
+          "mode": {
+            "mode_type": 2,
+            "down_time": null
+          }
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br599"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Set bridge capability mode = 2 with down time less then minimum",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br7109"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "7.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br7109",
+        "capability": {
+          "mode": {
+            "mode_type": 2,
+            "down_time": -1
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "7.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br7109"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "8": {
+    "description": "Set bridge capability mode = 2 with down time more then maximum",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br33"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "8.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br33",
+        "capability": {
+          "mode": {
+            "mode_type": 2,
+            "down_time": 4294967296
+          }
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "8.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br33"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "9": {
+    "description": "Set bridge capability with random ageint time",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br7069"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br7069",
+        "capability": {
+          "ageing_time": 200917231
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bridge/capability",
+      "arguments": {
+        "ifname": "br7069"
+      },
+      "validation": {
+        "ifname": "br7069",
+        "capability": {
+          "ageing_time": 200917231
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br7069"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "10": {
+    "description": "Set bridge capability with minimum ageint time",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br227"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br227",
+        "capability": {
+          "ageing_time": 0
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bridge/capability",
+      "arguments": {
+        "ifname": "br227"
+      },
+      "validation": {
+        "ifname": "br227",
+        "capability": {
+          "ageing_time": 0
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br227"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "11": {
+    "description": "Set bridge capability with maximum ageint time",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br9"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br9",
+        "capability": {
+          "ageing_time": 4294967295
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bridge/capability",
+      "arguments": {
+        "ifname": "br9"
+      },
+      "validation": {
+        "ifname": "br9",
+        "capability": {
+          "ageing_time": 4294967295
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br9"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "12": {
+    "description": "Set bridge capability with less then minimum ageint time",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br670"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br670",
+        "capability": {
+          "ageing_time": -1
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "12.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br670"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Set bridge capability with more then maximum ageint time",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br4"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br4",
+        "capability": {
+          "ageing_time": 4294967296
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "13.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br4"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "14": {
+    "description": "Set bridge capability with random MAC address",
+    "14.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br703"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br703",
+        "capability": {
+          "max_mac_addresses": 14995
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bridge/capability",
+      "arguments": {
+        "ifname": "br703"
+      },
+      "validation": {
+        "ifname": "br703",
+        "capability": {
+          "max_mac_addresses": 14995
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br703"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "15": {
+    "description": "Set bridge capability with minimum MAC address",
+    "15.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br51"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br51",
+        "capability": {
+          "max_mac_addresses": 10
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bridge/capability",
+      "arguments": {
+        "ifname": "br51"
+      },
+      "validation": {
+        "ifname": "br51",
+        "capability": {
+          "max_mac_addresses": 10
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br51"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "16": {
+    "description": "Set bridge capability with maximum MAC address",
+    "16.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br7"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br7",
+        "capability": {
+          "max_mac_addresses": 1000000
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bridge/capability",
+      "arguments": {
+        "ifname": "br7"
+      },
+      "validation": {
+        "ifname": "br7",
+        "capability": {
+          "max_mac_addresses": 1000000
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br7"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "17": {
+    "description": "Set bridge capability no limit MAC address",
+    "17.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br8"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br8",
+        "capability": {
+          "max_mac_addresses": 0
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bridge/capability",
+      "arguments": {
+        "ifname": "br8"
+      },
+      "validation": {
+        "ifname": "br8",
+        "capability": {
+          "max_mac_addresses": 0
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br8"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "18": {
+    "description": "Set bridge capability with less then minimum MAC address",
+    "18.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br312"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br312",
+        "capability": {
+          "max_mac_addresses": 9
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "18.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br312"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "19": {
+    "description": "Set bridge capability with more then maximum MAC address",
+    "19.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "19.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br1",
+        "capability": {
+          "max_mac_addresses": 1000001
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    },
+    "19.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "20": {
+    "description": "Set interfaces in argument: included_interfaces",
+    "20.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/add",
+      "schema": {
+        "ifname": "bond0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br959"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/add",
+      "schema": {
+        "ifname": "eth1.457",
+        "vid": 3459
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan4091",
+        "vid": 3459
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.5": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/add",
+      "schema": {
+        "ifname": "tunnel8582",
+        "settings": {
+          "mode": "gretap",
+          "source": "50.214.155.252",
+          "dst_address": "252.219.156.2"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br959",
+        "capability": {
+          "included_interfaces": [
+            "eth1",
+            "eth1.457",
+            "vlan4091",
+            "bond0",
+            "tunnel8582"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.7": {
+      "type": "GET",
+      "endpoint": "/interfaces/bridge/capability",
+      "arguments": {
+        "ifname": "br959"
+      },
+      "validation": {
+        "ifname": "br959",
+        "capability": {
+          "included_interfaces": [
+            {
+              "ifname": "eth1",
+              "stp_priority": null,
+              "stp_path_cost": null
+            },
+            {
+              "ifname": "eth1.457",
+              "stp_priority": null,
+              "stp_path_cost": null
+            },
+            {
+              "ifname": "vlan4091",
+              "stp_priority": null,
+              "stp_path_cost": null
+            },
+            {
+              "ifname": "bond0",
+              "stp_priority": null,
+              "stp_path_cost": null
+            },
+            {
+              "ifname": "tunnel8582",
+              "stp_priority": null,
+              "stp_path_cost": null
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.8": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br959"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.9": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/delete",
+      "schema": {
+        "ifname": "tunnel8582"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.10": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/delete",
+      "schema": {
+        "ifname": "bond0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.11": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan4091"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.12": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/delete",
+      "schema": {
+        "ifname": "eth1.457"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.13": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "3459"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "21": {
+    "description": "Set tunnel(mode = gre) in argument: included_interfaces",
+    "21.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br2304"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/add",
+      "schema": {
+        "ifname": "tunnel0",
+        "settings": {
+          "mode": "gre",
+          "source": "165.161.254.85",
+          "dst_address": "253.255.70.152"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br2304",
+        "capability": {
+          "included_interfaces": [
+            "tunnel0"
+          ]
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    },
+    "21.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br2304"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.5": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/delete",
+      "schema": {
+        "ifname": "tunnel0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "22": {
+    "description": "Set tunnel(mode = ipip) in argument: included_interfaces",
+    "22.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br2"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/add",
+      "schema": {
+        "ifname": "tunnel1",
+        "settings": {
+          "mode": "ipip",
+          "source": "8.177.3.25",
+          "dst_address": "192.45.250.254"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br2",
+        "capability": {
+          "included_interfaces": [
+            "tunnel1"
+          ]
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    },
+    "22.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br2"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.5": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/delete",
+      "schema": {
+        "ifname": "tunnel1"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "23": {
+    "description": "Set tunnel(mode = vti) in argument: included_interfaces",
+    "23.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br730"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/add",
+      "schema": {
+        "ifname": "tunnel782",
+        "settings": {
+          "mode": "vti",
+          "source": "7.246.97.177",
+          "dst_address": "9.205.150.2"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br730",
+        "capability": {
+          "included_interfaces": [
+            "tunnel782"
+          ]
+        }
+      },
+      "errCode": 9,
+      "httpCode": 400
+    },
+    "23.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br730"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.5": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/delete",
+      "schema": {
+        "ifname": "tunnel782"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "24": {
+    "description": "Set empty list in argument: included_interfaces",
+    "24.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br3947"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br3947",
+        "capability": {
+          "included_interfaces": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bridge/capability",
+      "arguments": {
+        "ifname": "br3947"
+      },
+      "validation": {
+        "ifname": "br3947",
+        "capability": {
+          "included_interfaces": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br3947"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "25": {
+    "description": "Set all params on bridge capability",
+    "25.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/add",
+      "schema": {
+        "ifname": "bond6880"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/add",
+      "schema": {
+        "ifname": "br1522"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/add",
+      "schema": {
+        "ifname": "eth1.457",
+        "vid": 3459
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan4091",
+        "vid": 3459
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.5": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/add",
+      "schema": {
+        "ifname": "tunnel489",
+        "settings": {
+          "mode": "gretap",
+          "source": "79.3.255.255",
+          "dst_address": "189.151.54.76"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/capability",
+      "schema": {
+        "ifname": "br1522",
+        "capability": {
+          "mode": {
+            "mode_type": 2,
+            "down_time": 4294967295
+          },
+          "ageing_time": 4294967295,
+          "max_mac_addresses": 1000000,
+          "included_interfaces": [
+            "eth1",
+            "eth1.457",
+            "vlan4091",
+            "bond6880",
+            "tunnel489"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.7": {
+      "type": "GET",
+      "endpoint": "/interfaces/bridge/capability",
+      "arguments": {
+        "ifname": "br1522"
+      },
+      "validation": {
+        "ifname": "br1522",
+        "capability": {
+          "mode": {
+            "mode_type": 2,
+            "down_time": 4294967295
+          },
+          "ageing_time": 4294967295,
+          "max_mac_addresses": 1000000,
+          "included_interfaces": [
+            {
+              "ifname": "eth1",
+              "stp_priority": null,
+              "stp_path_cost": null
+            },
+            {
+              "ifname": "eth1.457",
+              "stp_priority": null,
+              "stp_path_cost": null
+            },
+            {
+              "ifname": "vlan4091",
+              "stp_priority": null,
+              "stp_path_cost": null
+            },
+            {
+              "ifname": "bond6880",
+              "stp_priority": null,
+              "stp_path_cost": null
+            },
+            {
+              "ifname": "tunnel489",
+              "stp_priority": null,
+              "stp_path_cost": null
+            }
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.8": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br1522"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.9": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/delete",
+      "schema": {
+        "ifname": "tunnel489"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.10": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/delete",
+      "schema": {
+        "ifname": "bond6880"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.11": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan4091"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.12": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/delete",
+      "schema": {
+        "ifname": "eth1.457"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.13": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "3459"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br9"
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br1522"
+      }
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br33"
+      }
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br7109"
+      }
+    },
+    "5": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br208"
+      }
+    },
+    "6": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br7069"
+      }
+    },
+    "7": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br670"
+      }
+    },
+    "8": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br312"
+      }
+    },
+    "9": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br3947"
+      }
+    },
+    "10": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br51"
+      }
+    },
+    "11": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br227"
+      }
+    },
+    "12": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br8"
+      }
+    },
+    "13": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br730"
+      }
+    },
+    "14": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br2"
+      }
+    },
+    "15": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br703"
+      }
+    },
+    "16": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br959"
+      }
+    },
+    "17": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br919"
+      }
+    },
+    "18": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br4"
+      }
+    },
+    "19": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br37"
+      }
+    },
+    "20": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br2304"
+      }
+    },
+    "21": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br0"
+      }
+    },
+    "22": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br7"
+      }
+    },
+    "23": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br3"
+      }
+    },
+    "24": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br1"
+      }
+    },
+    "25": {
+      "type": "POST",
+      "endpoint": "/interfaces/bridge/delete",
+      "schema": {
+        "ifname": "br599"
+      }
+    },
+    "26": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/delete",
+      "schema": {
+        "ifname": "tunnel489"
+      }
+    },
+    "27": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/delete",
+      "schema": {
+        "ifname": "tunnel8582"
+      }
+    },
+    "28": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/delete",
+      "schema": {
+        "ifname": "tunnel1"
+      }
+    },
+    "29": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/delete",
+      "schema": {
+        "ifname": "tunnel0"
+      }
+    },
+    "30": {
+      "type": "POST",
+      "endpoint": "/interfaces/tunnel/delete",
+      "schema": {
+        "ifname": "tunnel782"
+      }
+    },
+    "31": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/delete",
+      "schema": {
+        "ifname": "bond0"
+      }
+    },
+    "32": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/delete",
+      "schema": {
+        "ifname": "bond6880"
+      }
+    },
+    "33": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan4091"
+      }
+    },
+    "34": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/delete",
+      "schema": {
+        "ifname": "eth1.457"
+      }
+    },
+    "35": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "3459"
+      }
+    }
+  }
+}

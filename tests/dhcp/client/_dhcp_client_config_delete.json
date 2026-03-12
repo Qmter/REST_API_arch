@@ -1,0 +1,53 @@
+{
+  "1": {
+    "description": "Deleting non-existing client config",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": "Dhcp_client_does_not_exist"
+      },
+      "errCode": -1,
+      "httpCode": 500
+    }
+  },
+  "2": {
+    "description": "Deleting client config",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config",
+      "schema": {
+        "config": {
+          "config_name": ")}dQ9,q>O6:L/~/*g5SyXVi*;F<rU*O'nW-\"G>#HdsG70,yM]@"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": ")}dQ9,q>O6:L/~/*g5SyXVi*;F<rU*O'nW-\"G>#HdsG70,yM]@"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "type": "GET",
+      "endpoint": "/dhcp/client/config/list",
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/dhcp/client/config/delete",
+      "schema": {
+        "config_name": ")}dQ9,q>O6:L/~/*g5SyXVi*;F<rU*O'nW-\"G>#HdsG70,yM]@"
+      }
+    }
+  }
+}

@@ -1,0 +1,312 @@
+{
+  "1": {
+    "description": "Getting default VRF from pool",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/add",
+      "schema": {
+        "pool_number": 55341,
+        "network": "165.3.7.94/32"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.2": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/vrf",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": {
+        "vrf": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 55341
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Setting and getting random VRF from pool",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "L",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/add",
+      "schema": {
+        "pool_number": 47167,
+        "network": "255.6.4.3/32"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/vrf",
+      "schema": {
+        "pool_number": 47167,
+        "vrf": "L"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.4": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/vrf",
+      "arguments": {
+        "pool_number": 47167
+      },
+      "validation": {
+        "vrf": "L"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.5": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 47167
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.6": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "L",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Setting and getting default VRF from pool",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1j5-tKpO_q",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/add",
+      "schema": {
+        "pool_number": 55384,
+        "network": "204.255.222.160/30",
+        "vrf_name": "1j5-tKpO_q"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/vrf",
+      "schema": {
+        "pool_number": 55384,
+        "vrf": "default"
+      },
+      "validation": {
+        "vrf": null
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.4": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/vrf",
+      "arguments": {
+        "pool_number": 55384
+      },
+      "validation": null,
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.5": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 55384
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.6": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1j5-tKpO_q",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Setting already configured default VRF",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/add",
+      "schema": {
+        "pool_number": 56055,
+        "network": "254.9.250.255/32"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/vrf",
+      "schema": {
+        "pool_number": 56055,
+        "vrf": "default"
+      },
+      "errCode": 9,
+      "httpCode": 400
+    },
+    "4.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 56055
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Setting already configured random VRF",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "PyLvOECYXP",
+        "action": "add"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/add",
+      "schema": {
+        "pool_number": 31408,
+        "network": "255.254.24.251/32",
+        "vrf_name": "PyLvOECYXP"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/vrf",
+      "schema": {
+        "pool_number": 31408,
+        "vrf": "PyLvOECYXP"
+      },
+      "errCode": 9,
+      "httpCode": 400
+    },
+    "5.4": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "PyLvOECYXP",
+        "action": "delete"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.5": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 31408
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "L",
+        "action": "delete"
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "1j5-tKpO_q",
+        "action": "delete"
+      }
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/vrf",
+      "schema": {
+        "vrf_name": "PyLvOECYXP",
+        "action": "delete"
+      }
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 55341
+      }
+    },
+    "5": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 47167
+      }
+    },
+    "6": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 55384
+      }
+    },
+    "7": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 56055
+      }
+    },
+    "8": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 31408
+      }
+    }
+  }
+}

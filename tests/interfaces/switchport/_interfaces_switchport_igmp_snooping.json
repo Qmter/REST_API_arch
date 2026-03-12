@@ -1,0 +1,100 @@
+{
+  "1": {
+    "description": "Enabling the function on all ports",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/capability",
+      "schema": {
+        "port": [
+          {
+            "ifname": "switchport2",
+            "igmp_snooping": true
+          },
+          {
+            "ifname": "switchport3",
+            "igmp_snooping": true
+          },
+          {
+            "ifname": "switchport4",
+            "igmp_snooping": true
+          },
+          {
+            "ifname": "switchport5",
+            "igmp_snooping": true
+          },
+          {
+            "ifname": "switchport6",
+            "igmp_snooping": true
+          },
+          {
+            "ifname": "switchport7",
+            "igmp_snooping": true
+          },
+          {
+            "ifname": "switchport8",
+            "igmp_snooping": true
+          }
+        ]
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/igmp_snooping",
+      "arguments": {},
+      "validation": {},
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Disabling the function on all ports",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/capability",
+      "schema": {
+        "port": [
+          {
+            "ifname": "switchport2",
+            "igmp_snooping": false
+          },
+          {
+            "ifname": "switchport3",
+            "igmp_snooping": false
+          },
+          {
+            "ifname": "switchport4",
+            "igmp_snooping": false
+          },
+          {
+            "ifname": "switchport5",
+            "igmp_snooping": false
+          },
+          {
+            "ifname": "switchport6",
+            "igmp_snooping": false
+          },
+          {
+            "ifname": "switchport7",
+            "igmp_snooping": false
+          },
+          {
+            "ifname": "switchport8",
+            "igmp_snooping": false
+          }
+        ]
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/igmp_snooping",
+      "arguments": {},
+      "validation": {},
+      "errCode": 0,
+      "httpCode": 200
+    }
+  }
+}

@@ -1,0 +1,1433 @@
+{
+  "1": {
+    "description": "Set mode = access without optional fields",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Set mode = access and vlan = 'untagged'",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport5",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport5"
+      },
+      "validation": {
+        "ifname": "switchport5",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Set mode = access with existing vlan",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "add",
+        "vlan": "3648"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": 3648
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": 3648
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.5": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "3648"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Set mode = access with non-existing vlan",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport5",
+        "settings": {
+          "mode": "access",
+          "vlan": 167
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport5"
+      },
+      "validation": {
+        "ifname": "switchport5",
+        "settings": {
+          "mode": "access",
+          "vlan": 167
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport5",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "167"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Set mode = access with minimum vlan",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport4",
+        "settings": {
+          "mode": "access",
+          "vlan": 2
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport4"
+      },
+      "validation": {
+        "ifname": "switchport4",
+        "settings": {
+          "mode": "access",
+          "vlan": 2
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport4",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "2"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "Set mode = access with maximum vlan",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport6",
+        "settings": {
+          "mode": "access",
+          "vlan": 4094
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport6"
+      },
+      "validation": {
+        "ifname": "switchport6",
+        "settings": {
+          "mode": "access",
+          "vlan": 4094
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport6",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "4094"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Set mode = access with less than minimum vlan",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport5",
+        "settings": {
+          "mode": "access",
+          "vlan": 1
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "8": {
+    "description": "Set mode = access with more than maximum vlan",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport5",
+        "settings": {
+          "mode": "access",
+          "vlan": 4095
+        }
+      },
+      "errCode": 15,
+      "httpCode": 400
+    }
+  },
+  "9": {
+    "description": "Set mode = trunk without optional fields",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "trunk"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "trunk"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "10": {
+    "description": "Set mode = trunk and allowed = all",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "trunk",
+          "allowed": "all"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "trunk",
+          "allowed": "all"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "11": {
+    "description": "Set mode = trunk and allowed = none",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport4",
+        "settings": {
+          "mode": "trunk",
+          "allowed": "none"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport4"
+      },
+      "validation": {
+        "ifname": "switchport4",
+        "settings": {
+          "mode": "trunk",
+          "allowed": "none"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport4",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "12": {
+    "description": "Set mode = trunk and allowed = VLAN list",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport5",
+        "settings": {
+          "mode": "trunk",
+          "allowed": "2,886,2-489,551-566,7,3,819-3418,6,1408"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport5"
+      },
+      "validation": {
+        "ifname": "switchport5",
+        "settings": {
+          "mode": "trunk"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport5",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "2,886,2-489,551-566,7,3,819-3418,6,1408"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Set mode = trunk and native_vlan = untagged",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport3",
+        "settings": {
+          "mode": "trunk",
+          "native_vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport3"
+      },
+      "validation": {
+        "ifname": "switchport3",
+        "settings": {
+          "mode": "trunk",
+          "native_vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport3",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "14": {
+    "description": "Set mode = trunk and random native_vlan",
+    "14.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "add",
+        "vlan": "3181"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport2",
+        "settings": {
+          "mode": "trunk",
+          "native_vlan": 3181
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport2"
+      },
+      "validation": {
+        "ifname": "switchport2",
+        "settings": {
+          "mode": "trunk",
+          "native_vlan": 3181
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport2",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.5": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "3181"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "15": {
+    "description": "Set mode = trunk and non-existing native_vlan",
+    "15.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "trunk",
+          "native_vlan": 3625
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "trunk",
+          "native_vlan": 3625
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "15.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "3625"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "16": {
+    "description": "Set mode = trunk and minimum native_vlan",
+    "16.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport7",
+        "settings": {
+          "mode": "trunk",
+          "native_vlan": 2
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport7"
+      },
+      "validation": {
+        "ifname": "switchport7",
+        "settings": {
+          "mode": "trunk",
+          "native_vlan": 2
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport7",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "16.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "2"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "17": {
+    "description": "Set mode = trunk and maximum native_vlan",
+    "17.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "trunk",
+          "native_vlan": 4094
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "trunk",
+          "native_vlan": 4094
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "17.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "4094"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "18": {
+    "description": "Set mode = voicevlan withdout optional fields",
+    "18.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport6",
+        "settings": {
+          "mode": "voicevlan"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport6"
+      },
+      "validation": {
+        "ifname": "switchport6",
+        "settings": {
+          "mode": "voicevlan"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "18.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport6",
+        "settings": {
+          "mode": "access",
+          "vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "19": {
+    "description": "Set mode = voicevlan and allowed = all",
+    "19.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport7",
+        "settings": {
+          "mode": "voicevlan",
+          "allowed": "all"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "19.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport7"
+      },
+      "validation": {
+        "ifname": "switchport7",
+        "settings": {
+          "mode": "voicevlan",
+          "allowed": "all"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "19.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport7",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "20": {
+    "description": "Set mode = voicevlan and allowed = none",
+    "20.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport6",
+        "settings": {
+          "mode": "voicevlan",
+          "allowed": "none"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport6"
+      },
+      "validation": {
+        "ifname": "switchport6",
+        "settings": {
+          "mode": "voicevlan",
+          "allowed": "none"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "20.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport6",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "21": {
+    "description": "Set mode = voicevlan and allowed = VLAN list",
+    "21.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport5",
+        "settings": {
+          "mode": "voicevlan",
+          "allowed": "7,6-60,419,4,2-6,69,226,35"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport5"
+      },
+      "validation": {
+        "ifname": "switchport5",
+        "settings": {
+          "mode": "voicevlan"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport5",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "21.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "7,6-60,419,4,2-6,69,226,35"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "22": {
+    "description": "Set mode = voicevlan and native_vlan = untagged",
+    "22.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "voicevlan",
+          "native_vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport8"
+      },
+      "validation": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "voicevlan",
+          "native_vlan": "untagged"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "22.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "23": {
+    "description": "Set mode = voicevlan and random native_vlan",
+    "23.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "add",
+        "vlan": "2464"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport3",
+        "settings": {
+          "mode": "voicevlan",
+          "native_vlan": 2464
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport3"
+      },
+      "validation": {
+        "ifname": "switchport3",
+        "settings": {
+          "mode": "voicevlan",
+          "native_vlan": 2464
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport3",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "23.5": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "2464"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "24": {
+    "description": "Set mode = voicevlan and non-existing native_vlan",
+    "24.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport2",
+        "settings": {
+          "mode": "voicevlan",
+          "native_vlan": 1615
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport2"
+      },
+      "validation": {
+        "ifname": "switchport2",
+        "settings": {
+          "mode": "voicevlan",
+          "native_vlan": 1615
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport2",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "24.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "1615"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "25": {
+    "description": "Set mode = voicevlan and minimum native_vlan",
+    "25.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport2",
+        "settings": {
+          "mode": "voicevlan",
+          "native_vlan": 2
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport2"
+      },
+      "validation": {
+        "ifname": "switchport2",
+        "settings": {
+          "mode": "voicevlan",
+          "native_vlan": 2
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport2",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "25.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "2"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "26": {
+    "description": "Set mode = voicevlan and maximum native_vlan",
+    "26.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport7",
+        "settings": {
+          "mode": "voicevlan",
+          "native_vlan": 4094
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/switchport/mode",
+      "arguments": {
+        "ifname": "switchport7"
+      },
+      "validation": {
+        "ifname": "switchport7",
+        "settings": {
+          "mode": "voicevlan",
+          "native_vlan": 4094
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport7",
+        "settings": {
+          "mode": "access"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "26.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "4094"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport2",
+        "settings": {
+          "mode": "access"
+        }
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport3",
+        "settings": {
+          "mode": "access"
+        }
+      }
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport4",
+        "settings": {
+          "mode": "access"
+        }
+      }
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport5",
+        "settings": {
+          "mode": "access"
+        }
+      }
+    },
+    "5": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport6",
+        "settings": {
+          "mode": "access"
+        }
+      }
+    },
+    "6": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport7",
+        "settings": {
+          "mode": "access"
+        }
+      }
+    },
+    "7": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/mode",
+      "schema": {
+        "ifname": "switchport8",
+        "settings": {
+          "mode": "access"
+        }
+      }
+    },
+    "8": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "3648"
+      }
+    },
+    "9": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "167"
+      }
+    },
+    "10": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "2"
+      }
+    },
+    "11": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "4094"
+      }
+    },
+    "12": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "1"
+      }
+    },
+    "13": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "4095"
+      }
+    },
+    "14": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "2,886,2-489,551-566,7,3,819-3418,6,1408"
+      }
+    },
+    "15": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "3181"
+      }
+    },
+    "16": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "3625"
+      }
+    },
+    "17": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "2"
+      }
+    },
+    "18": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "4094"
+      }
+    },
+    "19": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "7,6-60,419,4,2-6,69,226,35"
+      }
+    },
+    "20": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "2464"
+      }
+    },
+    "21": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "1615"
+      }
+    },
+    "22": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "2"
+      }
+    },
+    "23": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "4094"
+      }
+    }
+  }
+}

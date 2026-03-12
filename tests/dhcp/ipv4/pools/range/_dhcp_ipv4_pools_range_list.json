@@ -1,0 +1,111 @@
+{
+  "PRESET": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/add",
+      "schema": {
+        "pool_number": 55341,
+        "network": "8.213.131.0/24"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "1": {
+    "description": "Getting empty list",
+    "1.1": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/range/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Getting filled list",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/range/add",
+      "schema": {
+        "pool_number": 55341,
+        "start_ip_address": "8.213.131.68",
+        "stop_ip_address": "8.213.131.102",
+        "comment": "d%M//dyig=Gm}&&(^1U-)p\\"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/range/add",
+      "schema": {
+        "pool_number": 55341,
+        "start_ip_address": "8.213.131.105",
+        "stop_ip_address": "8.213.131.110"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.3": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/range/add",
+      "schema": {
+        "pool_number": 55341,
+        "start_ip_address": "8.213.131.112",
+        "stop_ip_address": "8.213.131.247"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.4": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/range/list",
+      "arguments": {
+        "pool_number": 55341
+      },
+      "validation": [
+        {
+          "start_ip_address": "8.213.131.68",
+          "stop_ip_address": "8.213.131.102",
+          "comment": "d%M//dyig=Gm}&&(^1U-)p\\"
+        },
+        {
+          "start_ip_address": "8.213.131.105",
+          "stop_ip_address": "8.213.131.110"
+        },
+        {
+          "start_ip_address": "8.213.131.112",
+          "stop_ip_address": "8.213.131.247"
+        }
+      ],
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Getting list from non-existing pool",
+    "3.1": {
+      "type": "GET",
+      "endpoint": "/dhcp/ipv4/pools/range/list",
+      "arguments": {
+        "pool_number": 60683
+      },
+      "errCode": 10,
+      "httpCode": 400
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/dhcp/ipv4/pools/delete",
+      "schema": {
+        "pool_number": 55341
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  }
+}

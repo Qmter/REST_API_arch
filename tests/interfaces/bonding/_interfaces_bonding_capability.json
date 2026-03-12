@@ -1,0 +1,775 @@
+{
+  "PRESET": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/add",
+      "schema": {
+        "ifname": "bond0"
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/add",
+      "schema": {
+        "ifname": "vlan4091",
+        "vid": 3459
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/add",
+      "schema": {
+        "ifname": "eth1.457",
+        "vid": 3459
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/interfaces/shutdown",
+      "schema": {
+        "ifname": "eth1.457",
+        "adm_state": true
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "1": {
+    "description": "Capability with hash_policy: layer2",
+    "1.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "hash_policy": "layer2"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "1.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "hash_policy": "layer2"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "2": {
+    "description": "Capability with hash_policy: layer2+3",
+    "2.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "hash_policy": "layer2+3"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "2.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "hash_policy": "layer2+3"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "3": {
+    "description": "Capability with hash_policy: layer3+4",
+    "3.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "hash_policy": "layer3+4"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "3.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "hash_policy": "layer3+4"
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "4": {
+    "description": "Capability with link_monitor normal value",
+    "4.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "link_monitor_period": 249326891
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "4.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "link_monitor_period": 249326891
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "5": {
+    "description": "Capability with link_monitor min value",
+    "5.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "link_monitor_period": 0
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "5.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "link_monitor_period": 0
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "6": {
+    "description": "Capability with link_monitor max value",
+    "6.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "link_monitor_period": 2147483647
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "6.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "link_monitor_period": 2147483647
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "7": {
+    "description": "Capability with link_monitor less than min value",
+    "7.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "link_monitor_period": -1
+        }
+      }
+    }
+  },
+  "8": {
+    "description": "Capability with link_monitor more than max value",
+    "8.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "link_monitor_period": 2147483648
+        }
+      }
+    }
+  },
+  "9": {
+    "description": "Capability with link_monitor null value",
+    "9.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "link_monitor_period": null
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "9.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "link_monitor_period": 100
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "10": {
+    "description": "Capability with enslave vlan",
+    "10.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": [
+            "vlan4091"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": [
+            "vlan4091"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "10.4": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "11": {
+    "description": "Capability with enslave eth_vlan",
+    "11.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": [
+            "eth1.457"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": [
+            "eth1.457"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "11.4": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "12": {
+    "description": "Capability with enslave eth",
+    "12.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/delete",
+      "schema": {
+        "ifname": "eth1.457"
+      }
+    },
+    "12.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": [
+            "eth1"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": [
+            "eth1"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.5": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "12.6": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/add",
+      "schema": {
+        "ifname": "eth1.457",
+        "vid": 3459
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "13": {
+    "description": "Capability with enslave all interfaces",
+    "13.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/delete",
+      "schema": {
+        "ifname": "eth1.457"
+      }
+    },
+    "13.2": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": [
+            "eth1",
+            "vlan4091"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.3": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": [
+            "eth1",
+            "vlan4091"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "13.5": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "14": {
+    "description": "Capability with all arguments",
+    "14.1": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "hash_policy": "layer2",
+          "link_monitor_period": 679500893,
+          "enslave": [
+            "eth1",
+            "vlan4091"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.2": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "hash_policy": "layer2",
+          "link_monitor_period": 679500893,
+          "enslave": [
+            "eth1",
+            "vlan4091"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.3": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.4": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.5": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "hash_policy": "layer2+3",
+          "link_monitor_period": 695587449,
+          "enslave": [
+            "eth1",
+            "vlan4091"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.6": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "hash_policy": "layer2+3",
+          "link_monitor_period": 695587449,
+          "enslave": [
+            "eth1",
+            "vlan4091"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.7": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.8": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.9": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "hash_policy": "layer3+4",
+          "link_monitor_period": 1470221169,
+          "enslave": [
+            "eth1",
+            "vlan4091"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.10": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "hash_policy": "layer3+4",
+          "link_monitor_period": 1470221169,
+          "enslave": [
+            "eth1",
+            "vlan4091"
+          ]
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.11": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/capability",
+      "schema": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    },
+    "14.12": {
+      "type": "GET",
+      "endpoint": "/interfaces/bonding/capability",
+      "arguments": {
+        "ifname": "bond0"
+      },
+      "validation": {
+        "ifname": "bond0",
+        "capability": {
+          "enslave": []
+        }
+      },
+      "errCode": 0,
+      "httpCode": 200
+    }
+  },
+  "AFTER-TEST": {
+    "1": {
+      "type": "POST",
+      "endpoint": "/interfaces/eth_vlan/delete",
+      "schema": {
+        "ifname": "eth1.457"
+      }
+    },
+    "2": {
+      "type": "POST",
+      "endpoint": "/interfaces/vlan/delete",
+      "schema": {
+        "ifname": "vlan4091"
+      }
+    },
+    "3": {
+      "type": "POST",
+      "endpoint": "/interfaces/switchport/vlandb",
+      "schema": {
+        "action": "delete",
+        "vlan": "3459"
+      }
+    },
+    "4": {
+      "type": "POST",
+      "endpoint": "/interfaces/bonding/delete",
+      "schema": {
+        "ifname": "bond0"
+      }
+    }
+  }
+}
